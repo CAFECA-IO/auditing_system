@@ -6,99 +6,86 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_transactionContractAddress",
-						"type": "address"
-					},
-					{
-						"internalType": "address",
-						"name": "_reportAddress",
-						"type": "address"
-					}
-				],
-				"stateMutability": "nonpayable",
-				"type": "constructor"
-			},
-			{
 				"anonymous": false,
 				"inputs": [
 					{
 						"indexed": false,
 						"internalType": "string",
-						"name": "eventId",
+						"name": "id",
 						"type": "string"
 					},
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "EP001",
-						"type": "uint256"
-					},
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "EP002",
-						"type": "uint256"
-					},
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "EP003",
-						"type": "uint256"
-					},
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "EP005",
-						"type": "uint256"
-					}
-				],
-				"name": "EventEP001",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
 					{
 						"indexed": false,
 						"internalType": "string",
-						"name": "eventId",
+						"name": "transactionType",
 						"type": "string"
-					},
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "SP002",
-						"type": "uint256"
-					},
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "SP003",
-						"type": "uint256"
-					},
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "SP004",
-						"type": "uint256"
 					}
 				],
-				"name": "EventIdAndRateReceived",
+				"name": "NewTransaction",
 				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"name": "balanceSheet",
+				"outputs": [
+					{
+						"internalType": "int256",
+						"name": "",
+						"type": "int256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"name": "cashFlow",
+				"outputs": [
+					{
+						"internalType": "int256",
+						"name": "",
+						"type": "int256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"name": "comprehensiveIncome",
+				"outputs": [
+					{
+						"internalType": "int256",
+						"name": "",
+						"type": "int256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
 			},
 			{
 				"inputs": [
 					{
 						"internalType": "string",
 						"name": "_eventId",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "_reportID",
 						"type": "string"
 					},
 					{
@@ -124,12 +111,215 @@
 			},
 			{
 				"inputs": [],
-				"name": "report",
+				"name": "getLatestTransaction",
 				"outputs": [
 					{
-						"internalType": "contract Reports",
+						"components": [
+							{
+								"internalType": "string",
+								"name": "id",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "transactionType",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "amount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "internalFee",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "externalFee",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "timestamp",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "rateUSDTtoUSD",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct E00010001.Event",
 						"name": "",
-						"type": "address"
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "startTime",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "endTime",
+						"type": "uint256"
+					}
+				],
+				"name": "getReportsInTimeRange",
+				"outputs": [
+					{
+						"internalType": "string[]",
+						"name": "IDS",
+						"type": "string[]"
+					},
+					{
+						"internalType": "string[14]",
+						"name": "balanceSheetKeys",
+						"type": "string[14]"
+					},
+					{
+						"internalType": "int256[][]",
+						"name": "balanceSheetValues",
+						"type": "int256[][]"
+					},
+					{
+						"internalType": "string[4]",
+						"name": "comprehensiveIncomeKeys",
+						"type": "string[4]"
+					},
+					{
+						"internalType": "int256[][]",
+						"name": "comprehensiveIncomeValues",
+						"type": "int256[][]"
+					},
+					{
+						"internalType": "string[8]",
+						"name": "cashFlowKeys",
+						"type": "string[8]"
+					},
+					{
+						"internalType": "int256[][]",
+						"name": "cashFlowValues",
+						"type": "int256[][]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "id",
+						"type": "string"
+					}
+				],
+				"name": "getTransactionById",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "id",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "transactionType",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "amount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "internalFee",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "externalFee",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "timestamp",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "rateUSDTtoUSD",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct E00010001.Event",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "index",
+						"type": "uint256"
+					}
+				],
+				"name": "getTransactionByIndex",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "id",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "transactionType",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "amount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "internalFee",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "externalFee",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "timestamp",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "rateUSDTtoUSD",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct E00010001.Event",
+						"name": "",
+						"type": "tuple"
 					}
 				],
 				"stateMutability": "view",
@@ -137,12 +327,160 @@
 			},
 			{
 				"inputs": [],
-				"name": "transactionContract",
+				"name": "getTransactionCount",
 				"outputs": [
 					{
-						"internalType": "contract TransactionContract",
+						"internalType": "uint256",
 						"name": "",
-						"type": "address"
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "startTime",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "endTime",
+						"type": "uint256"
+					}
+				],
+				"name": "getTransactionsInTimeRange",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "id",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "transactionType",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "amount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "internalFee",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "externalFee",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "timestamp",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "rateUSDTtoUSD",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct E00010001.Event[]",
+						"name": "",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_id",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_transactionType",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_internalFee",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_externalFee",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_rateUSDTtoUSD",
+						"type": "uint256"
+					}
+				],
+				"name": "recordTransaction",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "transactions",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "id",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "transactionType",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "internalFee",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "externalFee",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "timestamp",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "rateUSDTtoUSD",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -162,7 +500,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"E00010001.sol": "E00010001"
+			"temp.sol": "E00010001"
 		},
 		"evmVersion": "paris",
 		"libraries": {},
@@ -176,28 +514,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"E00010001.sol": {
-			"keccak256": "0xa2e6ae3e0bc4effb32f15dd6d47655cffa20d582fea0f0d356723aa557ae4d5d",
+		"temp.sol": {
+			"keccak256": "0xdb2d2b4634e8851cbad9ccf288fa2f3254de0cde1a4c6591100b552f37a664b9",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://474989d830bc8caab7c886f1ebcf7dad6bf93e2b958abfc9c4982dd9cc6dfec0",
-				"dweb:/ipfs/QmUkHddLWG2uRKg4LCR17HCyg9MaK2u1LqL2XexpeXYtFg"
-			]
-		},
-		"eventTransactionRecord.sol": {
-			"keccak256": "0x96aff0c12eb8627ccb3c8ed7d087665eaefa417a2215f4ce5e9e89b09476293f",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://83e9eeaefcb581cd3ba258878a146e3e72ac13c481456377b982b67f6901d9b7",
-				"dweb:/ipfs/QmU3wZ7XZsaCrxe53vv48icpNvyqakbNE2CRyGrDKqcciN"
-			]
-		},
-		"reports.sol": {
-			"keccak256": "0x1cd4603791713d4e5c23e1dc83d75c05fe98249bf55e26ba680aebe052c5d36f",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://ccb75167a6489d8e5043d377cb1af18155b55002b1a87643550063d7b029c475",
-				"dweb:/ipfs/QmXJzaSwtuSGV9B8xaGUMwgyEX2snNysdfY48FwgbsDDgQ"
+				"bzz-raw://a8a4c3eebb87c36f51af342abe949b5968d8483b5197475a15cadb4ccac657c8",
+				"dweb:/ipfs/QmauQJaw5YLG1s9hsJB5c77PfoqcEKPiteZ2mUSwzoLgFm"
 			]
 		}
 	},

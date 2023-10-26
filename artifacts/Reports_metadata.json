@@ -23,9 +23,9 @@
 						"type": "string"
 					},
 					{
-						"internalType": "uint256",
+						"internalType": "int256",
 						"name": "value",
-						"type": "uint256"
+						"type": "int256"
 					}
 				],
 				"name": "addValue",
@@ -54,9 +54,9 @@
 				"name": "data",
 				"outputs": [
 					{
-						"internalType": "uint256",
+						"internalType": "int256",
 						"name": "",
-						"type": "uint256"
+						"type": "int256"
 					}
 				],
 				"stateMutability": "view",
@@ -83,9 +83,9 @@
 				"name": "getValue",
 				"outputs": [
 					{
-						"internalType": "uint256",
+						"internalType": "int256",
 						"name": "",
-						"type": "uint256"
+						"type": "int256"
 					}
 				],
 				"stateMutability": "view",
@@ -120,11 +120,11 @@
 	},
 	"sources": {
 		"reports.sol": {
-			"keccak256": "0x1cd4603791713d4e5c23e1dc83d75c05fe98249bf55e26ba680aebe052c5d36f",
+			"keccak256": "0x17a1f4dd327b8014d84495abae9f8ddfb4388fdd2ff11eb51225608d4f32e7c8",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://ccb75167a6489d8e5043d377cb1af18155b55002b1a87643550063d7b029c475",
-				"dweb:/ipfs/QmXJzaSwtuSGV9B8xaGUMwgyEX2snNysdfY48FwgbsDDgQ"
+				"bzz-raw://37fc3c605dfa12cb765be4a0cadaed0c86d1b195beed1598fb9ea4df3485f521",
+				"dweb:/ipfs/QmfERCGYzU3YA2ctmqw9mhwSiwyQo96wT2Ukae5XUhTxhn"
 			]
 		}
 	},
