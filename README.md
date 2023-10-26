@@ -1,5 +1,8 @@
 # Auditing System by ISUNCLOUD
 
+<img width="559" alt="image" src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/1571f15c-b107-4d2c-a24e-2d454ec857b4">
+
+
 ## 1. System Deployment:
 
 Deploy the smart contracts in the following sequence: 
