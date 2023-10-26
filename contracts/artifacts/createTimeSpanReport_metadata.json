@@ -16,29 +16,15 @@
 						"internalType": "address",
 						"name": "_E00010001",
 						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_E00010002",
+						"type": "address"
 					}
 				],
 				"stateMutability": "nonpayable",
 				"type": "constructor"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "balanceSheet",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
 			},
 			{
 				"inputs": [],
@@ -46,6 +32,19 @@
 				"outputs": [
 					{
 						"internalType": "contract E00010001",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "e00010002",
+				"outputs": [
+					{
+						"internalType": "contract E00010002",
 						"name": "",
 						"type": "address"
 					}
@@ -218,11 +217,19 @@
 	},
 	"sources": {
 		"contracts/E00010001.sol": {
-			"keccak256": "0x008511ac945fc92fbec65fee00c40a58bb6e84e6964be3e1ddc0ef0671338a0f",
+			"keccak256": "0x2286174d21ef21c3a9ce3a81ff27f490972cfb7403256a36097c15d2accc5717",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://06fe8c6199fdb3a9d5b969d349dbd4787a200350c17cedf183d0b648d3730578",
-				"dweb:/ipfs/QmYXYekTAkHbTAstzDedXhHR74Ng4jzLmo2y4B7ZbaZYYs"
+				"bzz-raw://b5aea1f89b18c7c6e74e35edf251a640971f0398a8b7b3e719676786966d0b30",
+				"dweb:/ipfs/Qmdmh6TaieR52BoVpgC6LeMNSWpHkiq5wXpWFiA31m3RBj"
+			]
+		},
+		"contracts/E00010002.sol": {
+			"keccak256": "0xe5df346ae5a955c4584e2ce18b8d4ab7f69d4164d7b082bb98ef3398293a32a9",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://ba7d9e55758e31ab2fce745e493077a15b67d9cca0ca02c1054f7215ebc617fd",
+				"dweb:/ipfs/QmQpmL2veVpmVZXcSZzi4Z37S8FhwA7qVWgTbzJDiv8XLa"
 			]
 		},
 		"contracts/eventTransactionRecord.sol": {
@@ -234,11 +241,11 @@
 			]
 		},
 		"contracts/getTransactionTimeSpan.sol": {
-			"keccak256": "0x8a66cf145db2c9f967eaa9dda7c8cd5b721bf7bf1de308f11fb45fdab1432bcf",
+			"keccak256": "0xd3c1a1a6cf4479cf90f862469e9fb2dfd8ecf64574ca8607375bd2e9deb27257",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://68d29357b9b08e49eb756c387069d9fc04a1cdccd013ed81dbf31dcbf190e8da",
-				"dweb:/ipfs/QmYmWNJAUv2e7JU91ep7L1dD8sZGF3uhLgMfBocWUUiR8f"
+				"bzz-raw://db1147513cc873e6e43216ff62e7d0c070e999eaed05dcbe7fde41d05ace9e7a",
+				"dweb:/ipfs/QmaDUz1HEjPWQ9uqwxkizFiFP4gVeBJhPvwo3Vv18dWdVq"
 			]
 		},
 		"contracts/reports.sol": {

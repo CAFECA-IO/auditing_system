@@ -2,6 +2,7 @@
 pragma solidity ^0.8.0;
 import "./eventTransactionRecord.sol";
 import "./E00010001.sol";
+import "./E00010002.sol";
 contract createTimeSpanReport {
     
     struct Settlement {
@@ -20,14 +21,16 @@ contract createTimeSpanReport {
         string reportID;
     }
 
-    uint256[] public balanceSheet;
+    //uint256[] public balanceSheet;
     Settlement[] public rateHistory;
     TransactionContract public transactionContract;
     E00010001 public e00010001;
+    E00010002 public e00010002;
 
-    constructor(address _transactionContractAddress, address _E00010001) {
+    constructor(address _transactionContractAddress, address _E00010001, address _E00010002) {
         transactionContract = TransactionContract(_transactionContractAddress);
         e00010001 = E00010001(_E00010001);
+        e00010002 = E00010002(_E00010002);
     }
 
     function setRate(uint256 _SP002, uint256 _SP003, uint256 _SP004, string memory _reportID)public {
@@ -89,6 +92,9 @@ contract createTimeSpanReport {
         for (uint256 i = 0; i < data.types.length; i++) {
             if (keccak256(abi.encodePacked(data.types[i])) == keccak256(abi.encodePacked("E00010001"))) {
                 e00010001.getEventIdAndRate(data.eventIds[i], data.reportID ,latestRate.SP002, latestRate.SP003, latestRate.SP004);
+            }
+            if (keccak256(abi.encodePacked(data.types[i])) == keccak256(abi.encodePacked("E00010002"))) {
+                e00010002.getEventIdAndRate(data.eventIds[i], data.reportID ,latestRate.SP002, latestRate.SP003, latestRate.SP004);
             }
         }
     }
