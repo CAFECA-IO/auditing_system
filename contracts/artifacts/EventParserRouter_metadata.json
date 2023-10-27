@@ -1,0 +1,134 @@
+{
+	"compiler": {
+		"version": "0.8.18+commit.87f61d96"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32[]",
+						"name": "newEvents",
+						"type": "bytes32[]"
+					}
+				],
+				"name": "addEvent",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "enum EventParserRouter.EventType",
+						"name": "eventType",
+						"type": "uint8"
+					},
+					{
+						"internalType": "function (bytes32) external returns (bytes32)",
+						"name": "parser",
+						"type": "function"
+					}
+				],
+				"name": "addParser",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "events",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "eventBytes",
+						"type": "bytes32"
+					}
+				],
+				"name": "parseEvent",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "enum EventParserRouter.EventType",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"name": "parsers",
+				"outputs": [
+					{
+						"internalType": "function (bytes32) external returns (bytes32)",
+						"name": "",
+						"type": "function"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/eventParserRouter.sol": "EventParserRouter"
+		},
+		"evmVersion": "paris",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/eventParserRouter.sol": {
+			"keccak256": "0xa0f1971c7563962a74151cf8481f263d173137fbb19325f1679c28e1426c4a67",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://8db84519d4139bb10846e18973397bdd60d89b275bdf586a8c309e9228705146",
+				"dweb:/ipfs/QmbHPvvjvzTyNCfJF83wzDx4PDA85LUgft2daE5hamwypq"
+			]
+		}
+	},
+	"version": 1
+}

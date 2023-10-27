@@ -8,15 +8,15 @@ contract E00010002 {
 
     Reports public report;
 
-    event EventIdAndRateReceived(string eventId, uint256 SP002, uint256 SP003, uint256 SP004);
-    event EventEP001(string eventId, uint256 EP001,uint256 EP002,uint256 EP003,uint256 EP005);
-    uint256 latestSP002;
-    uint256 latestSP003;
-    uint256 latestSP004;
-    uint256 EP001;
-    uint256 EP002;
-    uint256 EP003;
-    uint256 EP005;
+    event EventIdAndRateReceived(string eventId, int256 SP002, int256 SP003, int256 SP004);
+    event EventEP001(string eventId, int256 EP001,int256 EP002,int256 EP003,int256 EP005);
+    int256 latestSP002;
+    int256 latestSP003;
+    int256 latestSP004;
+    int256 EP001;
+    int256 EP002;
+    int256 EP003;
+    int256 EP005;
     string  eventIdFromTimeSpan;
     string reportID;
     TransactionContract public transactionContract;
@@ -26,7 +26,7 @@ contract E00010002 {
         report = Reports(_reportAddress);
     }
 
-    function getEventIdAndRate(string memory _eventId,string memory _reportID ,uint256 _SP002, uint256 _SP003, uint256 _SP004) public {
+    function getEventIdAndRate(string memory _eventId,string memory _reportID ,int256 _SP002, int256 _SP003, int256 _SP004) public {
         latestSP002 = _SP002;
         latestSP003 = _SP003;
         latestSP004 = _SP004;
@@ -46,7 +46,7 @@ contract E00010002 {
     }
     function computeBalanceSheet() internal  {
 
-        int256 A001_4_5_14_16 = int256((EP001 + EP003) * latestSP003/100);
+        int256 A001_4_5_14_16 = int256((EP001 + EP003) * latestSP003);
         string[] memory keysForA001_4_5_14_16 = new string[](5);
         keysForA001_4_5_14_16[0] = "assets.details.cryptocurrency.totalAmountFairValue";
         keysForA001_4_5_14_16[1] = "assets.totalAmountFairValue";
@@ -64,7 +64,7 @@ contract E00010002 {
         keysForA015[0] = "assets.details.cryptocurrency.breakdown.ETH.amount";
         report.addValue(reportID, "balanceSheet", keysForA015[0], A015);
 
-        int256 A006_43_9 = int256((EP001 - EP002) * latestSP003/100);
+        int256 A006_43_9 = int256((EP001 - EP002) * latestSP003);
         string[] memory keysForA006_43_9 = new string[](3);
         keysForA006_43_9[0] = "liabilities.details.userDeposit.totalAmountFairValue";
         keysForA006_43_9[1] = "liabilities.details.userDeposit.breakdown.ETH.fairValue";
@@ -73,7 +73,7 @@ contract E00010002 {
         report.addValue(reportID, "balanceSheet", keysForA006_43_9[1], A006_43_9);
         report.addValue(reportID, "balanceSheet", keysForA006_43_9[2], A006_43_9);
 
-        int256 A010_18_13 = int256((EP002 + EP003) * latestSP003/100);
+        int256 A010_18_13 = int256((EP002 + EP003) * latestSP003);
         string[] memory keysForA0A010_18_13 = new string[](3);
         keysForA0A010_18_13[0] = "equity.details.retainedEarnings.totalAmountFairValue";
         keysForA0A010_18_13[1] = "equity.details.retainedEarnings.breakdown.ETH.fairValue";
@@ -94,7 +94,7 @@ contract E00010002 {
     }
 
     function computeComprehesiveIncome() internal {
-        int256 B001_35_4 = int256((EP002 + EP003) * EP005/100);
+        int256 B001_35_4 = int256((EP002 + EP003) * EP005);
         string[] memory keysForB001_35_4 = new string[](3);
         keysForB001_35_4[0] = "income.details.depositFee.weightedAverageCost";
         keysForB001_35_4[1] = "income.details.depositFee.breakdown.ETH.weightedAverageCost";
@@ -110,7 +110,7 @@ contract E00010002 {
     }
 
     function computeCashFlow() internal {
-        int256 C001_53 = int256((EP001 - EP002) * EP005/100);
+        int256 C001_53 = int256((EP001 - EP002) * EP005);
         string[] memory keysForC001_53 = new string[](2);
         keysForC001_53[0] = "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesDepositedByCustomers.weightedAverageCost"; 
         keysForC001_53[1] = "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesDepositedByCustomers.breakdown.ETH.weightedAverageCost";
@@ -122,7 +122,7 @@ contract E00010002 {
         keysForC052[0] = "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesDepositedByCustomers.breakdown.ETH.amount"; 
         report.addValue(reportID, "cashFlow", keysForC052[0], C052);
 
-        int256 C004_73 = int256((EP002 + EP003) * EP005/100);
+        int256 C004_73 = int256((EP002 + EP003) * EP005);
         string[] memory keysForC004_73 = new string[](2);
         keysForC004_73[0] = "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.weightedAverageCost"; 
         keysForC004_73[1] = "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.breakdown.ETH.weightedAverageCost";
@@ -134,7 +134,7 @@ contract E00010002 {
         keysForC072[0] = "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.breakdown.ETH.amount"; 
         report.addValue(reportID, "cashFlow", keysForC072[0], C072);
 
-        int256 C007_8 = int256((EP001 + EP003) * EP005/100);
+        int256 C007_8 = int256((EP001 + EP003) * EP005);
         string[] memory keysForC007_8 = new string[](2);
         keysForC007_8[0] = "supplementalScheduleOfNonCashOperatingActivities.weightedAverageCost"; 
         keysForC007_8[1] = "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesEndOfPeriod";

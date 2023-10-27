@@ -8,15 +8,15 @@ contract E00010001 {
 
     Reports public report;
 
-    event EventIdAndRateReceived(string eventId, uint256 SP002, uint256 SP003, uint256 SP004);
-    event EventEP001(string eventId, uint256 EP001,uint256 EP002,uint256 EP003,uint256 EP005);
-    uint256 latestSP002;
-    uint256 latestSP003;
-    uint256 latestSP004;
-    uint256 EP001;
-    uint256 EP002;
-    uint256 EP003;
-    uint256 EP005;
+    event EventIdAndRateReceived(string eventId, int256 SP002, int256 SP003, int256 SP004);
+    event EventEP001(string eventId, int256 EP001,int256 EP002,int256 EP003,int256 EP005);
+    int256 latestSP002;
+    int256 latestSP003;
+    int256 latestSP004;
+    int256 EP001;
+    int256 EP002;
+    int256 EP003;
+    int256 EP005;
     string  eventIdFromTimeSpan;
     string reportID;
     TransactionContract public transactionContract;
@@ -26,7 +26,7 @@ contract E00010001 {
         report = Reports(_reportAddress);
     }
 
-    function getEventIdAndRate(string memory _eventId,string memory _reportID ,uint256 _SP002, uint256 _SP003, uint256 _SP004) public {
+    function getEventIdAndRate(string memory _eventId,string memory _reportID ,int256 _SP002, int256 _SP003, int256 _SP004) public {
         latestSP002 = _SP002;
         latestSP003 = _SP003;
         latestSP004 = _SP004;
