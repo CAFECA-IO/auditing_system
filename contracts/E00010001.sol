@@ -5,17 +5,18 @@ import "./eventTransactionRecord.sol";
 import "./reports.sol";
 
 contract E00010001 {
+
     Reports public report;
 
-    event EventIdAndRateReceived(string eventId, uint256 SP002, uint256 SP003, uint256 SP004);
-    event EventEP001(string eventId, uint256 EP001,uint256 EP002,uint256 EP003,uint256 EP005);
-    uint256 latestSP002;
-    uint256 latestSP003;
-    uint256 latestSP004;
-    uint256 EP001;
-    uint256 EP002;
-    uint256 EP003;
-    uint256 EP005;
+    event EventIdAndRateReceived(string eventId, int256 SP002, int256 SP003, int256 SP004);
+    event EventEP001(string eventId, int256 EP001,int256 EP002,int256 EP003,int256 EP005);
+    int256 latestSP002;
+    int256 latestSP003;
+    int256 latestSP004;
+    int256 EP001;
+    int256 EP002;
+    int256 EP003;
+    int256 EP005;
     string  eventIdFromTimeSpan;
     string reportID;
     TransactionContract public transactionContract;
@@ -25,7 +26,7 @@ contract E00010001 {
         report = Reports(_reportAddress);
     }
 
-    function getEventIdAndRate(string memory _eventId,string memory _reportID ,uint256 _SP002, uint256 _SP003, uint256 _SP004) public {
+    function getEventIdAndRate(string memory _eventId,string memory _reportID ,int256 _SP002, int256 _SP003, int256 _SP004) public {
         latestSP002 = _SP002;
         latestSP003 = _SP003;
         latestSP004 = _SP004;
@@ -92,7 +93,7 @@ contract E00010001 {
     }
 
     function computeComprehesiveIncome() internal {
-        int256 B001_3_4 = int256((EP002 + EP003) * latestSP002/100);
+        int256 B001_3_4 = int256((EP002 + EP003) * EP005/100);
         string[] memory keysForB001_3_4 = new string[](3);
         keysForB001_3_4[0] = "income.details.depositFee.weightedAverageCost";
         keysForB001_3_4[1] = "income.details.depositFee.breakdown.USDT.weightedAverageCost";
@@ -108,7 +109,7 @@ contract E00010001 {
     }
 
     function computeCashFlow() internal {
-        int256 C001_3 = int256((EP001 - EP002) * latestSP002/100);
+        int256 C001_3 = int256((EP001 - EP002) * EP005/100);
         string[] memory keysForC001_3 = new string[](2);
         keysForC001_3[0] = "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesDepositedByCustomers.weightedAverageCost"; 
         keysForC001_3[1] = "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesDepositedByCustomers.breakdown.USDT.weightedAverageCost";
@@ -120,19 +121,19 @@ contract E00010001 {
         keysForC002[0] = "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesDepositedByCustomers.breakdown.USDT.amount"; 
         report.addValue(reportID, "cashFlow", keysForC002[0], C002);
 
-        int256 C004_6 = int256((EP002 + EP003) * latestSP002/100);
+        int256 C004_6 = int256((EP002 + EP003) * EP005/100);
         string[] memory keysForC004_6 = new string[](2);
         keysForC004_6[0] = "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.weightedAverageCost"; 
         keysForC004_6[1] = "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.breakdown.USDT.weightedAverageCost";
         report.addValue(reportID, "cashFlow", keysForC004_6[0], C004_6);
         report.addValue(reportID, "cashFlow", keysForC004_6[1], C004_6);
 
-        int256 C005 = int256(EP001 - EP002);
+        int256 C005 = int256(EP002 + EP003);
         string[] memory keysForC005 = new string[](1);
         keysForC005[0] = "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.breakdown.USDT.amount"; 
         report.addValue(reportID, "cashFlow", keysForC005[0], C005);
 
-        int256 C007_8 = int256((EP001 + EP003) * latestSP002/100);
+        int256 C007_8 = int256((EP001 + EP003) * EP005/100);
         string[] memory keysForC007_8 = new string[](2);
         keysForC007_8[0] = "supplementalScheduleOfNonCashOperatingActivities.weightedAverageCost"; 
         keysForC007_8[1] = "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesEndOfPeriod";
