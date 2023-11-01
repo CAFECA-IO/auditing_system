@@ -1,10 +1,11 @@
 // SPDX-License-Identifier: MIT
 // 傳進rate的值
 pragma solidity ^0.8.0;
-import "./eventTransactionRecord.sol";
+import "./eventTransactionBytes32.sol";
 import "./reports.sol";
+import "./parser.sol";
 
-contract E00010001 {
+contract E00010001{
 
     Reports public report;
 
@@ -19,32 +20,37 @@ contract E00010001 {
     int256 EP005;
     string  eventIdFromTimeSpan;
     string reportID;
-    TransactionContract public transactionContract;
 
-    constructor(address _transactionContractAddress, address _reportAddress) {
+    TransactionContract public transactionContract;
+    IParser public Iparser;
+
+    constructor(address _transactionContractAddress, address _Parser ,address _reportAddress) {
         transactionContract = TransactionContract(_transactionContractAddress);
+        Iparser = IParser(_Parser);
         report = Reports(_reportAddress);
     }
-
-    function getEventIdAndRate(string memory _eventId,string memory _reportID ,int256 _SP002, int256 _SP003, int256 _SP004) public {
-        latestSP002 = _SP002;
-        latestSP003 = _SP003;
-        latestSP004 = _SP004;
-        eventIdFromTimeSpan = _eventId;
-        reportID = _reportID;
-        emit EventIdAndRateReceived(_eventId, _SP002, _SP003, _SP004);
-        if (keccak256(abi.encodePacked(eventIdFromTimeSpan)) == keccak256(abi.encodePacked(_eventId))) {
-            EP001  = transactionContract.getTransactionParamByEventId(_eventId,"EP001");
-            EP002  = transactionContract.getTransactionParamByEventId(_eventId,"EP002");
-            EP003  = transactionContract.getTransactionParamByEventId(_eventId,"EP003");
-            EP005  = transactionContract.getTransactionParamByEventId(_eventId,"EP005");
-            emit EventEP001(_eventId, EP001,EP002,EP003,EP005);
-        }
+    
+    function getEventIdAndRate(bytes32 _eventId,bytes32 _reportID ,bytes32 _SP002, bytes32 _SP003, bytes32 _SP004) public {
+        latestSP002 = int256(uint256(_SP002));
+        latestSP003 = int256(uint256(_SP003));
+        latestSP004 = int256(uint256(_SP004));
+        eventIdFromTimeSpan = Iparser.bytes32ToString(_eventId);
+        reportID = Iparser.bytes32ToString(_reportID);
+        emit EventIdAndRateReceived(eventIdFromTimeSpan, latestSP002, latestSP003, latestSP004);
+        
+        EP001  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP001"));
+        EP002  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP002"));
+        EP003  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP003"));
+        EP005  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP005"));
+        emit EventEP001(Iparser.bytes32ToString(_eventId), EP001,EP002,EP003,EP005);
+        
         computeBalanceSheet();
         computeComprehesiveIncome();
         computeCashFlow();
     }
+    
     function computeBalanceSheet() internal  {
+
         int256 A001_3_4_5_14 = int256((EP001 + EP003) * latestSP002/100);
         string[] memory keysForA001_3_4_5_14 = new string[](5);
         keysForA001_3_4_5_14[0] = "assets.details.cryptocurrency.totalAmountFairValue";
@@ -136,7 +142,7 @@ contract E00010001 {
         int256 C007_8 = int256((EP001 + EP003) * EP005/100);
         string[] memory keysForC007_8 = new string[](2);
         keysForC007_8[0] = "supplementalScheduleOfNonCashOperatingActivities.weightedAverageCost"; 
-        keysForC007_8[1] = "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesEndOfPeriod";
+        keysForC007_8[1] = "otherSupplementaryItems.details.relatedToNonCash.cryptocurrenciesEndOfPeriod.weightedAverageCost";
         report.addValue(reportID, "cashFlow", keysForC007_8[0], C007_8);
         report.addValue(reportID, "cashFlow", keysForC007_8[1], C007_8);
     }

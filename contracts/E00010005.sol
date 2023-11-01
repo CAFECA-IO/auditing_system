@@ -1,8 +1,9 @@
 // SPDX-License-Identifier: MIT
 // 傳進rate的值
 pragma solidity ^0.8.0;
-import "./eventTransactionRecord.sol";
+import "./eventTransactionBytes32.sol";
 import "./reports.sol";
+import "./parser.sol";
 
 contract E00010005 {
 
@@ -20,28 +21,31 @@ contract E00010005 {
     int256 EP006;
     string  eventIdFromTimeSpan;
     string reportID;
-    TransactionContract public transactionContract;
 
-    constructor(address _transactionContractAddress, address _reportAddress) {
+    TransactionContract public transactionContract;
+    IParser public Iparser;
+
+    constructor(address _transactionContractAddress, address _Parser ,address _reportAddress) {
         transactionContract = TransactionContract(_transactionContractAddress);
+        Iparser = IParser(_Parser);
         report = Reports(_reportAddress);
     }
 
-    function getEventIdAndRate(string memory _eventId,string memory _reportID ,int256 _SP002, int256 _SP003, int256 _SP004) public {
-        latestSP002 = _SP002;
-        latestSP003 = _SP003;
-        latestSP004 = _SP004;
-        eventIdFromTimeSpan = _eventId;
-        reportID = _reportID;
-        emit EventIdAndRateReceived(_eventId, _SP002, _SP003, _SP004);
-        if (keccak256(abi.encodePacked(eventIdFromTimeSpan)) == keccak256(abi.encodePacked(_eventId))) {
-            EP001  = transactionContract.getTransactionParamByEventId(_eventId,"EP001");
-            EP002  = transactionContract.getTransactionParamByEventId(_eventId,"EP002");
-            EP003  = transactionContract.getTransactionParamByEventId(_eventId,"EP003");
-            EP004  = transactionContract.getTransactionParamByEventId(_eventId,"EP004");
-            EP006  = transactionContract.getTransactionParamByEventId(_eventId,"EP006");
-            emit EventEP001(_eventId, EP001,EP002,EP003,EP004,EP006);
-        }
+    function getEventIdAndRate(bytes32 _eventId,bytes32 _reportID ,bytes32 _SP002, bytes32 _SP003, bytes32 _SP004) public {
+        latestSP002 = int256(uint256(_SP002));
+        latestSP003 = int256(uint256(_SP003));
+        latestSP004 = int256(uint256(_SP004));
+        eventIdFromTimeSpan = Iparser.bytes32ToString(_eventId);
+        reportID = Iparser.bytes32ToString(_reportID);
+        emit EventIdAndRateReceived(eventIdFromTimeSpan, latestSP002, latestSP003, latestSP004);
+        
+        EP001  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP001"));
+        EP002  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP002"));
+        EP003  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP003"));
+        EP004  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP004"));
+        EP006  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP006"));
+        emit EventEP001(Iparser.bytes32ToString(_eventId), EP001,EP002,EP003,EP004,EP006);
+        
         computeBalanceSheet();
         computeComprehesiveIncome();
         computeCashFlow();
@@ -79,24 +83,20 @@ contract E00010005 {
         keysForA042[0] = "liabilities.details.userDeposit.breakdown.ETH.amount";
         report.addValue(reportID, "balanceSheet", keysForA042[0], A042);
 
-        int256 A010_13 = int256((EP002 + EP003) * latestSP003 + ((-EP004) * latestSP003));
-        string[] memory keysForA010_13 = new string[](2);
-        keysForA010_13[0] = "equity.details.retainedEarnings.totalAmountFairValue";
-        keysForA010_13[1] = "equity.totalAmountFairValue";
-        report.addValue(reportID, "balanceSheet", keysForA010_13[0], A010_13);
-        report.addValue(reportID, "balanceSheet", keysForA010_13[1], A010_13);
+        int256 A010_13_18 = int256((EP002 + EP003) * latestSP003 + ((-EP004) * latestSP003));
+        string[] memory keysForA010_13_18 = new string[](3);
+        keysForA010_13_18[0] = "equity.details.retainedEarnings.totalAmountFairValue";
+        keysForA010_13_18[1] = "equity.totalAmountFairValue";
+        keysForA010_13_18[2] = "equity.details.retainedEarnings.breakdown.ETH.fairValue";
+        report.addValue(reportID, "balanceSheet", keysForA010_13_18[0], A010_13_18);
+        report.addValue(reportID, "balanceSheet", keysForA010_13_18[1], A010_13_18);
+        report.addValue(reportID, "balanceSheet", keysForA010_13_18[1], A010_13_18);
 
         int256 A017 = int256((EP002 + EP003) + (-EP004));
         string[] memory keysForA017 = new string[](1);
         keysForA017[0] = "equity.details.retainedEarnings.breakdown.ETH.amount";
         report.addValue(reportID, "balanceSheet", keysForA017[0], A017);
 
-        int256 A018_13 = int256((EP002 + EP003) * latestSP003 + (-EP004 * latestSP003));
-        string[] memory keysForA018_13 = new string[](2);
-        keysForA018_13[0] = "equity.details.retainedEarnings.breakdown.ETH.fairValue";
-        keysForA018_13[1] = "equity.totalAmountFairValue";
-        report.addValue(reportID, "balanceSheet", keysForA018_13[0], A018_13);
-        report.addValue(reportID, "balanceSheet", keysForA018_13[1], A018_13);
 
         int256 A014 = int256((EP001 + EP003) * latestSP003 + (-EP004 * latestSP003));
         string[] memory keysForA014 = new string[](1);

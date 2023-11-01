@@ -14,6 +14,11 @@
 					},
 					{
 						"internalType": "address",
+						"name": "_Parser",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
 						"name": "_reportAddress",
 						"type": "address"
 					}
@@ -90,31 +95,44 @@
 				"type": "event"
 			},
 			{
+				"inputs": [],
+				"name": "Iparser",
+				"outputs": [
+					{
+						"internalType": "contract IParser",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
-						"internalType": "string",
+						"internalType": "bytes32",
 						"name": "_eventId",
-						"type": "string"
+						"type": "bytes32"
 					},
 					{
-						"internalType": "string",
+						"internalType": "bytes32",
 						"name": "_reportID",
-						"type": "string"
+						"type": "bytes32"
 					},
 					{
-						"internalType": "int256",
+						"internalType": "bytes32",
 						"name": "_SP002",
-						"type": "int256"
+						"type": "bytes32"
 					},
 					{
-						"internalType": "int256",
+						"internalType": "bytes32",
 						"name": "_SP003",
-						"type": "int256"
+						"type": "bytes32"
 					},
 					{
-						"internalType": "int256",
+						"internalType": "bytes32",
 						"name": "_SP004",
-						"type": "int256"
+						"type": "bytes32"
 					}
 				],
 				"name": "getEventIdAndRate",
@@ -177,19 +195,27 @@
 	},
 	"sources": {
 		"contracts/E00010003.sol": {
-			"keccak256": "0x5328ffed7e452e572e3fe91b760a56e256eeda3adb2c00627b9775b005bd5430",
+			"keccak256": "0xcc21f77f249fac9337d65a891e1794d0a8d3289a75904ee2ed34d6fc735d0488",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://27da27f895955a2de4874afd0f051d7e07a869be3e23c454aa591bc6ea634a22",
-				"dweb:/ipfs/QmdxQy1GaredJxGcseYts9vT7hVAvL7cZFChCpZtoEvuuL"
+				"bzz-raw://6cf0f6a7e76f1a62aad9e7bb97d4d8c7e94ab771e140c53620429f19514c05ab",
+				"dweb:/ipfs/QmVWjCNsdTVLSqirEUfQhsJMo6xwEiiry3tA4t8ZwB9fAU"
 			]
 		},
-		"contracts/eventTransactionRecord.sol": {
-			"keccak256": "0xa28f5913755495f16ea0666f806c84c0037bed1423f21a91d81bc1336573b7b7",
+		"contracts/eventTransactionBytes32.sol": {
+			"keccak256": "0xdb6b5e89f71a8787b6430a253dd599123aba7673c5ccefab132a22188ccefa1e",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://9ae5d04207c667dc4fa88d9ff40a83edc2f9a9f73335ac8902f19083a0db5c6b",
-				"dweb:/ipfs/QmZbHGpS7nLHdT9zqsnapUF2ba2TbkyoTffYCqUyGphM1t"
+				"bzz-raw://d38cae21841877d828e2d90bb33ae49444bd79cb2fee77d86dbf840e60accf0e",
+				"dweb:/ipfs/QmeRV46D9ohhxk8YnzRuVxSfCVx2ZA6TPKV1asd6raiDdK"
+			]
+		},
+		"contracts/parser.sol": {
+			"keccak256": "0x61cd60fc331c1039c1e2659dec9b848d2560054df2c3fa071776bcb394bf2513",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://f5dbfccd598daea4e6aaf8889819103b3c7312fa08014774f7139bd4b2bc96b2",
+				"dweb:/ipfs/QmVdseQp48BKkCyg4tMD6jjhdJwiUCopS9J9RQcxH8ieGE"
 			]
 		},
 		"contracts/reports.sol": {
@@ -198,6 +224,14 @@
 			"urls": [
 				"bzz-raw://37fc3c605dfa12cb765be4a0cadaed0c86d1b195beed1598fb9ea4df3485f521",
 				"dweb:/ipfs/QmfERCGYzU3YA2ctmqw9mhwSiwyQo96wT2Ukae5XUhTxhn"
+			]
+		},
+		"interfaces/Iparser.sol": {
+			"keccak256": "0x8b0bdebbf42067b592480be3a870bb877f0fccd1c01efa12cba2b37164379b01",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://9c519d0ea1e2fe019508e7119d3c401333b62260a1560b5ee2caeda1c9cd69ad",
+				"dweb:/ipfs/QmcJv2H3hQNc1q6T7jJPXu5AvR1jkMg3YMNNST3eRSnew8"
 			]
 		}
 	},

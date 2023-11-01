@@ -1,0 +1,239 @@
+{
+	"compiler": {
+		"version": "0.8.18+commit.87f61d96"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_transactionContractAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_Parser",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_reportAddress",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "eventId",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "int256",
+						"name": "EP001",
+						"type": "int256"
+					},
+					{
+						"indexed": false,
+						"internalType": "int256",
+						"name": "EP002",
+						"type": "int256"
+					},
+					{
+						"indexed": false,
+						"internalType": "int256",
+						"name": "EP003",
+						"type": "int256"
+					},
+					{
+						"indexed": false,
+						"internalType": "int256",
+						"name": "EP005",
+						"type": "int256"
+					}
+				],
+				"name": "EventEP001",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "eventId",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "int256",
+						"name": "SP002",
+						"type": "int256"
+					},
+					{
+						"indexed": false,
+						"internalType": "int256",
+						"name": "SP003",
+						"type": "int256"
+					},
+					{
+						"indexed": false,
+						"internalType": "int256",
+						"name": "SP004",
+						"type": "int256"
+					}
+				],
+				"name": "EventIdAndRateReceived",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "Iparser",
+				"outputs": [
+					{
+						"internalType": "contract IParser",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "_eventId",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "_reportID",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "_SP002",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "_SP003",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "_SP004",
+						"type": "bytes32"
+					}
+				],
+				"name": "getEventIdAndRate",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "report",
+				"outputs": [
+					{
+						"internalType": "contract Reports",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "transactionContract",
+				"outputs": [
+					{
+						"internalType": "contract TransactionContract",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/E00010007.sol": "E00010007"
+		},
+		"evmVersion": "paris",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/E00010007.sol": {
+			"keccak256": "0xbb30bc1699e8608693942671cce978e2cdb44044d76a0430ae84256fb3bd9dc8",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://db8b32622ed6252114c20527c0d1bb51339a978c223f9582c8af7a086c8cc67c",
+				"dweb:/ipfs/Qmewiju8oNCQHKfeTyi4fvrgiWFBSDrKoR1WZjrpbyQ1Re"
+			]
+		},
+		"contracts/eventTransactionBytes32.sol": {
+			"keccak256": "0x90788a34babd5eaee50833c60cfc2849ef447ab43b9f0f5d4b26879290646859",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://43fc0519625e4ee5534fdeb3d4227a8561ae53ba9e533d64545cb66176c4f0fc",
+				"dweb:/ipfs/QmXB4zvKA4eg5LqM11LhtwAu6JsZmW3hUVe2UgWZ241YkL"
+			]
+		},
+		"contracts/parser.sol": {
+			"keccak256": "0x61cd60fc331c1039c1e2659dec9b848d2560054df2c3fa071776bcb394bf2513",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://f5dbfccd598daea4e6aaf8889819103b3c7312fa08014774f7139bd4b2bc96b2",
+				"dweb:/ipfs/QmVdseQp48BKkCyg4tMD6jjhdJwiUCopS9J9RQcxH8ieGE"
+			]
+		},
+		"contracts/reports.sol": {
+			"keccak256": "0x17a1f4dd327b8014d84495abae9f8ddfb4388fdd2ff11eb51225608d4f32e7c8",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://37fc3c605dfa12cb765be4a0cadaed0c86d1b195beed1598fb9ea4df3485f521",
+				"dweb:/ipfs/QmfERCGYzU3YA2ctmqw9mhwSiwyQo96wT2Ukae5XUhTxhn"
+			]
+		},
+		"interfaces/Iparser.sol": {
+			"keccak256": "0x8b0bdebbf42067b592480be3a870bb877f0fccd1c01efa12cba2b37164379b01",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://9c519d0ea1e2fe019508e7119d3c401333b62260a1560b5ee2caeda1c9cd69ad",
+				"dweb:/ipfs/QmcJv2H3hQNc1q6T7jJPXu5AvR1jkMg3YMNNST3eRSnew8"
+			]
+		}
+	},
+	"version": 1
+}

@@ -8,32 +8,12 @@
 			{
 				"inputs": [
 					{
-						"internalType": "string",
-						"name": "_eventId",
-						"type": "string"
-					},
-					{
-						"internalType": "int256",
-						"name": "_EP001",
-						"type": "int256"
-					},
-					{
-						"internalType": "int256",
-						"name": "_EP002",
-						"type": "int256"
-					},
-					{
-						"internalType": "int256",
-						"name": "_EP003",
-						"type": "int256"
-					},
-					{
-						"internalType": "int256",
-						"name": "_EP005",
-						"type": "int256"
+						"internalType": "bytes32[]",
+						"name": "data",
+						"type": "bytes32[]"
 					}
 				],
-				"name": "E00010001",
+				"name": "addRecord",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -41,240 +21,22 @@
 			{
 				"inputs": [
 					{
-						"internalType": "string",
+						"internalType": "bytes32",
 						"name": "_eventId",
-						"type": "string"
-					},
-					{
-						"internalType": "int256",
-						"name": "_EP001",
-						"type": "int256"
-					},
-					{
-						"internalType": "int256",
-						"name": "_EP002",
-						"type": "int256"
-					},
-					{
-						"internalType": "int256",
-						"name": "_EP003",
-						"type": "int256"
-					},
-					{
-						"internalType": "int256",
-						"name": "_EP005",
-						"type": "int256"
-					}
-				],
-				"name": "E00010002",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "string",
-						"name": "_eventId",
-						"type": "string"
-					},
-					{
-						"internalType": "int256",
-						"name": "_EP001",
-						"type": "int256"
-					},
-					{
-						"internalType": "int256",
-						"name": "_EP002",
-						"type": "int256"
-					},
-					{
-						"internalType": "int256",
-						"name": "_EP003",
-						"type": "int256"
-					},
-					{
-						"internalType": "int256",
-						"name": "_EP005",
-						"type": "int256"
-					}
-				],
-				"name": "E00010003",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "string",
-						"name": "_eventId",
-						"type": "string"
-					},
-					{
-						"internalType": "int256",
-						"name": "_EP001",
-						"type": "int256"
-					},
-					{
-						"internalType": "int256",
-						"name": "_EP002",
-						"type": "int256"
-					},
-					{
-						"internalType": "int256",
-						"name": "_EP003",
-						"type": "int256"
-					},
-					{
-						"internalType": "int256",
-						"name": "_EP004",
-						"type": "int256"
-					},
-					{
-						"internalType": "int256",
-						"name": "_EP006",
-						"type": "int256"
-					},
-					{
-						"internalType": "int256",
-						"name": "_EP007",
-						"type": "int256"
-					}
-				],
-				"name": "E00010004",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "string",
-						"name": "_eventId",
-						"type": "string"
-					},
-					{
-						"internalType": "int256",
-						"name": "_EP001",
-						"type": "int256"
-					},
-					{
-						"internalType": "int256",
-						"name": "_EP002",
-						"type": "int256"
-					},
-					{
-						"internalType": "int256",
-						"name": "_EP003",
-						"type": "int256"
-					},
-					{
-						"internalType": "int256",
-						"name": "_EP004",
-						"type": "int256"
-					},
-					{
-						"internalType": "int256",
-						"name": "_EP006",
-						"type": "int256"
-					}
-				],
-				"name": "E00010005",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "string",
-						"name": "_eventId",
-						"type": "string"
-					},
-					{
-						"internalType": "int256",
-						"name": "_EP001",
-						"type": "int256"
-					},
-					{
-						"internalType": "int256",
-						"name": "_EP002",
-						"type": "int256"
-					},
-					{
-						"internalType": "int256",
-						"name": "_EP003",
-						"type": "int256"
-					},
-					{
-						"internalType": "int256",
-						"name": "_EP004",
-						"type": "int256"
-					},
-					{
-						"internalType": "int256",
-						"name": "_EP006",
-						"type": "int256"
-					}
-				],
-				"name": "E00010006",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "string",
-						"name": "_eventId",
-						"type": "string"
-					},
-					{
-						"internalType": "int256",
-						"name": "_EP001",
-						"type": "int256"
-					},
-					{
-						"internalType": "int256",
-						"name": "_EP002",
-						"type": "int256"
-					},
-					{
-						"internalType": "int256",
-						"name": "_BTC",
-						"type": "int256"
-					},
-					{
-						"internalType": "int256",
-						"name": "_USDT",
-						"type": "int256"
-					}
-				],
-				"name": "E00020001",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "string",
-						"name": "_eventId",
-						"type": "string"
+						"type": "bytes32"
 					}
 				],
 				"name": "getTransaction",
 				"outputs": [
 					{
-						"internalType": "string",
+						"internalType": "bytes32",
 						"name": "",
-						"type": "string"
+						"type": "bytes32"
 					},
 					{
-						"internalType": "string",
+						"internalType": "bytes32",
 						"name": "",
-						"type": "string"
+						"type": "bytes32"
 					},
 					{
 						"internalType": "address",
@@ -296,9 +58,9 @@
 				"name": "getTransactionEventId",
 				"outputs": [
 					{
-						"internalType": "string",
+						"internalType": "bytes32",
 						"name": "",
-						"type": "string"
+						"type": "bytes32"
 					}
 				],
 				"stateMutability": "view",
@@ -312,9 +74,9 @@
 						"type": "uint256"
 					},
 					{
-						"internalType": "string",
+						"internalType": "bytes32",
 						"name": "paramKey",
-						"type": "string"
+						"type": "bytes32"
 					}
 				],
 				"name": "getTransactionParam",
@@ -331,14 +93,14 @@
 			{
 				"inputs": [
 					{
-						"internalType": "string",
+						"internalType": "bytes32",
 						"name": "_eventId",
-						"type": "string"
+						"type": "bytes32"
 					},
 					{
-						"internalType": "string",
+						"internalType": "bytes32",
 						"name": "_paramKey",
-						"type": "string"
+						"type": "bytes32"
 					}
 				],
 				"name": "getTransactionParamByEventId",
@@ -360,12 +122,31 @@
 						"type": "uint256"
 					}
 				],
+				"name": "getTransactionTime",
+				"outputs": [
+					{
+						"internalType": "int256",
+						"name": "",
+						"type": "int256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "index",
+						"type": "uint256"
+					}
+				],
 				"name": "getTransactionType",
 				"outputs": [
 					{
-						"internalType": "string",
+						"internalType": "bytes32",
 						"name": "",
-						"type": "string"
+						"type": "bytes32"
 					}
 				],
 				"stateMutability": "view",
@@ -387,6 +168,50 @@
 			{
 				"inputs": [
 					{
+						"internalType": "string",
+						"name": "_str1",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_str2",
+						"type": "string"
+					},
+					{
+						"internalType": "int256",
+						"name": "_int1",
+						"type": "int256"
+					},
+					{
+						"internalType": "int256",
+						"name": "_int2",
+						"type": "int256"
+					},
+					{
+						"internalType": "int256",
+						"name": "_int3",
+						"type": "int256"
+					},
+					{
+						"internalType": "int256",
+						"name": "_int4",
+						"type": "int256"
+					}
+				],
+				"name": "inputWithDecimal",
+				"outputs": [
+					{
+						"internalType": "bytes32[]",
+						"name": "",
+						"type": "bytes32[]"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "uint256",
 						"name": "",
 						"type": "uint256"
@@ -395,14 +220,14 @@
 				"name": "transactions",
 				"outputs": [
 					{
-						"internalType": "string",
-						"name": "transactionType",
-						"type": "string"
+						"internalType": "bytes32",
+						"name": "eventId",
+						"type": "bytes32"
 					},
 					{
-						"internalType": "string",
-						"name": "eventId",
-						"type": "string"
+						"internalType": "bytes32",
+						"name": "transactionType",
+						"type": "bytes32"
 					},
 					{
 						"internalType": "address",
@@ -427,7 +252,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/eventTransactionRecord.sol": "TransactionContract"
+			"contracts/eventTransactionBytes32.sol": "TransactionContract"
 		},
 		"evmVersion": "paris",
 		"libraries": {},
@@ -441,12 +266,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"contracts/eventTransactionRecord.sol": {
-			"keccak256": "0xa28f5913755495f16ea0666f806c84c0037bed1423f21a91d81bc1336573b7b7",
+		"contracts/eventTransactionBytes32.sol": {
+			"keccak256": "0xdb6b5e89f71a8787b6430a253dd599123aba7673c5ccefab132a22188ccefa1e",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://9ae5d04207c667dc4fa88d9ff40a83edc2f9a9f73335ac8902f19083a0db5c6b",
-				"dweb:/ipfs/QmZbHGpS7nLHdT9zqsnapUF2ba2TbkyoTffYCqUyGphM1t"
+				"bzz-raw://d38cae21841877d828e2d90bb33ae49444bd79cb2fee77d86dbf840e60accf0e",
+				"dweb:/ipfs/QmeRV46D9ohhxk8YnzRuVxSfCVx2ZA6TPKV1asd6raiDdK"
 			]
 		}
 	},

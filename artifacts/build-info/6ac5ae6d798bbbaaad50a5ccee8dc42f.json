@@ -1,0 +1,68 @@
+{
+	"id": "6ac5ae6d798bbbaaad50a5ccee8dc42f",
+	"_format": "hh-sol-build-info-1",
+	"solcVersion": "0.8.18",
+	"solcLongVersion": "0.8.18+commit.87f61d96",
+	"input": {
+		"language": "Solidity",
+		"sources": {
+			"eventTransactionRecord.sol": {
+				"content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.18;\n\n/*contract TransactionContract2 {\n   \n    struct Transaction {\n        string transactionType;\n        string eventId;\n        address Recorder;\n        mapping(string => int256) params;\n    }\n    \n    Transaction[] public transactions;\n\n    function E00010001(string memory _eventId, int256 _EP001, int256 _EP002, int256 _EP003, int256 _EP005) public {\n        uint256 index = transactions.length;\n        transactions.push();\n        Transaction storage transaction = transactions[index];\n\n        transaction.transactionType = \"E00010001\";\n        transaction.eventId = _eventId;\n        transaction.Recorder = msg.sender;\n\n        transaction.params[\"EP001\"] = _EP001;\n        transaction.params[\"EP002\"] = _EP002;\n        transaction.params[\"EP003\"] = _EP003;\n        transaction.params[\"trans_time\"] = int256(block.timestamp);\n        transaction.params[\"EP005\"] = _EP005;\n    }\n\n    function E00010002(string memory _eventId, int256 _EP001, int256 _EP002, int256 _EP003, int256 _EP005) public {\n        uint256 index = transactions.length;\n        transactions.push();\n        Transaction storage transaction = transactions[index];\n\n        transaction.transactionType = \"E00010002\";\n        transaction.eventId = _eventId;\n        transaction.Recorder = msg.sender;\n        transaction.params[\"EP001\"] = _EP001;\n        transaction.params[\"EP002\"] = _EP002;\n        transaction.params[\"EP003\"] = _EP003;\n        transaction.params[\"trans_time\"] = int256(block.timestamp);\n        transaction.params[\"EP005\"] = _EP005;\n    }\n\n    function E00010003(string memory _eventId, int256 _EP001, int256 _EP002, int256 _EP003, int256 _EP005) public {\n        uint256 index = transactions.length;\n        transactions.push();\n        Transaction storage transaction = transactions[index];\n\n        transaction.transactionType = \"E00010003\";\n        transaction.eventId = _eventId;\n        transaction.Recorder = msg.sender;\n        transaction.params[\"EP001\"] = _EP001;\n        transaction.params[\"EP002\"] = _EP002;\n        transaction.params[\"EP003\"] = _EP003;\n        transaction.params[\"trans_time\"] = int256(block.timestamp);\n        transaction.params[\"EP005\"] = _EP005;\n    }\n\n    function E00010004(string memory _eventId, int256 _EP001, int256 _EP002, int256 _EP003, int256 _EP004, int256 _EP006, int256 _EP007) public {\n        uint256 index = transactions.length;\n        transactions.push();\n        Transaction storage transaction = transactions[index];\n\n        transaction.transactionType = \"E00010004\";\n        transaction.eventId = _eventId;\n        transaction.Recorder = msg.sender;\n        transaction.params[\"EP001\"] = _EP001;\n        transaction.params[\"EP002\"] = _EP002;\n        transaction.params[\"EP003\"] = _EP003;\n        transaction.params[\"EP004\"] = _EP004;\n        transaction.params[\"trans_time\"] = int256(block.timestamp);\n        transaction.params[\"EP006\"] = _EP006;\n        transaction.params[\"EP007\"] = _EP007;\n    }\n\n    function E00010005(string memory _eventId, int256 _EP001, int256 _EP002, int256 _EP003, int256 _EP004, int256 _EP006) public {\n        uint256 index = transactions.length;\n        transactions.push();\n        Transaction storage transaction = transactions[index];\n\n        transaction.transactionType = \"E00010005\";\n        transaction.eventId = _eventId;\n        transaction.Recorder = msg.sender;\n        transaction.params[\"EP001\"] = _EP001;\n        transaction.params[\"EP002\"] = _EP002;\n        transaction.params[\"EP003\"] = _EP003;\n        transaction.params[\"EP004\"] = _EP004;\n        transaction.params[\"trans_time\"] = int256(block.timestamp);\n        transaction.params[\"EP006\"] = _EP006;\n    }\n\n    function E00010006(string memory _eventId, int256 _EP001, int256 _EP002, int256 _EP003,int256 _EP004, int256 _EP006) public {\n       uint256 index = transactions.length;\n        transactions.push();\n        Transaction storage transaction = transactions[index];\n\n        transaction.transactionType = \"E00010005\";\n        transaction.eventId = _eventId;\n        transaction.Recorder = msg.sender;\n        transaction.params[\"EP001\"] = _EP001;\n        transaction.params[\"EP002\"] = _EP002;\n        transaction.params[\"EP003\"] = _EP003;\n        transaction.params[\"EP004\"] = _EP004;\n        transaction.params[\"trans_time\"] = int256(block.timestamp);\n        transaction.params[\"EP006\"] = _EP006;\n    }\n\n    function E00020001(string memory _eventId, int256 _EP001, int256 _EP002, int256 _BTC, int256 _USDT) public {\n       uint256 index = transactions.length;\n        transactions.push();\n        Transaction storage transaction = transactions[index];\n\n        transaction.transactionType = \"E00020001\";\n        transaction.eventId = _eventId;\n        transaction.Recorder = msg.sender;\n        transaction.params[\"EP001\"] = _EP001;\n        transaction.params[\"EP002\"] = _EP002;\n        transaction.params[\"BTC\"] = _BTC;\n        transaction.params[\"USDT\"] = _USDT;\n        transaction.params[\"trans_time\"] = int256(block.timestamp);\n    }\n    \n    function getTransaction(string memory _eventId) public view returns (string memory, string memory, address) {\n        Transaction storage transaction = findTransaction(_eventId);\n        return (\n            transaction.transactionType,\n            transaction.eventId,\n            transaction.Recorder\n        );\n    }\n    \n    function findTransaction(string memory _eventId) internal view returns (Transaction storage) {\n        for (uint i = 0; i < transactions.length; i++) {\n            if (keccak256(abi.encodePacked(transactions[i].eventId)) == keccak256(abi.encodePacked(_eventId))) {\n                return transactions[i];\n            }\n        }\n        revert(\"Transaction with given eventId not found\");\n    }\n\n    function getTransactionsCount() public view returns (uint256) {\n        return transactions.length;\n    }\n\n    function getTransactionType(uint256 index) public view returns (string memory) {\n        return transactions[index].transactionType;\n    }\n\n    function getTransactionEventId(uint256 index) public view returns (string memory) {\n        return transactions[index].eventId;\n    }\n\n    function getTransactionParam(uint256 index, string memory paramKey) public view returns (int256) {\n        return transactions[index].params[paramKey];\n    }\n    function getTransactionParamByEventId(string memory _eventId, string memory _paramKey) public view returns (int256) {\n        Transaction storage transaction = findTransaction(_eventId);\n        return transaction.params[_paramKey];\n    }\n        \n\n\n     \n}*/"
+			}
+		},
+		"settings": {
+			"optimizer": {
+				"enabled": false,
+				"runs": 200
+			},
+			"outputSelection": {
+				"*": {
+					"": [
+						"ast"
+					],
+					"*": [
+						"abi",
+						"metadata",
+						"devdoc",
+						"userdoc",
+						"storageLayout",
+						"evm.legacyAssembly",
+						"evm.bytecode",
+						"evm.deployedBytecode",
+						"evm.methodIdentifiers",
+						"evm.gasEstimates",
+						"evm.assembly"
+					]
+				}
+			}
+		}
+	},
+	"output": {
+		"sources": {
+			"eventTransactionRecord.sol": {
+				"ast": {
+					"absolutePath": "eventTransactionRecord.sol",
+					"exportedSymbols": {},
+					"id": 2,
+					"license": "MIT",
+					"nodeType": "SourceUnit",
+					"nodes": [
+						{
+							"id": 1,
+							"literals": [
+								"solidity",
+								"^",
+								"0.8",
+								".18"
+							],
+							"nodeType": "PragmaDirective",
+							"src": "32:24:0"
+						}
+					],
+					"src": "32:6578:0"
+				},
+				"id": 0
+			}
+		}
+	}
+}

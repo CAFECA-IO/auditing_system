@@ -14,22 +14,55 @@
 					},
 					{
 						"internalType": "address",
+						"name": "_parser",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
 						"name": "_E00010001",
-						"type": "address"
-					},
-					{
-						"internalType": "address",
-						"name": "_E00010002",
-						"type": "address"
-					},
-					{
-						"internalType": "address",
-						"name": "_E00010003",
 						"type": "address"
 					}
 				],
 				"stateMutability": "nonpayable",
 				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "reportID",
+						"type": "bytes32"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes32",
+						"name": "eventType",
+						"type": "bytes32"
+					}
+				],
+				"name": "TransactionProcessed",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "bytes32",
+						"name": "datatypes",
+						"type": "bytes32"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes32",
+						"name": "keccak",
+						"type": "bytes32"
+					}
+				],
+				"name": "itshere",
+				"type": "event"
 			},
 			{
 				"inputs": [],
@@ -45,47 +78,21 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "e00010002",
-				"outputs": [
-					{
-						"internalType": "contract E00010002",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "e00010003",
-				"outputs": [
-					{
-						"internalType": "contract E00010003",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
 				"inputs": [
 					{
-						"internalType": "uint256",
+						"internalType": "int256",
 						"name": "startTime",
-						"type": "uint256"
+						"type": "int256"
 					},
 					{
-						"internalType": "uint256",
+						"internalType": "int256",
 						"name": "endTime",
-						"type": "uint256"
+						"type": "int256"
 					},
 					{
-						"internalType": "string",
+						"internalType": "bytes32",
 						"name": "_reportID",
-						"type": "string"
+						"type": "bytes32"
 					}
 				],
 				"name": "filterTransactionsInRange",
@@ -93,19 +100,19 @@
 					{
 						"components": [
 							{
-								"internalType": "string[]",
+								"internalType": "bytes32[]",
 								"name": "types",
-								"type": "string[]"
+								"type": "bytes32[]"
 							},
 							{
-								"internalType": "string[]",
+								"internalType": "bytes32[]",
 								"name": "eventIds",
-								"type": "string[]"
+								"type": "bytes32[]"
 							},
 							{
-								"internalType": "uint256[]",
+								"internalType": "int256[]",
 								"name": "transTimes",
-								"type": "uint256[]"
+								"type": "int256[]"
 							},
 							{
 								"internalType": "address",
@@ -113,9 +120,9 @@
 								"type": "address"
 							},
 							{
-								"internalType": "string",
+								"internalType": "bytes32",
 								"name": "reportID",
-								"type": "string"
+								"type": "bytes32"
 							}
 						],
 						"internalType": "struct createTimeSpanReport.FilteredData",
@@ -124,6 +131,19 @@
 					}
 				],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "parser",
+				"outputs": [
+					{
+						"internalType": "contract Parser",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -137,29 +157,29 @@
 				"name": "rateHistory",
 				"outputs": [
 					{
-						"internalType": "uint256",
+						"internalType": "int256",
 						"name": "SP001",
-						"type": "uint256"
+						"type": "int256"
 					},
 					{
-						"internalType": "uint256",
+						"internalType": "bytes32",
 						"name": "SP002",
-						"type": "uint256"
+						"type": "bytes32"
 					},
 					{
-						"internalType": "uint256",
+						"internalType": "bytes32",
 						"name": "SP003",
-						"type": "uint256"
+						"type": "bytes32"
 					},
 					{
-						"internalType": "uint256",
+						"internalType": "bytes32",
 						"name": "SP004",
-						"type": "uint256"
+						"type": "bytes32"
 					},
 					{
-						"internalType": "string",
+						"internalType": "bytes32",
 						"name": "reportID",
-						"type": "string"
+						"type": "bytes32"
 					}
 				],
 				"stateMutability": "view",
@@ -168,27 +188,50 @@
 			{
 				"inputs": [
 					{
-						"internalType": "uint256",
+						"internalType": "bytes32",
 						"name": "_SP002",
-						"type": "uint256"
+						"type": "bytes32"
 					},
 					{
-						"internalType": "uint256",
+						"internalType": "bytes32",
 						"name": "_SP003",
-						"type": "uint256"
+						"type": "bytes32"
 					},
 					{
-						"internalType": "uint256",
+						"internalType": "bytes32",
 						"name": "_SP004",
-						"type": "uint256"
+						"type": "bytes32"
 					},
 					{
-						"internalType": "string",
+						"internalType": "bytes32",
 						"name": "_reportID",
-						"type": "string"
+						"type": "bytes32"
 					}
 				],
 				"name": "setRate",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "int256",
+						"name": "_SP002",
+						"type": "int256"
+					},
+					{
+						"internalType": "int256",
+						"name": "_SP003",
+						"type": "int256"
+					},
+					{
+						"internalType": "int256",
+						"name": "_SP004",
+						"type": "int256"
+					}
+				],
+				"name": "setRateDecimal",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -235,43 +278,35 @@
 	},
 	"sources": {
 		"contracts/E00010001.sol": {
-			"keccak256": "0x2286174d21ef21c3a9ce3a81ff27f490972cfb7403256a36097c15d2accc5717",
+			"keccak256": "0x3223b50cf3d7c977004c94b0c55956c09769d6a1ebf6711a40b154e60b486fe2",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://b5aea1f89b18c7c6e74e35edf251a640971f0398a8b7b3e719676786966d0b30",
-				"dweb:/ipfs/Qmdmh6TaieR52BoVpgC6LeMNSWpHkiq5wXpWFiA31m3RBj"
+				"bzz-raw://a2269af5286cc466ea2d85ef46f618aa98f31d1087d11bf645b4f87ec7814036",
+				"dweb:/ipfs/QmT3ZLi2shZAKRG4uB8snTy3asVHjCwYGebFoms8yiABkf"
 			]
 		},
-		"contracts/E00010002.sol": {
-			"keccak256": "0xe5df346ae5a955c4584e2ce18b8d4ab7f69d4164d7b082bb98ef3398293a32a9",
+		"contracts/eventTransactionBytes32.sol": {
+			"keccak256": "0x5b355c9e8af1452e5b432a0c222d2b123c16c720fb650792942622f91e30f9ee",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://ba7d9e55758e31ab2fce745e493077a15b67d9cca0ca02c1054f7215ebc617fd",
-				"dweb:/ipfs/QmQpmL2veVpmVZXcSZzi4Z37S8FhwA7qVWgTbzJDiv8XLa"
-			]
-		},
-		"contracts/E00010003.sol": {
-			"keccak256": "0xd8356283f9fa13000b44874d3b21acd1022283ed109ca2f0d1a4410d1003636a",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://9fd4aceb5a5082ce689b371ce158befb193dc7442724ee36343ca4022cb508d4",
-				"dweb:/ipfs/QmWBB2HapjzM9Y4SGwjMLKaR2X4dfuVFiqmrNZacKEDCzP"
-			]
-		},
-		"contracts/eventTransactionRecord.sol": {
-			"keccak256": "0x96aff0c12eb8627ccb3c8ed7d087665eaefa417a2215f4ce5e9e89b09476293f",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://83e9eeaefcb581cd3ba258878a146e3e72ac13c481456377b982b67f6901d9b7",
-				"dweb:/ipfs/QmU3wZ7XZsaCrxe53vv48icpNvyqakbNE2CRyGrDKqcciN"
+				"bzz-raw://570f466723375231360b94e41ece337a01fe7a00c1ed2be1591daf067df67bfb",
+				"dweb:/ipfs/QmVZNjxnM8wTDPaXgcS1bCsAb7vabSqiNiRK9JUinajTo1"
 			]
 		},
 		"contracts/getTransactionTimeSpan.sol": {
-			"keccak256": "0x78aa4f06fae05a8e9b4baefc3563a9d47605bdc1ac3fb76f01a9a3e40fc7a01a",
+			"keccak256": "0xb548ceeafc311a2dae62228aad84feb3c787e63a8561c2d94b236cdbf2dc5726",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://faf839aa2d10d5a4c30a6f3ce2f020d11d83859573df133465720831eb6a5654",
-				"dweb:/ipfs/QmVUPFwBBh8Crify7Dtr5vuffDHNHgiJXhDvVpS5dVdeSg"
+				"bzz-raw://b01b71f34d328c15c36ba185aa0aa6835620b984c7ea982e0ddfb09b5f79c929",
+				"dweb:/ipfs/QmSQtXDZeJuSo7P15knQfKsFQfLpYeAjzDm1iE3kBESw9T"
+			]
+		},
+		"contracts/parser.sol": {
+			"keccak256": "0x61cd60fc331c1039c1e2659dec9b848d2560054df2c3fa071776bcb394bf2513",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://f5dbfccd598daea4e6aaf8889819103b3c7312fa08014774f7139bd4b2bc96b2",
+				"dweb:/ipfs/QmVdseQp48BKkCyg4tMD6jjhdJwiUCopS9J9RQcxH8ieGE"
 			]
 		},
 		"contracts/reports.sol": {
@@ -280,6 +315,14 @@
 			"urls": [
 				"bzz-raw://37fc3c605dfa12cb765be4a0cadaed0c86d1b195beed1598fb9ea4df3485f521",
 				"dweb:/ipfs/QmfERCGYzU3YA2ctmqw9mhwSiwyQo96wT2Ukae5XUhTxhn"
+			]
+		},
+		"interfaces/Iparser.sol": {
+			"keccak256": "0x8b0bdebbf42067b592480be3a870bb877f0fccd1c01efa12cba2b37164379b01",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://9c519d0ea1e2fe019508e7119d3c401333b62260a1560b5ee2caeda1c9cd69ad",
+				"dweb:/ipfs/QmcJv2H3hQNc1q6T7jJPXu5AvR1jkMg3YMNNST3eRSnew8"
 			]
 		}
 	},
