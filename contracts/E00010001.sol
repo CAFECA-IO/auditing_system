@@ -51,7 +51,7 @@ contract E00010001{
     
     function computeBalanceSheet() internal  {
 
-        int256 A001_3_4_5_14 = int256((EP001 + EP003) * latestSP002);
+        int256 A001_3_4_5_14 = int256(((EP001 + EP003) * latestSP002) / 10**18);
         string[] memory keysForA001_3_4_5_14 = new string[](5);
         keysForA001_3_4_5_14[0] = "assets.details.cryptocurrency.totalAmountFairValue";
         keysForA001_3_4_5_14[1] = "assets.details.cryptocurrency.breakdown.USDT.fairValue";
@@ -69,7 +69,7 @@ contract E00010001{
         keysForA002[0] = "assets.details.cryptocurrency.breakdown.USDT.amount";
         report.addValue(reportID, "balanceSheet", keysForA002[0], A002);
 
-        int256 A006_8_9 = int256((EP001 - EP002) * latestSP002);
+        int256 A006_8_9 = int256(((EP001 - EP002) * latestSP002)/ 10**18);
         string[] memory keysForA006_8_9 = new string[](3);
         keysForA006_8_9[0] = "liabilities.details.userDeposit.totalAmountFairValue";
         keysForA006_8_9[1] = "liabilities.details.userDeposit.breakdown.USDT.fairValue";
@@ -83,7 +83,7 @@ contract E00010001{
         keysForA007[0] = "liabilities.details.userDeposit.breakdown.USDT.amount";
         report.addValue(reportID, "balanceSheet", keysForA007[0], A007);
 
-        int256 A010_12_13 = int256((EP002 + EP003) * latestSP002);
+        int256 A010_12_13 = int256(((EP002 + EP003) * latestSP002)/ 10**18);
         string[] memory keysForA010_12_13 = new string[](3);
         keysForA010_12_13[0] = "equity.details.retainedEarnings.totalAmountFairValue";
         keysForA010_12_13[1] = "equity.details.retainedEarnings.breakdown.USDT.fairValue";
@@ -99,7 +99,7 @@ contract E00010001{
     }
 
     function computeComprehesiveIncome() internal {
-        int256 B001_3_4 = int256((EP002 + EP003) * EP005);
+        int256 B001_3_4 = int256(((EP002 + EP003) * EP005)/ 10**18);
         string[] memory keysForB001_3_4 = new string[](3);
         keysForB001_3_4[0] = "income.details.depositFee.weightedAverageCost";
         keysForB001_3_4[1] = "income.details.depositFee.breakdown.USDT.weightedAverageCost";
@@ -115,7 +115,7 @@ contract E00010001{
     }
 
     function computeCashFlow() internal {
-        int256 C001_3 = int256((EP001 - EP002) * EP005);
+        int256 C001_3 = int256(((EP001 - EP002) * EP005)/ 10**18);
         string[] memory keysForC001_3 = new string[](2);
         keysForC001_3[0] = "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesDepositedByCustomers.weightedAverageCost"; 
         keysForC001_3[1] = "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesDepositedByCustomers.breakdown.USDT.weightedAverageCost";
@@ -127,7 +127,7 @@ contract E00010001{
         keysForC002[0] = "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesDepositedByCustomers.breakdown.USDT.amount"; 
         report.addValue(reportID, "cashFlow", keysForC002[0], C002);
 
-        int256 C004_6 = int256((EP002 + EP003) * EP005);
+        int256 C004_6 = int256(((EP002 + EP003) * EP005)/ 10**18);
         string[] memory keysForC004_6 = new string[](2);
         keysForC004_6[0] = "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.weightedAverageCost"; 
         keysForC004_6[1] = "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.breakdown.USDT.weightedAverageCost";
@@ -139,7 +139,7 @@ contract E00010001{
         keysForC005[0] = "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.breakdown.USDT.amount"; 
         report.addValue(reportID, "cashFlow", keysForC005[0], C005);
 
-        int256 C007_8 = int256((EP001 + EP003) * EP005);
+        int256 C007_8 = int256(((EP001 + EP003) * EP005)/ 10**18);
         string[] memory keysForC007_8 = new string[](2);
         keysForC007_8[0] = "supplementalScheduleOfNonCashOperatingActivities.weightedAverageCost"; 
         keysForC007_8[1] = "otherSupplementaryItems.details.relatedToNonCash.cryptocurrenciesEndOfPeriod.weightedAverageCost";
