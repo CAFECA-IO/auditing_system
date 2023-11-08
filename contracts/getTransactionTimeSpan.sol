@@ -1,11 +1,15 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
-import "./eventTransactionBytes32.sol";
+
+import "./TransactionContract.sol";
 import "./E00010001.sol";
 import "./E00010002.sol";
 import "./E00010003.sol";
 import "./E00010004.sol";
 import "./E00010005.sol";
+import "./E00010006.sol";
+import "./E00010007.sol";
+import "./E00010008.sol";
 import "./parser.sol";
 
 contract createTimeSpanReport {
@@ -35,9 +39,12 @@ contract createTimeSpanReport {
     E00010003 public e00010003;
     E00010004 public e00010004;
     E00010005 public e00010005;
+    E00010006 public e00010006;
+    E00010007 public e00010007;
+    E00010008 public e00010008;
 
 
-    constructor(address _transactionContractAddress,address _parser ,address _E00010001,address _E00010002,address _E00010003,address _E00010004,address _E00010005) {
+    constructor(address _transactionContractAddress,address _parser ,address _E00010001,address _E00010002,address _E00010003,address _E00010004,address _E00010005,address _E00010006,address _E00010007,address _E00010008) {
         transactionContract = TransactionContract(_transactionContractAddress);
         Iparser = IParser(_parser);
         e00010001 = E00010001(_E00010001);
@@ -45,6 +52,9 @@ contract createTimeSpanReport {
         e00010003 = E00010003(_E00010003);
         e00010004 = E00010004(_E00010004);
         e00010005 = E00010005(_E00010005);
+        e00010006 = E00010006(_E00010006);
+        e00010007 = E00010007(_E00010007);
+        e00010008 = E00010008(_E00010008);
     }
 
     // This function is for temporary usage.
@@ -129,6 +139,18 @@ contract createTimeSpanReport {
             }
             if (keccak256(abi.encodePacked(data.types[0]))== keccak256(abi.encodePacked(Iparser.stringToBytes32("E00010005")))) {
                 e00010005.getEventIdAndRate(data.eventIds[i], data.reportID ,latestRate.SP002, latestRate.SP003, latestRate.SP004);
+                emit TransactionProcessed(data.reportID, data.types[i]);
+            }
+            if (keccak256(abi.encodePacked(data.types[0]))== keccak256(abi.encodePacked(Iparser.stringToBytes32("E00010006")))) {
+                e00010006.getEventIdAndRate(data.eventIds[i], data.reportID ,latestRate.SP002, latestRate.SP003, latestRate.SP004);
+                emit TransactionProcessed(data.reportID, data.types[i]);
+            }
+            if (keccak256(abi.encodePacked(data.types[0]))== keccak256(abi.encodePacked(Iparser.stringToBytes32("E00010007")))) {
+                e00010007.getEventIdAndRate(data.eventIds[i], data.reportID ,latestRate.SP002, latestRate.SP003, latestRate.SP004);
+                emit TransactionProcessed(data.reportID, data.types[i]);
+            }
+            if (keccak256(abi.encodePacked(data.types[0]))== keccak256(abi.encodePacked(Iparser.stringToBytes32("E00010008")))) {
+                e00010008.getEventIdAndRate(data.eventIds[i], data.reportID ,latestRate.SP002, latestRate.SP003, latestRate.SP004);
                 emit TransactionProcessed(data.reportID, data.types[i]);
             }
 

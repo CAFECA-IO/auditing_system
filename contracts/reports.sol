@@ -9,6 +9,9 @@ contract Reports {
     }
 
     function getValue(string memory reportID, string memory reportType, string memory reportColumn) public view returns (int256) {
-        return data[reportID][reportType][reportColumn];
+        int256 result;
+        result = data[reportID][reportType][reportColumn];
+        return result;
     }
+    
 }

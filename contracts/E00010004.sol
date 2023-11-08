@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 // 傳進rate的值
 pragma solidity ^0.8.0;
-import "./eventTransactionBytes32.sol";
+import "./TransactionContract.sol";
 import "./reports.sol";
 import "./parser.sol";
 
@@ -33,9 +33,9 @@ contract E00010004 {
     }
 
     function getEventIdAndRate(bytes32 _eventId,bytes32 _reportID ,bytes32 _SP002, bytes32 _SP003, bytes32 _SP004) public {
-        latestSP002 = int256(uint256(_SP002));
-        latestSP003 = int256(uint256(_SP003));
-        latestSP004 = int256(uint256(_SP004));
+        latestSP002 = int256(uint256(_SP002)   );
+        latestSP003 = int256(uint256(_SP003)   );
+        latestSP004 = int256(uint256(_SP004)   );
         eventIdFromTimeSpan = Iparser.bytes32ToString(_eventId);
         reportID = Iparser.bytes32ToString(_reportID);
         emit EventIdAndRateReceived(eventIdFromTimeSpan, latestSP002, latestSP003, latestSP004);
@@ -55,7 +55,7 @@ contract E00010004 {
 
     function computeBalanceSheet() internal  {
 
-        int256 A001_4_5 = int256( ((- EP001) + EP002 + EP003) * latestSP002/100 +(latestSP003 * (-EP004)));
+        int256 A001_4_5 = int256( ((- EP001) + EP002 + EP003) * latestSP002 +(latestSP003 * (-EP004)));
         string[] memory keysForA001_4_5 = new string[](3);
         keysForA001_4_5[0] = "assets.details.cryptocurrency.totalAmountFairValue";
         keysForA001_4_5[1] = "assets.totalAmountFairValue";

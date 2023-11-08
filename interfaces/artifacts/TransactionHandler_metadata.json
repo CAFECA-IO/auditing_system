@@ -1,0 +1,64 @@
+{
+	"compiler": {
+		"version": "0.8.22+commit.4fc1097e"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32[]",
+						"name": "data",
+						"type": "bytes32[]"
+					},
+					{
+						"internalType": "address",
+						"name": "recorder",
+						"type": "address"
+					}
+				],
+				"name": "processTransaction",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"interfaces/ITransactionHandler.sol": "TransactionHandler"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"interfaces/ITransactionHandler.sol": {
+			"keccak256": "0x5aad228b3e061d3a5576a04f3fef3442d1ed0a12a97c3b0f6121a714cbb75b75",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://e20ffe675d6e3d43b482c53776e2dfac2c82ae1eed6130896c6835e8496cd95d",
+				"dweb:/ipfs/QmQsoropti2tmcfbmyGHLRbxC1ou9GM2DhRnwUozx1so6g"
+			]
+		}
+	},
+	"version": 1
+}

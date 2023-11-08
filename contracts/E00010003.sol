@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 // 傳進rate的值
 pragma solidity ^0.8.0;
-import "./eventTransactionBytes32.sol";
+import "./TransactionContract.sol";
 import "./reports.sol";
 import "./parser.sol";
 

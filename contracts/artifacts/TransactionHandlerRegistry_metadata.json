@@ -1,0 +1,83 @@
+{
+	"compiler": {
+		"version": "0.8.22+commit.4fc1097e"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "transactionType",
+						"type": "bytes32"
+					}
+				],
+				"name": "getHandler",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "transactionType",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "address",
+						"name": "handler",
+						"type": "address"
+					}
+				],
+				"name": "registerHandler",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/TransactionHandlerRegistry.sol": "TransactionHandlerRegistry"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/TransactionHandlerRegistry.sol": {
+			"keccak256": "0xe13a5fd39e732aa88cf8eec555aa5be942a96c17297176f71042dc3a27228c23",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://8d9b50e581fc4a9e8dcab2dee38b4c656f4cec51adf1767173fe0fba45a2bf1d",
+				"dweb:/ipfs/QmTs36n5uTseHMBJA6d9qDir5yRUxD7NcvWdmvchAhcbAn"
+			]
+		}
+	},
+	"version": 1
+}

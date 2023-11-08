@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 // 傳進rate的值
 pragma solidity ^0.8.0;
-import "./eventTransactionBytes32.sol";
+import "./TransactionContract.sol";
 import "./reports.sol";
 import "./parser.sol";
 
@@ -32,9 +32,9 @@ contract E00010005 {
     }
 
     function getEventIdAndRate(bytes32 _eventId,bytes32 _reportID ,bytes32 _SP002, bytes32 _SP003, bytes32 _SP004) public {
-        latestSP002 = int256(uint256(_SP002));
-        latestSP003 = int256(uint256(_SP003));
-        latestSP004 = int256(uint256(_SP004));
+        latestSP002 = int256(uint256(_SP002)   );
+        latestSP003 = int256(uint256(_SP003)   );
+        latestSP004 = int256(uint256(_SP004)   );
         eventIdFromTimeSpan = Iparser.bytes32ToString(_eventId);
         reportID = Iparser.bytes32ToString(_reportID);
         emit EventIdAndRateReceived(eventIdFromTimeSpan, latestSP002, latestSP003, latestSP004);

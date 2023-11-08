@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 // 傳進rate的值
 pragma solidity ^0.8.0;
-import "./eventTransactionBytes32.sol";
+import "./TransactionContract.sol";
 import "./reports.sol";
 import "./parser.sol";
 
@@ -31,9 +31,9 @@ contract E00010007 {
     }
 
     function getEventIdAndRate(bytes32 _eventId,bytes32 _reportID ,bytes32 _SP002, bytes32 _SP003, bytes32 _SP004) public {
-        latestSP002 = int256(uint256(_SP002));
-        latestSP003 = int256(uint256(_SP003));
-        latestSP004 = int256(uint256(_SP004));
+        latestSP002 = int256(uint256(_SP002)   );
+        latestSP003 = int256(uint256(_SP003)   );
+        latestSP004 = int256(uint256(_SP004)   );
         eventIdFromTimeSpan = Iparser.bytes32ToString(_eventId);
         reportID = Iparser.bytes32ToString(_reportID);
         emit EventIdAndRateReceived(eventIdFromTimeSpan, latestSP002, latestSP003, latestSP004);
@@ -101,37 +101,30 @@ contract E00010007 {
         report.addValue(reportID, "comprehensiveIncome", keysForB001_2_3_4[3], B001_2_3_4);
     }
 
-//haven't finish cashFlow table
     function computeCashFlow() internal {
-        int256 C001_55 = int256((EP001 - EP002) * EP005 );
-        string[] memory keysForC001_55 = new string[](2);
-        keysForC001_55[0] = "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesDepositedByCustomers.weightedAverageCost"; 
-        keysForC001_55[1] = "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesDepositedByCustomers.breakdown.BTC.weightedAverageCost";
-        report.addValue(reportID, "cashFlow", keysForC001_55[0], C001_55);
-        report.addValue(reportID, "cashFlow", keysForC001_55[1], C001_55);
-
-        int256 C054 = int256(EP001 - EP002);
-        string[] memory keysForC054 = new string[](1);
-        keysForC054[0] = "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesDepositedByCustomers.breakdown.BTC.amount"; 
-        report.addValue(reportID, "cashFlow", keysForC054[0], C054);
-
-        int256 C004_75 = int256((EP002 + EP003) * EP005 );
-        string[] memory keysForC004_75 = new string[](2);
-        keysForC004_75[0] = "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.weightedAverageCost"; 
-        keysForC004_75[1] = "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.breakdown.BTCweightedAverageCost";
-        report.addValue(reportID, "cashFlow", keysForC004_75[0], C004_75);
-        report.addValue(reportID, "cashFlow", keysForC004_75[1], C004_75);
-
-        int256 C072 = int256(EP002 + EP003);
-        string[] memory keysForC072 = new string[](1);
-        keysForC072[0] = "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.breakdown.ETH.amount"; 
-        report.addValue(reportID, "cashFlow", keysForC072[0], C072);
-
-        int256 C007_8 = int256((EP001 + EP003) * EP005 );
-        string[] memory keysForC007_8 = new string[](2);
-        keysForC007_8[0] = "supplementalScheduleOfNonCashOperatingActivities.weightedAverageCost"; 
-        keysForC007_8[1] = "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesEndOfPeriod";
-        report.addValue(reportID, "cashFlow", keysForC007_8[0], C007_8);
-        report.addValue(reportID, "cashFlow", keysForC007_8[1], C007_8);
+        int256 C027_134_135 = int256(EP001 - EP002);
+        string[] memory keysForC027_134_135= new string[](3);
+        keysForC027_134_135[0] = "operatingActivities.details.cashDepositedByCustomers.weightedAverageCost"; 
+        keysForC027_134_135[1] = "operatingActivities.details.cashDepositedByCustomers.breakdown.USD.amount";
+        keysForC027_134_135[2] = "operatingActivities.details.cashDepositedByCustomers.breakdown.USD.weightedAverageCost";
+        report.addValue(reportID, "cashFlow", keysForC027_134_135[0], C027_134_135);
+        report.addValue(reportID, "cashFlow", keysForC027_134_135[1], C027_134_135);
+        report.addValue(reportID, "cashFlow", keysForC027_134_135[2], C027_134_135);
+//
+        int256 C031_136 = int256(EP002 + EP003);
+        string[] memory keysForC031_136 = new string[](2);
+        keysForC031_136[0] = "operatingActivities.details.cashReceivedFromCustomersAsTransactionFee.weightedAverageCost"; 
+        keysForC031_136[1] = "operatingActivities.details.cashReceivedFromCustomersAsTransactionFee.breakdown.USD.amount ";
+        report.addValue(reportID, "cashFlow", keysForC031_136[0], C031_136);
+        report.addValue(reportID, "cashFlow", keysForC031_136[1], C031_136);
+//
+        int256 C049_051_137 = int256(EP001 - EP002);
+        string[] memory keysForC049_051_137= new string[](3);
+        keysForC049_051_137[0] = "operatingActivities.weightedAverageCost"; 
+        keysForC049_051_137[1] = "otherSupplementaryItems.details.relatedToCash.cashCashEquivalentsAndRestrictedCashEndOfPeriod.weightedAverageCost";
+        keysForC049_051_137[2] = "operatingActivities.details.cashReceivedFromCustomersAsTransactionFee.breakdown.USD.weightedAverageCost";
+        report.addValue(reportID, "cashFlow", keysForC049_051_137[0], C049_051_137);
+        report.addValue(reportID, "cashFlow", keysForC049_051_137[1], C049_051_137);
+        report.addValue(reportID, "cashFlow", keysForC049_051_137[2], C049_051_137);
     }
 }
