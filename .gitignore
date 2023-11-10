@@ -1,0 +1,5 @@
+# Ignore Vim swap files
+*.swp
+
+# Alternatively, ignore a specific swap file
+.transformReportAPI.js.swp
