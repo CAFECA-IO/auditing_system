@@ -133,9 +133,6 @@ async function fetchData() {
     /*B105*/const otherGainsLosses_details_cryptocurrencyGains_breakdown_BTC_weightedAverageCost = await getContractValue(reportID, "comprehensiveIncome", "otherGainsLosses.details.cryptocurrencyGains.breakdown.BTC.weightedAverageCost");
 
 
-
-
-
     const data =
 {
     "success": true,
@@ -146,38 +143,38 @@ async function fetchData() {
         "startDate": "?",
         "endDate": "?",
         "income": {
-            "weightedAverageCost": 0,
+            "weightedAverageCost": income_weightedAverageCost,
             "details": {
                 "transactionFee": {
-                    "totalAmountFairValue": 0,
+                    "totalAmountFairValue": "?",
                     "weightedAverageCost": income_details_transactionFee_weightedAverageCost,
                     "breakdown": {
                         "ETH": {
                             "currencyType": "CRYPTOCURRENCY",
                             "name": "ETH",
-                            "amount": 0,
-                            "weightedAverageCost": 0,
+                            "amount": income_details_transactionFee_breakdown_ETH_amount,
+                            "weightedAverageCost": income_details_transactionFee_breakdown_ETH_weightedAverageCost,
                             "fairValue": 0
                         },
                         "BTC": {
                             "currencyType": "CRYPTOCURRENCY",
                             "name": "BTC",
-                            "amount": 0,
-                            "weightedAverageCost": 0,
+                            "amount": income_details_transactionFee_breakdown_BTC_amount,
+                            "weightedAverageCost": income_details_transactionFee_breakdown_BTC_weightedAverageCost,
                             "fairValue": 0
                         },
                         "USDT": {
                             "currencyType": "CRYPTOCURRENCY",
                             "name": "USDT",
-                            "amount": 0,
-                            "weightedAverageCost": 0,
+                            "amount": income_details_transactionFee_breakdown_USDT_amount,
+                            "weightedAverageCost": income_details_transactionFee_breakdown_USDT_weightedAverageCost,
                             "fairValue": 0
                         },
                         "USD": {
                             "currencyType": "FIAT",
                             "name": "USD",
-                            "amount": 0,
-                            "weightedAverageCost": 0,
+                            "amount": income_details_transactionFee_breakdown_USD_amount,
+                            "weightedAverageCost": income_details_guaranteedStopFee_breakdown_USD_weightedAverageCost,
                             "fairValue": 0
                         }
                     }
@@ -189,29 +186,29 @@ async function fetchData() {
                         "ETH": {
                             "currencyType": "CRYPTOCURRENCY",
                             "name": "ETH",
-                            "amount": 0,
-                            "weightedAverageCost": 0,
+                            "amount": income_details_spreadFee_breakdown_ETH_amount,
+                            "weightedAverageCost": income_details_spreadFee_breakdown_ETH_weightedAverageCost,
                             "fairValue": 0
                         },
                         "BTC": {
                             "currencyType": "CRYPTOCURRENCY",
                             "name": "BTC",
-                            "amount": 0,
-                            "weightedAverageCost": 0,
+                            "amount": income_details_spreadFee_breakdown_BTC_amount,
+                            "weightedAverageCost": income_details_spreadFee_breakdown_BTC_weightedAverageCost,
                             "fairValue": 0
                         },
                         "USDT": {
                             "currencyType": "CRYPTOCURRENCY",
                             "name": "USDT",
-                            "amount": 0,
-                            "weightedAverageCost": 0,
+                            "amount": income_details_spreadFee_breakdown_USDT_amount,
+                            "weightedAverageCost": income_details_spreadFee_breakdown_USDT_weightedAverageCost,
                             "fairValue": 0
                         },
                         "USD": {
                             "currencyType": "FIAT",
                             "name": "USD",
-                            "amount": 0,
-                            "weightedAverageCost": 0,
+                            "amount": income_details_spreadFee_breakdown_USD_amount,
+                            "weightedAverageCost": income_details_spreadFee_breakdown_USD_weightedAverageCost,
                             "fairValue": 0
                         }
                     }
@@ -223,29 +220,29 @@ async function fetchData() {
                         "ETH": {
                             "currencyType": "CRYPTOCURRENCY",
                             "name": "ETH",
-                            "amount": 0,
-                            "weightedAverageCost": 0,
+                            "amount": income_details_guaranteedStopFee_breakdown_ETH_amount,
+                            "weightedAverageCost": income_details_guaranteedStopFee_breakdown_ETH_weightedAverageCost,
                             "fairValue": 0
                         },
                         "BTC": {
                             "currencyType": "CRYPTOCURRENCY",
                             "name": "BTC",
-                            "amount": 0,
-                            "weightedAverageCost": 0,
+                            "amount": income_details_guaranteedStopFee_breakdown_BTC_amount,
+                            "weightedAverageCost": income_details_guaranteedStopFee_breakdown_BTC_weightedAverageCost,
                             "fairValue": 0
                         },
                         "USDT": {
                             "currencyType": "CRYPTOCURRENCY",
                             "name": "USDT",
-                            "amount": 0,
-                            "weightedAverageCost": 0,
+                            "amount": income_details_guaranteedStopFee_breakdown_USDT_amount,
+                            "weightedAverageCost": income_details_guaranteedStopFee_breakdown_USDT_weightedAverageCost,
                             "fairValue": 0
                         },
                         "USD": {
                             "currencyType": "FIAT",
                             "name": "USD",
-                            "amount": 0,
-                            "weightedAverageCost": 0,
+                            "amount": income_details_guaranteedStopFee_breakdown_USD_amount,
+                            "weightedAverageCost": income_details_guaranteedStopFee_weightedAverageCost,
                             "fairValue": 0
                         }
                     }
@@ -257,36 +254,36 @@ async function fetchData() {
                         "ETH": {
                             "currencyType": "CRYPTOCURRENCY",
                             "name": "ETH",
-                            "amount": 0,
-                            "weightedAverageCost": 0,
+                            "amount": income_details_liquidationFee_breakdown_ETH_amount,
+                            "weightedAverageCost": income_details_liquidationFee_breakdown_ETH_weightedAverageCost,
                             "fairValue": 0
                         },
                         "BTC": {
                             "currencyType": "CRYPTOCURRENCY",
                             "name": "BTC",
-                            "amount": 0,
-                            "weightedAverageCost": 0,
+                            "amount": income_details_liquidationFee_breakdown_BTC_amount,
+                            "weightedAverageCost": income_details_liquidationFee_breakdown_BTC_weightedAverageCost,
                             "fairValue": 0
                         },
                         "USDT": {
                             "currencyType": "CRYPTOCURRENCY",
                             "name": "USDT",
-                            "amount": 0,
-                            "weightedAverageCost": 0,
+                            "amount": income_details_liquidationFee_breakdown_USDT_amount,
+                            "weightedAverageCost": income_details_liquidationFee_breakdown_USDT_weightedAverageCost,
                             "fairValue": 0
                         },
                         "USD": {
                             "currencyType": "FIAT",
                             "name": "USD",
-                            "amount": 0,
-                            "weightedAverageCost": 0,
+                            "amount": income_details_liquidationFee_breakdown_USD_amount,
+                            "weightedAverageCost": income_details_liquidationFee_breakdown_USD_weightedAverageCost,
                             "fairValue": 0
                         }
                     }
                 },
                 "withdrawalFee": {
                     "totalAmountFairValue": 0,
-                    "weightedAverageCost": 0,
+                    "weightedAverageCost": income_details_withdrawalFee_weightedAverageCost,
                     "breakdown": {
                         "ETH": {
                             "currencyType": "CRYPTOCURRENCY",
@@ -305,8 +302,8 @@ async function fetchData() {
                         "USDT": {
                             "currencyType": "CRYPTOCURRENCY",
                             "name": "USDT",
-                            "amount": 0,
-                            "weightedAverageCost": 0,
+                            "amount": income_details_withdrawalFee_breakdown_USDT_amount,
+                            "weightedAverageCost": income_details_withdrawalFee_breakdown_USDT_weightedAverageCost,
                             "fairValue": 0
                         },
                         "USD": {
@@ -320,7 +317,7 @@ async function fetchData() {
                 },
                 "depositFee": {
                     "totalAmountFairValue": 0,
-                    "weightedAverageCost": 0,
+                    "weightedAverageCost": income_details_depositFee_weightedAverageCost,
                     "breakdown": {
                         "ETH": {
                             "currencyType": "CRYPTOCURRENCY",
@@ -339,8 +336,8 @@ async function fetchData() {
                         "USDT": {
                             "currencyType": "CRYPTOCURRENCY",
                             "name": "USDT",
-                            "amount": 0,
-                            "weightedAverageCost": 0,
+                            "amount": income_details_depositFee_breakdown_USDT_amount,
+                            "weightedAverageCost": income_details_depositFee_breakdown_USDT_weightedAverageCost,
                             "fairValue": 0
                         },
                         "USD": {
@@ -359,14 +356,14 @@ async function fetchData() {
             "details": {
                 "technicalProviderFee": {
                     "totalAmountFairValue": 0,
-                    "weightedAverageCost": 0,
+                    "weightedAverageCost": costs_details_technicalProviderFee_weightedAverageCost,
                     "breakdown": {
                         "ETH": {
                             "currencyType": "CRYPTOCURRENCY",
                             "name": "ETH",
-                            "amount": 0,
+                            "amount": costs_details_technicalProviderFee_breakdown_ETH_amount,
                             "weightedAverageCost": 0,
-                            "fairValue": 0
+                            "fairValue": costs_details_technicalProviderFee_breakdown_ETH_fairValue
                         },
                         "BTC": {
                             "currencyType": "CRYPTOCURRENCY",
@@ -554,7 +551,7 @@ async function fetchData() {
                 }
             }
         },
-        "netProfit": 0
+        "netProfit": netProfit
     }
 }
         
