@@ -3,3 +3,6 @@
 
 # Alternatively, ignore a specific swap file
 .transformReportAPI.js.swp
+
+
+/document/scripts/.DS_Store
