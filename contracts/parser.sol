@@ -3,7 +3,7 @@ pragma solidity ^0.8.0;
 import "../interfaces/Iparser.sol";
 // Info: (20231115-Yang){This contracts realize the functions to decode or encode different variables types}
 contract Parser is IParser{
-    function bytes32ToString(bytes32 _bytes32) public pure returns (string memory) {
+    function bytes32ToString(bytes32 _bytes32) public pure override returns (string memory) {
         uint8 i = 0;
         while(i < 32 && _bytes32[i] != 0) {
             i++;
@@ -15,7 +15,7 @@ contract Parser is IParser{
         return string(bytesArray);
     }
 
-    function intToBytes32(int256 x) public pure returns (bytes32) {
+    function intToBytes32(int256 x) public pure override returns (bytes32) {
         return bytes32(uint256(x));
     }
     
