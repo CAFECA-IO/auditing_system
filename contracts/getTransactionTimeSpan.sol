@@ -12,6 +12,7 @@ import "./E00010007.sol";
 import "./E00010008.sol";
 import "./parser.sol";
 
+
 contract createTimeSpanReport {
     event TransactionProcessed(bytes32 indexed reportID, bytes32 eventType);
     event itshere(bytes32 datatypes,bytes32 keccak);
@@ -43,7 +44,7 @@ contract createTimeSpanReport {
     E00010007 public e00010007;
     E00010008 public e00010008;
 
-
+    //Info: (20231115 - Yang){This constructor will be modified after refactor the system, the calculating contracts will be merged with handlers contract}
     constructor(address _transactionContractAddress,address _parser ,address _E00010001,address _E00010002,address _E00010003,address _E00010004,address _E00010005,address _E00010006,address _E00010007,address _E00010008) {
         transactionContract = TransactionContract(_transactionContractAddress);
         Iparser = IParser(_parser);
@@ -57,12 +58,11 @@ contract createTimeSpanReport {
         e00010008 = E00010008(_E00010008);
     }
 
-    // This function is for temporary usage.
+    //Info: (20231115 - Yang){This function is for testing, users should use setRate function to input a bytes32 array}
     function setRateDecimal(int256 _SP002, int256 _SP003, int256 _SP004)public{
         setRate(bytes32(uint256(_SP002)),bytes32(uint256(_SP003)),bytes32(uint256(_SP004)),Iparser.stringToBytes32("first_report"));
     }
-    ////////////////
-
+    //Info: (20231115 - Yang){This function is for testing, users should use setRate function to input a bytes32 array}
     function setRate(bytes32 _SP002, bytes32 _SP003, bytes32 _SP004, bytes32 _reportID)public {
         Settlement memory newRate = Settlement({
             SP001 : int256(block.timestamp),
@@ -73,7 +73,7 @@ contract createTimeSpanReport {
         });
         rateHistory.push(newRate);
     }
-
+    //Info: (20231115 - Yang){This function is to set a timeSpan and then filtered every event to get the eventIDs which are in the timeSpan}
     function filterTransactionsInRange(int256 startTime, int256 endTime, bytes32 _reportID)
         public 
         returns (FilteredData memory)
@@ -116,7 +116,7 @@ contract createTimeSpanReport {
         processFilteredTransactions(data);
         return data;
     }
-
+    //Info: (20231115 - Yang){This function transfers the filtered eventIDs, pass them to calculating contracts}
     function processFilteredTransactions(FilteredData memory data) internal {
         Settlement memory latestRate = rateHistory[rateHistory.length - 1];
         emit itshere(keccak256(abi.encodePacked(data.types[0])), keccak256(abi.encodePacked(Iparser.stringToBytes32("E00010001"))));
