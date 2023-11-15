@@ -3,7 +3,7 @@ pragma solidity ^0.8.0;
 
 import "./TransactionContract.sol";
 import "../interfaces/ITransactionHandler.sol";
-
+// Info: (20231115 - Yang) {This is handler is to store data recorded in TransactionContract, the logic is the same in other handlers smart contract}
 contract E00010001_2_3_7_Processor is TransactionHandler {
 
     IParser public Iparser;
@@ -14,6 +14,8 @@ contract E00010001_2_3_7_Processor is TransactionHandler {
         Iparser = IParser(_parser);
     }
 
+    /*Info: (20231115 - Yang){This function first sets keys and values, then transfer them to addProcessedTransaction 
+    to store the data permanently}*/
     function processTransaction(bytes32[] memory data, address recorder) public override {
    
         require(data.length == 6, "Data length for E00010001_2_3_7 must be 6");
