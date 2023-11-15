@@ -1,10 +1,9 @@
 // SPDX-License-Identifier: MIT
-// 傳進rate的值
 pragma solidity ^0.8.0;
 import "./TransactionContract.sol";
 import "./reports.sol";
 import "./parser.sol";
-
+//Info: (20231115 - Yang){This contract is to calculate the variables based on the excel reports, the logic is the same in other calculating contracts}
 contract E00010001{
 
     Reports public report;
@@ -29,7 +28,8 @@ contract E00010001{
         Iparser = IParser(_Parser);
         report = Reports(_reportAddress);
     }
-    // 輸入時所有數字*10^18
+    /*Info: (20231115 - Yang){This function gets the rates and eventIDs, then calls transactionContract to get full data based on the eventIDs,
+    finally, store them in variables in order to calculate}*/
     function getEventIdAndRate(bytes32 _eventId,bytes32 _reportID ,bytes32 _SP002, bytes32 _SP003, bytes32 _SP004) public {
         latestSP002 = int256(uint256(_SP002));
         latestSP003 = int256(uint256(_SP003));
@@ -48,7 +48,7 @@ contract E00010001{
         computeComprehesiveIncome();
         computeCashFlow();
     }
-    
+    //Info: (20231115 - Yang){This contract calculates BalanceSheet's column, then add them to existing column in report.sol contract}
     function computeBalanceSheet() internal  {
 
         int256 A001_3_4_5_14 = int256(((EP001 + EP003) * latestSP002) / 10**18);
@@ -97,7 +97,7 @@ contract E00010001{
         keysForA011[0] = "equity.details.retainedEarnings.breakdown.USDT.amount";
         report.addValue(reportID, "balanceSheet", keysForA011[0], A011);
     }
-
+    //Info: (20231115 - Yang){This contract calculates comprehensiveIncome's column, then add them to existing column in report.sol contract}
     function computeComprehesiveIncome() internal {
         int256 B001_3_4 = int256(((EP002 + EP003) * EP005)/ 10**18);
         string[] memory keysForB001_3_4 = new string[](3);
@@ -113,7 +113,7 @@ contract E00010001{
         keysForB002[0] = "income.details.depositFee.breakdown.USDT.amount";
         report.addValue(reportID, "comprehensiveIncome", keysForB002[0], B002);
     }
-
+    //Info: (20231115 - Yang){This contract calculates cashFlow's column, then add them to existing column in report.sol contract}
     function computeCashFlow() internal {
         int256 C001_3 = int256(((EP001 - EP002) * EP005)/ 10**18);
         string[] memory keysForC001_3 = new string[](2);
