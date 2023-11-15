@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
-
+// Info:(20231115-Yang){This smart Contract provides functions to add value to existing column, and to enables users to read data}
 contract Reports {
     mapping(string => mapping(string => mapping(string => int256))) public data;
 
