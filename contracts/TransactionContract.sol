@@ -19,8 +19,7 @@ contract TransactionContract {
     Transaction[] public transactions;
     mapping(bytes32 => TransactionHandler) private handlers;
 
-    //This funtion is just for me to test. 
-    //In practice users will have to input their bytes32[] in addRecord funtion directly.
+    //Info: (20231115-Yang){This function is for testing usage, in practice users will have to input their bytes32[] in addRecord funtion directly.}
     function inputWithDecimal(
         string memory _str1,
         string memory _str2,
@@ -45,7 +44,7 @@ contract TransactionContract {
         Iparser = IParser(_parser);
     }
 
-    //可以註冊新的合約handler
+    //Info:(20231115-Yang){User should first input transaction type and handler addresses in order to register handlers}
     function registerHanlder(bytes32 transactionType, TransactionHandler handler) external {
         handlers[transactionType] = handler;
     }
@@ -59,7 +58,7 @@ contract TransactionContract {
         handler.processTransaction(data, msg.sender);
         emit transactionAdded(transactionType);
     }
-
+    //Info:(20231115-Yang){After registering handlers, users can use this funtion to record event data}
      function addProcessedTransaction(
         bytes32 eventId,
         bytes32 transactionType,
@@ -84,6 +83,7 @@ contract TransactionContract {
         emit transactionAdded(transactionType);
     }
 
+    //Info:(20231115-Yang){the functions beneath are several functions that enables users or other contracts to call and get respective information}
     function getTransaction(bytes32 _eventId) public view returns (bytes32, bytes32, address) {
         Transaction storage transaction = findTransaction(_eventId);
         return (
