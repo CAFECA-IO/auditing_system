@@ -19,4 +19,9 @@
 
 7.Router contract(TransactionContract address, getTransactionTimeSpan address )
 
+## Operation Flow:
+1.  Users start by registering handlers using the registerHandlers function in the “router”, inputting the “TransactionType” (of type bytes32) and the “handler’s" address (of type address).
+   ![image](https://github.com/CAFECA-IO/auditing_system/assets/59311328/393f8045-4208-46f7-8278-65c2bc529b88)
+
+
 
