@@ -29,6 +29,7 @@
 2.  Record data using a `bytes32 array` in the addRecord function of the `router.sol` contract, where each element has been multiplied by 10^18. The first element must be the eventID, and the second should specify the event type. Users must omit the timestamp column to prevent fraudulent events; the system will automatically record the current time.
 
    For example, for the following transaction, the format of the array should be:
+   
    [
    0x0000000000000000000000000000000000000000000000000000006669727374, 0x0000000000000000000000000000000000000000000000453030303130303031,
    0x00000000000000000000000000000000000000000000021e19e0c9bab2400000,
