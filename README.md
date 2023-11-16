@@ -62,8 +62,11 @@
    ”first_report”				(reportID)
    ]
 
-   <img width="235" alt="image" src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/2298aab5-ca0a-4f81-840c-94e6c309acd3">
-   ![image](https://github.com/CAFECA-IO/auditing_system/assets/59311328/5555753d-211d-4cf3-9cc6-0510950e9b6a)
+<img width="235" alt="image" src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/1e6996ba-1d0e-41b8-8792-125b92c8f7a1">
+
+ ![image](https://github.com/CAFECA-IO/auditing_system/assets/59311328/2ee70026-cb04-42da-aea9-fd2b9c8f7219)
+
+
 
 
 
