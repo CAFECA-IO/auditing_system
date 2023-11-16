@@ -71,6 +71,42 @@ The users then interact with the `filterTransactionsInRange` function by inputin
  ![image](https://github.com/CAFECA-IO/auditing_system/assets/59311328/6e682ab8-a677-404c-aeda-513ef71ff4c2)
 
 
+ 4. Then the system will pass those transactions which had been filtered in a time span to calculating functions (use eventID to determine which one), the calculating functions first use “Iparser.sol” function to change bytes32 into string or int256 and then calculate data with planned formula.
+
+ 5. After calculating calculating get a 3D array from “Ireports.sol”, and then add results into the respective column.
+
+ 6. We can check the numbers is correct or not by calling the function getValue(reportID, reportType, reportColumn) in reports.sol. There are three options to fill in the reportType, ‘balanceSheet’, ‘comprehensiveIncome’, ‘cashFlow’. Then input the ‘reportColumn’ to check the respective column.
+
+![image](https://github.com/CAFECA-IO/auditing_system/assets/59311328/820b47f2-e392-4c53-b434-56881c2489bb)
+
+
+![image](https://github.com/CAFECA-IO/auditing_system/assets/59311328/2d117583-f294-4c4e-a8c3-d490aec9360a)
+
+
+![image](https://github.com/CAFECA-IO/auditing_system/assets/59311328/9a949aa7-2f74-4f05-b371-22eb7e98db48)
+
+
+## Interact with smart contracts on Ethereum and checking results
+
+## Future Plans:
+
+1.   Develop a standardized interface for calculation functions and store it in the interfaces file.
+
+2 .  Code each function up to Column 7, encompassing all types of deposits and withdrawals.
+
+3.   Implement Mistake Proofing mechanisms, such as require statements.
+
+4.   Enhance calculation accuracy, given that Solidity lacks a float variable type.
+
+5.   Optimize gas fees through careful data structure design.
+
+6.   Create an interface for reports.sol and import only the interface.
+
+
+
+
+
+
 
 
 
