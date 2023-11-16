@@ -44,6 +44,7 @@
 
 
    Which in decimal: 
+   
    [ 
    “first”, 				(eventID)
    ”E00010001”, 			(transactionType)
@@ -52,6 +53,7 @@
    1000000000000000000,		(EP003)
    1010000000000000000 		(EP005)
    ] 
+   
    , notice that every number has been multipulied by 10^18.
 
    3. In order to create report(s) in a time span, the users first set rates and reportID on `setRate` function in  `router.sol`. For example, for the following example, the user should input a `bytes32 array` as the following format:
