@@ -72,8 +72,7 @@
 <img width="500" height="250" alt="image" src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/47302669-2c7d-4c90-9b05-52357156bd34">
 
 
-
-<img width="500" height="250" alt="image" src="(https://github.com/CAFECA-IO/auditing_system/assets/59311328/199f67f5-5020-4418-b013-e5b0032ffa85">
+<img width="500" height="250" alt="image" src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/199f67f5-5020-4418-b013-e5b0032ffa85">
 
 
 
@@ -89,15 +88,15 @@ The users then interact with the `filterTransactionsInRange` function by inputin
  6. We can check the numbers is correct or not by calling the function getValue(reportID, reportType, reportColumn) in reports.sol. There are three options to fill in the reportType, ‘balanceSheet’, ‘comprehensiveIncome’, ‘cashFlow’. Then input the ‘reportColumn’ to check the respective column.
 
 
-<img width="500" height="250" alt="image" src="(https://github.com/CAFECA-IO/auditing_system/assets/59311328/820b47f2-e392-4c53-b434-56881c2489bb">
+<img width="500" height="250" alt="image" src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/820b47f2-e392-4c53-b434-56881c2489bb">
 
 
 
-<img width="500" height="250" alt="image" src="(https://github.com/CAFECA-IO/auditing_system/assets/59311328/2d117583-f294-4c4e-a8c3-d490aec9360a">
+<img width="500" height="250" alt="image" src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/2d117583-f294-4c4e-a8c3-d490aec9360a">
 
 
 
-<img width="500" height="250" alt="image" src="(https://github.com/CAFECA-IO/auditing_system/assets/59311328/9a949aa7-2f74-4f05-b371-22eb7e98db48">
+<img width="500" height="250" alt="image" src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/9a949aa7-2f74-4f05-b371-22eb7e98db48">
 
 
 ## Interact with smart contracts on Ethereum and checking results
