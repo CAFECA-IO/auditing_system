@@ -34,8 +34,10 @@
    0x0000000000000000000000000000000000000000000000000e043da617250000
    ]
 
-   ![image](https://github.com/CAFECA-IO/auditing_system/assets/59311328/8d46daff-65fe-4800-a062-94c364728089)
-   ![image](https://github.com/CAFECA-IO/auditing_system/assets/59311328/9ecc9141-4ae9-43e7-97d0-5f46946fd36e)
+ <img src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/8d46daff-65fe-4800-a062-94c364728089" width="1000" height="200" alt="image" />
+
+<img src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/9ecc9141-4ae9-43e7-97d0-5f46946fd36e" width="1000" height="200" alt="image" />
+
 
    Which in decimal: 
    [ 
