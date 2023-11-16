@@ -137,9 +137,9 @@ The users then interact with the `filterTransactionsInRange` function by inputin
 
 1. First, users should download and deploy the `hardhat` environment locally .
 
-2. Set your SEPOLIA_PRIVATE_KEY, INFURA_API_KEY, and REPORT_CONTRACT_ADDRESS at .env file, it's in auditing_system/.env
+2. Set your` SEPOLIA_PRIVATE_KEY`, `INFURA_API_KEY`, and `REPORT_CONTRACT_ADDRESS` at `.env` file, it's in auditing_system/.env
    
-3. Run your scripts at the root file with npx hardhat run src/services/blockchain/scripts/transformBalanceSheetAPI.js or npx hardhat run src/services/blockchain/scripts/transformComprehensiveIncomeAPI.js or npx hardhat run src/services/blockchain/scripts/transformCashFlowAPI.js
+3. Run your scripts at the root file with `npx hardhat run src/services/blockchain/scripts/transformBalanceSheetAPI.js` or `npx hardhat run src/services/blockchain/scripts/transformComprehensiveIncomeAPI.js` or `npx hardhat run src/services/blockchain/scripts/transformCashFlowAPI.js`
 
 ## Future Plans:
 
