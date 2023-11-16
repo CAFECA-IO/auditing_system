@@ -72,7 +72,7 @@
 <img width="500" height="250" alt="image" src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/47302669-2c7d-4c90-9b05-52357156bd34">
 
 
-<img width="500" height="250" alt="image" src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/199f67f5-5020-4418-b013-e5b0032ffa85">
+<img width="500" height="300" alt="image" src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/199f67f5-5020-4418-b013-e5b0032ffa85">
 
 
 
@@ -80,7 +80,7 @@ The users then interact with the `filterTransactionsInRange` function by inputin
 
 
 
- <img width="500" height="250" alt="image" src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/6e682ab8-a677-404c-aeda-513ef71ff4c2">
+ <img width="500" height="300" alt="image" src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/6e682ab8-a677-404c-aeda-513ef71ff4c2">
 
 
 
