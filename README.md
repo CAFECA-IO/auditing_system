@@ -108,7 +108,7 @@ The users then interact with the `filterTransactionsInRange` function by inputin
 
 1.   Develop a standardized interface for calculation functions and store it in the interfaces file.
 
-2 .  Code each function up to Column 7, encompassing all types of deposits and withdrawals.
+2.  Code each function up to Column 7, encompassing all types of deposits and withdrawals.
 
 3.   Implement Mistake Proofing mechanisms, such as require statements.
 
