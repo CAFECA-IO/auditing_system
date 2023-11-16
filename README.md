@@ -9,15 +9,15 @@
 
 2.reports.sol
 
-3.TransactionContract.sol (parser address)
+3.transactionContract.sol (Parser address)
 
-4.Handlers Contracts (TransactionContract address, parser address)
+4.handlers Contracts (TransactionContract address, Parser address)
 
-5.Calculating Contracts (TransactionContract address, Parser address , report address)
+5.Calculating Contracts (TransactionContract address, Parser address , Report address)
 
-6.getTransactionTimeSpan.sol (transaction address, parser address, functioning contracts addresses)
+6.getTransactionTimeSpan.sol (Transaction address, Parser address, calculating contracts addresses(such as E00010001 address and so on))
 
-7.Router contract(TransactionContract address, getTransactionTimeSpan address )
+7.router.sol contract(TransactionContract address, GetTransactionTimeSpan address )
 
 ## Operation Flow:
 1.  Users start by registering handlers using the registerHandlers function in the `router`, inputting the `TransactionType` (of type `bytes32`) and the `handler’s` address (of type address).
@@ -147,17 +147,10 @@ The users then interact with the `filterTransactionsInRange` function by inputin
 
 ## Future Plans:
 
-1.   Develop a standardized interface for calculation functions and store it in the interfaces file.
+1.   Implement Mistake Proofing mechanisms, such as require statements.
 
-2.  Code each function up to Column 7, encompassing all types of deposits and withdrawals.
+2.   Optimize gas fees through careful data structure design.
 
-3.   Implement Mistake Proofing mechanisms, such as require statements.
-
-4.   Enhance calculation accuracy, given that Solidity lacks a float variable type.
-
-5.   Optimize gas fees through careful data structure design.
-
-6.   Create an interface for reports.sol and import only the interface.
 
 
 
