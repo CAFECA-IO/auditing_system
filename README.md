@@ -3,7 +3,7 @@
 
 ## System Class Diagram:
 
-<img width="1500" alt="image" src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/8cc8165b-0967-4c24-b02d-57f861eb6615">
+<img width="2000" alt="image" src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/8cc8165b-0967-4c24-b02d-57f861eb6615">
 
 Please note that the handlers' contracts will be merged with the calculating contracts, resulting in modifications to the system flow.
 
