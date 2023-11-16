@@ -47,6 +47,27 @@
    ] 
    , notice that every number has been multipulied by 10^18.
 
+   3. In order to create report(s) in a time span, the users first set rates and reportID on “setRate” function in  “router.sol”. For example, for the following example, the user should input a bytes32 array as the following format:
+   [
+    0x0000000000000000000000000000000000000000000000000dbd2fc137a30000,
+    0x000000000000000000000000000000000000000000000056bc75e2d631000000,
+    0x0000000000000000000000000000000000000000000000000000000000006590,
+    0x66697273745f7265706f72740000000000000000000000000000000000000000
+   ]
+   Which in decimal stands for:
+   [
+   990000000000000000, 		(SP002)
+   1600000000000000000000,		(SP003)
+   26000000000000000000000,		(SP004)
+   ”first_report”				(reportID)
+   ]
+
+   <img width="235" alt="image" src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/2298aab5-ca0a-4f81-840c-94e6c309acd3">
+   ![image](https://github.com/CAFECA-IO/auditing_system/assets/59311328/5555753d-211d-4cf3-9cc6-0510950e9b6a)
+
+
+
+
 
 
       
