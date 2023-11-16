@@ -145,6 +145,12 @@ The users then interact with the `filterTransactionsInRange` function by inputin
 
 `npx hardhat run src/services/blockchain/scripts/transformCashFlowAPI.js`
 
+4. This program would help users to interact with reports.sol on ethereum by getting reports data.
+
+5. The program will parse the raw data into planned API format as follow:
+
+   <img width="366" alt="image" src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/0d311247-53b4-4d45-8e0b-f366108b2c62">
+
 ## Future Plans:
 
 1.   Implement Mistake Proofing mechanisms, such as require statements.
