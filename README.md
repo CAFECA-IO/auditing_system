@@ -10,7 +10,7 @@ Please note that the handlers' contracts will be merged with the calculating con
 ## Sequence Diagram:
 
 
-<img width="1224" alt="image" src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/9fba1c9c-e562-4535-8f2c-14de8b5d7c8b">
+<img width="800" alt="image" src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/9fba1c9c-e562-4535-8f2c-14de8b5d7c8b">
 
 
 
