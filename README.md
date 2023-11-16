@@ -21,7 +21,7 @@
 
 ## Operation Flow:
 1.  Users start by registering handlers using the registerHandlers function in the “router”, inputting the “TransactionType” (of type bytes32) and the “handler’s" address (of type address).
-   <img src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/393f8045-4208-46f7-8278-65c2bc529b88" width="200" height="200" />
+   <img src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/393f8045-4208-46f7-8278-65c2bc529b88" width="ˊ1000" height="200" />
 
 2.  Record data using a bytes32 array in the addRecord function of the“router.sol” contract, where each element has been multiplied by 10^18. The first element must be the eventID, and the second should specify the event type. Users must omit the timestamp column to prevent fraudulent events; the system will automatically record the current time.”
 
