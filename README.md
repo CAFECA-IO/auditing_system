@@ -117,7 +117,7 @@ The users then interact with the `filterTransactionsInRange` function by inputin
 
  4. Then the system will pass those transactions which had been filtered in a time span to calculating functions (use eventID to determine which one), the calculating functions first use `iParser.sol` function to change bytes32 into string or int256 and then calculate data with planned formula.
 
- 5. After calculating calculating get a 3D array from `Ireports.sol`, and then add results into the respective column.
+ 5. After calculating calculating get a 3D array from `iReports.sol`, and then add results into the respective column.
 
  6. We can check the numbers is correct or not by calling the function getValue(reportID, reportType, reportColumn) in reports.sol. There are three options to fill in the reportType, ‘balanceSheet’, ‘comprehensiveIncome’, ‘cashFlow’. Then input the ‘reportColumn’ to check the respective column.
 
