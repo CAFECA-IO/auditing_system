@@ -20,13 +20,13 @@
 7.Router contract(TransactionContract address, getTransactionTimeSpan address )
 
 ## Operation Flow:
-1.  Users start by registering handlers using the registerHandlers function in the “router”, inputting the “TransactionType” (of type bytes32) and the “handler’s" address (of type address).
+1.  Users start by registering handlers using the registerHandlers function in the `router`, inputting the `TransactionType` (of type `bytes32`) and the `handler’s` address (of type address).
 
 
 <img src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/393f8045-4208-46f7-8278-65c2bc529b88" width="ˊ500" height="250" />
 
 
-2.  Record data using a bytes32 array in the addRecord function of the“router.sol” contract, where each element has been multiplied by 10^18. The first element must be the eventID, and the second should specify the event type. Users must omit the timestamp column to prevent fraudulent events; the system will automatically record the current time.”
+2.  Record data using a `bytes32 array` in the addRecord function of the `router.sol` contract, where each element has been multiplied by 10^18. The first element must be the eventID, and the second should specify the event type. Users must omit the timestamp column to prevent fraudulent events; the system will automatically record the current time.
 
    For example, for the following transaction, the format of the array should be:
    [
@@ -53,7 +53,7 @@
    ] 
    , notice that every number has been multipulied by 10^18.
 
-   3. In order to create report(s) in a time span, the users first set rates and reportID on “setRate” function in  “router.sol”. For example, for the following example, the user should input a bytes32 array as the following format:
+   3. In order to create report(s) in a time span, the users first set rates and reportID on `setRate` function in  `router.sol`. For example, for the following example, the user should input a `bytes32 array` as the following format:
    [
     0x0000000000000000000000000000000000000000000000000dbd2fc137a30000,
     0x000000000000000000000000000000000000000000000056bc75e2d631000000,
@@ -84,9 +84,9 @@ The users then interact with the `filterTransactionsInRange` function by inputin
 
 
 
- 4. Then the system will pass those transactions which had been filtered in a time span to calculating functions (use eventID to determine which one), the calculating functions first use “Iparser.sol” function to change bytes32 into string or int256 and then calculate data with planned formula.
+ 4. Then the system will pass those transactions which had been filtered in a time span to calculating functions (use eventID to determine which one), the calculating functions first use `Iparser.sol` function to change bytes32 into string or int256 and then calculate data with planned formula.
 
- 5. After calculating calculating get a 3D array from “Ireports.sol”, and then add results into the respective column.
+ 5. After calculating calculating get a 3D array from `Ireports.sol`, and then add results into the respective column.
 
  6. We can check the numbers is correct or not by calling the function getValue(reportID, reportType, reportColumn) in reports.sol. There are three options to fill in the reportType, ‘balanceSheet’, ‘comprehensiveIncome’, ‘cashFlow’. Then input the ‘reportColumn’ to check the respective column.
 
@@ -103,6 +103,12 @@ The users then interact with the `filterTransactionsInRange` function by inputin
 
 
 ## Interact with smart contracts on Ethereum and checking results
+
+1. First, users should download and deploy the `hardhat` environment locally .
+
+2. Set your SEPOLIA_PRIVATE_KEY, INFURA_API_KEY, and REPORT_CONTRACT_ADDRESS at .env file, it's in auditing_system/.env
+   
+3. Run your scripts at the root file with npx hardhat run src/services/blockchain/scripts/transformBalanceSheetAPI.js or npx hardhat run src/services/blockchain/scripts/transformComprehensiveIncomeAPI.js or npx hardhat run src/services/blockchain/scripts/transformCashFlowAPI.js
 
 ## Future Plans:
 
