@@ -66,9 +66,11 @@
    ”first_report”				(reportID)
    ]
 
-<img src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/8d46daff-65fe-4800-a062-94c364728089" width="1000" height="200" alt="image" />
+<img width="235" alt="image" src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/47302669-2c7d-4c90-9b05-52357156bd34">
 
-<img src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/9ecc9141-4ae9-43e7-97d0-5f46946fd36e" width="1000" height="200" alt="image" />
+
+![image](https://github.com/CAFECA-IO/auditing_system/assets/59311328/199f67f5-5020-4418-b013-e5b0032ffa85)
+
 
 
 The users then interact with the `filterTransactionsInRange` function by inputing startTime(uint256), endTime(uin256), and reportID(bytes32) to set a specific time span. This function employs the `eventID` as primary keys and using `reportID` to organize reports under the `reportID`, preventing any disarray. It then retrieves and returns the transactions that occurred within the specified time span, without providing the full dataset.(S07 - S08)
