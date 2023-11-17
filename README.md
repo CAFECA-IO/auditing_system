@@ -168,6 +168,8 @@ The users then interact with the `filterTransactionsInRange` function by inputin
 
 9. When registering a handler with 0x0 address.
 
+10. When reentrancy attack in transaction contract, revert it using reentrancy lock.
+
 ## Future Plans:
 
 1.  Implement Mistake Proofing mechanisms, such as require statements.
