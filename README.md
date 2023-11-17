@@ -8,8 +8,6 @@ _Currently, smart contracts are deployed using Remix, and data is input directly
 <img width="2000" alt="image" src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/7d66441e-9a3c-4eb9-9d6a-dd7d8b09c41e">
 
 
-Please note that the handlers' contracts will be merged with the calculating contracts, resulting in modifications to the system flow.
-
 ## Sequence Diagram:
 
 <img width="1200" alt="image" src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/ae3bfad3-700e-4ee3-9852-af13731f6887">
