@@ -31,7 +31,7 @@ _Deploy the smart contracts in the following sequence:_
 
 6.transactionHandlers.sol(TransactionContract address, Parser address, Report address), e.g. e00010001Handler.sol
 
-**If user wants to add new transaction types, for example e00010099, user only needs to write an e00010099.sol smart contracts, deploy it, and register them in router**
+**If user wants to add new transaction types, for example e00010099, user only needs to write an e00010099.sol smart contract, deploy it, and register them in router**
 
 ## Operation Flow:
 
