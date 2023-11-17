@@ -12,6 +12,8 @@ Please note that the handlers' contracts will be merged with the calculating con
 
 <img width="1200" alt="image" src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/6c9c4766-0701-4690-aa1c-78845a4d45f5">
 
+
+
 ## System Deployment:
 
 _Deploy the smart contracts in the following sequence:_
@@ -144,6 +146,22 @@ The users then interact with the `filterTransactionsInRange` function by inputin
 5. The program will parse the raw data into planned API format as follow:
 
    <img width="366" alt="image" src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/0d311247-53b4-4d45-8e0b-f366108b2c62">
+
+## Revert conditions
+
+1. When registering an eventTypeHandler that already exists.
+
+2. When inputting data into the addRecord function in the router, ensure that data.length is not less than 3.
+
+3. When inputting data into the addRecord function in the router, ensure that the eventID has not already been used.
+
+4. When inputting data into the addRecord function in the router, check if the transaction type handler is registered.
+
+5. When inputting an eventID into the setRates function in the router, ensure that the report ID has not already been used.
+
+6. When inputting an eventID into the filterTransactionsInRange function in the router, ensure that the report ID has not already been used.
+
+7. Ensure data.length matches the eventType's data.length requirement. For example, for E00010001, the data should have exactly 6 elements, but revert occur if the user inputs more or fewer elements.
 
 ## Future Plans:
 
