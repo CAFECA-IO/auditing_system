@@ -164,6 +164,10 @@ The users then interact with the `filterTransactionsInRange` function by inputin
 
 7. Ensure data.length matches the eventType's data.length requirement. For example, for E00010001, the data should have exactly 6 elements, but revert occur if the user inputs more or fewer elements.
 
+8. When registering a handler with non-contract addrss.
+
+9. When registering a handler with 0x0 address.
+
 ## Future Plans:
 
 1.  Implement Mistake Proofing mechanisms, such as require statements.
