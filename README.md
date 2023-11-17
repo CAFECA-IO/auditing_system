@@ -3,7 +3,7 @@
 
 ## System Class Diagram:
 
-<img width="2000" alt="image" src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/8cc8165b-0967-4c24-b02d-57f861eb6615">
+<img width="2000" alt="image" src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/fe8d81f8-3044-4d89-a93b-1640c469b9f2">
 
 
 ## Sequence Diagram:
