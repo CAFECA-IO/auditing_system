@@ -22,13 +22,13 @@ _Deploy the smart contracts in the following sequence:_
 
 3.transactionContract.sol (Parser address)
 
-4.handlers Contracts (TransactionContract address, Parser address)
+4.getTransactionTimeSpan.sol(TransactionContract address, Parser address)
 
-5.Calculating Contracts (TransactionContract address, Parser address , Report address)
+5.router.sol contract(TransactionContract address, GetTransactionTimeSpan address)
 
-6.getTransactionTimeSpan.sol (Transaction address, Parser address, calculating contracts addresses(such as E00010001 address and so on))
+6.transactionHandlers.sol(TransactionContract address, Parser address, Report address), e.g. e00010001Handlers.sol
 
-7.router.sol contract(TransactionContract address, GetTransactionTimeSpan address )
+**If user wants to add new transaction types, for example e00010099, user only needs to write an e00010099.sol smart contracts, deploy it, and register them in router**
 
 ## Operation Flow:
 
