@@ -5,12 +5,10 @@
 
 <img width="2000" alt="image" src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/8cc8165b-0967-4c24-b02d-57f861eb6615">
 
-Please note that the handlers' contracts will be merged with the calculating contracts, resulting in modifications to the system flow.
 
 ## Sequence Diagram:
 
-
-<img width="1200" alt="image" src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/6c9c4766-0701-4690-aa1c-78845a4d45f5">
+<img width="1200" alt="image" src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/0a704102-f2cf-48f3-b652-b1a241ee27d9">
 
 
 
