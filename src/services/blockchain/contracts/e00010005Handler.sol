@@ -78,80 +78,50 @@ contract E00010005Handler is ITransactionHandler {
     function computeBalanceSheet() internal  {
 
         int256 A001_4_5_16 = int256((((-EP001) + EP002 + EP003) * latestSP003 + ((-EP004) * latestSP003))/10**18);
-        string[] memory keysForA001_4_5_16 = new string[](4);
-        keysForA001_4_5_16[0] = "assets.details.cryptocurrency.totalAmountFairValue";
-        keysForA001_4_5_16[1] = "assets.totalAmountFairValue";
-        keysForA001_4_5_16[2] = "totalAssetsFairValue";
-        keysForA001_4_5_16[3] = "assets.details.cryptocurrency.breakdown.ETH.fairValue";
-        report.addValue(reportID, "balanceSheet", keysForA001_4_5_16[0], A001_4_5_16);
-        report.addValue(reportID, "balanceSheet", keysForA001_4_5_16[1], A001_4_5_16);
-        report.addValue(reportID, "balanceSheet", keysForA001_4_5_16[2], A001_4_5_16);
-        report.addValue(reportID, "balanceSheet", keysForA001_4_5_16[3], A001_4_5_16);
+        report.addValue(reportID, "balanceSheet", "assets.details.cryptocurrency.totalAmountFairValue", A001_4_5_16);
+        report.addValue(reportID, "balanceSheet", "assets.totalAmountFairValue", A001_4_5_16);
+        report.addValue(reportID, "balanceSheet", "totalAssetsFairValue", A001_4_5_16);
+        report.addValue(reportID, "balanceSheet", "assets.details.cryptocurrency.breakdown.ETH.fairValue", A001_4_5_16);
 
         int256 A015 = int256((((-EP001) + EP002 + EP003) + (-EP004))/10**18);
-        string[] memory keysForA015 = new string[](1);
-        keysForA015[0] = "assets.details.cryptocurrency.breakdown.ETH.amount";
-        report.addValue(reportID, "balanceSheet", keysForA015[0], A015);
+        report.addValue(reportID, "balanceSheet", "assets.details.cryptocurrency.breakdown.ETH.amount", A015);
 
         int256 A006_43_9 = int256(((-EP001) * latestSP003)/10**18);
-        string[] memory keysForA006_43_9 = new string[](3);
-        keysForA006_43_9[0] = "liabilities.details.userDeposit.totalAmountFairValue";
-        keysForA006_43_9[1] = "liabilities.details.userDeposit.breakdown.ETH.fairValue";
-        keysForA006_43_9[2] = "liabilities.totalAmountFairValue";
-        report.addValue(reportID, "balanceSheet", keysForA006_43_9[0], A006_43_9);
-        report.addValue(reportID, "balanceSheet", keysForA006_43_9[1], A006_43_9);
-        report.addValue(reportID, "balanceSheet", keysForA006_43_9[2], A006_43_9);
+        report.addValue(reportID, "balanceSheet", "liabilities.details.userDeposit.totalAmountFairValue", A006_43_9);
+        report.addValue(reportID, "balanceSheet", "liabilities.details.userDeposit.breakdown.ETH.fairValue", A006_43_9);
+        report.addValue(reportID, "balanceSheet", "liabilities.totalAmountFairValue", A006_43_9);
 
         int256 A042 = int256((-EP001));
-        string[] memory keysForA042 = new string[](1);
-        keysForA042[0] = "liabilities.details.userDeposit.breakdown.ETH.amount";
-        report.addValue(reportID, "balanceSheet", keysForA042[0], A042);
+        report.addValue(reportID, "balanceSheet", "liabilities.details.userDeposit.breakdown.ETH.amount", A042);
 
         int256 A010_13_18 = int256(((EP002 + EP003) * latestSP003 + ((-EP004) * latestSP003))/10**18);
-        string[] memory keysForA010_13_18 = new string[](3);
-        keysForA010_13_18[0] = "equity.details.retainedEarnings.totalAmountFairValue";
-        keysForA010_13_18[1] = "equity.totalAmountFairValue";
-        keysForA010_13_18[2] = "equity.details.retainedEarnings.breakdown.ETH.fairValue";
-        report.addValue(reportID, "balanceSheet", keysForA010_13_18[0], A010_13_18);
-        report.addValue(reportID, "balanceSheet", keysForA010_13_18[1], A010_13_18);
-        report.addValue(reportID, "balanceSheet", keysForA010_13_18[1], A010_13_18);
+        report.addValue(reportID, "balanceSheet", "equity.details.retainedEarnings.totalAmountFairValue", A010_13_18);
+        report.addValue(reportID, "balanceSheet", "equity.totalAmountFairValue", A010_13_18);
+        report.addValue(reportID, "balanceSheet", "equity.details.retainedEarnings.breakdown.ETH.fairValue", A010_13_18);
 
         int256 A017 = int256((EP002 + EP003) + (-EP004));
-        string[] memory keysForA017 = new string[](1);
-        keysForA017[0] = "equity.details.retainedEarnings.breakdown.ETH.amount";
-        report.addValue(reportID, "balanceSheet", keysForA017[0], A017);
+        report.addValue(reportID, "balanceSheet", "equity.details.retainedEarnings.breakdown.ETH.amount", A017);
 
 
         int256 A014 = int256(((EP001 + EP003) * latestSP003 + (-EP004 * latestSP003))/10**18);
-        string[] memory keysForA014 = new string[](1);
-        keysForA014[0] = "totalLiabilitiesAndEquityFairValue";
-        report.addValue(reportID, "balanceSheet", keysForA014[0], A014);
+        report.addValue(reportID, "balanceSheet", "totalLiabilitiesAndEquityFairValue", A014);
     }
 
     function computeComprehesiveIncome() internal {
 
         int256 B005_7 = int256(((EP002 + EP003) * EP006)/10**18);
-        string[] memory keysForB005_7 = new string[](2);
-        keysForB005_7[0] = "income.details.withdrawalFee.weightedAverageCost";
-        keysForB005_7[1] = "income.details.withdrawalFee.breakdown.USDT.weightedAverageCost";
-        report.addValue(reportID, "comprehensiveIncome", keysForB005_7[0], B005_7);
-        report.addValue(reportID, "comprehensiveIncome", keysForB005_7[1], B005_7);
+        report.addValue(reportID, "comprehensiveIncome", "income.details.withdrawalFee.weightedAverageCost", B005_7);
+        report.addValue(reportID, "comprehensiveIncome", "income.details.withdrawalFee.breakdown.USDT.weightedAverageCost", B005_7);
 
         int256 B006 = int256(EP002 + EP003);
-        string[] memory keysForB006 = new string[](1);
-        keysForB006[0] = "income.details.withdrawalFee.breakdown.USDT.amount";
-        report.addValue(reportID, "comprehensiveIncome", keysForB006[0], B006);
+        report.addValue(reportID, "comprehensiveIncome", "income.details.withdrawalFee.breakdown.USDT.amount", B006);
     
         int256 B008_10 = int256( (((-EP004) * EP006))/10**18);
-        string[] memory keysForB008_10 = new string[](2);
-        keysForB008_10[0] = "costs.details.technicalProviderFee.weightedAverageCost";
-        keysForB008_10[1] = "costs.details.technicalProviderFee.breakdown.ETH.fairValue";
-        report.addValue(reportID, "comprehensiveIncome", keysForB008_10[0], B008_10);
+        report.addValue(reportID, "comprehensiveIncome","costs.details.technicalProviderFee.weightedAverageCost", B008_10);
+        report.addValue(reportID, "comprehensiveIncome","costs.details.technicalProviderFee.breakdown.ETH.fairValue", B008_10);
 
         int256 B009 = int256((-EP004));
-        string[] memory keysForB009 = new string[](1);
-        keysForB009[0] = "costs.details.technicalProviderFee.breakdown.ETH.amount";
-        report.addValue(reportID, "comprehensiveIncome", keysForB009[0], B009);
+        report.addValue(reportID, "comprehensiveIncome", "costs.details.technicalProviderFee.breakdown.ETH.amount", B009);
     }
 
     function computeCashFlow() internal {
