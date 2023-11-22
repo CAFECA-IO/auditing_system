@@ -1,4 +1,3 @@
-
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 import "./transactionContract.sol";
@@ -67,35 +66,22 @@ contract E00020002Handler is ITransactionHandler{
     function computeBalanceSheet() internal  {
 
         int256 A006_45 = int256((-EP001) * latestSP004 / 10**18);
-        string[] memory keysForA006_45 = new string[](2);
-        keysForA006_45[0] = "liabilities.details.userDeposit.totalAmountFairValue";
-        keysForA006_45[1] = "liabilities.details.userDeposit.breakdown.BTC.fairValue";
-        report.addValue(reportID, "balanceSheet", keysForA006_45[0], A006_45);
-        report.addValue(reportID, "balanceSheet", keysForA006_45[1], A006_45);
+        report.addValue(reportID, "balanceSheet", "liabilities.details.userDeposit.totalAmountFairValue", A006_45);
+        report.addValue(reportID, "balanceSheet", "liabilities.details.userDeposit.breakdown.BTC.fairValue", A006_45);
 
         int256 A044 = int256( (-EP001));
-        string[] memory keysForA044 = new string[](1);
-        keysForA044[0] = "liabilities.details.userDeposit.breakdown.BTC.amount";
-        report.addValue(reportID, "balanceSheet", keysForA044[0], A044);
+        report.addValue(reportID, "balanceSheet", "liabilities.details.userDeposit.breakdown.BTC.amount", A044);
 
         int256 A031_37 = A006_45*(-1);
-        string[] memory keysForA031_37 = new string[](2);
-        keysForA031_37[0] = "liabilities.details.accountsPayable.totalAmountFairValue";
-        keysForA031_37[1] = "liabilities.details.accountsPayable.breakdown.BTC.fairValue";
-        report.addValue(reportID, "balanceSheet", keysForA031_37[0], A031_37);
-        report.addValue(reportID, "balanceSheet", keysForA031_37[1], A031_37);
+        report.addValue(reportID, "balanceSheet", "liabilities.details.accountsPayable.totalAmountFairValue", A031_37);
+        report.addValue(reportID, "balanceSheet", "liabilities.details.accountsPayable.breakdown.BTC.fairValue", A031_37);
 
         int256 A036 = int256(EP001);
-        string[] memory keysForA036 = new string[](1);
-        keysForA036[0] = "liabilities.details.accountsPayable.breakdown.BTC.amount";
-        report.addValue(reportID, "balanceSheet", keysForA036[0], A036);
+        report.addValue(reportID, "balanceSheet",  "liabilities.details.accountsPayable.breakdown.BTC.amount", A036);
 
         int256 A009_014 = A006_45 + A031_37;
-        string[] memory keysForA009_014 = new string[](2);
-        keysForA009_014[0] = "liabilities.totalAmountFairValue";
-        keysForA009_014[1] = "totalLiabilitiesAndEquityFairValue";
-        report.addValue(reportID, "balanceSheet", keysForA009_014[0], A009_014);
-        report.addValue(reportID, "balanceSheet", keysForA009_014[1], A009_014);
+        report.addValue(reportID, "balanceSheet", "liabilities.totalAmountFairValue", A009_014);
+        report.addValue(reportID, "balanceSheet", "totalLiabilitiesAndEquityFairValue", A009_014);
 
 
     }
