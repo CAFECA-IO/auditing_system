@@ -66,29 +66,18 @@ contract E00020012Handler is ITransactionHandler{
     function computeBalanceSheet() internal  {
 
         int256 A006_40_41 = int256((-EP001));
-        string[] memory keysForA006_40_41 = new string[](3);
-        keysForA006_40_41[0] = "liabilities.details.userDeposit.totalAmountFairValue";
-        keysForA006_40_41[1] = "liabilities.details.userDeposit.breakdown.USD.amount";
-        keysForA006_40_41[2] = "liabilities.details.userDeposit.breakdown.USD.fairValue";
-        report.addValue(reportID, "balanceSheet", keysForA006_40_41[0], A006_40_41);
-        report.addValue(reportID, "balanceSheet", keysForA006_40_41[1], A006_40_41);
-        report.addValue(reportID, "balanceSheet", keysForA006_40_41[2], A006_40_41);
+        report.addValue(reportID, "balanceSheet", "liabilities.details.userDeposit.totalAmountFairValue", A006_40_41);
+        report.addValue(reportID, "balanceSheet", "liabilities.details.userDeposit.breakdown.USD.amount", A006_40_41);
+        report.addValue(reportID, "balanceSheet", "liabilities.details.userDeposit.breakdown.USD.fairValue", A006_40_41);
 
         int256 A031_32_33 = int256((EP001));
-        string[] memory keysForA031_32_33 = new string[](3);
-        keysForA031_32_33[0] = "liabilities.details.accountsPayable.totalAmountFairValue";
-        keysForA031_32_33[1] = "liabilities.details.accountsPayable.breakdown.USD.amount";
-        keysForA031_32_33[2] = "liabilities.details.accountsPayable.breakdown.USD.fairValue";
-        report.addValue(reportID, "balanceSheet", keysForA031_32_33[0], A031_32_33);
-        report.addValue(reportID, "balanceSheet", keysForA031_32_33[1], A031_32_33);
-        report.addValue(reportID, "balanceSheet", keysForA031_32_33[2], A031_32_33);
+        report.addValue(reportID, "balanceSheet", "liabilities.details.accountsPayable.totalAmountFairValue", A031_32_33);
+        report.addValue(reportID, "balanceSheet", "liabilities.details.accountsPayable.breakdown.USD.amount", A031_32_33);
+        report.addValue(reportID, "balanceSheet", "liabilities.details.accountsPayable.breakdown.USD.fairValue", A031_32_33);
 
         int256 A009_014 = A006_40_41 + A031_32_33;
-        string[] memory keysForA009_014 = new string[](2);
-        keysForA009_014[0] = "liabilities.totalAmountFairValue";
-        keysForA009_014[1] = "totalLiabilitiesAndEquityFairValue";
-        report.addValue(reportID, "balanceSheet", keysForA009_014[0], A009_014);
-        report.addValue(reportID, "balanceSheet", keysForA009_014[1], A009_014);
+        report.addValue(reportID, "balanceSheet", "liabilities.totalAmountFairValue", A009_014);
+        report.addValue(reportID, "balanceSheet", "totalLiabilitiesAndEquityFairValue", A009_014);
 
     }
 }
