@@ -1,0 +1,100 @@
+[
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_transactionContract",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_timeSpanReport",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32[]",
+        "name": "data",
+        "type": "bytes32[]"
+      }
+    ],
+    "name": "addTransactionRecord",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "int256",
+        "name": "startTime",
+        "type": "int256"
+      },
+      {
+        "internalType": "int256",
+        "name": "endTime",
+        "type": "int256"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "reportID",
+        "type": "bytes32"
+      }
+    ],
+    "name": "generateReport",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "transactionType",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "address",
+        "name": "handlerAddress",
+        "type": "address"
+      }
+    ],
+    "name": "registerHandler",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "_SP002",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "_SP003",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "_SP004",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "_reportID",
+        "type": "bytes32"
+      }
+    ],
+    "name": "setRate",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]
