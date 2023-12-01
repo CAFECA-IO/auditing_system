@@ -32,7 +32,7 @@ contract E00010005Handler is ITransactionHandler {
 
     function processTransaction(bytes32[] memory data, address recorder) external override {
    
-        require(data.length == 6, "Data length for E00010005 must be 6");
+        require(data.length == 7, "Data length for E00010005 must be 7");
         
         bytes32[] memory paramKeys = new bytes32[](6);
         int256[] memory paramValues = new int256[](6);
@@ -127,47 +127,29 @@ contract E00010005Handler is ITransactionHandler {
     function computeCashFlow() internal {
 
         int256 C009_57 = int256(((-EP001) * EP006)/10**18);
-        string[] memory keysForC009_57 = new string[](2);
-        keysForC009_57[0] = "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesWithdrawnByCustomers.weightedAverageCost"; 
-        keysForC009_57[1] = "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesWithdrawnByCustomers.breakdown.ETH.weightedAverageCost";
-        report.addValue(reportID, "cashFlow", keysForC009_57[0], C009_57);
-        report.addValue(reportID, "cashFlow", keysForC009_57[1], C009_57);
+        report.addValue(reportID, "cashFlow", "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesWithdrawnByCustomers.weightedAverageCost", C009_57);
+        report.addValue(reportID, "cashFlow", "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesWithdrawnByCustomers.breakdown.ETH.weightedAverageCost", C009_57);
 
         int256 C056 = int256((-EP001));
-        string[] memory keysForC056 = new string[](1);
-        keysForC056[0] = "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesWithdrawnByCustomers.breakdown.ETH.amount"; 
-        report.addValue(reportID, "cashFlow", keysForC056[0], C056);
+        report.addValue(reportID, "cashFlow", "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesWithdrawnByCustomers.breakdown.ETH.amount", C056);
 
         int256 C072 = int256(EP002 + EP003);
-        string[] memory keysForC072 = new string[](1);
-        keysForC072[0] = "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.breakdown.ETH.amount"; 
-        report.addValue(reportID, "cashFlow", keysForC072[0], C072);
+        report.addValue(reportID, "cashFlow", "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.breakdown.ETH.amount", C072);
 
         int256 C004_73 = int256( ((EP002 + EP003) * EP006)/10**18);
-        string[] memory keysForC004_73 = new string[](2);
-        keysForC004_73[0] = "supplementalScheduleOfNonCashOperatingActivities.weightedAverageCost"; 
-        keysForC004_73[1] = "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesEndOfPeriod";
-        report.addValue(reportID, "cashFlow", keysForC004_73[0], C004_73);
-        report.addValue(reportID, "cashFlow", keysForC004_73[1], C004_73);
+        report.addValue(reportID, "cashFlow", "supplementalScheduleOfNonCashOperatingActivities.weightedAverageCost", C004_73);
+        report.addValue(reportID, "cashFlow",  "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesEndOfPeriod", C004_73);
 
         int256 C012_14 = int256(((-EP004) * EP006)/10**18);
-        string[] memory keysForC012_14 = new string[](2);
-        keysForC012_14[0] = "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesPaidToSuppliersForExpenses.weightedAverageCost"; 
-        keysForC012_14[1] = "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesPaidToSuppliersForExpenses.breakdown.ETH.weightedAverageCost";
-        report.addValue(reportID, "cashFlow", keysForC012_14[0], C012_14);
-        report.addValue(reportID, "cashFlow", keysForC012_14[1], C012_14);
+        report.addValue(reportID, "cashFlow", "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesPaidToSuppliersForExpenses.weightedAverageCost", C012_14);
+        report.addValue(reportID, "cashFlow", "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesPaidToSuppliersForExpenses.breakdown.ETH.weightedAverageCost", C012_14);
 
         int256 C013 = int256((-EP004));
-        string[] memory keysForC013 = new string[](1);
-        keysForC013[0] = "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesPaidToSuppliersForExpenses.breakdown.ETH.amount"; 
-        report.addValue(reportID, "cashFlow", keysForC013[0], C013);
+        report.addValue(reportID, "cashFlow", "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesPaidToSuppliersForExpenses.breakdown.ETH.amount", C013);
 
         int256 C007_8 = int256( ((-EP001 + EP002 + EP003) * EP006 + (-EP004 * EP006))/10**18);
-        string[] memory keysForC007_8 = new string[](2);
-        keysForC007_8[0] = "supplementalScheduleOfNonCashOperatingActivities.weightedAverageCost"; 
-        keysForC007_8[1] = "otherSupplementaryItems.details.relatedToNonCash.cryptocurrenciesEndOfPeriod.weightedAverageCost";
-        report.addValue(reportID, "cashFlow", keysForC007_8[0], C007_8);
-        report.addValue(reportID, "cashFlow", keysForC007_8[1], C007_8);
+        report.addValue(reportID, "cashFlow", "supplementalScheduleOfNonCashOperatingActivities.weightedAverageCost", C007_8);
+        report.addValue(reportID, "cashFlow", "otherSupplementaryItems.details.relatedToNonCash.cryptocurrenciesEndOfPeriod.weightedAverageCost", C007_8);
 
     }
 }
