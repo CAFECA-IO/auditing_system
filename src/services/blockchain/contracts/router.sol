@@ -20,10 +20,6 @@ contract RouterContract {
         ITransactionHandler handler = ITransactionHandler(handlerAddress);
         transactionContract.registerHanlder(transactionType, handler);
     }
-    //Info:(20231117-Yang){This function is for testing usage, user should add record using addTransactionRecord}
-    function inputWithDecimal(string memory _str1,string memory _str2,int256 _int1,int256 _int2,int256 _int3,int256 _int4)external{
-        transactionContract.inputWithDecimal(_str1,_str2,_int1,_int2,_int3,_int4);
-    }
     //Info:(20231115-Yang){After registering handlers, users can use this funtion to record event data}
     function addTransactionRecord(bytes32[] memory data) external {
         transactionContract.addRecord(data);
@@ -36,9 +32,9 @@ contract RouterContract {
     function generateReport(int256 startTime, int256 endTime, bytes32 reportID) external {
         timeSpanReport.filterTransactionsInRange(startTime, endTime, reportID);
     }
-    //Info:(20231117-Yang){This function is for testing usage, user should set rates using setRate function}
-    function setRateDecimal(int256 _SP002, int256 _SP003, int256 _SP004)external{
-        timeSpanReport.setRate(bytes32(uint256(_SP002)),bytes32(uint256(_SP003)),bytes32(uint256(_SP004)),stringToBytes32("first_report"));
+
+    function getLatestTransactionTime() external view returns (int256) {
+        return transactionContract.getLatestTransactionTime();
     }
 
     function stringToBytes32(string memory source) internal pure returns (bytes32 result) {
