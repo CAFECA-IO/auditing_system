@@ -33,7 +33,7 @@ contract E00010004Handler is ITransactionHandler {
 
     function processTransaction(bytes32[] memory data, address recorder) external override {
    
-        require(data.length == 7, "Data length for E00010004 must be 7");
+        require(data.length == 8, "Data length for E00010004 must be 8");
         
         bytes32[] memory paramKeys = new bytes32[](7);
         int256[] memory paramValues = new int256[](7);
