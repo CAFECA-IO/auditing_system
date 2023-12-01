@@ -5,7 +5,8 @@ _Currently, smart contracts are deployed using Remix, and data is input directly
 ## System Class Diagram:
 
 
-<img width="2000" alt="image" src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/7d66441e-9a3c-4eb9-9d6a-dd7d8b09c41e">
+<img width="2000" alt="image" src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/c35e050f-cd78-49e5-93c1-e1f2fd718500">
+
 
 
 ## Sequence Diagram:
