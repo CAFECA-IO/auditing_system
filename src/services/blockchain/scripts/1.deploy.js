@@ -1,5 +1,5 @@
 const { ethers } = require('hardhat');
-require('events').EventEmitter.defaultMaxListeners = 15;
+require('events').EventEmitter.defaultMaxListeners = 20;
 const fs = require('fs');
 require('dotenv').config();
 
