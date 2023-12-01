@@ -22,27 +22,6 @@ contract TransactionContract {
     mapping(bytes32 => bool) private recordedEvents;
     bool private locked;
 
-    //Info: (20231115-Yang){This function is for testing usage, in practice users will have to input their bytes32[] in addRecord funtion directly.}
-    function inputWithDecimal(
-        string memory _str1,
-        string memory _str2,
-        int256 _int1,
-        int256 _int2,
-        int256 _int3,
-        int256 _int4
-    ) public returns (bytes32[] memory) {
-        
-        bytes32[] memory result = new bytes32[](6);
-        result[0] = Iparser.stringToBytes32(_str1);
-        result[1] = Iparser.stringToBytes32(_str2);
-        result[2] = Iparser.intToBytes32(_int1);
-        result[3] = Iparser.intToBytes32(_int2);
-        result[4] = Iparser.intToBytes32(_int3);
-        result[5] = Iparser.intToBytes32(_int4);
-        addRecord(result);
-        return result;
-    }
-
     constructor(address _parser) {
         Iparser = IParser(_parser);
     }
@@ -138,6 +117,12 @@ contract TransactionContract {
 
     function getTransactionTime(uint256 index) public view returns (int256) {
         return transactions[index].params[Iparser.stringToBytes32("trans_time")];
+    }
+
+    function getLatestTransactionTime() public view returns (int256) {
+        require(transactions.length > 0, "No transactions recorded");
+        Transaction storage latestTransaction = transactions[transactions.length - 1];
+        return latestTransaction.params[Iparser.stringToBytes32("trans_time")];
     }
     
     function getTransactionParamByEventId(bytes32 _eventId, bytes32 _paramKey) external view returns (int256) {
