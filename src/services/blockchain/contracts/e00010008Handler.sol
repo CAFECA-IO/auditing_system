@@ -33,7 +33,7 @@ contract E00010008Handler is ITransactionHandler {
 
     function processTransaction(bytes32[] memory data, address recorder) external override {
    
-        require(data.length == 7, "Data length for E00010008 must be 7");
+        require(data.length == 8, "Data length for E00010008 must be 8");
         
         bytes32[] memory paramKeys = new bytes32[](7);
         int256[] memory paramValues = new int256[](7);
@@ -135,9 +135,6 @@ contract E00010008Handler is ITransactionHandler {
         report.addValue(reportID, "cashFlow", "operatingActivities.details.cashPaidToSuppliersForExpenses.breakdowm.USD.weightedAverageCost", C034_138_139);
 
         int256 C049_51 = int256(((-EP001) + EP002+EP003+(-EP004)));
-        string[] memory keysForC049_51 = new string[](2);
-        keysForC049_51[0] = "operatingActivities.weightedAverageCost"; 
-        keysForC049_51[1] = "otherSupplementaryItems.details.relatedToCash.cashCashEquivalentsAndRestrictedCashEndOfPeriod.weightedAverageCost";
         report.addValue(reportID, "cashFlow", "operatingActivities.weightedAverageCost", C049_51);
         report.addValue(reportID, "cashFlow", "otherSupplementaryItems.details.relatedToCash.cashCashEquivalentsAndRestrictedCashEndOfPeriod.weightedAverageCost", C049_51);
 
