@@ -1,5 +1,5 @@
 const { timeStamp } = require('console');
-require('events').EventEmitter.defaultMaxListeners = 15;
+require('events').EventEmitter.defaultMaxListeners = 20;
 const { ethers } = require('ethers');
 const fs = require('fs');
 const path = require('path');
@@ -33,7 +33,7 @@ const rl = readline.createInterface({
 async function addTransactionRecord(data) {
   try {
     const tx = await contractWithSigner.addTransactionRecord(data);
-    const latestTransactionTime = await router.getlatestTransactionTime();
+    const latestTransactionTime = await router.getLatestTransactionTime();
     console.log('latestTransactionTime:', latestTransactionTime.toString());
     console.log('Transaction hash:', tx.hash);
 
