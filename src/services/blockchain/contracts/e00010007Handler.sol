@@ -91,9 +91,6 @@ contract E00010007Handler is ITransactionHandler {
 
 
         int256 A010_11 =  EP002 + EP003;
-        string[] memory keysForA010_11 = new string[](2);
-        keysForA010_11[0] = "equity.details.retainedEarnings.totalAmountFairValue";
-        keysForA010_11[1] = "equity.details.retainedEarnings.breakdown.USD.amount";
         report.addValue(reportID, "balanceSheet", "equity.details.retainedEarnings.totalAmountFairValue", A010_11);
         report.addValue(reportID, "balanceSheet", "equity.details.retainedEarnings.breakdown.USD.amount", A010_11);
     }
