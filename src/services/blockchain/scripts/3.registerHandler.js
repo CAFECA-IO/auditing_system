@@ -1,5 +1,5 @@
 const { timeStamp } = require('console');
-require('events').EventEmitter.defaultMaxListeners = 15;
+require('events').EventEmitter.defaultMaxListeners = 20;
 const { ethers } = require('ethers');
 const fs = require('fs');
 const path = require('path');
@@ -47,11 +47,13 @@ async function registerHandler(transactionType, handlerAddress) {
 }
 
 rl.question(
-  'Please enter the transaction type(bytes32): ',
-  (transactionType) => {
-    rl.question('Please enter the handler address: ', (handlerAddress) => {
-      registerHandler(transactionType, handlerAddress);
-      rl.close();
-    });
+  'Please enter the transaction type and handler address (as a comma-separated list of bytes32 values): ',
+  (input) => {
+    const inputWithAddress = `${input},${process.env.E00010001_ADDRESS}`;
+    console.log('inputWithAddress:', inputWithAddress);
+    const data = inputWithAddress.split(',');
+    console.log('data[0],data[1]:', data[0], data[1]);
+    registerHandler(data[0], data[1]);
+    rl.close();
   },
 );
