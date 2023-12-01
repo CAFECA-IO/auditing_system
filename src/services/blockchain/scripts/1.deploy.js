@@ -30,6 +30,7 @@ async function main() {
   const router = await ethers.deployContract('RouterContract', [
     transaction_ADDress,
     getTimespan_address,
+    REPORT_ADDRESS,
   ]);
   const ROUTER_ADDRESS = await router.getAddress();
 
