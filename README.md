@@ -12,9 +12,14 @@ _Currently, smart contracts are deployed using Remix, and data is input directly
 ## Sequence Diagram:
 
 record transaction data:
-<img width="337" alt="image" src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/74e868bd-62d1-402f-85ea-d1aacee4e65b">
 
-<img width="1200" alt="image" src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/ae3bfad3-700e-4ee3-9852-af13731f6887">
+
+<img width="500" alt="image" src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/74e868bd-62d1-402f-85ea-d1aacee4e65b">
+
+give time span and read reports:
+
+<img width="1200" alt="image" src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/f202a112-01bb-45a8-a8e6-b70f68a8ba33">
+
 
 
 
