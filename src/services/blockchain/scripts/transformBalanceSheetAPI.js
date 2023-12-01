@@ -1,23 +1,23 @@
 const { timeStamp } = require('console');
+require('events').EventEmitter.defaultMaxListeners = 15;
 const { ethers } = require('ethers');
 const fs = require('fs');
 const path = require('path');
 const provider = new ethers.providers.JsonRpcProvider(
   `https://sepolia.infura.io/v3/${process.env.INFURA_API_KEY}`,
 );
-const contractABIPath = path.resolve(__dirname, '../../auditingABI.json');
+const contractABIPath = path.resolve(__dirname, '../../routerABI.json');
 const contractABI = JSON.parse(fs.readFileSync(contractABIPath, 'utf8'));
-const reportContractAddress = process.env.REPORT_CONTRACT_ADDRESS;
+const routerContractAddress = process.env.ROUTER_ADDRESS;
 
 const contractInstance = new ethers.Contract(
-  reportContractAddress,
+  routerContractAddress,
   contractABI,
   provider,
 );
 const reports = contractInstance;
 
 const reportID = process.env.REPORT_ID;
-const regulated_digits = 1;
 
 async function getContractValue(reportID, reportType, reportColumn) {
   try {
