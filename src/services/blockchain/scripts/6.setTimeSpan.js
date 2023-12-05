@@ -1,5 +1,5 @@
 const { timeStamp } = require('console');
-require('events').EventEmitter.defaultMaxListeners = 15;
+require('events').EventEmitter.defaultMaxListeners = 20;
 const { ethers } = require('ethers');
 const fs = require('fs');
 const path = require('path');
@@ -48,11 +48,9 @@ async function generateReport(startTime, endTime, report_ID) {
 }
 
 // Prompt the user for input
-rl.question(
-  'Please enter the start time, end time, and reportID: ',
-  (input) => {
-    const data = input.split(',');
-    generateReport(data[0], data[1], data[2]);
-    rl.close();
-  },
-);
+rl.question('Please enter reportID: ', async (input) => {
+  const latestTransactionTime = await router.getLatestTransactionTime();
+  console.log('latestTransactionTime:', latestTransactionTime.toString());
+  generateReport(latestTransactionTime - 1, latestTransactionTime + 1, input);
+  rl.close();
+});

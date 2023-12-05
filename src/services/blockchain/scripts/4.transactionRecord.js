@@ -33,8 +33,8 @@ const rl = readline.createInterface({
 async function addTransactionRecord(data) {
   try {
     const tx = await contractWithSigner.addTransactionRecord(data);
-    const latestTransactionTime = await router.getLatestTransactionTime();
-    console.log('latestTransactionTime:', latestTransactionTime.toString());
+    //const latestTransactionTime = await router.getLatestTransactionTime();
+    //console.log('latestTransactionTime:', latestTransactionTime.toString());
     console.log('Transaction hash:', tx.hash);
 
     // Wait for the transaction to be confirmed
@@ -50,6 +50,7 @@ rl.question(
   'Please enter the data (as a comma-separated list of bytes32 values): ',
   (input) => {
     const data = input.split(',');
+    console.log('data:', data);
     addTransactionRecord(data);
     rl.close();
   },

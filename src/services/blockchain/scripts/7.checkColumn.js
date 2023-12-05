@@ -1,5 +1,5 @@
 const { timeStamp } = require('console');
-require('events').EventEmitter.defaultMaxListeners = 15;
+require('events').EventEmitter.defaultMaxListeners = 20;
 const { ethers } = require('ethers');
 const fs = require('fs');
 const path = require('path');
@@ -9,17 +9,17 @@ const provider = new ethers.providers.JsonRpcProvider(
 );
 const privateKey = process.env.SEPOLIA_PRIVATE_KEY;
 const signer = new ethers.Wallet(privateKey, provider);
-const contractABIPath = path.resolve(__dirname, '../../auditingABI.json');
+const contractABIPath = path.resolve(__dirname, '../../routerABI.json');
 const contractABI = JSON.parse(fs.readFileSync(contractABIPath, 'utf8'));
-const reportsContractAddress = process.env.REPORTS_ADDRESS;
+const routerContractAddress = process.env.ROUTER_ADDRESS;
 const contractInstance = new ethers.Contract(
-  reportsContractAddress,
+  routerContractAddress,
   contractABI,
   provider,
 );
 const router = contractInstance;
 const contractWithSigner = new ethers.Contract(
-  reportsContractAddress,
+  routerContractAddress,
   contractABI,
   signer,
 );
@@ -37,7 +37,7 @@ async function getValue(reportID, reportType, reportColumn) {
       reportType,
       reportColumn,
     );
-    console.log('Value:', result.toString()); // 打印返回的值
+    console.log('Value:', result.toString());
   } catch (error) {
     console.error('Error:', error);
   }
@@ -52,3 +52,5 @@ rl.question(
     rl.close();
   },
 );
+
+module.exports = { getValue };

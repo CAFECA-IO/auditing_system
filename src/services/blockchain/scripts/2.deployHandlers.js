@@ -41,6 +41,33 @@ async function main() {
           const newEnvContent = `E00010001_ADDRESS=${E00010001_address}\n`;
           fs.appendFileSync(envPath, newEnvContent);
           console.log('E00010001_ADDRESS=', E00010001_address);
+        } else if (code === 'E00010002') {
+          const transactionContractAddress = process.env.TRANSACTION_ADDRESS;
+          console.log('transaction_address=', transactionContractAddress);
+          const parserAddress = process.env.PARSER_ADDRESS;
+          console.log('parser_address=', parserAddress);
+          const reportsAddress = process.env.REPORTS_ADDRESS;
+          console.log('reports_address=', reportsAddress);
+          if (
+            !transactionContractAddress ||
+            !parserAddress ||
+            !reportsAddress
+          ) {
+            throw new Error(
+              'The necessary contract address is not set in the .env file.',
+            );
+          }
+
+          const E00010002 = await ethers.deployContract('E00010002Handler', [
+            transactionContractAddress,
+            parserAddress,
+            reportsAddress,
+          ]);
+          const E00010002_address = await E00010002.getAddress();
+          const envPath = '.env';
+          const newEnvContent = `E00010002_ADDRESS=${E00010002_address}\n`;
+          fs.appendFileSync(envPath, newEnvContent);
+          console.log('E00010002_ADDRESS=', E00010002_address);
         } else {
           console.log('Unrecognized contract code');
         }

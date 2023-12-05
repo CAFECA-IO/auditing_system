@@ -49,7 +49,18 @@ async function registerHandler(transactionType, handlerAddress) {
 rl.question(
   'Please enter the transaction type and handler address (as a comma-separated list of bytes32 values): ',
   (input) => {
-    const inputWithAddress = `${input},${process.env.E00010001_ADDRESS}`;
+    let inputWithAddress;
+    if (
+      input ==
+      '0x4530303031303030310000000000000000000000000000000000000000000000'
+    ) {
+      inputWithAddress = `${input},${process.env.E00010001_ADDRESS}`;
+    } else if (
+      input ==
+      '0x4530303031303030320000000000000000000000000000000000000000000000'
+    ) {
+      inputWithAddress = `${input},${process.env.E00010002_ADDRESS}`;
+    }
     console.log('inputWithAddress:', inputWithAddress);
     const data = inputWithAddress.split(',');
     console.log('data[0],data[1]:', data[0], data[1]);
