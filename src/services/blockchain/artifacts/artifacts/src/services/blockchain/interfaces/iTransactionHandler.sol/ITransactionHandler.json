@@ -1,0 +1,62 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "ITransactionHandler",
+  "sourceName": "src/services/blockchain/interfaces/iTransactionHandler.sol",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "_eventId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "_reportID",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "_SP002",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "_SP003",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "_SP004",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getEventIdAndRate",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32[]",
+          "name": "data",
+          "type": "bytes32[]"
+        },
+        {
+          "internalType": "address",
+          "name": "recorder",
+          "type": "address"
+        }
+      ],
+      "name": "processTransaction",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

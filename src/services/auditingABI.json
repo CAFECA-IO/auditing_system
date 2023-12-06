@@ -1,0 +1,88 @@
+[
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "reportID",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "reportType",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "reportColumn",
+        "type": "string"
+      },
+      {
+        "internalType": "int256",
+        "name": "value",
+        "type": "int256"
+      }
+    ],
+    "name": "addValue",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "name": "data",
+    "outputs": [
+      {
+        "internalType": "int256",
+        "name": "",
+        "type": "int256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "reportID",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "reportType",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "reportColumn",
+        "type": "string"
+      }
+    ],
+    "name": "getValue",
+    "outputs": [
+      {
+        "internalType": "int256",
+        "name": "",
+        "type": "int256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+]
