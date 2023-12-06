@@ -1,8 +1,10 @@
 # compiled output
 /dist
 /node_modules
+/src/services/blockchain/artifacts/
 /cache
 /typechain-types
+/test
 
 # Logs
 logs
