@@ -1,0 +1,132 @@
+{
+	"compiler": {
+		"version": "0.8.18+commit.87f61d96"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "reportID",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "reportType",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "reportColumn",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "value",
+						"type": "uint256"
+					}
+				],
+				"name": "addValue",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"name": "data",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "reportID",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "reportType",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "reportColumn",
+						"type": "string"
+					}
+				],
+				"name": "getValue",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"reports.sol": "repo"
+		},
+		"evmVersion": "paris",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"reports.sol": {
+			"keccak256": "0x8ec43227c004a2e4517523cdefc8faad1046e6986b1ba6888c7bb40e04d23f7c",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://ce14dd05b091cd0d183efda69fad0e125c15e364026c5128b17f3ff36cff2640",
+				"dweb:/ipfs/QmahEPgfKuaYq6DJWkregek1UApDZfEP57ekrzFpwNR5ww"
+			]
+		}
+	},
+	"version": 1
+}
