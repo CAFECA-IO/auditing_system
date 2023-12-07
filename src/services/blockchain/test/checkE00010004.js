@@ -87,8 +87,317 @@ describe('checking E00010004 balanceSheet', function () {
     const valueString = (value / 10 ** 18).toString();
     expect(valueString).to.equal('-106.901');
   });
+
+  it('totalAssetsFairValue should equal -106.901', async function () {
+    const value = await contractWithSigner.getValue(
+      'forth_report',
+      'balanceSheet',
+      'totalAssetsFairValue',
+    );
+    const valueString = (value / 10 ** 18).toString();
+    expect(valueString).to.equal('-106.901');
+  });
+
+  it('liabilities.details.userDeposit.totalAmountFairValue should equal -99', async function () {
+    const value = await contractWithSigner.getValue(
+      'forth_report',
+      'balanceSheet',
+      'liabilities.details.userDeposit.totalAmountFairValue',
+    );
+    const valueString = (value / 10 ** 18).toString();
+    expect(valueString).to.equal('-99');
+  });
+
+  it('liabilities.details.userDeposit.breakdown.USDT.amount should equal -100', async function () {
+    const value = await contractWithSigner.getValue(
+      'forth_report',
+      'balanceSheet',
+      'liabilities.details.userDeposit.breakdown.USDT.amount',
+    );
+    const valueString = (value / 10 ** 18).toString();
+    expect(valueString).to.equal('-100');
+  });
+
+  it('liabilities.details.userDeposit.breakdown.USDT.fairValue should equal -99', async function () {
+    const value = await contractWithSigner.getValue(
+      'forth_report',
+      'balanceSheet',
+      'liabilities.details.userDeposit.breakdown.USDT.fairValue',
+    );
+    const valueString = (value / 10 ** 18).toString();
+    expect(valueString).to.equal('-99');
+  });
+
+  it('liabilities.totalAmountFairValue should equal -99', async function () {
+    const value = await contractWithSigner.getValue(
+      'forth_report',
+      'balanceSheet',
+      'liabilities.totalAmountFairValue',
+    );
+    const valueString = (value / 10 ** 18).toString();
+    expect(valueString).to.equal('-99');
+  });
+
+  it('equity.details.retainedEarnings.totalAmountFairValue should equal -7.901', async function () {
+    const value = await contractWithSigner.getValue(
+      'forth_report',
+      'balanceSheet',
+      'equity.details.retainedEarnings.totalAmountFairValue',
+    );
+    const valueString = (value / 10 ** 18).toString();
+    expect(valueString).to.equal('-7.901');
+  });
+
+  it('equity.details.retainedEarnings.breakdown.USDT.amount  should equal 0.1', async function () {
+    const value = await contractWithSigner.getValue(
+      'forth_report',
+      'balanceSheet',
+      'equity.details.retainedEarnings.breakdown.USDT.amount',
+    );
+    const valueString = (value / 10 ** 18).toString();
+    expect(valueString).to.equal('0.1');
+  });
+
+  it('equity.details.retainedEarnings.breakdown.USDT.fairValue  should equal 0.099', async function () {
+    const value = await contractWithSigner.getValue(
+      'forth_report',
+      'balanceSheet',
+      'quity.details.retainedEarnings.breakdown.USDT.fairValue',
+    );
+    const valueString = (value / 10 ** 18).toString();
+    expect(valueString).to.equal('0.099');
+  });
+
+  it('equity.details.retainedEarnings.breakdown.ETH.amount should equal ', async function () {
+    const value = await contractWithSigner.getValue(
+      'forth_report',
+      'balanceSheet',
+      'equity.details.retainedEarnings.breakdown.ETH.amount',
+    );
+    const valueString = (value / 10 ** 18).toString();
+    expect(valueString).to.equal('-0.005');
+  });
+  it('equity.details.retainedEarnings.breakdown.ETH.fairValue should equal -8', async function () {
+    const value = await contractWithSigner.getValue(
+      'forth_report',
+      'balanceSheet',
+      'equity.details.retainedEarnings.breakdown.ETH.fairValue',
+    );
+    const valueString = (value / 10 ** 18).toString();
+    expect(valueString).to.equal('-8');
+  });
+
+  it('equity.totalAmountFairValue  -7.901', async function () {
+    const value = await contractWithSigner.getValue(
+      'forth_report',
+      'balanceSheet',
+      'equity.details.retainedEarnings.breakdown.ETH.fairValue',
+    );
+    const valueString = (value / 10 ** 18).toString();
+    expect(valueString).to.equal('-7.901');
+  });
+
+  it('totalLiabilitiesAndEquityFairValue  -106.901', async function () {
+    const value = await contractWithSigner.getValue(
+      'forth_report',
+      'balanceSheet',
+      'totalLiabilitiesAndEquityFairValue',
+    );
+    const valueString = (value / 10 ** 18).toString();
+    expect(valueString).to.equal('-106.901');
+  });
 });
 
-describe('checking E00010003 comprehensive income', function () {});
+describe('checking E00010004 comprehensive income', function () {
+  it('income.details.withdrawalFee.weightedAverageCost  +0.101', async function () {
+    const value = await contractWithSigner.getValue(
+      'forth_report',
+      'comprehensiveIncome',
+      'income.details.withdrawalFee.weightedAverageCost',
+    );
+    const valueString = (value / 10 ** 18).toString();
+    expect(valueString).to.equal('+0.101');
+  });
 
-describe('checking E00010003 cashFlow', function () {});
+  it('income.details.withdrawalFee.breakdown.USDT.amount  +0.1', async function () {
+    const value = await contractWithSigner.getValue(
+      'forth_report',
+      'comprehensiveIncome',
+      'income.details.withdrawalFee.breakdown.USDT.amount',
+    );
+    const valueString = (value / 10 ** 18).toString();
+    expect(valueString).to.equal('+0.1');
+  });
+
+  it('income.details.withdrawalFee.breakdown.USDT.weightedAverageCost  +0.101', async function () {
+    const value = await contractWithSigner.getValue(
+      'forth_report',
+      'comprehensiveIncome',
+      'income.details.withdrawalFee.breakdown.USDT.weightedAverageCost',
+    );
+    const valueString = (value / 10 ** 18).toString();
+    expect(valueString).to.equal('+0.101');
+  });
+
+  it('costs.details.technicalProviderFee.weightedAverageCost -7.5', async function () {
+    const value = await contractWithSigner.getValue(
+      'forth_report',
+      'comprehensiveIncome',
+      'costs.details.technicalProviderFee.weightedAverageCost',
+    );
+    const valueString = (value / 10 ** 18).toString();
+    expect(valueString).to.equal('-7.5');
+  });
+
+  it('costs.details.technicalProviderFee.breakdown.ETH.amount -0.005', async function () {
+    const value = await contractWithSigner.getValue(
+      'forth_report',
+      'comprehensiveIncome',
+      'costs.details.technicalProviderFee.breakdown.ETH.amount',
+    );
+    const valueString = (value / 10 ** 18).toString();
+    expect(valueString).to.equal('-0.005');
+  });
+
+  it('costs.details.technicalProviderFee.breakdown.ETH.fairValue -7.5', async function () {
+    const value = await contractWithSigner.getValue(
+      'forth_report',
+      'comprehensiveIncome',
+      'costs.details.technicalProviderFee.breakdown.ETH.fairValue',
+    );
+    const valueString = (value / 10 ** 18).toString();
+    expect(valueString).to.equal('-7.5');
+  });
+
+  it('costs.weightedAverageCost -7.5', async function () {
+    const value = await contractWithSigner.getValue(
+      'forth_report',
+      'comprehensiveIncome',
+      'costs.weightedAverageCost',
+    );
+    const valueString = (value / 10 ** 18).toString();
+    expect(valueString).to.equal('-7.5');
+  });
+
+  it('netProfit  -7.399', async function () {
+    const value = await contractWithSigner.getValue(
+      'forth_report',
+      'comprehensiveIncome',
+      'netProfit',
+    );
+    const valueString = (value / 10 ** 18).toString();
+    expect(valueString).to.equal('-7.399');
+  });
+});
+
+describe('checking E00010004 cashFlow', function () {
+  it('supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesWithdrawnByCustomers.weightedAverageCost -101', async function () {
+    const value = await contractWithSigner.getValue(
+      'forth_report',
+      'cashFlow',
+      'supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesWithdrawnByCustomers.weightedAverageCost',
+    );
+    const valueString = (value / 10 ** 18).toString();
+    expect(valueString).to.equal('-101');
+  });
+
+  it('supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesWithdrawnByCustomers.breakdown.USDT.amount -100', async function () {
+    const value = await contractWithSigner.getValue(
+      'forth_report',
+      'cashFlow',
+      'supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesWithdrawnByCustomers.breakdown.USDT.amount',
+    );
+    const valueString = (value / 10 ** 18).toString();
+    expect(valueString).to.equal('-100');
+  });
+
+  it('supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesWithdrawnByCustomers.breakdown.USDT.weightedAverageCost  -101', async function () {
+    const value = await contractWithSigner.getValue(
+      'forth_report',
+      'cashFlow',
+      'supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesWithdrawnByCustomers.breakdown.USDT.weightedAverageCost',
+    );
+    const valueString = (value / 10 ** 18).toString();
+    expect(valueString).to.equal('-101');
+  });
+
+  it('supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.weightedAverageCost  +0.101', async function () {
+    const value = await contractWithSigner.getValue(
+      'forth_report',
+      'cashFlow',
+      'supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.weightedAverageCost',
+    );
+    const valueString = (value / 10 ** 18).toString();
+    expect(valueString).to.equal('+0.101');
+  });
+
+  it('supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.breakdown.USDT.amount  +0.1', async function () {
+    const value = await contractWithSigner.getValue(
+      'forth_report',
+      'cashFlow',
+      'supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.breakdown.USDT.amount',
+    );
+    const valueString = (value / 10 ** 18).toString();
+    expect(valueString).to.equal('+0.1');
+  });
+
+  it('supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.breakdown.USDT.weightedAverageCost  +0.101', async function () {
+    const value = await contractWithSigner.getValue(
+      'forth_report',
+      'cashFlow',
+      'supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.breakdown.USDT.weightedAverageCost',
+    );
+    const valueString = (value / 10 ** 18).toString();
+    expect(valueString).to.equal('+0.101');
+  });
+
+  it('supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesPaidToSuppliersForExpenses.weightedAverageCost -7.5 ', async function () {
+    const value = await contractWithSigner.getValue(
+      'forth_report',
+      'cashFlow',
+      'supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesPaidToSuppliersForExpenses.weightedAverageCost',
+    );
+    const valueString = (value / 10 ** 18).toString();
+    expect(valueString).to.equal('-7.5');
+  });
+
+  it('supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesPaidToSuppliersForExpenses.breakdown.ETH.amount -0.005', async function () {
+    const value = await contractWithSigner.getValue(
+      'forth_report',
+      'cashFlow',
+      'supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesPaidToSuppliersForExpenses.breakdown.ETH.amount',
+    );
+    const valueString = (value / 10 ** 18).toString();
+    expect(valueString).to.equal('-0.005');
+  });
+
+  it('supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesPaidToSuppliersForExpenses.breakdown.ETH.weightedAverageCost -7.5 ', async function () {
+    const value = await contractWithSigner.getValue(
+      'forth_report',
+      'cashFlow',
+      'supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesPaidToSuppliersForExpenses.breakdown.ETH.weightedAverageCost',
+    );
+    const valueString = (value / 10 ** 18).toString();
+    expect(valueString).to.equal('-7.5');
+  });
+
+  it('supplementalScheduleOfNonCashOperatingActivities.weightedAverageCost -108.399', async function () {
+    const value = await contractWithSigner.getValue(
+      'forth_report',
+      'cashFlow',
+      'supplementalScheduleOfNonCashOperatingActivities.weightedAverageCost',
+    );
+    const valueString = (value / 10 ** 18).toString();
+    expect(valueString).to.equal('-108.399');
+  });
+
+  it('otherSupplementaryItems.details.relatedToNonCash.cryptocurrenciesEndOfPeriod.weightedAverageCost -108.399', async function () {
+    const value = await contractWithSigner.getValue(
+      'forth_report',
+      'cashFlow',
+      'otherSupplementaryItems.details.relatedToNonCash.cryptocurrenciesEndOfPeriod.weightedAverageCost',
+    );
+    const valueString = (value / 10 ** 18).toString();
+    expect(valueString).to.equal('-108.399');
+  });
+});

@@ -6,7 +6,6 @@ require('events').EventEmitter.defaultMaxListeners = 20;
 const { ethers } = require('ethers');
 const fs = require('fs');
 const path = require('path');
-const readline = require('readline');
 const provider = new ethers.providers.JsonRpcProvider(
   `https://sepolia.infura.io/v3/${process.env.INFURA_API_KEY}`,
 );
@@ -15,12 +14,6 @@ const signer = new ethers.Wallet(privateKey, provider);
 const contractABIPath = path.resolve(__dirname, '../../routerABI.json');
 const contractABI = JSON.parse(fs.readFileSync(contractABIPath, 'utf8'));
 const routerContractAddress = process.env.ROUTER_ADDRESS;
-const contractInstance = new ethers.Contract(
-  routerContractAddress,
-  contractABI,
-  provider,
-);
-const router = contractInstance;
 const contractWithSigner = new ethers.Contract(
   routerContractAddress,
   contractABI,
