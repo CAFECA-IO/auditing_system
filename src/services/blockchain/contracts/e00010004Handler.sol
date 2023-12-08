@@ -138,9 +138,14 @@ contract E00010004Handler is ITransactionHandler {
 
         int256 B009 = int256((-EP004));
         report.addValue(reportID, "comprehensiveIncome", "costs.details.technicalProviderFee.breakdown.ETH.amount", B009);
+
+        int256 B030 = int256((-EP004 * EP007)/10**18);
+        report.addValue(reportID, "comprehensiveIncome", "costs.weightedAverageCost", B030);
     }
 
     function computeCashFlow() internal {
+        int C004 = int256((EP002 + EP003) * EP006);
+        report.addValue(reportID, "cashFlow", "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.weightedAverageCost", C004);
 
         int256 C005 = int256(EP002 + EP003);
         report.addValue(reportID, "cashFlow", "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.breakdown.USDT.amount", C005);

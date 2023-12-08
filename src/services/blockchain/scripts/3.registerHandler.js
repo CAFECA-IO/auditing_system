@@ -40,7 +40,7 @@ async function registerHandler(transactionType, handlerAddress) {
 
     // 等待交易被確認
     const receipt = await tx.wait();
-    console.log('Transaction confirmed:', receipt);
+    console.log('Transaction confirmed');
   } catch (error) {
     console.error('Error:', error);
   }

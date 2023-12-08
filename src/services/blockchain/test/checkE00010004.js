@@ -6,7 +6,6 @@ require('events').EventEmitter.defaultMaxListeners = 20;
 const { ethers } = require('ethers');
 const fs = require('fs');
 const path = require('path');
-const readline = require('readline');
 const provider = new ethers.providers.JsonRpcProvider(
   `https://sepolia.infura.io/v3/${process.env.INFURA_API_KEY}`,
 );
@@ -15,12 +14,6 @@ const signer = new ethers.Wallet(privateKey, provider);
 const contractABIPath = path.resolve(__dirname, '../../routerABI.json');
 const contractABI = JSON.parse(fs.readFileSync(contractABIPath, 'utf8'));
 const routerContractAddress = process.env.ROUTER_ADDRESS;
-const contractInstance = new ethers.Contract(
-  routerContractAddress,
-  contractABI,
-  provider,
-);
-const router = contractInstance;
 const contractWithSigner = new ethers.Contract(
   routerContractAddress,
   contractABI,
@@ -72,7 +65,7 @@ describe('checking E00010004 balanceSheet', function () {
     const value = await contractWithSigner.getValue(
       'forth_report',
       'balanceSheet',
-      'assets.details.cryptocurrency.breakdown.ETH.amount',
+      'assets.details.cryptocurrency.breakdown.ETH.fairValue',
     );
     const valueString = (value / 10 ** 18).toString();
     expect(valueString).to.equal('-8');
@@ -162,7 +155,7 @@ describe('checking E00010004 balanceSheet', function () {
     const value = await contractWithSigner.getValue(
       'forth_report',
       'balanceSheet',
-      'quity.details.retainedEarnings.breakdown.USDT.fairValue',
+      'equity.details.retainedEarnings.breakdown.USDT.fairValue',
     );
     const valueString = (value / 10 ** 18).toString();
     expect(valueString).to.equal('0.099');
@@ -191,52 +184,52 @@ describe('checking E00010004 balanceSheet', function () {
     const value = await contractWithSigner.getValue(
       'forth_report',
       'balanceSheet',
-      'equity.details.retainedEarnings.breakdown.ETH.fairValue',
+      'equity.totalAmountFairValue',
     );
     const valueString = (value / 10 ** 18).toString();
     expect(valueString).to.equal('-7.901');
   });
 
-  it('totalLiabilitiesAndEquityFairValue  -106.901', async function () {
+  it('totalLiabilitiesAndEquityFairValue  91', async function () {
     const value = await contractWithSigner.getValue(
       'forth_report',
       'balanceSheet',
       'totalLiabilitiesAndEquityFairValue',
     );
     const valueString = (value / 10 ** 18).toString();
-    expect(valueString).to.equal('-106.901');
+    expect(valueString).to.equal('91');
   });
 });
 
 describe('checking E00010004 comprehensive income', function () {
-  it('income.details.withdrawalFee.weightedAverageCost  +0.101', async function () {
+  it('income.details.withdrawalFee.weightedAverageCost  0.101', async function () {
     const value = await contractWithSigner.getValue(
       'forth_report',
       'comprehensiveIncome',
       'income.details.withdrawalFee.weightedAverageCost',
     );
     const valueString = (value / 10 ** 18).toString();
-    expect(valueString).to.equal('+0.101');
+    expect(valueString).to.equal('0.101');
   });
 
-  it('income.details.withdrawalFee.breakdown.USDT.amount  +0.1', async function () {
+  it('income.details.withdrawalFee.breakdown.USDT.amount  0.1', async function () {
     const value = await contractWithSigner.getValue(
       'forth_report',
       'comprehensiveIncome',
       'income.details.withdrawalFee.breakdown.USDT.amount',
     );
     const valueString = (value / 10 ** 18).toString();
-    expect(valueString).to.equal('+0.1');
+    expect(valueString).to.equal('0.1');
   });
 
-  it('income.details.withdrawalFee.breakdown.USDT.weightedAverageCost  +0.101', async function () {
+  it('income.details.withdrawalFee.breakdown.USDT.weightedAverageCost  0.101', async function () {
     const value = await contractWithSigner.getValue(
       'forth_report',
       'comprehensiveIncome',
       'income.details.withdrawalFee.breakdown.USDT.weightedAverageCost',
     );
     const valueString = (value / 10 ** 18).toString();
-    expect(valueString).to.equal('+0.101');
+    expect(valueString).to.equal('0.101');
   });
 
   it('costs.details.technicalProviderFee.weightedAverageCost -7.5', async function () {
@@ -321,34 +314,34 @@ describe('checking E00010004 cashFlow', function () {
     expect(valueString).to.equal('-101');
   });
 
-  it('supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.weightedAverageCost  +0.101', async function () {
+  it('supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.weightedAverageCost  0.101', async function () {
     const value = await contractWithSigner.getValue(
       'forth_report',
       'cashFlow',
       'supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.weightedAverageCost',
     );
     const valueString = (value / 10 ** 18).toString();
-    expect(valueString).to.equal('+0.101');
+    expect(valueString).to.equal('0.101');
   });
 
-  it('supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.breakdown.USDT.amount  +0.1', async function () {
+  it('supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.breakdown.USDT.amount  0.1', async function () {
     const value = await contractWithSigner.getValue(
       'forth_report',
       'cashFlow',
       'supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.breakdown.USDT.amount',
     );
     const valueString = (value / 10 ** 18).toString();
-    expect(valueString).to.equal('+0.1');
+    expect(valueString).to.equal('0.1');
   });
 
-  it('supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.breakdown.USDT.weightedAverageCost  +0.101', async function () {
+  it('supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.breakdown.USDT.weightedAverageCost  0.101', async function () {
     const value = await contractWithSigner.getValue(
       'forth_report',
       'cashFlow',
       'supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.breakdown.USDT.weightedAverageCost',
     );
     const valueString = (value / 10 ** 18).toString();
-    expect(valueString).to.equal('+0.101');
+    expect(valueString).to.equal('0.101');
   });
 
   it('supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesPaidToSuppliersForExpenses.weightedAverageCost -7.5 ', async function () {

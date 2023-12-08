@@ -37,13 +37,12 @@ async function setRate(SP002, SP003, SP004, Report_ID) {
 
     // Wait for the transaction to be confirmed
     const receipt = await tx.wait();
-    console.log('Transaction confirmed:', receipt);
+    console.log('Transaction confirmed');
   } catch (error) {
     console.error('Error:', error);
   }
 }
 
-// Prompt the user for input
 rl.question(
   'Please enter the rates (as a comma-separated list of bytes32 values): ',
   (input) => {

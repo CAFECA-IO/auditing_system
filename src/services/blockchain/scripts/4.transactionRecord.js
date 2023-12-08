@@ -29,23 +29,17 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
-// 執行交易
 async function addTransactionRecord(data) {
   try {
     const tx = await contractWithSigner.addTransactionRecord(data);
-    //const latestTransactionTime = await router.getLatestTransactionTime();
-    //console.log('latestTransactionTime:', latestTransactionTime.toString());
     console.log('Transaction hash:', tx.hash);
-
-    // Wait for the transaction to be confirmed
     const receipt = await tx.wait();
-    console.log('Transaction confirmed:', receipt);
+    console.log('Transaction confirmed');
   } catch (error) {
     console.error('Error:', error);
   }
 }
 
-// Prompt the user for input
 rl.question(
   'Please enter the data (as a comma-separated list of bytes32 values): ',
   (input) => {

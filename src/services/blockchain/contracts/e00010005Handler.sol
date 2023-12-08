@@ -83,7 +83,7 @@ contract E00010005Handler is ITransactionHandler {
         report.addValue(reportID, "balanceSheet", "totalAssetsFairValue", A001_4_5_16);
         report.addValue(reportID, "balanceSheet", "assets.details.cryptocurrency.breakdown.ETH.fairValue", A001_4_5_16);
 
-        int256 A015 = int256((((-EP001) + EP002 + EP003) + (-EP004))/10**18);
+        int256 A015 = int256((((-EP001) + EP002 + EP003) + (-EP004)));
         report.addValue(reportID, "balanceSheet", "assets.details.cryptocurrency.breakdown.ETH.amount", A015);
 
         int256 A006_43_9 = int256(((-EP001) * latestSP003)/10**18);
@@ -109,12 +109,12 @@ contract E00010005Handler is ITransactionHandler {
 
     function computeComprehesiveIncome() internal {
 
-        int256 B005_7 = int256(((EP002 + EP003) * EP006)/10**18);
-        report.addValue(reportID, "comprehensiveIncome", "income.details.withdrawalFee.weightedAverageCost", B005_7);
-        report.addValue(reportID, "comprehensiveIncome", "income.details.withdrawalFee.breakdown.USDT.weightedAverageCost", B005_7);
+        int256 B005_41 = int256(((EP002 + EP003) * EP006)/10**18);
+        report.addValue(reportID, "comprehensiveIncome", "income.details.withdrawalFee.weightedAverageCost", B005_41);
+        report.addValue(reportID, "comprehensiveIncome", "income.details.withdrawalFee.breakdown.ETH.weightedAverageCost", B005_41);
 
-        int256 B006 = int256(EP002 + EP003);
-        report.addValue(reportID, "comprehensiveIncome", "income.details.withdrawalFee.breakdown.USDT.amount", B006);
+        int256 B040 = int256(EP002 + EP003);
+        report.addValue(reportID, "comprehensiveIncome", "income.details.withdrawalFee.breakdown.ETH.amount", B040);
 
         int256 B008_10 = int256( (((-EP004) * EP006))/10**18);
         report.addValue(reportID, "comprehensiveIncome","costs.details.technicalProviderFee.weightedAverageCost", B008_10);
@@ -122,6 +122,12 @@ contract E00010005Handler is ITransactionHandler {
 
         int256 B009 = int256((-EP004));
         report.addValue(reportID, "comprehensiveIncome", "costs.details.technicalProviderFee.breakdown.ETH.amount", B009);
+
+        int256 B030 = int256((-EP004 * EP006)/10**18);
+        report.addValue(reportID, "comprehensiveIncome", "costs.weightedAverageCost", B030);
+
+        int256 B004 = int256(((EP002 + EP003) * EP006 + (-EP004 * EP006))/10**18);
+        report.addValue(reportID, "comprehensiveIncome",  "netProfit", B004);
     }
 
     function computeCashFlow() internal {
@@ -137,8 +143,8 @@ contract E00010005Handler is ITransactionHandler {
         report.addValue(reportID, "cashFlow", "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.breakdown.ETH.amount", C072);
 
         int256 C004_73 = int256( ((EP002 + EP003) * EP006)/10**18);
-        report.addValue(reportID, "cashFlow", "supplementalScheduleOfNonCashOperatingActivities.weightedAverageCost", C004_73);
-        report.addValue(reportID, "cashFlow",  "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesEndOfPeriod", C004_73);
+        report.addValue(reportID, "cashFlow", "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.weightedAverageCost", C004_73);
+        report.addValue(reportID, "cashFlow",  "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.breakdown.ETH.weightedAverageCost", C004_73);
 
         int256 C012_14 = int256(((-EP004) * EP006)/10**18);
         report.addValue(reportID, "cashFlow", "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesPaidToSuppliersForExpenses.weightedAverageCost", C012_14);

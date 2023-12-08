@@ -41,7 +41,7 @@ async function generateReport(startTime, endTime, report_ID) {
 
     // Wait for the transaction to be confirmed
     const receipt = await tx.wait();
-    console.log('Transaction confirmed:', receipt);
+    console.log('Transaction confirmed');
   } catch (error) {
     console.error('Error:', error);
   }

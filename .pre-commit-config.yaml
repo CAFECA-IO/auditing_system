@@ -7,5 +7,3 @@ repos:
       - id: check-xml
       - id: end-of-file-fixer
       - id: trailing-whitespace
-      - id: pretty-format-json
-        exclude: ^auditing_system_11_29/src/services/blockchain/artifacts/

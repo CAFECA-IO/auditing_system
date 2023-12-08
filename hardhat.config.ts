@@ -17,6 +17,12 @@ const config: HardhatUserConfig = {
   },
   solidity: {
     version: '0.8.0',
+    settings: {
+      optimizer: {
+        enabled: true,
+        runs: 200,
+      },
+    },
   },
   paths: {
     sources: './src/services/blockchain/contracts',
@@ -24,4 +30,5 @@ const config: HardhatUserConfig = {
     tests: './src/services/blockchain/test',
   },
 };
+
 export default config;
