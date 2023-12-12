@@ -3,6 +3,7 @@ pragma solidity ^0.8.0;
 
 import "./transactionContract.sol";
 import "./parser.sol";
+import "./reports.sol";
 
 contract GetTransactionTimeSpan {
 
@@ -26,12 +27,14 @@ contract GetTransactionTimeSpan {
     Settlement[] public rateHistory;
     TransactionContract public transactionContract;
     IParser public Iparser;
+    Reports public reports;
     mapping(bytes32 => bool) private usedReportIDs;
     mapping(bytes32 => bool) private usedReportIDsInFilter;
 
-    constructor(address _transactionContractAddress,address _parser ) {
+    constructor(address _transactionContractAddress,address _parser , address _reports) {
         transactionContract = TransactionContract(_transactionContractAddress);
         Iparser = IParser(_parser);
+        reports = Reports(_reports);
     }
 
     //Info: (20231115 - Yang){This function is for testing, users should use setRate function to input a bytes32 array}
@@ -54,6 +57,9 @@ contract GetTransactionTimeSpan {
         returns (FilteredData memory)
     {
         require(!usedReportIDsInFilter[_reportID], "Report ID already used in generating report");
+        reports.addValue(Iparser.bytes32ToString(_reportID), "time", "startTime", startTime);
+        reports.addValue(Iparser.bytes32ToString(_reportID), "time", "endTime", endTime);
+
         usedReportIDsInFilter[_reportID] = true;
         uint256 count = transactionContract.getTransactionsCount();
         bytes32[] memory types = new bytes32[](count);

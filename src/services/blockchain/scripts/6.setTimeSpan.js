@@ -50,7 +50,19 @@ async function generateReport(startTime, endTime, report_ID) {
 // Prompt the user for input
 rl.question('Please enter reportID: ', async (input) => {
   const latestTransactionTime = await router.getLatestTransactionTime();
-  console.log('latestTransactionTime:', latestTransactionTime.toString());
-  generateReport(latestTransactionTime - 1, latestTransactionTime + 1, input);
+  let transactionTime = Number(latestTransactionTime);
+  if (transactionTime > Number.MAX_SAFE_INTEGER) {
+    transactionTime = BigInt(latestTransactionTime);
+    console.log('latestTransactionTime:', transactionTime.toString());
+    console.log('latestTransactionTime - 1', (transactionTime - 1n).toString());
+    console.log('latestTransactionTime + 1', (transactionTime + 1n).toString());
+    generateReport(transactionTime - 1n, transactionTime + 1n, input);
+  } else {
+    console.log('latestTransactionTime:', transactionTime);
+    console.log('latestTransactionTime - 1', transactionTime - 1);
+    console.log('latestTransactionTime + 1', transactionTime + 1);
+    generateReport(transactionTime - 1, transactionTime + 1, input);
+  }
+
   rl.close();
 });

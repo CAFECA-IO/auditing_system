@@ -1,3 +1,6 @@
+import { get } from 'http';
+import { report } from 'process';
+
 // pages/api/report.js
 const { timeStamp } = require('console');
 require('events').EventEmitter.defaultMaxListeners = 15;
@@ -25,7 +28,9 @@ const reportID = process.env.REPORT_ID;
 async function getContractValue(reportID, reportType, reportColumn) {
   try {
     const value = await reports.getValue(reportID, reportType, reportColumn);
-    const formattedValue = ethers.utils.formatUnits(value, 18);
+
+    formattedValue = ethers.utils.formatUnits(value, 18);
+
     return formattedValue;
   } catch (error) {
     console.error(error);
@@ -150,12 +155,7 @@ export default async function handler(req, res) {
         'assets.details.accountsReceivable.totalAmountFairValue',
       );
 
-    /*A022*/ const capital_details_retainedEarnings_totalAmountFairValue =
-      await getContractValue(
-        reportID,
-        'balanceSheet',
-        'capital.details.retainedEarnings.totalAmountFairValue',
-      );
+    /*A022*/
 
     /*A025*/ const assets_details_accountsReceivable_breakdown_USDT_amount =
       await getContractValue(
@@ -293,283 +293,261 @@ export default async function handler(req, res) {
         'balanceSheet',
         'equity.details.retainedEarnings.breakdown.USD.fairValue',
       );
-
-    /*?*/ const assets_details_cashAndCashEquivalent_breakdown_USD_amount =
+    /*A052*/ const equity_details_otherCapitalReserve_fairValue =
+      await getContractValue(
+        reportID,
+        'balanceSheet',
+        'equity.details.otherCapitalReserve.fairValue',
+      );
+    /*A053*/ const equity_details_otherCapitalReserve_breakdown_USD_amount =
+      await getContractValue(
+        reportID,
+        'balanceSheet',
+        'equity.details.otherCapitalReserve.breakdown.USD.amount',
+      );
+    /*A054*/ const equity_details_otherCapitalReserve_breakdown_USD_fairValue =
+      await getContractValue(
+        reportID,
+        'balanceSheet',
+        'equity.details.otherCapitalReserve.breakdown.USD.fairValue',
+      );
+    /*A055*/ const equity_details_otherCapitalReserve_breakdown_USDT_amount =
+      await getContractValue(
+        reportID,
+        'balanceSheet',
+        'equity.details.otherCapitalReserve.breakdown.USDT.amount',
+      );
+    /*A056*/ const equity_details_otherCapitalReserve_breakdown_USDT_fairValue =
+      await getContractValue(
+        reportID,
+        'balanceSheet',
+        'equity.details.otherCapitalReserve.breakdown.USDT.fairValue',
+      );
+    /*A057*/ const equity_details_otherCapitalReserve_breakdown_ETH_amount =
+      await getContractValue(
+        reportID,
+        'balanceSheet',
+        'equity.details.otherCapitalReserve.breakdown.ETH.amount',
+      );
+    /*A058*/ const equity_details_otherCapitalReserve_breakdown_ETH_fairValue =
+      await getContractValue(
+        reportID,
+        'balanceSheet',
+        'equity.details.otherCapitalReserve.breakdown.ETH.fairValue',
+      );
+    /*A059*/ const equity_details_otherCapitalReserve_breakdown_BTC_amount =
+      await getContractValue(
+        reportID,
+        'balanceSheet',
+        'equity.details.otherCapitalReserve.breakdown.BTC.amount',
+      );
+    /*A060*/ const equity_details_otherCapitalReserve_breakdown_BTC_fairValue =
+      await getContractValue(
+        reportID,
+        'balanceSheet',
+        'equity.details.otherCapitalReserve.breakdown.BTC.fairValue',
+      );
+    /*A061*/ const assets_details_cashAndCashEquivalent_breakdown_USD_amount =
       await getContractValue(
         reportID,
         'balanceSheet',
         'assets.details.cashAndCashEquivalent.breakdown.USD.amount',
       );
-    /*?*/ const assets_details_cashAndCashEquivalent_breakdown_USD_fairValue =
+    /*A062*/ const assets_details_cashAndCashEquivalent_breakdown_USD_fairValue =
       await getContractValue(
         reportID,
         'balanceSheet',
         'assets.details.cashAndCashEquivalent.breakdown.USD.fairValue',
       );
+    /*startTime*/ const startTime = await getContractValue(
+      reportID,
+      'time',
+      'startTime',
+    );
+    /*endTime*/ const endTime = await getContractValue(
+      reportID,
+      'time',
+      'endTime',
+    );
 
     const data = {
-      success: true,
-      code: '00000000',
-      reason: 'ERROR_MESSAGE.SUCCESS',
-      data: {
-        id: reportID,
-        date: Date.now(),
-        totalAssetsFairValue: totalAssetsFairValue,
-        totalLiabilitiesAndEquityFairValue: totalLiabilitiesAndEquityFairValue,
-        assets: {
-          totalAmountFairValue: assets_totalAmountFairValue,
-          details: {
-            accountsReceivable: {
-              totalAmountFairValue:
-                assets_details_accountsReceivable_totalAmountFairValue,
-              breakdown: {
-                ETH: {
-                  currencyType: 'CRYPTOCURRENCY',
-                  name: 'ETH',
-                  amount:
-                    assets_details_accountsReceivable_breakdown_ETH_amount,
-                  fairValue:
-                    assets_details_accountsReceivable_breakdown_ETH_fairValue,
-                },
-                BTC: {
-                  currencyType: 'CRYPTOCURRENCY',
-                  name: 'BTC',
-                  amount:
-                    assets_details_accountsReceivable_breakdown_BTC_amount,
-                  fairValue:
-                    assets_details_accountsReceivable_breakdown_BTC_fairValue,
-                },
-                USDT: {
-                  currencyType: 'CRYPTOCURRENCY',
-                  name: 'USDT',
-                  amount:
-                    assets_details_accountsReceivable_breakdown_USDT_amount,
-                  fairValue:
-                    assets_details_accountsReceivable_breakdown_USDT_fairValue,
-                },
-                USD: {
-                  currencyType: 'FIAT',
-                  name: 'USD',
-                  amount: 0,
-                  fairValue: 0,
-                },
+      id: reportID,
+      reportStartTime: startTime,
+      reportEndTime: endTime,
+      totalAssetsFairValue: totalAssetsFairValue, //A005
+      totalLiabilitiesAndEquityFairValue: totalLiabilitiesAndEquityFairValue, //A014
+      assets: {
+        totalAmountFairValue: assets_totalAmountFairValue, //A004
+        details: {
+          cryptocurrency: {
+            totalAmountFairValue:
+              assets_details_cryptocurrency_totalAmountFairValue, //A001
+            breakdown: {
+              USDT: {
+                amount: assets_details_cryptocurrency_breakdown_USDT_amount, //A002
+                fairValue:
+                  assets_details_cryptocurrency_breakdown_USDT_fairValue, //A003
+              },
+              ETH: {
+                amount: assets_details_cryptocurrency_breakdown_ETH_amount, //A015
+                fairValue:
+                  assets_details_cryptocurrency_breakdown_ETH_fairValue, //A016
+              },
+              BTC: {
+                amount: assets_details_cryptocurrency_breakdown_BTC_amount, //A046
+                fairValue:
+                  assets_details_cryptocurrency_breakdown_BTC_fairValue, //A047
               },
             },
-            cryptocurrency: {
-              totalAmountFairValue:
-                assets_details_cryptocurrency_totalAmountFairValue,
-              breakdown: {
-                ETH: {
-                  currencyType: 'CRYPTOCURRENCY',
-                  name: 'ETH',
-                  amount: assets_details_cryptocurrency_breakdown_ETH_amount,
-                  fairValue:
-                    assets_details_cryptocurrency_breakdown_ETH_fairValue,
-                },
-                BTC: {
-                  currencyType: 'CRYPTOCURRENCY',
-                  name: 'BTC',
-                  amount: assets_details_cryptocurrency_breakdown_BTC_amount,
-                  fairValue:
-                    assets_details_cryptocurrency_breakdown_BTC_fairValue,
-                },
-                USDT: {
-                  currencyType: 'CRYPTOCURRENCY',
-                  name: 'USDT',
-                  amount: assets_details_cryptocurrency_breakdown_USDT_amount,
-                  fairValue:
-                    assets_details_cryptocurrency_breakdown_USDT_fairValue,
-                },
+          },
+          cashAndCashEquivalent: {
+            totalAmountFairValue:
+              assets_details_cashAndCashEquivalent_totalAmountFairValue, //A019
+            breakdown: {
+              USD: {
+                amount:
+                  assets_details_cashAndCashEquivalent_breakdown_USD_amount, //A061
+                fairValue:
+                  assets_details_cashAndCashEquivalent_breakdown_USD_fairValue, //A062
               },
             },
-            cashAndCashEquivalent: {
-              totalAmountFairValue:
-                assets_details_cashAndCashEquivalent_totalAmountFairValue,
-              breakdown: {
-                USD: {
-                  currencyType: 'FIAT',
-                  name: 'USD',
-                  amount:
-                    assets_details_cashAndCashEquivalent_breakdown_USD_amount,
-                  fairValue:
-                    assets_details_cashAndCashEquivalent_breakdown_USD_fairValue,
-                },
-                ETH: {
-                  currencyType: 'CRYPTOCURRENCY',
-                  name: 'ETH',
-                  amount: '0',
-                  fairValue: '0',
-                },
-                BTC: {
-                  currencyType: 'CRYPTOCURRENCY',
-                  name: 'BTC',
-                  amount: '0',
-                  fairValue: '0',
-                },
-                USDT: {
-                  currencyType: 'CRYPTOCURRENCY',
-                  name: 'USDT',
-                  amount: '0',
-                  fairValue: '0',
-                },
+          },
+          accountsReceivable: {
+            totalAmountFairValue:
+              assets_details_accountsReceivable_totalAmountFairValue, //A020
+            breakdown: {
+              USDT: {
+                amount: assets_details_accountsReceivable_breakdown_USDT_amount, //A025
+                fairValue:
+                  assets_details_accountsReceivable_breakdown_USDT_fairValue, //A026
+              },
+              BTC: {
+                amount: assets_details_accountsReceivable_breakdown_BTC_amount, //A027
+                fairValue:
+                  assets_details_accountsReceivable_breakdown_BTC_fairValue, //A028
+              },
+              ETH: {
+                amount: assets_details_accountsReceivable_breakdown_ETH_amount, //A029
+                fairValue:
+                  assets_details_accountsReceivable_breakdown_ETH_fairValue, //A030
               },
             },
           },
         },
-        nonAssets: {
-          totalAmountFairValue: 0,
-          details: {
-            accountsReceivable: {
-              totalAmountFairValue: '0',
-              breakdown: {},
-            },
-            cashAndCashEquivalent: {
-              totalAmountFairValue: '0',
-              breakdown: {},
-            },
-          },
-        },
-        liabilities: {
-          totalAmountFairValue: liabilities_totalAmountFairValue,
-          details: {
-            accountsPayable: {
-              totalAmountFairValue:
-                liabilities_details_accountsPayable_totalAmountFairValue,
-              breakdown: {
-                ETH: {
-                  currencyType: 'CRYPTOCURRENCY',
-                  name: 'ETH',
-                  amount:
-                    liabilities_details_accountsPayable_breakdown_ETH_amount,
-                  fairValue:
-                    liabilities_details_accountsPayable_breakdown_ETH_fairValue,
-                },
-                BTC: {
-                  currencyType: 'CRYPTOCURRENCY',
-                  name: 'BTC',
-                  amount:
-                    liabilities_details_accountsPayable_breakdown_BTC_amount,
-                  fairValue:
-                    liabilities_details_accountsPayable_breakdown_BTC_fairValue,
-                },
-                USDT: {
-                  currencyType: 'CRYPTOCURRENCY',
-                  name: 'USDT',
-                  amount:
-                    liabilities_details_accountsPayable_breakdown_USDT_amount,
-                  fairValue:
-                    liabilities_details_accountsPayable_breakdown_USDT_fairValue,
-                },
-                USD: {
-                  currencyType: 'FIAT',
-                  name: 'USD',
-                  amount:
-                    liabilities_details_accountsPayable_breakdown_USD_amount,
-                  fairValue:
-                    liabilities_details_accountsPayable_breakdown_USD_fairValue,
-                },
+      },
+      liabilities: {
+        totalAmountFairValue: liabilities_totalAmountFairValue, //A009
+        details: {
+          userDeposit: {
+            totalAmountFairValue:
+              liabilities_details_userDeposit_totalAmountFairValue, //A006
+            breakdown: {
+              USDT: {
+                amount: liabilities_details_userDeposit_breakdown_USDT_amount, //A007
+                fairValue:
+                  liabilities_details_userDeposit_breakdown_USDT_fairValue, //A008
+              },
+              USD: {
+                amount: liabilities_details_userDeposit_breakdown_USD_amount, //A040
+                fairValue:
+                  liabilities_details_userDeposit_breakdown_USD_fairValue, //A041
+              },
+              ETH: {
+                amount: liabilities_details_userDeposit_breakdown_ETH_amount, //A042
+                fairValue:
+                  liabilities_details_userDeposit_breakdown_ETH_fairValue, //A043
+              },
+              BTC: {
+                amount: liabilities_details_userDeposit_breakdown_BTC_amount, //A044
+                fairValue:
+                  liabilities_details_userDeposit_breakdown_BTC_airValue, //A045
               },
             },
-            userDeposit: {
-              totalAmountFairValue:
-                liabilities_details_userDeposit_totalAmountFairValue,
-              breakdown: {
-                ETH: {
-                  currencyType: 'CRYPTOCURRENCY',
-                  name: 'ETH',
-                  amount: liabilities_details_userDeposit_breakdown_ETH_amount,
-                  fairValue:
-                    liabilities_details_userDeposit_breakdown_ETH_fairValue,
-                },
-                BTC: {
-                  currencyType: 'CRYPTOCURRENCY',
-                  name: 'BTC',
-                  amount: liabilities_details_userDeposit_breakdown_BTC_amount,
-                  fairValue:
-                    liabilities_details_userDeposit_breakdown_BTC_airValue,
-                },
-                USDT: {
-                  currencyType: 'CRYPTOCURRENCY',
-                  name: 'USDT',
-                  amount: liabilities_details_userDeposit_breakdown_USDT_amount,
-                  fairValue:
-                    liabilities_details_userDeposit_breakdown_USDT_fairValue,
-                },
-                USD: {
-                  currencyType: 'FIAT',
-                  name: 'USD',
-                  amount: liabilities_details_userDeposit_breakdown_USD_amount,
-                  fairValue:
-                    liabilities_details_userDeposit_breakdown_USD_fairValue,
-                },
+          },
+          accountsPayable: {
+            totalAmountFairValue:
+              liabilities_details_accountsPayable_totalAmountFairValue, //A021
+            breakdown: {
+              USDT: {
+                amount:
+                  liabilities_details_accountsPayable_breakdown_USDT_amount, //A034
+                fairValue:
+                  liabilities_details_accountsPayable_breakdown_USDT_fairValue, //A035
+              },
+              USD: {
+                amount:
+                  liabilities_details_accountsPayable_breakdown_USD_amount, //A032
+                fairValue:
+                  liabilities_details_accountsPayable_breakdown_USD_fairValue, //A033
+              },
+              BTC: {
+                amount:
+                  liabilities_details_accountsPayable_breakdown_BTC_amount, //A036
+                fairValue:
+                  liabilities_details_accountsPayable_breakdown_BTC_fairValue, //A037
+              },
+              ETH: {
+                amount:
+                  liabilities_details_accountsPayable_breakdown_ETH_amount, //A038
+                fairValue:
+                  liabilities_details_accountsPayable_breakdown_ETH_fairValue, //A039
               },
             },
           },
         },
-        equity: {
-          totalAmountFairValue: equity_totalAmountFairValue,
-          details: {
-            retainedEarnings: {
-              totalAmountFairValue:
-                equity_details_retainedEarnings_totalAmountFairValue,
-              breakdown: {
-                ETH: {
-                  currencyType: 'CRYPTOCURRENCY',
-                  name: 'ETH',
-                  amount: equity_details_retainedEarnings_breakdown_ETH_amount,
-                  fairValue:
-                    equity_details_retainedEarnings_breakdown_ETH_fairValue,
-                },
-                BTC: {
-                  currencyType: 'CRYPTOCURRENCY',
-                  name: 'BTC',
-                  amount: equity_details_retainedEarnings_breakdown_BTC_amount,
-                  fairValue:
-                    equity_details_retainedEarnings_breakdown_BTC_fiarValue,
-                },
-                USDT: {
-                  currencyType: 'CRYPTOCURRENCY',
-                  name: 'USDT',
-                  amount: equity_details_retainedEarnings_breakdown_USDT_amount,
-                  fairValue:
-                    equity_details_retainedEarnings_breakdown_USDT_fairValue,
-                },
-                USD: {
-                  currencyType: 'FIAT',
-                  name: 'USD',
-                  amount: equity_details_retainedEarnings_breakdown_USD_amount,
-                  fairValue:
-                    equity_details_retainedEarnings_breakdown_USD_fairValue,
-                },
+      },
+      equity: {
+        totalAmountFairValue: equity_totalAmountFairValue, //A013
+        details: {
+          retainedEarning: {
+            totalAmountFairValue:
+              equity_details_retainedEarnings_totalAmountFairValue, //A010
+            breakdown: {
+              USDT: {
+                amount: equity_details_retainedEarnings_breakdown_USDT_amount, //A011
+                fairValue:
+                  equity_details_retainedEarnings_breakdown_USDT_fairValue, //A012
+              },
+              ETH: {
+                amount: equity_details_retainedEarnings_breakdown_ETH_amount, //A017
+                fairValue:
+                  equity_details_retainedEarnings_breakdown_ETH_fairValue, //A018
+              },
+              BTC: {
+                amount: equity_details_retainedEarnings_breakdown_BTC_amount, //A048
+                fairValue:
+                  equity_details_retainedEarnings_breakdown_BTC_fiarValue, //A049
+              },
+              USD: {
+                amount: equity_details_retainedEarnings_breakdown_USD_amount, //A050
+                fairValue:
+                  equity_details_retainedEarnings_breakdown_USD_fairValue, //A051
               },
             },
-            capital: {
-              totalAmountFairValue: '0',
-              breakdown: {
-                USD: {
-                  currencyType: 'FIAT',
-                  name: 'USD',
-                  amount: '0',
-                  fairValue: '0',
-                },
-                ETH: {
-                  currencyType: 'CRYPTOCURRENCY',
-                  name: 'ETH',
-                  amount: '0',
-                  fairValue: '0',
-                },
-                BTC: {
-                  currencyType: 'CRYPTOCURRENCY',
-                  name: 'BTC',
-                  amount: '0',
-                  fairValue: '0',
-                },
-                USDT: {
-                  currencyType: 'CRYPTOCURRENCY',
-                  name: 'USDT',
-                  amount: '0',
-                  fairValue: '0',
-                },
+          },
+          otherCapitalReserve: {
+            fairValue: equity_details_otherCapitalReserve_fairValue, //A052
+            breakdown: {
+              USD: {
+                amount: equity_details_otherCapitalReserve_breakdown_USD_amount, //A053
+                fairValue:
+                  equity_details_otherCapitalReserve_breakdown_USD_fairValue, //A054
+              },
+              USDT: {
+                amount:
+                  equity_details_otherCapitalReserve_breakdown_USDT_amount, //A055
+                fairValue:
+                  equity_details_otherCapitalReserve_breakdown_USDT_fairValue, //A056
+              },
+              ETH: {
+                amount: equity_details_otherCapitalReserve_breakdown_ETH_amount, //A057
+                fairValue:
+                  equity_details_otherCapitalReserve_breakdown_ETH_fairValue, //A058
+              },
+              BTC: {
+                amount: equity_details_otherCapitalReserve_breakdown_BTC_amount, //A059
+                fairValue:
+                  equity_details_otherCapitalReserve_breakdown_BTC_fairValue, //A060
               },
             },
           },

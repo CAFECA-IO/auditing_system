@@ -24,6 +24,7 @@ async function main() {
   const getTimespan = await ethers.deployContract('GetTransactionTimeSpan', [
     transaction_ADDress,
     PARSER_ADDRESS,
+    REPORT_ADDRESS,
   ]);
   const getTimespan_address = await getTimespan.getAddress();
 
