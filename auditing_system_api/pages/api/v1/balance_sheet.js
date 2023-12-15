@@ -1,7 +1,6 @@
 import { get } from 'http';
 import { report } from 'process';
 
-// pages/api/report.js
 const { timeStamp } = require('console');
 require('events').EventEmitter.defaultMaxListeners = 15;
 const { ethers } = require('ethers');
@@ -12,7 +11,7 @@ const provider = new ethers.providers.JsonRpcProvider(
 );
 const contractABIPath = path.resolve(
   __dirname,
-  '../../../../../src/services/routerABI.json',
+  '/Users/yong/SmartContracts/Auditing_system/auditing_system_11_29/src/services/routerABI.json',
 );
 const contractABI = JSON.parse(fs.readFileSync(contractABIPath, 'utf8'));
 const routerContractAddress = process.env.ROUTER_ADDRESS;

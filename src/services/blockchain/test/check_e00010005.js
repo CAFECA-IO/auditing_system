@@ -3,306 +3,327 @@ const { expect } = require('chai');
 const { exec } = require('child_process');
 const { timeStamp } = require('console');
 require('events').EventEmitter.defaultMaxListeners = 20;
-const { ethers } = require('ethers');
+const { ethers } = require('hardhat');
 const fs = require('fs');
 const path = require('path');
-const provider = new ethers.providers.JsonRpcProvider(
-  `https://sepolia.infura.io/v3/${process.env.INFURA_API_KEY}`,
-);
-const privateKey = process.env.SEPOLIA_PRIVATE_KEY;
-const signer = new ethers.Wallet(privateKey, provider);
-const contractABIPath = path.resolve(__dirname, '../../routerABI.json');
-const contractABI = JSON.parse(fs.readFileSync(contractABIPath, 'utf8'));
-const routerContractAddress = process.env.ROUTER_ADDRESS;
-const contractWithSigner = new ethers.Contract(
-  routerContractAddress,
-  contractABI,
-  signer,
-);
 
-describe('checking E00010005 balanceSheet', function () {
-  it('assets.details.cryptocurrency.totalAmountFairValue should equal -15987.2', async function () {
+const contractABIPath = path.resolve(
+  __dirname,
+  '../../blockchain/artifacts/artifacts/src/services/blockchain/contracts/router.sol/RouterContract.json',
+);
+const contractJSON = JSON.parse(fs.readFileSync(contractABIPath, 'utf8'));
+const contractABI = contractJSON.abi;
+const routerContractAddress = process.env.ROUTER_ADDRESS;
+
+let contractWithSigner;
+
+describe('checking E00010005 balanceSheet', async function () {
+  before(async function () {
+    const [signer] = await ethers.getSigners();
+    contractWithSigner = new ethers.Contract(
+      routerContractAddress,
+      contractABI,
+      signer,
+    );
+  });
+  it('assets.details.cryptocurrency.totalAmountFairValue should equal -15987200000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'fifth_report',
       'balanceSheet',
       'assets.details.cryptocurrency.totalAmountFairValue',
     );
-    const valueString = (value / 10 ** 18).toString();
-    expect(valueString).to.equal('-15987.2');
+
+    expect(value).to.equal('-15987200000000000000000');
   });
 
-  it('assets.details.cryptocurrency.breakdown.ETH.amount should equal -9.992', async function () {
+  it('assets.details.cryptocurrency.breakdown.ETH.amount should equal -9992000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'fifth_report',
       'balanceSheet',
       'assets.details.cryptocurrency.breakdown.ETH.amount',
     );
-    const valueString = (value / 10 ** 18).toString();
-    expect(valueString).to.equal('-9.992');
+
+    expect(value).to.equal('-9992000000000000000');
   });
 
-  it('assets.details.cryptocurrency.breakdown.ETH.fairValue should equal -15987.2', async function () {
+  it('assets.details.cryptocurrency.breakdown.ETH.fairValue should equal -15987200000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'fifth_report',
       'balanceSheet',
       'assets.details.cryptocurrency.breakdown.ETH.fairValue',
     );
-    const valueString = (value / 10 ** 18).toString();
-    expect(valueString).to.equal('-15987.2');
+
+    expect(value).to.equal('-15987200000000000000000');
   });
 
-  it('assets.totalAmountFairValue should equal -15987.2', async function () {
+  it('assets.totalAmountFairValue should equal -15987200000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'fifth_report',
       'balanceSheet',
       'assets.totalAmountFairValue',
     );
-    const valueString = (value / 10 ** 18).toString();
-    expect(valueString).to.equal('-15987.2');
+
+    expect(value).to.equal('-15987200000000000000000');
   });
 
-  it('totalAssetsFairValue should equal -15987.2', async function () {
+  it('totalAssetsFairValue should equal -15987200000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'fifth_report',
       'balanceSheet',
       'totalAssetsFairValue',
     );
-    const valueString = (value / 10 ** 18).toString();
-    expect(valueString).to.equal('-15987.2');
+
+    expect(value).to.equal('-15987200000000000000000');
   });
 
-  it('liabilities.details.userDeposit.totalAmountFairValue should equal -16000', async function () {
+  it('liabilities.details.userDeposit.totalAmountFairValue should equal -16000000000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'fifth_report',
       'balanceSheet',
       'liabilities.details.userDeposit.totalAmountFairValue',
     );
-    const valueString = (value / 10 ** 18).toString();
-    expect(valueString).to.equal('-16000');
+
+    expect(value).to.equal('-16000000000000000000000');
   });
 
-  it('liabilities.details.userDeposit.breakdown.ETH.amount should equal -10', async function () {
+  it('liabilities.details.userDeposit.breakdown.ETH.amount should equal -10000000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'fifth_report',
       'balanceSheet',
       'liabilities.details.userDeposit.breakdown.ETH.amount',
     );
-    const valueString = (value / 10 ** 18).toString();
-    expect(valueString).to.equal('-10');
+
+    expect(value).to.equal('-10000000000000000000');
   });
 
-  it('liabilities.details.userDeposit.breakdown.ETH.fairValue should equal -16000 ', async function () {
+  it('liabilities.details.userDeposit.breakdown.ETH.fairValue should equal -16000000000000000000000 ', async function () {
     const value = await contractWithSigner.getValue(
       'fifth_report',
       'balanceSheet',
       'liabilities.details.userDeposit.breakdown.ETH.fairValue',
     );
-    const valueString = (value / 10 ** 18).toString();
-    expect(valueString).to.equal('-16000');
+
+    expect(value).to.equal('-16000000000000000000000');
   });
 
-  it('liabilities.totalAmountFairValue should equal -16000', async function () {
+  it('liabilities.totalAmountFairValue should equal -16000000000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'fifth_report',
       'balanceSheet',
       'liabilities.totalAmountFairValue',
     );
-    const valueString = (value / 10 ** 18).toString();
-    expect(valueString).to.equal('-16000');
+
+    expect(value).to.equal('-16000000000000000000000');
   });
 
-  it('equity.details.retainedEarnings.totalAmountFairValue should equal 12.8', async function () {
+  it('equity.details.retainedEarnings.totalAmountFairValue should equal 12800000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'fifth_report',
       'balanceSheet',
       'equity.details.retainedEarnings.totalAmountFairValue',
     );
-    const valueString = (value / 10 ** 18).toString();
-    expect(valueString).to.equal('12.8');
+
+    expect(value).to.equal('12800000000000000000');
   });
 
-  it('totalLiabilitiesAndEquityFairValue should equal 15996.8', async function () {
+  it('totalLiabilitiesAndEquityFairValue should equal 1599680000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'fifth_report',
       'balanceSheet',
       'totalLiabilitiesAndEquityFairValue',
     );
-    const valueString = (value / 10 ** 18).toString();
-    expect(valueString).to.equal('15996.8');
+
+    expect(value).to.equal('15996800000000000000000');
   });
 });
 
-describe('checking E00010005 comprehensive income', function () {
-  it('income.details.withdrawalFee.weightedAverageCost should equal 15', async function () {
+describe('checking E00010005 comprehensive income', async function () {
+  before(async function () {
+    const [signer] = await ethers.getSigners();
+    contractWithSigner = new ethers.Contract(
+      routerContractAddress,
+      contractABI,
+      signer,
+    );
+  });
+  it('income.details.withdrawalFee.weightedAverageCost should equal 15000000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'fifth_report',
       'comprehensiveIncome',
       'income.details.withdrawalFee.weightedAverageCost',
     );
-    const valueString = (value / 10 ** 18).toString();
-    expect(valueString).to.equal('15');
+
+    expect(value).to.equal('15000000000000000000');
   });
 
-  it('income.details.withdrawalFee.breakdown.ETH.amount should equal 0.01', async function () {
+  it('income.details.withdrawalFee.breakdown.ETH.amount should equal 10000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'fifth_report',
       'comprehensiveIncome',
       'income.details.withdrawalFee.breakdown.ETH.amount',
     );
-    const valueString = (value / 10 ** 18).toString();
-    expect(valueString).to.equal('0.01');
+
+    expect(value).to.equal('10000000000000000');
   });
 
-  it('income.details.withdrawalFee.breakdown.ETH.weightedAverageCost should equal 15', async function () {
+  it('income.details.withdrawalFee.breakdown.ETH.weightedAverageCost should equal 15000000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'fifth_report',
       'comprehensiveIncome',
       'income.details.withdrawalFee.breakdown.ETH.weightedAverageCost',
     );
-    const valueString = (value / 10 ** 18).toString();
-    expect(valueString).to.equal('15');
+
+    expect(value).to.equal('15000000000000000000');
   });
 
-  it('costs.details.technicalProviderFee.weightedAverageCost should equal -3', async function () {
+  it('costs.details.technicalProviderFee.weightedAverageCost should equal -3000000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'fifth_report',
       'comprehensiveIncome',
       'costs.details.technicalProviderFee.weightedAverageCost',
     );
-    const valueString = (value / 10 ** 18).toString();
-    expect(valueString).to.equal('-3');
+
+    expect(value).to.equal('-3000000000000000000');
   });
 
-  it('costs.details.technicalProviderFee.breakdown.ETH.amount should equal -0.002', async function () {
+  it('costs.details.technicalProviderFee.breakdown.ETH.amount should equal -2000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'fifth_report',
       'comprehensiveIncome',
       'costs.details.technicalProviderFee.breakdown.ETH.amount',
     );
-    const valueString = (value / 10 ** 18).toString();
-    expect(valueString).to.equal('-0.002');
+
+    expect(value).to.equal('-2000000000000000');
   });
 
-  it('costs.details.technicalProviderFee.breakdown.ETH.fairValue should equal -3', async function () {
+  it('costs.details.technicalProviderFee.breakdown.ETH.fairValue should equal -3000000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'fifth_report',
       'comprehensiveIncome',
       'costs.details.technicalProviderFee.breakdown.ETH.fairValue',
     );
-    const valueString = (value / 10 ** 18).toString();
-    expect(valueString).to.equal('-3');
+
+    expect(value).to.equal('-3000000000000000000');
   });
 
-  it('costs.weightedAverageCost should equal -3', async function () {
+  it('costs.weightedAverageCost should equal -3000000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'fifth_report',
       'comprehensiveIncome',
       'costs.weightedAverageCost',
     );
-    const valueString = (value / 10 ** 18).toString();
-    expect(valueString).to.equal('-3');
+
+    expect(value).to.equal('-3000000000000000000');
   });
 
-  it('netProfit should equal 12', async function () {
+  it('netProfit should equal 12000000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'fifth_report',
       'comprehensiveIncome',
       'netProfit',
     );
-    const valueString = (value / 10 ** 18).toString();
-    expect(valueString).to.equal('12');
+
+    expect(value).to.equal('12000000000000000000');
   });
 });
 
-describe('checking E00010005 cashFlow', function () {
-  it('supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesWithdrawnByCustomers.weightedAverageCost should be -15000', async function () {
+describe('checking E00010005 cashFlow', async function () {
+  before(async function () {
+    const [signer] = await ethers.getSigners();
+    contractWithSigner = new ethers.Contract(
+      routerContractAddress,
+      contractABI,
+      signer,
+    );
+  });
+  it('supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesWithdrawnByCustomers.weightedAverageCost should be -15000000000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'fifth_report',
       'cashFlow',
       'supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesWithdrawnByCustomers.weightedAverageCost',
     );
-    const valueString = (value / 10 ** 18).toString();
-    expect(valueString).to.equal('-15000');
+
+    expect(value).to.equal('-15000000000000000000000');
   });
 
-  it('supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesWithdrawnByCustomers.breakdown.ETH.amount should be -10', async function () {
+  it('supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesWithdrawnByCustomers.breakdown.ETH.amount should be -10000000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'fifth_report',
       'cashFlow',
       'supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesWithdrawnByCustomers.breakdown.ETH.amount',
     );
-    const valueString = (value / 10 ** 18).toString();
-    expect(valueString).to.equal('-10');
+
+    expect(value).to.equal('-10000000000000000000');
   });
 
-  it('supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesWithdrawnByCustomers.breakdown.ETH.weightedAverageCost should be -15000', async function () {
+  it('supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesWithdrawnByCustomers.breakdown.ETH.weightedAverageCost should be -15000000000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'fifth_report',
       'cashFlow',
       'supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesWithdrawnByCustomers.breakdown.ETH.weightedAverageCost',
     );
-    const valueString = (value / 10 ** 18).toString();
-    expect(valueString).to.equal('-15000');
+
+    expect(value).to.equal('-15000000000000000000000');
   });
 
-  it('supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.weightedAverageCost should be 15', async function () {
+  it('supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.weightedAverageCost should be 15000000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'fifth_report',
       'cashFlow',
       'supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.weightedAverageCost',
     );
-    const valueString = (value / 10 ** 18).toString();
-    expect(valueString).to.equal('15');
+
+    expect(value).to.equal('15000000000000000000');
   });
 
-  it('supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.breakdown.ETH.amount should be 0.01', async function () {
+  it('supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.breakdown.ETH.amount should be 10000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'fifth_report',
       'cashFlow',
       'supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.breakdown.ETH.amount',
     );
-    const valueString = (value / 10 ** 18).toString();
-    expect(valueString).to.equal('0.01');
+
+    expect(value).to.equal('10000000000000000');
   });
 
-  it('supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.breakdown.ETH.weightedAverageCost should be 15', async function () {
+  it('supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.breakdown.ETH.weightedAverageCost should be 15000000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'fifth_report',
       'cashFlow',
       'supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.breakdown.ETH.weightedAverageCost',
     );
-    const valueString = (value / 10 ** 18).toString();
-    expect(valueString).to.equal('15');
+
+    expect(value).to.equal('15000000000000000000');
   });
 
-  it('supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesPaidToSuppliersForExpenses.weightedAverageCost should be -3', async function () {
+  it('supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesPaidToSuppliersForExpenses.weightedAverageCost should be -3000000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'fifth_report',
       'cashFlow',
       'supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesPaidToSuppliersForExpenses.weightedAverageCost',
     );
-    const valueString = (value / 10 ** 18).toString();
-    expect(valueString).to.equal('-3');
+
+    expect(value).to.equal('-3000000000000000000');
   });
 
-  it('supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesPaidToSuppliersForExpenses.breakdown.ETH.amount should be -0.002 ', async function () {
+  it('supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesPaidToSuppliersForExpenses.breakdown.ETH.amount should be -2000000000000000 ', async function () {
     const value = await contractWithSigner.getValue(
       'fifth_report',
       'cashFlow',
       'supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesPaidToSuppliersForExpenses.breakdown.ETH.amount',
     );
-    const valueString = (value / 10 ** 18).toString();
-    expect(valueString).to.equal('-0.002');
+
+    expect(value).to.equal('-2000000000000000');
   });
 
-  it('supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesPaidToSuppliersForExpenses.breakdown.ETH.weightedAverageCost should be -3', async function () {
+  it('supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesPaidToSuppliersForExpenses.breakdown.ETH.weightedAverageCost should be -3000000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'fifth_report',
       'cashFlow',
       'supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesPaidToSuppliersForExpenses.breakdown.ETH.weightedAverageCost',
     );
-    const valueString = (value / 10 ** 18).toString();
-    expect(valueString).to.equal('-3');
+
+    expect(value).to.equal('-3000000000000000000');
   });
 
   it('supplementalScheduleOfNonCashOperatingActivities.weightedAverageCost should be -14988000000000000000000', async function () {

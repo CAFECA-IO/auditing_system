@@ -3,24 +3,29 @@ const { expect } = require('chai');
 const { exec } = require('child_process');
 const { timeStamp } = require('console');
 require('events').EventEmitter.defaultMaxListeners = 20;
-const { ethers } = require('ethers');
+const { ethers } = require('hardhat');
 const fs = require('fs');
 const path = require('path');
-const provider = new ethers.providers.JsonRpcProvider(
-  `https://sepolia.infura.io/v3/${process.env.INFURA_API_KEY}`,
-);
-const privateKey = process.env.SEPOLIA_PRIVATE_KEY;
-const signer = new ethers.Wallet(privateKey, provider);
-const contractABIPath = path.resolve(__dirname, '../../routerABI.json');
-const contractABI = JSON.parse(fs.readFileSync(contractABIPath, 'utf8'));
-const routerContractAddress = process.env.ROUTER_ADDRESS;
-const contractWithSigner = new ethers.Contract(
-  routerContractAddress,
-  contractABI,
-  signer,
-);
 
-describe('checking E00010003 balanceSheet', function () {
+const contractABIPath = path.resolve(
+  __dirname,
+  '../../blockchain/artifacts/artifacts/src/services/blockchain/contracts/router.sol/RouterContract.json',
+);
+const contractJSON = JSON.parse(fs.readFileSync(contractABIPath, 'utf8'));
+const contractABI = contractJSON.abi;
+const routerContractAddress = process.env.ROUTER_ADDRESS;
+
+let contractWithSigner;
+
+describe('checking E00010003 balanceSheet', async function () {
+  before(async function () {
+    const [signer] = await ethers.getSigners();
+    contractWithSigner = new ethers.Contract(
+      routerContractAddress,
+      contractABI,
+      signer,
+    );
+  });
   it('assets.details.cryptocurrency.totalAmountFairValue should equal 260000000000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'third_report',
@@ -163,7 +168,15 @@ describe('checking E00010003 balanceSheet', function () {
   });
 });
 
-describe('checking E00010003 comprehensive income', function () {
+describe('checking E00010003 comprehensive income', async function () {
+  before(async function () {
+    const [signer] = await ethers.getSigners();
+    contractWithSigner = new ethers.Contract(
+      routerContractAddress,
+      contractABI,
+      signer,
+    );
+  });
   it('income.details.depositFee.weightedAverageCost should equal 0', async function () {
     const value = await contractWithSigner.getValue(
       'third_report',
@@ -205,7 +218,15 @@ describe('checking E00010003 comprehensive income', function () {
   });
 });
 
-describe('checking E00010003 cashFlow', function () {
+describe('checking E00010003 cashFlow', async function () {
+  before(async function () {
+    const [signer] = await ethers.getSigners();
+    contractWithSigner = new ethers.Contract(
+      routerContractAddress,
+      contractABI,
+      signer,
+    );
+  });
   it('supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesDepositedByCustomers.weightedAverageCost should equal 250000000000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'third_report',

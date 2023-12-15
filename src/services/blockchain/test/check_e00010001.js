@@ -3,32 +3,37 @@ const { expect } = require('chai');
 const { exec } = require('child_process');
 const { timeStamp } = require('console');
 require('events').EventEmitter.defaultMaxListeners = 20;
-const { ethers } = require('ethers');
+const { ethers } = require('hardhat');
 const fs = require('fs');
 const path = require('path');
-const provider = new ethers.providers.JsonRpcProvider(
-  `https://sepolia.infura.io/v3/${process.env.INFURA_API_KEY}`,
+
+const contractABIPath = path.resolve(
+  __dirname,
+  '../../blockchain/artifacts/artifacts/src/services/blockchain/contracts/router.sol/RouterContract.json',
 );
-const privateKey = process.env.SEPOLIA_PRIVATE_KEY;
-const signer = new ethers.Wallet(privateKey, provider);
-const contractABIPath = path.resolve(__dirname, '../../routerABI.json');
-const contractABI = JSON.parse(fs.readFileSync(contractABIPath, 'utf8'));
+const contractJSON = JSON.parse(fs.readFileSync(contractABIPath, 'utf8'));
+const contractABI = contractJSON.abi;
 const routerContractAddress = process.env.ROUTER_ADDRESS;
-const contractWithSigner = new ethers.Contract(
-  routerContractAddress,
-  contractABI,
-  signer,
-);
+
+let contractWithSigner;
 
 describe('checking E00010001 balanceSheet', function () {
+  before(async function () {
+    const [signer] = await ethers.getSigners();
+    contractWithSigner = new ethers.Contract(
+      routerContractAddress,
+      contractABI,
+      signer,
+    );
+  });
+
   it('assets.details.cryptocurrency.totalAmountFairValue should equal 9900990000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'first_report',
       'balanceSheet',
       'assets.details.cryptocurrency.totalAmountFairValue',
     );
-    const valueString = value.toString();
-    expect(valueString).to.equal('9900990000000000000000');
+    expect(value).to.equal('9900990000000000000000');
   });
 
   it('assets.details.cryptocurrency.breakdown.USDT.amount should equal 10001000000000000000000', async function () {
@@ -211,8 +216,7 @@ describe('checking E00010001 cashFlow', function () {
       'cashFlow',
       'supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesDepositedByCustomers.weightedAverageCost',
     );
-    const valueString = value.toString();
-    expect(valueString).to.equal('10089900000000000000000');
+    expect(value).to.equal('10089900000000000000000');
   });
 
   it('supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesDepositedByCustomers.breakdown.USDT.amount should equal 9990000000000000000000', async function () {

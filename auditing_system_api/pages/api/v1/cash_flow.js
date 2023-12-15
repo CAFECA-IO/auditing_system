@@ -39,7 +39,6 @@ async function getContractValue(reportID, reportType, reportColumn) {
 
 export default async function handler(req, res) {
   if (req.method === 'GET') {
-    //C025 and C050 依樣 8&51
     /*C001*/ const supplementalScheduleOfNonCashOperatingActivities_details_cryptocurrenciesDepositedByCustomers_weightedAverageCost =
       await getContractValue(
         reportID,
@@ -250,8 +249,20 @@ export default async function handler(req, res) {
         'cashFlow',
         'otherSupplementaryItems.details.relatedToCash.netIncreaseDecreaseInCashCashEquivalentsAndRestrictedCash.weightedAverageCost',
       );
-    ///*C050*/const otherSupplementaryItems_details_relatedToNonCash_cryptocurrenciesBeginningOfPeriod_weightedAverageCost = await getContractValue(reportID, "cashFlow", "otherSupplementaryItems.details.relatedToNonCash.cryptocurrenciesBeginningOfPeriod.weightedAverageCost");
-    ///*C051*/const otherSupplementaryItems_details_relatedToNonCash_cryptocurrenciesEndOfPeriod_weightedAverageCost = await getContractValue(reportID, "cashFlow", "otherSupplementaryItems.details.relatedToNonCash.cryptocurrenciesEndOfPeriod.weightedAverageCost");
+    /*C050*/ const otherSupplementaryItems_details_relatedToCash_cryptocurrenciesBeginningOfPeriod_weightedAverageCost =
+      await getContractValue(
+        reportID,
+        'cashFlow',
+        'otherSupplementaryItems.details.relatedToCash.cryptocurrenciesBeginningOfPeriod.weightedAverageCost',
+      );
+
+    /*C051*/ const otherSupplementaryItems_details_relatedToCash_cryptocurrenciesEndOfPeriod_weightedAverageCost =
+      await getContractValue(
+        reportID,
+        'cashFlow',
+        'otherSupplementaryItems.details.relatedToCash.cryptocurrenciesEndOfPeriod.weightedAverageCost',
+      );
+
     /*C052*/ const supplementalScheduleOfNonCashOperatingActivities_details_cryptocurrenciesDepositedByCustomers_breakdown_ETH_amount =
       await getContractValue(
         reportID,
@@ -528,6 +539,48 @@ export default async function handler(req, res) {
         'cashFlow',
         'operatingActivities.details.cashPaidToSuppliersForExpenses.breakdown.USD.weightedAverageCost',
       );
+    /*C140*/ const operatingActivities_details_cashWithdrawnByCustomers_breakdown_USD_amount =
+      await getContractValue(
+        reportID,
+        'cashFlow',
+        'operatingActivities.details.cashWithdrawnByCustomers.breakdown.USD.amount',
+      );
+    /*C141*/ const operatingActivities_details_cashWithdrawnByCustomers_breakdown_USD_weightedAverageCost =
+      await getContractValue(
+        reportID,
+        'cashFlow',
+        'operatingActivities.details.cashWithdrawnByCustomers.breakdown.USD.weightedAverageCost',
+      );
+    /*C142*/ const operatingActivities_details_purchaseOfCryptocurrencies_breakdown_USD_amount =
+      await getContractValue(
+        reportID,
+        'cashFlow',
+        'operatingActivities.details.purchaseOfCryptocurrencies.breakdown.USD.amount',
+      );
+    /*C143*/ const operatingActivities_details_purchaseOfCryptocurrencies_breakdown_USD_weightedAverageCost =
+      await getContractValue(
+        reportID,
+        'cashFlow',
+        'operatingActivities.details.purchaseOfCryptocurrencies.breakdown.USD.weightedAverageCost',
+      );
+    /*C144*/ const operatingActivities_details_disposalOfCryptocurrencies_breakdown_USD_amount =
+      await getContractValue(
+        reportID,
+        'cashFlow',
+        'operatingActivities.details.disposalOfCryptocurrencies.breakdown.USD.amount',
+      );
+    /*C145*/ const operatingActivities_details_disposalOfCryptocurrencies_breakdown_USD_weightedAverageCost =
+      await getContractValue(
+        reportID,
+        'cashFlow',
+        'operatingActivities.details.disposalOfCryptocurrencies.breakdown.USD.weightedAverageCost',
+      );
+    /*C146*/ const supplementalScheduleOfNonCashOperatingActivities_details_cryptocurrenciesPaidToCustomersForPerpetualContractProfits_weightedAverageCost =
+      await getContractValue(
+        reportID,
+        'cashFlow',
+        'supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesPaidToCustomersForPerpetualContractProfits.weightedAverageCost',
+      );
     /*startTime*/ const startTime = await getContractValue(
       reportID,
       'time',
@@ -548,7 +601,8 @@ export default async function handler(req, res) {
           supplementalScheduleOfNonCashOperatingActivities_weightedAverageCost, //C007
         details: {
           cryptocurrenciesPaidToCustomersForPerpetualContractProfits: {
-            weightedAverageCost: 0,
+            weightedAverageCost:
+              supplementalScheduleOfNonCashOperatingActivities_details_cryptocurrenciesPaidToCustomersForPerpetualContractProfits_weightedAverageCost,
           },
           cryptocurrenciesDepositedByCustomers: {
             weightedAverageCost:
@@ -763,10 +817,12 @@ export default async function handler(req, res) {
                 otherSupplementaryItems_details_relatedToCash_netIncreaseDecreaseInCashCashEquivalentsAndRestrictedCash_weightedAverageCost, //C049
             },
             cryptocurrenciesBeginningOfPeriod: {
-              weightedAverageCost: 0,
+              weightedAverageCost:
+                otherSupplementaryItems_details_relatedToCash_cryptocurrenciesBeginningOfPeriod_weightedAverageCost, //C051
             },
             cryptocurrenciesEndOfPeriod: {
-              weightedAverageCost: 0,
+              weightedAverageCost:
+                otherSupplementaryItems_details_relatedToCash_cryptocurrenciesEndOfPeriod_weightedAverageCost, //C052
             },
           },
         },

@@ -1,28 +1,16 @@
 const { timeStamp } = require('console');
 require('events').EventEmitter.defaultMaxListeners = 20;
-const { ethers } = require('ethers');
+const { ethers } = require('hardhat');
 const fs = require('fs');
 const path = require('path');
 const readline = require('readline');
-const provider = new ethers.providers.JsonRpcProvider(
-  `https://sepolia.infura.io/v3/${process.env.INFURA_API_KEY}`,
+const contractABIPath = path.resolve(
+  __dirname,
+  '../../blockchain/artifacts/artifacts/src/services/blockchain/contracts/router.sol/RouterContract.json',
 );
-const privateKey = process.env.SEPOLIA_PRIVATE_KEY;
-const signer = new ethers.Wallet(privateKey, provider);
-const contractABIPath = path.resolve(__dirname, '../../routerABI.json');
-const contractABI = JSON.parse(fs.readFileSync(contractABIPath, 'utf8'));
+const contractJSON = JSON.parse(fs.readFileSync(contractABIPath, 'utf8'));
+const contractABI = contractJSON.abi;
 const routerContractAddress = process.env.ROUTER_ADDRESS;
-const contractInstance = new ethers.Contract(
-  routerContractAddress,
-  contractABI,
-  provider,
-);
-const router = contractInstance;
-const contractWithSigner = new ethers.Contract(
-  routerContractAddress,
-  contractABI,
-  signer,
-);
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -30,6 +18,12 @@ const rl = readline.createInterface({
 });
 
 async function addTransactionRecord(data) {
+  const [signer] = await ethers.getSigners();
+  const contractWithSigner = new ethers.Contract(
+    routerContractAddress,
+    contractABI,
+    signer,
+  );
   try {
     const tx = await contractWithSigner.addTransactionRecord(data);
     console.log('Transaction hash:', tx.hash);
@@ -45,12 +39,6 @@ async function addTransactionRecord(data) {
     console.log('Transaction confirmed, details:');
     console.log('Block Number:', receipt.blockNumber);
     console.log('Gas Used:', receipt.gasUsed.toString());
-    // 如果有事件，也可以記錄事件詳情
-    if (receipt.events) {
-      receipt.events.forEach((event) => {
-        console.log('Event:', event.event, 'with arguments:', event.args);
-      });
-    }
   } catch (error) {
     console.error('Error:', error);
   }

@@ -1,0 +1,79 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model balanceSheet{
+  reportID String @id @default(cuid())
+  assetsDetailsCryptocurrencyTotalAmountFairValue String
+  assets_details_cryptocurrency_breakdown_USDT_amount String
+    assets_details_cryptocurrency_breakdown_USDT_fairValue String
+    assets_totalAmountFairValue String
+    totalAssetsFairValue String
+    liabilities_details_userDeposit_totalAmountFairValue String
+    liabilities_details_userDeposit_breakdown_USDT_amount String
+    liabilities_details_userDeposit_breakdown_USDT_fairValue String
+    liabilities_totalAmountFairValue String
+    equity_details_retainedEarnings_totalAmountFairValue String
+    equity_details_retainedEarnings_breakdown_USDT_amount String
+    equity_details_retainedEarnings_breakdown_USDT_fairValue String
+    equity_totalAmountFairValue String
+    totalLiabilitiesAndEquityFairValue String
+    assets_details_cryptocurrency_breakdown_ETH_amount String
+    assets_details_cryptocurrency_breakdown_ETH_fairValue String
+    equity_details_retainedEarnings_breakdown_ETH_amount String
+    equity_details_retainedEarnings_breakdown_ETH_fairValue String
+    assets_details_cashAndCashEquivalent_totalAmountFairValue String
+    assets_details_accountsReceivable_totalAmountFairValue String
+    assets_details_accountsReceivable_breakdown_USDT_amount String
+    assets_details_accountsReceivable_breakdown_USDT_fairValue String
+    assets_details_accountsReceivable_breakdown_BTC_amount String
+    assets_details_accountsReceivable_breakdown_BTC_fairValue String
+    assets_details_accountsReceivable_breakdown_ETH_amount String
+    assets_details_accountsReceivable_breakdown_ETH_fairValue String
+    liabilities_details_accountsPayable_totalAmountFairValue String
+    liabilities_details_accountsPayable_breakdown_USD_amount String
+    liabilities_details_accountsPayable_breakdown_USD_fairValue String
+    liabilities_details_accountsPayable_breakdown_USDT_amount String
+    liabilities_details_accountsPayable_breakdown_USDT_fairValue String
+    liabilities_details_accountsPayable_breakdown_BTC_amount String
+    liabilities_details_accountsPayable_breakdown_BTC_fairValue String
+    liabilities_details_accountsPayable_breakdown_ETH_amount String
+    liabilities_details_accountsPayable_breakdown_ETH_fairValue String
+    liabilities_details_userDeposit_breakdown_USD_amount String
+    liabilities_details_userDeposit_breakdown_USD_fairValue String
+    liabilities_details_userDeposit_breakdown_ETH_amount String
+    liabilities_details_userDeposit_breakdown_ETH_fairValue String
+    liabilities_details_userDeposit_breakdown_BTC_amount  String
+    liabilities_details_userDeposit_breakdown_BTC_airValue String
+    assets_details_cryptocurrency_breakdown_BTC_amount String
+    assets_details_cryptocurrency_breakdown_BTC_fairValue String
+    equity_details_retainedEarnings_breakdown_BTC_amount String
+    equity_details_retainedEarnings_breakdown_BTC_fiarValue String
+    equity_details_retainedEarnings_breakdown_USD_amount String
+    equity_details_retainedEarnings_breakdown_USD_fairValue String
+    equity_details_otherCapitalReserve_fairValue String
+    equity_details_otherCapitalReserve_breakdown_USD_amount String
+    equity_details_otherCapitalReserve_breakdown_USD_fairValue String
+    equity_details_otherCapitalReserve_breakdown_USDT_amount String
+    equity_details_otherCapitalReserve_breakdown_USDT_fairValue String
+    equity_details_otherCapitalReserve_breakdown_ETH_amount String
+    equity_details_otherCapitalReserve_breakdown_ETH_fairValue String
+    equity_details_otherCapitalReserve_breakdown_BTC_amount String
+    equity_details_otherCapitalReserve_breakdown_BTC_fairValue String
+    assets_details_cashAndCashEquivalent_breakdown_USD_amount String
+    assets_details_cashAndCashEquivalent_breakdown_USD_fairValue String
+    startTime String
+    endTime String
+}
+
+model cashFlow{
+  reportID String @id @default(cuid())
+}

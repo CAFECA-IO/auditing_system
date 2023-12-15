@@ -35,7 +35,6 @@ contract TransactionContract {
     //Info:(20231115-Yang){User should first input transaction type and handler addresses in order to register handlers}
     function registerHanlder(bytes32 transactionType, ITransactionHandler handler) external {
         require(handlers[transactionType] == ITransactionHandler(address(0)), "Handler already registered");
-        require(isContract(address(handler)), "Provided address must be a contract.");
         handlers[transactionType] = handler;
     }
 

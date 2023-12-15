@@ -129,7 +129,7 @@ contract E00010006Handler is ITransactionHandler {
         int256 B094 = int256(-EP004);
         report.addValue(reportID, "comprehensiveIncome",  "costs.details.technicalProviderFee.breakdown.BTC.amount", B094);
 
-        int256 B095 = int256(-EP004 * EP006);
+        int256 B095 = int256((-EP004 * EP006)/10**18);
         report.addValue(reportID, "comprehensiveIncome","costs.details.technicalProviderFee.breakdown.BTC.fairValue",B095);
 
     }
@@ -138,24 +138,24 @@ contract E00010006Handler is ITransactionHandler {
 
         int256 C009_59 = int256(((-EP001) * EP006)/10**18);
         report.addValue(reportID, "cashFlow", "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesWithdrawnByCustomers.weightedAverageCost", C009_59);
-        report.addValue(reportID, "cashFlow", "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.weightedAverageCost", C009_59);
+        report.addValue(reportID, "cashFlow", "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesWithdrawnByCustomers.breakdown.BTC.weightedAverageCost", C009_59);
 
         int256 C058 = int256((-EP001));
         report.addValue(reportID, "cashFlow", "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesWithdrawnByCustomers.breakdown.BTC.amount", C058);
 
         int256 C074 = int256(EP002 + EP003);
-        report.addValue(reportID, "cashFlow", "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.breakdown.BTC.weightedAverageCost", C074);
+        report.addValue(reportID, "cashFlow", "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.breakdown.BTC.amount", C074);
 
         int256 C004_75 = int256(((EP002 + EP003) * EP006)/10**18);
-        report.addValue(reportID, "cashFlow", "supplementalScheduleOfNonCashOperatingActivities.weightedAverageCost", C004_75);
-        report.addValue(reportID, "cashFlow", "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesPaidToSuppliersForExpenses.weightedAverageCost", C004_75);
+        report.addValue(reportID, "cashFlow", "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.weightedAverageCost", C004_75);
+        report.addValue(reportID, "cashFlow", "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.breakdown.BTC.weightedAverageCost", C004_75);
 
         int256 C012_109 = int256(((-EP004) * EP006)/10**18);
         report.addValue(reportID, "cashFlow", "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesPaidToSuppliersForExpenses.weightedAverageCost", C012_109);
-        report.addValue(reportID, "cashFlow",  "supplementalScheduleOfNonCashOperatingActivities.weightedAverageCost", C012_109);
+        report.addValue(reportID, "cashFlow", "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesPaidToSuppliersForExpenses.breakdown.BTC.weightedAverageCost", C012_109);
 
         int256 C108 = int256((-EP004));
-        report.addValue(reportID, "cashFlow","supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesPaidToSuppliersForExpenses.breakdown.BTC.weightedAverageCost", C108);
+        report.addValue(reportID, "cashFlow", "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesPaidToSuppliersForExpenses.breakdown.BTC.amount", C108);
 
         int256 C007_8 = int256(((-EP001 + EP002 + EP003) * EP006 + (-EP004 * EP006))/10**18);
         report.addValue(reportID, "cashFlow", "supplementalScheduleOfNonCashOperatingActivities.weightedAverageCost", C007_8);
