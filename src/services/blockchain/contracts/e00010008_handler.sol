@@ -22,7 +22,7 @@ contract E00010008Handler is ITransactionHandler {
     int256 EP004;
     int256 EP006;
     int256 EP007;
-    string  eventIdFromTimeSpan;
+    string eventIdFromTimeSpan;
     string reportID;
 
     constructor(address _transactionContractAddress, address _Parser ,address _reportAddress) {

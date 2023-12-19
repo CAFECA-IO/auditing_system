@@ -32,8 +32,6 @@ async function generateReport(startTime, endTime, report_ID) {
     );
     console.log('Transaction hash:', tx.hash);
 
-    // Wait for the transaction to be confirmed
-    // 等待交易被確認
     const receipt = await tx.wait();
 
     // 檢查交易是否成功

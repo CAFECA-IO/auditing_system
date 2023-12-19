@@ -41,7 +41,6 @@ async function setRate(SP002, SP003, SP004, Report_ID) {
     console.log('Transaction confirmed, details:');
     console.log('Block Number:', receipt.blockNumber);
     console.log('Gas Used:', receipt.gasUsed.toString());
-    // 如果有事件，也可以記錄事件詳情
     if (receipt.events) {
       receipt.events.forEach((event) => {
         console.log('Event:', event.event, 'with arguments:', event.args);

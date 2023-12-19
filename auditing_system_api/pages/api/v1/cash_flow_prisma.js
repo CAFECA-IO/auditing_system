@@ -6,7 +6,7 @@ const { PrismaClient } = require('@prisma/client');
 const path = require('path');
 const prisma = new PrismaClient();
 const provider = new ethers.providers.JsonRpcProvider(
-  `https://goerli.infura.io/v3/${process.env.INFURA_API_KEY}`,
+  `https://isuncoin.baifa.io`,
 );
 const contractABIPath = path.resolve(
   __dirname,
@@ -17,11 +17,12 @@ const routerContractAddress = process.env.ROUTER_ADDRESS;
 console.log('routerContractAddress', routerContractAddress);
 const contractInstance = new ethers.Contract(
   routerContractAddress,
-  contractABI,
+  contractABI.abi,
   provider,
 );
 const reports = contractInstance;
 const reportID = process.env.REPORT_ID;
+console.log('reportID:', reportID);
 
 async function getContractValue(reportID, reportType, reportColumn) {
   try {
@@ -41,7 +42,7 @@ async function insertDataToDB(data) {
     const cashFlow = await prisma.cashFlow.create({
       data: data,
     });
-    console.log('Report saved to database:', balanceSheet);
+    console.log('Report saved to database:', cashFlow);
   } catch (error) {
     console.error('Error saving data to database:', error);
   }
@@ -602,6 +603,7 @@ async function main() {
   );
 
   const data = {
+    reportID: reportID,
     supplementalScheduleOfNonCashOperatingActivities_details_cryptocurrenciesDepositedByCustomers_weightedAverageCost:
       supplementalScheduleOfNonCashOperatingActivities_details_cryptocurrenciesDepositedByCustomers_weightedAverageCost,
     supplementalScheduleOfNonCashOperatingActivities_details_cryptocurrenciesDepositedByCustomers_breakdown_USDT_amount:

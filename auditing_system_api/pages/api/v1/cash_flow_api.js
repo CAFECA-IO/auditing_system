@@ -19,8 +19,8 @@ export default async function handler(req, res) {
       }
       const data = {
         id: reportID,
-        reportStartTime: cashFlow.startTime,
-        reportEndTime: endTime,
+        reportStartTime: cashFlow.startTime * 10 ** 18,
+        reportEndTime: cashFlow.endTime * 10 ** 18,
         supplementalScheduleOfNonCashOperatingActivities: {
           weightedAverageCost:
             cashFlow.supplementalScheduleOfNonCashOperatingActivities_weightedAverageCost, //C007

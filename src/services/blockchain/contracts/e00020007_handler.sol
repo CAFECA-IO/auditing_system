@@ -40,7 +40,7 @@ contract E00020007Handler is ITransactionHandler{
         paramKeys[1] = Iparser.stringToBytes32("EP002");
         paramValues[1] = int256(uint256(data[3]));
         paramKeys[2] = Iparser.stringToBytes32("trans_time");
-        paramValues[2] = int256(uint256(data[4]));
+        paramValues[2] = int256(uint256(block.timestamp));
         transactionContract.addProcessedTransaction(data[0], data[1], recorder, paramKeys, paramValues);
     }
 

@@ -19,8 +19,8 @@ export default async function handler(req, res) {
       }
       const data = {
         id: reportID,
-        reportStartTime: comprehensiveIncome.startTime,
-        reportEndTime: comprehensiveIncome.endTime,
+        reportStartTime: comprehensiveIncome.startTime * 10 ** 18,
+        reportEndTime: comprehensiveIncome.endTime * 10 ** 18,
         netProfit: comprehensiveIncome.netProfit, //B004
         income: {
           weightedAverageCost: comprehensiveIncome.income_weightedAverageCost, //B029

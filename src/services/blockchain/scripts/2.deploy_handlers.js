@@ -60,6 +60,30 @@ async function main() {
           await deployContractAndAppendToEnv('E00010007');
         } else if (code === 'E00010008') {
           await deployContractAndAppendToEnv('E00010008');
+        } else if (code === 'E00020001') {
+          await deployContractAndAppendToEnv('E00020001');
+        } else if (code === 'E00020002') {
+          await deployContractAndAppendToEnv('E00020002');
+        } else if (code === 'E00020003') {
+          await deployContractAndAppendToEnv('E00020003');
+        } else if (code === 'E00020004') {
+          await deployContractAndAppendToEnv('E00020004');
+        } else if (code === 'E00020005') {
+          await deployContractAndAppendToEnv('E00020005');
+        } else if (code === 'E00020006') {
+          await deployContractAndAppendToEnv('E00020006');
+        } else if (code === 'E00020007') {
+          await deployContractAndAppendToEnv('E00020007');
+        } else if (code === 'E00020008') {
+          await deployContractAndAppendToEnv('E00020008');
+        } else if (code === 'E00020009') {
+          await deployContractAndAppendToEnv('E00020009');
+        } else if (code === 'E00020010') {
+          await deployContractAndAppendToEnv('E00020010');
+        } else if (code === 'E00020011') {
+          await deployContractAndAppendToEnv('E00020011');
+        } else if (code === 'E00020012') {
+          await deployContractAndAppendToEnv('E00020012');
         } else {
           console.log('Unrecognized contract code');
         }

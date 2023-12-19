@@ -19,8 +19,8 @@ export default async function handler(req, res) {
       }
       const data = {
         id: balanceSheet.reportID,
-        reportStartTime: balanceSheet.startTime,
-        reportEndTime: balanceSheet.endTime,
+        reportStartTime: balanceSheet.startTime * 10 ** 18,
+        reportEndTime: balanceSheet.endTime * 10 ** 18,
         totalAssetsFairValue: balanceSheet.totalAssetsFairValue, //A005
         totalLiabilitiesAndEquityFairValue:
           balanceSheet.totalLiabilitiesAndEquityFairValue, //A014
