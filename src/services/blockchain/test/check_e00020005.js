@@ -26,37 +26,37 @@ describe('checking E00020005 balanceSheet', async function () {
       signer,
     );
   });
-  it('liabilities.details.userDeposit.totalAmountFairValue should equal −160000000000000000000', async function () {
+  it('liabilities.details.userDeposit.totalAmountFairValue should equal -1600000000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'thirteenth_report',
       'balanceSheet',
       'liabilities.details.userDeposit.totalAmountFairValue',
     );
-    expect(value).to.equal('−160000000000000000000');
+    expect(value).to.equal('-1600000000000000000000');
   });
-  it(' liabilities.details.userDeposit.breakdown.ETH.amount should equal -100000000000000000 ', async function () {
+  it(' liabilities.details.userDeposit.breakdown.ETH.amount should equal -1000000000000000000 ', async function () {
     const value = await contractWithSigner.getValue(
       'thirteenth_report',
       'balanceSheet',
       'liabilities.details.userDeposit.breakdown.ETH.amount',
     );
-    expect(value).to.equal('-100000000000000000');
+    expect(value).to.equal('-1000000000000000000');
   });
-  it('liabilities.details.userDeposit.breakdown.ETH.fairValue should equal −160000000000000000000', async function () {
+  it('liabilities.details.userDeposit.breakdown.ETH.fairValue should equal -1600000000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'thirteenth_report',
       'balanceSheet',
       'liabilities.details.userDeposit.breakdown.ETH.fairValue',
     );
-    expect(value).to.equal('−160000000000000000000');
+    expect(value).to.equal('-1600000000000000000000');
   });
-  it('liabilities.details.accountsPayable.totalAmountFairValue should equal 160000000000000000000 ', async function () {
+  it('liabilities.details.accountsPayable.totalAmountFairValue should equal 1600000000000000000000 ', async function () {
     const value = await contractWithSigner.getValue(
       'thirteenth_report',
       'balanceSheet',
       'liabilities.details.accountsPayable.totalAmountFairValue',
     );
-    expect(value).to.equal('160000000000000000000');
+    expect(value).to.equal('1600000000000000000000');
   });
   it('liabilities.details.accountsPayable.breakdown.ETH.amount should equal 1000000000000000000', async function () {
     const value = await contractWithSigner.getValue(
@@ -64,15 +64,15 @@ describe('checking E00020005 balanceSheet', async function () {
       'balanceSheet',
       'liabilities.details.accountsPayable.breakdown.ETH.amount',
     );
-    expect(value).to.equal('100000000000000000');
+    expect(value).to.equal('1000000000000000000');
   });
-  it('liabilities.details.accountsPayable.breakdown.ETH.fairValue should equal 160000000000000000000', async function () {
+  it('liabilities.details.accountsPayable.breakdown.ETH.fairValue should equal 1600000000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'thirteenth_report',
       'balanceSheet',
       'liabilities.details.accountsPayable.breakdown.ETH.fairValue',
     );
-    expect(value).to.equal('160000000000000000000');
+    expect(value).to.equal('1600000000000000000000');
   });
   it('liabilities.totalAmountFairValue  should equal 0', async function () {
     const value = await contractWithSigner.getValue(

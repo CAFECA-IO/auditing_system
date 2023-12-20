@@ -24,7 +24,7 @@ function runCommand(command, input) {
 
 async function main() {
   try {
-    /*console.log(
+    console.log(
       '\x1b[34m%s\x1b[0m',
       '------Auto running yarn add --dev hardhat @nomiclabs/hardhat-ethers@npm:hardhat-deploy-ethers ethers ...------',
     );
@@ -525,10 +525,10 @@ async function main() {
     await runCommand(
       'npx hardhat test  src/services/blockchain/test/check_e00020001.js --network iSunCoin',
     );
-*/
+
     //
 
-    /*console.log(
+    console.log(
       '\x1b[34m%s\x1b[0m',
       '------Auto deploying E00020002handler ...------',
     );
@@ -579,7 +579,7 @@ async function main() {
     );
     await runCommand(
       'npx hardhat test  src/services/blockchain/test/check_e00020002.js --network iSunCoin',
-    );*/
+    );
 
     //
 
@@ -634,6 +634,116 @@ async function main() {
     );
     await runCommand(
       'npx hardhat test  src/services/blockchain/test/check_e00020003.js --network iSunCoin',
+    );
+
+    //
+
+    console.log(
+      '\x1b[34m%s\x1b[0m',
+      '------Auto deploying E00020004handler ...------',
+    );
+    await runCommand(
+      'npx hardhat run src/services/blockchain/scripts/2.deploy_handlers.js --network iSunCoin',
+      'E00020004',
+    );
+
+    console.log(
+      '\x1b[34m%s\x1b[0m',
+      '------Auto registering E00020004handler ...------',
+    );
+    await runCommand(
+      'npx hardhat run src/services/blockchain/scripts/3.register_handler.js --network iSunCoin',
+      '0x4530303032303030340000000000000000000000000000000000000000000000',
+    );
+
+    console.log(
+      '\x1b[34m%s\x1b[0m',
+      '------Auto adding E00020004 event ...------',
+    );
+    await runCommand(
+      'npx hardhat run src/services/blockchain/scripts/4.transaction_record.js --network iSunCoin',
+      `0x7477656c66746800000000000000000000000000000000000000000000000000,0x4530303032303030340000000000000000000000000000000000000000000000,0x0000000000000000000000000000000000000000000000000de0b6b3a7640000,0x000000000000000000000000000000000000000000000059725991ece2880000`,
+    );
+
+    console.log(
+      '\x1b[34m%s\x1b[0m',
+      '------Auto running 5.setRate.js command...------',
+    );
+    await runCommand(
+      'npx hardhat run src/services/blockchain/scripts/5.set_rate.js --network iSunCoin',
+      `0x0000000000000000000000000000000000000000000000000dbd2fc137a30000,0x000000000000000000000000000000000000000000000056bc75e2d631000000,0x000000000000000000000000000000000000000000000581767ba6189c400000,0x7477656c6674685f7265706f7274000000000000000000000000000000000000`,
+    );
+
+    console.log(
+      '\x1b[34m%s\x1b[0m',
+      '------Auto running 6.set_time_span.js command...------',
+    );
+    await runCommand(
+      'npx hardhat run src/services/blockchain/scripts/6.set_time_span.js --network iSunCoin',
+      `0x7477656c6674685f7265706f7274000000000000000000000000000000000000`,
+    );
+
+    console.log(
+      '\x1b[34m%s\x1b[0m',
+      '------Auto running npx hardhat test  src/services/blockchain/test/check_e00020004.js command...------',
+    );
+    await runCommand(
+      'npx hardhat test  src/services/blockchain/test/check_e00020004.js --network iSunCoin',
+    );
+
+    //
+
+    console.log(
+      '\x1b[34m%s\x1b[0m',
+      '------Auto deploying E00020005handler ...------',
+    );
+    await runCommand(
+      'npx hardhat run src/services/blockchain/scripts/2.deploy_handlers.js --network iSunCoin',
+      'E00020005',
+    );
+
+    console.log(
+      '\x1b[34m%s\x1b[0m',
+      '------Auto registering E00020005handler ...------',
+    );
+    await runCommand(
+      'npx hardhat run src/services/blockchain/scripts/3.register_handler.js --network iSunCoin',
+      '0x4530303032303030350000000000000000000000000000000000000000000000',
+    );
+
+    console.log(
+      '\x1b[34m%s\x1b[0m',
+      '------Auto adding E00020005 event ...------',
+    );
+    await runCommand(
+      'npx hardhat run src/services/blockchain/scripts/4.transaction_record.js --network iSunCoin',
+      `0x746869727465656e746800000000000000000000000000000000000000000000,0x4530303032303030350000000000000000000000000000000000000000000000,0x0000000000000000000000000000000000000000000000000de0b6b3a7640000,0x00000000000000000000000000000000000000000000000000d529ae9e860000`,
+    );
+
+    console.log(
+      '\x1b[34m%s\x1b[0m',
+      '------Auto running 5.setRate.js command...------',
+    );
+    await runCommand(
+      'npx hardhat run src/services/blockchain/scripts/5.set_rate.js --network iSunCoin',
+      `0x0000000000000000000000000000000000000000000000000dbd2fc137a30000,0x000000000000000000000000000000000000000000000056bc75e2d631000000,0x000000000000000000000000000000000000000000000581767ba6189c400000,0x746869727465656e74685f7265706f7274000000000000000000000000000000`,
+    );
+
+    console.log(
+      '\x1b[34m%s\x1b[0m',
+      '------Auto running 6.set_time_span.js command...------',
+    );
+    await runCommand(
+      'npx hardhat run src/services/blockchain/scripts/6.set_time_span.js --network iSunCoin',
+      `0x746869727465656e74685f7265706f7274000000000000000000000000000000`,
+    );
+
+    console.log(
+      '\x1b[34m%s\x1b[0m',
+      '------Auto running npx hardhat test  src/services/blockchain/test/check_e00020005.js command...------',
+    );
+    await runCommand(
+      'npx hardhat test  src/services/blockchain/test/check_e00020005.js --network iSunCoin',
     );
   } catch (error) {}
 }
