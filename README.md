@@ -1,24 +1,18 @@
 # Auditing System by ISUNCLOUD
 
-_Currently, smart contracts are deployed using Remix, and data is input directly into the deployed smart contracts via Etherscan or Remix._
+_This system allows users to input multiple transactions of various types. Users can specify a time range, and the system will then carry out accounting calculations on the transactions that occurred within this period, generating balance sheets, income statements, and cash flow statements. These reports can then be stored in the SQLite Prisma model. When users request a specific URL, the system will instantly generate and provide the corresponding API._
 
-## System Class Diagram:
+## Engage the system manually:
 
-<img width="2000" alt="image" src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/c35e050f-cd78-49e5-93c1-e1f2fd718500">
+_First, download this github zip file, unzip it and find the smart contracts in_
 
-## Sequence Diagram:
+```
+src/services/blockchain/contracts
+```
 
-record transaction data:
+### System Deployment:
 
-<img width="500" alt="image" src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/74e868bd-62d1-402f-85ea-d1aacee4e65b">
-
-give time span and read reports:
-
-<img width="1200" alt="image" src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/f202a112-01bb-45a8-a8e6-b70f68a8ba33">
-
-## System Deployment:
-
-_Deploy the smart contracts in the following sequence:_
+_Deploy the smart contracts in the following sequence: ( you can deploy the smart contracts with Remix IDE )_
 
 1.parser.sol
 
@@ -34,7 +28,7 @@ _Deploy the smart contracts in the following sequence:_
 
 **If user wants to add new transaction types, for example e00010099, user only needs to write an e00010099.sol smart contract, deploy it, and register them in router**
 
-## Operation Flow:
+### Operation Flow:
 
 1.  Users start by registering handlers using the registerHandlers function in the `router`, inputting the `TransactionType` (of type `bytes32`) and the `handler’s` address (of type address).
 
@@ -132,22 +126,153 @@ The users then interact with the `filterTransactionsInRange` function by inputin
 
 <img width="500" height="350" alt="image" src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/9a949aa7-2f74-4f05-b371-22eb7e98db48">
 
-## Interact with smart contracts on Ethereum and checking results
+## Engage the system with hardhat and run with scripts ( using iSunCoin as blockchain testnet )
 
-1. First, users should download and deploy the `hardhat` environment locally .
+### Environment settings:
 
-2. Set your` SEPOLIA_PRIVATE_KEY`, `INFURA_API_KEY`, `REPORT_ID` ('first_report' is the default id), and `REPORT_CONTRACT_ADDRESS` at `.env` file, it's in auditing_system/.env
-3. Run your scripts at the root file with `npx hardhat run src/services/blockchain/scripts/transformBalanceSheetAPI.js` or
+1. Download this github zip file, unzip it.
 
-`npx hardhat run src/services/blockchain/scripts/transformComprehensiveIncomeAPI.js` or
+2. Open your terminal and "cd" into the file.
 
-`npx hardhat run src/services/blockchain/scripts/transformCashFlowAPI.js`
+3. If you don't have node.js in your computer go to [Node,js](https://nodejs.org/en) and download it (LTS recommended)
 
-4. This program would help users to interact with reports.sol on ethereum by getting reports data.
+4. Run the following command to install npx:
 
-5. The program will parse the raw data into planned API format as follow:
+```
+npm i -g npx
+```
 
-   <img width="366" alt="image" src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/0d311247-53b4-4d45-8e0b-f366108b2c62">
+5. Run the following comand to install hardhat:
+
+```
+npm i hardhat
+```
+
+6. Create a **.env** file in root directory of this project and set your PRIVATE_KEY and INFURA_API_KEY:
+
+```
+vim .env
+```
+
+and set:
+
+![Alt text](image.png)
+
+### Run the scripts:
+
+1. Deploy the necessary smart contracts:
+
+```
+npx hardhat run src/services/blockchain/scripts/1.deploy.js --network iSunCoin
+```
+
+2. Deploy the transactions handlers' smart contracts:
+
+```
+npx hardhat run src/services/blockchain/scripts/2.deploy_handlers.js --network iSunCoin
+```
+
+check your .env file to see if smart contracts' addresses have been recorded successfully.
+
+3. Register the handlers into the system:
+
+```
+npx hardhat run src/services/blockchain/scripts/3.register_handler.js --network iSunCoin
+```
+
+in the console you shall fill in the transaction type(as bytes32) and the handler address:
+
+![Alt text](image-1.png)
+
+you will transaction hash if the handler was successfully registered
+
+4. Record transaction data:
+
+```
+npx hardhat run src/services/blockchain/scripts/4.transaction_record.js  --network iSunCoin
+```
+
+fill in the data (please refer to the section "Operation Flow" to learn the data format)such as:
+![Alt text](image-2.png)
+
+5. Set current exchange rate and report ID:
+
+```
+npx hardhat run src/services/blockchain/scripts/5.set_rate.js  --network iSunCoin
+```
+
+![Alt text](image-4.png)
+
+6. Set a time span and input the reportID to calculate the transactions within the time span to generate reports:
+
+```
+npx hardhat run src/services/blockchain/scripts/6.set_time_span.js --network iSunCoin
+```
+
+(for now you only need to input the reportID, since the time span was set as trasactionTime +1 and -1)
+![Alt text](image-3.png)
+
+7. check the report columns:
+
+```
+npx hardhat run src/services/blockchain/scripts/7.check_column.js --network iSunCoin
+```
+
+![Alt text](image-5.png)
+
+### Run the auto test:
+
+Enter the following command, this script will automatically deploy, register, enter fixed testing data and check if the answers meet as expected.
+
+```
+npx hardhat run src/services/blockchain/scripts/auto_check.js --network iSunCoin
+```
+
+![Alt text](image-6.png)
+
+## Write data into sqlite database and request API from nextjs
+
+1. **"cd"** into **"auditing_system_api"** file
+
+2. run the following command to install prisma client.
+
+```
+npm install @prisma/cient
+```
+
+3. Set a .env file in **"auditing_system_api"**, you can copy content in **".env"** from the root direction.
+
+4. Adding a **"REPORT_ID"** in **"auditing_system_api/.env"** and the value of **"REPORT_ID"** should be the report you want to write into database and request API.
+
+5. Install dotenv:
+
+```
+npm install dotenv
+```
+
+6. Create a **"dev.db"** file under **"auditing_system_api/prisma"**
+
+7. Run the following command to migrate table into database:
+
+```
+npx prisma migrate deploy
+```
+
+8. Run the following command to write data into database(take balanceSheet for example):
+
+```
+node pages/api/v1/balance_sheet_prisma.js
+```
+
+You can go to prisma/dev.db ,refresh it, to see if it's successfully writen.
+
+9. Run the following command to open local server:
+
+```
+npm run dev
+```
+
+10. Go to the local server's url(for example: http://localhost/pages/v1), and enter http://localhost/pages/v1/balance_sheet_api to see if API has output as expected.
 
 ## Revert conditions
 
@@ -171,8 +296,16 @@ The users then interact with the `filterTransactionsInRange` function by inputin
 
 10. When reentrancy attack in transaction contract, revert it using reentrancy guard locker.
 
-## Future Plans:
+## System Class Diagram:
 
-1.  Implement Mistake Proofing mechanisms, such as require statements.
+<img width="2000" alt="image" src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/c35e050f-cd78-49e5-93c1-e1f2fd718500">
 
-2.  Optimize gas fees through careful data structure design.
+## Sequence Diagram:
+
+record transaction data:
+
+<img width="500" alt="image" src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/74e868bd-62d1-402f-85ea-d1aacee4e65b">
+
+give time span and read reports:
+
+<img width="1200" alt="image" src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/f202a112-01bb-45a8-a8e6-b70f68a8ba33">
