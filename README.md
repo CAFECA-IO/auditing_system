@@ -242,7 +242,8 @@ npm install @prisma/cient
 
 3. Set a .env file in **"auditing_system_api"**, you can copy content in **".env"** from the root direction.
 
-4. Adding a **"REPORT_ID"** in **"auditing_system_api/.env"** and the value of **"REPORT_ID"** should be the report you want to write into database and request API.
+4. Adding a **"REPORT_ID"** in **"auditing_system_api/.env"** and the value of **"REPORT_ID"** should be the report you want to write into database and request API. For example:
+   ![Alt text](image-7.png)
 
 5. Install dotenv:
 
