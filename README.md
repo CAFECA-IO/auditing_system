@@ -237,7 +237,7 @@ npx hardhat run src/services/blockchain/scripts/auto_check.js --network iSunCoin
 2. run the following command to install prisma client.
 
 ```
-npm install @prisma/cient
+npm install @prisma/client
 ```
 
 3. Set a .env file in **"auditing_system_api"**, you can copy content in **".env"** from the root direction.
