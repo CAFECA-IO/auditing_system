@@ -12,8 +12,9 @@ const provider = new ethers.providers.JsonRpcProvider(
 );
 const contractABIPath = path.resolve(
   __dirname,
-  '/Users/yong/SmartContracts/Auditing_system/auditing_system_11_29/src/services/blockchain/artifacts/artifacts/src/services/blockchain/contracts/router.sol/RouterContract.json',
+  '../../../../src/services/blockchain/artifacts/artifacts/src/services/blockchain/contracts/router.sol/RouterContract.json',
 );
+console.log('ABIpath:', contractABIPath);
 const contractABI = JSON.parse(fs.readFileSync(contractABIPath, 'utf8'));
 const routerContractAddress = process.env.ROUTER_ADDRESS;
 console.log('routerContractAddress', routerContractAddress);
