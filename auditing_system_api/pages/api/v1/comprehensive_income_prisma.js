@@ -4,6 +4,7 @@ const { ethers } = require('ethers');
 const fs = require('fs');
 const { PrismaClient } = require('@prisma/client');
 const path = require('path');
+require('dotenv').config();
 const prisma = new PrismaClient();
 const provider = new ethers.providers.JsonRpcProvider(
   `https://isuncoin.baifa.io`,
