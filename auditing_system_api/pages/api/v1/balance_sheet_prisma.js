@@ -2,6 +2,7 @@ const { timeStamp } = require('console');
 require('events').EventEmitter.defaultMaxListeners = 15;
 const { ethers } = require('ethers');
 const fs = require('fs');
+require('dotenv').config();
 const { PrismaClient } = require('@prisma/client');
 const path = require('path');
 const { report } = require('process');

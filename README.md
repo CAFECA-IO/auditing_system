@@ -154,7 +154,7 @@ npm i hardhat
 vim .env
 ```
 
-and set:
+and set your private key:
 
 ![Alt text](image.png)
 

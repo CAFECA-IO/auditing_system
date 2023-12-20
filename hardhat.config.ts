@@ -6,17 +6,9 @@ import 'dotenv/config';
 const config: HardhatUserConfig = {
   defaultNetwork: 'sepolia',
   networks: {
-    sepolia: {
-      url: `https://sepolia.infura.io/v3/${process.env.INFURA_API_KEY}`,
-      accounts: [process.env.SEPOLIA_PRIVATE_KEY],
-    },
-    goerli: {
-      url: `https://goerli.infura.io/v3/${process.env.INFURA_API_KEY}`,
-      accounts: [process.env.SEPOLIA_PRIVATE_KEY],
-    },
     iSunCoin: {
       url: `https://isuncoin.baifa.io`,
-      accounts: [process.env.SEPOLIA_PRIVATE_KEY],
+      accounts: [process.env.PRIVATE_KEY],
     },
   },
   solidity: {
