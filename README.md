@@ -273,7 +273,13 @@ You can go to prisma/dev.db ,refresh it, to see if it's successfully writen.
 npm run dev
 ```
 
-10. Go to the local server's url(for example: http://localhost/pages/v1), and enter http://localhost/pages/v1/balance_sheet_api to see if API has output as expected.
+10. Go to the local server's url(for example: http://localhost:3000/api/v1), and enter
+
+```
+http://localhost:3000/api/v1/balance_sheet_api
+```
+
+to see if API has output as expected.
 
 ## Revert conditions
 
