@@ -19,7 +19,7 @@ contract E00020012Handler is ITransactionHandler{
     int256 EP001;
     int256 EP002;
     string eventIdFromTimeSpan;
-    string reportID;
+    string reportName;
 
     constructor(address _transactionContractAddress, address _Parser ,address _reportAddress) {
         transactionContract = TransactionContract(_transactionContractAddress);
@@ -46,12 +46,12 @@ contract E00020012Handler is ITransactionHandler{
 
     /*Info: (20231115 - Yang){This function gets the rates and eventIDs, then calls transactionContract to get full data based on the eventIDs,
     finally, store them in variables in order to calculate}*/
-    function getEventIdAndRate(bytes32 _eventId,bytes32 _reportID ,bytes32 _SP002, bytes32 _SP003, bytes32 _SP004) external override{
+    function getEventIdAndRate(bytes32 _eventId,bytes32 _reportName ,bytes32 _SP002, bytes32 _SP003, bytes32 _SP004) external override{
         latestSP002 = int256(uint256(_SP002));
         latestSP003 = int256(uint256(_SP003));
         latestSP004 = int256(uint256(_SP004));
         eventIdFromTimeSpan = Iparser.bytes32ToString(_eventId);
-        reportID = Iparser.bytes32ToString(_reportID);
+        reportName = Iparser.bytes32ToString(_reportName);
         emit EventIdAndRateReceived(eventIdFromTimeSpan, latestSP002, latestSP003, latestSP004);
 
         EP001  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP001"));
@@ -66,18 +66,18 @@ contract E00020012Handler is ITransactionHandler{
     function computeBalanceSheet() internal  {
 
         int256 A006_40_41 = int256((-EP001));
-        report.addValue(reportID, "balanceSheet", "liabilities.details.userDeposit.totalAmountFairValue", A006_40_41);
-        report.addValue(reportID, "balanceSheet", "liabilities.details.userDeposit.breakdown.USD.amount", A006_40_41);
-        report.addValue(reportID, "balanceSheet", "liabilities.details.userDeposit.breakdown.USD.fairValue", A006_40_41);
+        report.addValue(reportName, "balanceSheet", "liabilities.details.userDeposit.totalAmountFairValue", A006_40_41);
+        report.addValue(reportName, "balanceSheet", "liabilities.details.userDeposit.breakdown.USD.amount", A006_40_41);
+        report.addValue(reportName, "balanceSheet", "liabilities.details.userDeposit.breakdown.USD.fairValue", A006_40_41);
 
         int256 A031_32_33 = int256((EP001));
-        report.addValue(reportID, "balanceSheet", "liabilities.details.accountsPayable.totalAmountFairValue", A031_32_33);
-        report.addValue(reportID, "balanceSheet", "liabilities.details.accountsPayable.breakdown.USD.amount", A031_32_33);
-        report.addValue(reportID, "balanceSheet", "liabilities.details.accountsPayable.breakdown.USD.fairValue", A031_32_33);
+        report.addValue(reportName, "balanceSheet", "liabilities.details.accountsPayable.totalAmountFairValue", A031_32_33);
+        report.addValue(reportName, "balanceSheet", "liabilities.details.accountsPayable.breakdown.USD.amount", A031_32_33);
+        report.addValue(reportName, "balanceSheet", "liabilities.details.accountsPayable.breakdown.USD.fairValue", A031_32_33);
 
         int256 A009_014 = A006_40_41 + A031_32_33;
-        report.addValue(reportID, "balanceSheet", "liabilities.totalAmountFairValue", A009_014);
-        report.addValue(reportID, "balanceSheet", "totalLiabilitiesAndEquityFairValue", A009_014);
+        report.addValue(reportName, "balanceSheet", "liabilities.totalAmountFairValue", A009_014);
+        report.addValue(reportName, "balanceSheet", "totalLiabilitiesAndEquityFairValue", A009_014);
 
     }
 }

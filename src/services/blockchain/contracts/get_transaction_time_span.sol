@@ -7,13 +7,13 @@ import "./reports.sol";
 
 contract GetTransactionTimeSpan {
 
-    event TransactionProcessed(bytes32 indexed reportID, bytes32 eventType);
+    event TransactionProcessed(bytes32 indexed reportName, bytes32 eventType);
     struct Settlement {
         int256 SP001;
         bytes32 SP002;
         bytes32 SP003;
         bytes32 SP004;
-        bytes32 reportID;
+        bytes32 reportName;
     }
 
     struct FilteredData {
@@ -21,7 +21,7 @@ contract GetTransactionTimeSpan {
         bytes32[] eventIds;
         int256[] transTimes;
         address reportCreater;
-        bytes32 reportID;
+        bytes32 reportName;
     }
 
     Settlement[] public rateHistory;
@@ -38,29 +38,29 @@ contract GetTransactionTimeSpan {
     }
 
     //Info: (20231115 - Yang){This function is for testing, users should use setRate function to input a bytes32 array}
-    function setRate(bytes32 _SP002, bytes32 _SP003, bytes32 _SP004, bytes32 _reportID)external {
-        require(!usedReportIDs[_reportID], "Report ID already used");
+    function setRate(bytes32 _SP002, bytes32 _SP003, bytes32 _SP004, bytes32 _reportName)external {
+        require(!usedReportIDs[_reportName], "Report ID already used");
         Settlement memory newRate = Settlement({
             SP001 : int256(block.timestamp),
             SP002: _SP002,
             SP003: _SP003,
             SP004: _SP004,
-            reportID: _reportID
+            reportName: _reportName
         });
-        usedReportIDs[_reportID] = true;
+        usedReportIDs[_reportName] = true;
         rateHistory.push(newRate);
     }
 
     //Info: (20231115 - Yang){This function is to set a timeSpan and then filtered every event to get the eventIDs which are in the timeSpan}
-    function filterTransactionsInRange(int256 startTime, int256 endTime, bytes32 _reportID)
+    function filterTransactionsInRange(int256 startTime, int256 endTime, bytes32 _reportName)
         external
         returns (FilteredData memory)
     {
-        require(!usedReportIDsInFilter[_reportID], "Report ID already used in generating report");
-        reports.addValue(Iparser.bytes32ToString(_reportID), "time", "startTime", startTime);
-        reports.addValue(Iparser.bytes32ToString(_reportID), "time", "endTime", endTime);
+        require(!usedReportIDsInFilter[_reportName], "Report ID already used in generating report");
+        reports.addValue(Iparser.bytes32ToString(_reportName), "time", "startTime", startTime);
+        reports.addValue(Iparser.bytes32ToString(_reportName), "time", "endTime", endTime);
 
-        usedReportIDsInFilter[_reportID] = true;
+        usedReportIDsInFilter[_reportName] = true;
         uint256 count = transactionContract.getTransactionsCount();
         bytes32[] memory types = new bytes32[](count);
         bytes32[] memory eventIds = new bytes32[](count);
@@ -93,7 +93,7 @@ contract GetTransactionTimeSpan {
             eventIds: filteredEventIds,
             transTimes: filteredTransTimes,
             reportCreater: reportCreater,
-            reportID: _reportID
+            reportName: _reportName
         });
 
         processFilteredTransactions(data);
@@ -108,8 +108,8 @@ contract GetTransactionTimeSpan {
             ITransactionHandler handler = transactionContract.getHandler(data.types[i]);
             require(address(handler) != address(0),"handler not exist");
 
-            handler.getEventIdAndRate(data.eventIds[i], data.reportID ,latestRate.SP002, latestRate.SP003, latestRate.SP004);
-            emit TransactionProcessed(data.reportID, data.types[i]);
+            handler.getEventIdAndRate(data.eventIds[i], data.reportName ,latestRate.SP002, latestRate.SP003, latestRate.SP004);
+            emit TransactionProcessed(data.reportName, data.types[i]);
 
         }
     }

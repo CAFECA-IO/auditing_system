@@ -26,15 +26,6 @@ async function main() {
   try {
     console.log(
       '\x1b[34m%s\x1b[0m',
-      '------Auto running yarn add --dev hardhat @nomiclabs/hardhat-ethers@npm:hardhat-deploy-ethers ethers ...------',
-    );
-
-    await runCommand(
-      'yarn add --dev hardhat @nomiclabs/hardhat-ethers@npm:hardhat-deploy-ethers ethers',
-    );
-
-    console.log(
-      '\x1b[34m%s\x1b[0m',
       '------Auto running 1.deploy.js ...------',
     );
     await runCommand(

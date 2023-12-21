@@ -6,13 +6,13 @@ pragma solidity ^0.8.0;
 contract Reports {
     mapping(string => mapping(string => mapping(string => int256))) public data;
 
-    function addValue(string memory reportID, string memory reportType, string memory reportColumn, int256 value) external {
-        data[reportID][reportType][reportColumn] += value;
+    function addValue(string memory reportName, string memory reportType, string memory reportColumn, int256 value) external {
+        data[reportName][reportType][reportColumn] += value;
     }
 
-    function getValue(string memory reportID, string memory reportType, string memory reportColumn) external view returns (int256) {
+    function getValue(string memory reportName, string memory reportType, string memory reportColumn) external view returns (int256) {
         int256 result;
-        result = data[reportID][reportType][reportColumn];
+        result = data[reportName][reportType][reportColumn];
         return result;
     }
 

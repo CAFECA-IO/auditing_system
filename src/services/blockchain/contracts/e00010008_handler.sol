@@ -23,7 +23,7 @@ contract E00010008Handler is ITransactionHandler {
     int256 EP006;
     int256 EP007;
     string eventIdFromTimeSpan;
-    string reportID;
+    string reportName;
 
     constructor(address _transactionContractAddress, address _Parser ,address _reportAddress) {
         transactionContract = TransactionContract(_transactionContractAddress);
@@ -57,12 +57,12 @@ contract E00010008Handler is ITransactionHandler {
         transactionContract.addProcessedTransaction(data[0], data[1], recorder, paramKeys, paramValues);
     }
 
-    function getEventIdAndRate(bytes32 _eventId,bytes32 _reportID ,bytes32 _SP002, bytes32 _SP003, bytes32 _SP004) external override{
+    function getEventIdAndRate(bytes32 _eventId,bytes32 _reportName ,bytes32 _SP002, bytes32 _SP003, bytes32 _SP004) external override{
         latestSP002 = int256(uint256(_SP002));
         latestSP003 = int256(uint256(_SP003));
         latestSP004 = int256(uint256(_SP004));
         eventIdFromTimeSpan = Iparser.bytes32ToString(_eventId);
-        reportID = Iparser.bytes32ToString(_reportID);
+        reportName = Iparser.bytes32ToString(_reportName);
         emit EventIdAndRateReceived(eventIdFromTimeSpan, latestSP002, latestSP003, latestSP004);
 
         EP001  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP001"));
@@ -81,62 +81,62 @@ contract E00010008Handler is ITransactionHandler {
     function computeBalanceSheet() internal  {
 
         int256 A019_61_62_4_5_14 = int256((-EP001) +EP002+EP003+(-EP004));
-        report.addValue(reportID, "balanceSheet", "assets.details.cashAndCashEquivalent.totalAmountFairValue", A019_61_62_4_5_14);
-        report.addValue(reportID, "balanceSheet", "assets.details.cashAndCashEquivalent.breakdown.USD.amount", A019_61_62_4_5_14);
-        report.addValue(reportID, "balanceSheet", "assets.details.cashAndCashEquivalent.breakdown.USD.fairValue", A019_61_62_4_5_14);
-        report.addValue(reportID, "balanceSheet", "assets.totalAmountFairValue", A019_61_62_4_5_14);
-        report.addValue(reportID, "balanceSheet", "totalAssetsFairValue", A019_61_62_4_5_14);
-        report.addValue(reportID, "balanceSheet","totalLiabilitiesAndEquityFairValue", A019_61_62_4_5_14);
+        report.addValue(reportName, "balanceSheet", "assets.details.cashAndCashEquivalent.totalAmountFairValue", A019_61_62_4_5_14);
+        report.addValue(reportName, "balanceSheet", "assets.details.cashAndCashEquivalent.breakdown.USD.amount", A019_61_62_4_5_14);
+        report.addValue(reportName, "balanceSheet", "assets.details.cashAndCashEquivalent.breakdown.USD.fairValue", A019_61_62_4_5_14);
+        report.addValue(reportName, "balanceSheet", "assets.totalAmountFairValue", A019_61_62_4_5_14);
+        report.addValue(reportName, "balanceSheet", "totalAssetsFairValue", A019_61_62_4_5_14);
+        report.addValue(reportName, "balanceSheet","totalLiabilitiesAndEquityFairValue", A019_61_62_4_5_14);
 
         int256 A006_40_41_9 = int256((-EP001));
-        report.addValue(reportID, "balanceSheet", "liabilities.details.userDeposit.totalAmountFairValue", A006_40_41_9);
-        report.addValue(reportID, "balanceSheet", "liabilities.details.userDeposit.breakdown.USD.amount", A006_40_41_9);
-        report.addValue(reportID, "balanceSheet", "liabilities.details.userDeposit.breakdown.USD.fairValue", A006_40_41_9);
-        report.addValue(reportID, "balanceSheet", "liabilities.totalAmountFairValue", A006_40_41_9);
+        report.addValue(reportName, "balanceSheet", "liabilities.details.userDeposit.totalAmountFairValue", A006_40_41_9);
+        report.addValue(reportName, "balanceSheet", "liabilities.details.userDeposit.breakdown.USD.amount", A006_40_41_9);
+        report.addValue(reportName, "balanceSheet", "liabilities.details.userDeposit.breakdown.USD.fairValue", A006_40_41_9);
+        report.addValue(reportName, "balanceSheet", "liabilities.totalAmountFairValue", A006_40_41_9);
 
         int256 A010_50_51_13 = int256(EP002+EP003+(-EP004));
-        report.addValue(reportID, "balanceSheet", "equity.details.retainedEarnings.totalAmountFairValue", A010_50_51_13);
-        report.addValue(reportID, "balanceSheet", "equity.details.retainedEarnings.breakdown.USD.amount", A010_50_51_13);
-        report.addValue(reportID, "balanceSheet", "equity.details.retainedEarnings.breakdown.USD.fairValue", A010_50_51_13);
-        report.addValue(reportID, "balanceSheet", "equity.totalAmountFairValue", A010_50_51_13);
+        report.addValue(reportName, "balanceSheet", "equity.details.retainedEarnings.totalAmountFairValue", A010_50_51_13);
+        report.addValue(reportName, "balanceSheet", "equity.details.retainedEarnings.breakdown.USD.amount", A010_50_51_13);
+        report.addValue(reportName, "balanceSheet", "equity.details.retainedEarnings.breakdown.USD.fairValue", A010_50_51_13);
+        report.addValue(reportName, "balanceSheet", "equity.totalAmountFairValue", A010_50_51_13);
     }
     function computeComprehesiveIncome() internal {
 
         int256 B005_44_45 = int256((EP002 + EP003));
-        report.addValue(reportID, "comprehensiveIncome", "income.details.withdrawalFee.weightedAverageCost", B005_44_45);
-        report.addValue(reportID, "comprehensiveIncome", "income.details.withdrawalFee.breakdown.USD.amount", B005_44_45);
-        report.addValue(reportID, "comprehensiveIncome", "income.details.withdrawalFee.breakdown.USD.weightedAverageCost", B005_44_45);
+        report.addValue(reportName, "comprehensiveIncome", "income.details.withdrawalFee.weightedAverageCost", B005_44_45);
+        report.addValue(reportName, "comprehensiveIncome", "income.details.withdrawalFee.breakdown.USD.amount", B005_44_45);
+        report.addValue(reportName, "comprehensiveIncome", "income.details.withdrawalFee.breakdown.USD.weightedAverageCost", B005_44_45);
 
         int256 B008_98_99_30 = int256((-EP004));
-        report.addValue(reportID, "comprehensiveIncome", "costs.details.technicalProviderFee.weightedAverageCost", B008_98_99_30);
-        report.addValue(reportID, "comprehensiveIncome", "costs.details.technicalProviderFee.breakdown.USD.amount", B008_98_99_30);
-        report.addValue(reportID, "comprehensiveIncome", "costs.details.technicalProviderFee.breakdown.USD.fairValue", B008_98_99_30);
-        report.addValue(reportID, "comprehensiveIncome", "costs.weightedAverageCost", B008_98_99_30);
+        report.addValue(reportName, "comprehensiveIncome", "costs.details.technicalProviderFee.weightedAverageCost", B008_98_99_30);
+        report.addValue(reportName, "comprehensiveIncome", "costs.details.technicalProviderFee.breakdown.USD.amount", B008_98_99_30);
+        report.addValue(reportName, "comprehensiveIncome", "costs.details.technicalProviderFee.breakdown.USD.fairValue", B008_98_99_30);
+        report.addValue(reportName, "comprehensiveIncome", "costs.weightedAverageCost", B008_98_99_30);
 
         int256 B004 = int256(EP002 + EP003+(-EP004));
-        report.addValue(reportID, "comprehensiveIncome", "netProfit", B004);
+        report.addValue(reportName, "comprehensiveIncome", "netProfit", B004);
     }
 
     function computeCashFlow() internal {
 
         int256 C009_140_141 = (-EP001);
-        report.addValue(reportID, "cashFlow", "operatingActivities.details.cashWithdrawnByCustomers.weightedAverageCost", C009_140_141);
-        report.addValue(reportID, "cashFlow", "operatingActivities.details.cashWithdrawnByCustomers.breakdown.USD.amount", C009_140_141);
-        report.addValue(reportID, "cashFlow", "operatingActivities.details.cashWithdrawnByCustomers.breakdown.USD.weightedAverageCost", C009_140_141);
+        report.addValue(reportName, "cashFlow", "operatingActivities.details.cashWithdrawnByCustomers.weightedAverageCost", C009_140_141);
+        report.addValue(reportName, "cashFlow", "operatingActivities.details.cashWithdrawnByCustomers.breakdown.USD.amount", C009_140_141);
+        report.addValue(reportName, "cashFlow", "operatingActivities.details.cashWithdrawnByCustomers.breakdown.USD.weightedAverageCost", C009_140_141);
 
         int256 C031_136_137 = EP002+EP003;
-        report.addValue(reportID, "cashFlow", "operatingActivities.details.cashReceivedFromCustomersAsTransactionFees.weightedAverageCost", C031_136_137);
-        report.addValue(reportID, "cashFlow", "operatingActivities.details.cashReceivedFromCustomersAsTransactionFees.breakdown.USD.amount", C031_136_137);
-        report.addValue(reportID, "cashFlow", "operatingActivities.details.cashReceivedFromCustomersAsTransactionFees.breakdown.USD.weightedAverageCost", C031_136_137);
+        report.addValue(reportName, "cashFlow", "operatingActivities.details.cashReceivedFromCustomersAsTransactionFees.weightedAverageCost", C031_136_137);
+        report.addValue(reportName, "cashFlow", "operatingActivities.details.cashReceivedFromCustomersAsTransactionFees.breakdown.USD.amount", C031_136_137);
+        report.addValue(reportName, "cashFlow", "operatingActivities.details.cashReceivedFromCustomersAsTransactionFees.breakdown.USD.weightedAverageCost", C031_136_137);
 
         int256 C034_138_139 = int256((-EP004));
-        report.addValue(reportID, "cashFlow", "operatingActivities.details.cashPaidToSuppliersForExpenses.weightedAverageCost", C034_138_139);
-        report.addValue(reportID, "cashFlow", "operatingActivities.details.cashPaidToSuppliersForExpenses.breakdowm.USD.amount", C034_138_139);
-        report.addValue(reportID, "cashFlow", "operatingActivities.details.cashPaidToSuppliersForExpenses.breakdowm.USD.weightedAverageCost", C034_138_139);
+        report.addValue(reportName, "cashFlow", "operatingActivities.details.cashPaidToSuppliersForExpenses.weightedAverageCost", C034_138_139);
+        report.addValue(reportName, "cashFlow", "operatingActivities.details.cashPaidToSuppliersForExpenses.breakdowm.USD.amount", C034_138_139);
+        report.addValue(reportName, "cashFlow", "operatingActivities.details.cashPaidToSuppliersForExpenses.breakdowm.USD.weightedAverageCost", C034_138_139);
 
         int256 C049_51 = int256(((-EP001) + EP002+EP003+(-EP004)));
-        report.addValue(reportID, "cashFlow", "operatingActivities.weightedAverageCost", C049_51);
-        report.addValue(reportID, "cashFlow", "otherSupplementaryItems.details.relatedToCash.cashCashEquivalentsAndRestrictedCashEndOfPeriod.weightedAverageCost", C049_51);
+        report.addValue(reportName, "cashFlow", "operatingActivities.weightedAverageCost", C049_51);
+        report.addValue(reportName, "cashFlow", "otherSupplementaryItems.details.relatedToCash.cashCashEquivalentsAndRestrictedCashEndOfPeriod.weightedAverageCost", C049_51);
 
     }
 }

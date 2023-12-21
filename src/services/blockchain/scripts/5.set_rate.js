@@ -18,7 +18,7 @@ const rl = readline.createInterface({
 });
 
 // 執行交易
-async function setRate(SP002, SP003, SP004, Report_ID) {
+async function setRate(SP002, SP003, SP004, reportName) {
   const [signer] = await ethers.getSigners();
   const contractWithSigner = new ethers.Contract(
     routerContractAddress,
@@ -26,7 +26,12 @@ async function setRate(SP002, SP003, SP004, Report_ID) {
     signer,
   );
   try {
-    const tx = await contractWithSigner.setRate(SP002, SP003, SP004, Report_ID);
+    const tx = await contractWithSigner.setRate(
+      SP002,
+      SP003,
+      SP004,
+      reportName,
+    );
     console.log('Transaction hash:', tx.hash);
 
     // 等待交易被確認
@@ -52,7 +57,7 @@ async function setRate(SP002, SP003, SP004, Report_ID) {
 }
 
 rl.question(
-  'Please enter the rates (as a comma-separated list of bytes32 values): ',
+  'Please enter the rates and reportName (as a comma-separated list of bytes32 values): ',
   (input) => {
     const data = input.split(',');
     setRate(data[0], data[1], data[2], data[3]);

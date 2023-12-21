@@ -21,7 +21,7 @@ contract E00010003Handler is ITransactionHandler {
     int256 EP003;
     int256 EP005;
     string  eventIdFromTimeSpan;
-    string reportID;
+    string reportName;
 
     constructor(address _transactionContractAddress, address _Parser ,address _reportAddress) {
         transactionContract = TransactionContract(_transactionContractAddress);
@@ -52,12 +52,12 @@ contract E00010003Handler is ITransactionHandler {
         transactionContract.addProcessedTransaction(data[0], data[1], recorder, paramKeys, paramValues);
     }
 
-    function getEventIdAndRate(bytes32 _eventId,bytes32 _reportID ,bytes32 _SP002, bytes32 _SP003, bytes32 _SP004) external override{
+    function getEventIdAndRate(bytes32 _eventId,bytes32 _reportName ,bytes32 _SP002, bytes32 _SP003, bytes32 _SP004) external override{
         latestSP002 = int256(uint256(_SP002));
         latestSP003 = int256(uint256(_SP003));
         latestSP004 = int256(uint256(_SP004));
         eventIdFromTimeSpan = Iparser.bytes32ToString(_eventId);
-        reportID = Iparser.bytes32ToString(_reportID);
+        reportName = Iparser.bytes32ToString(_reportName);
         emit EventIdAndRateReceived(eventIdFromTimeSpan, latestSP002, latestSP003, latestSP004);
 
         EP001  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP001"));
@@ -74,60 +74,60 @@ contract E00010003Handler is ITransactionHandler {
     function computeBalanceSheet() internal  {
 
         int256 A001_47_4_5_14 = int256(((EP001 + EP003) * latestSP004 )/10**18);
-        report.addValue(reportID, "balanceSheet", "assets.details.cryptocurrency.totalAmountFairValue", A001_47_4_5_14);
-        report.addValue(reportID, "balanceSheet", "assets.details.cryptocurrency.breakdown.BTC.fairValue", A001_47_4_5_14);
-        report.addValue(reportID, "balanceSheet", "assets.totalAmountFairValue", A001_47_4_5_14);
-        report.addValue(reportID, "balanceSheet", "totalAssetsFairValue", A001_47_4_5_14);
-        report.addValue(reportID, "balanceSheet", "totalLiabilitiesAndEquityFairValue", A001_47_4_5_14);
+        report.addValue(reportName, "balanceSheet", "assets.details.cryptocurrency.totalAmountFairValue", A001_47_4_5_14);
+        report.addValue(reportName, "balanceSheet", "assets.details.cryptocurrency.breakdown.BTC.fairValue", A001_47_4_5_14);
+        report.addValue(reportName, "balanceSheet", "assets.totalAmountFairValue", A001_47_4_5_14);
+        report.addValue(reportName, "balanceSheet", "totalAssetsFairValue", A001_47_4_5_14);
+        report.addValue(reportName, "balanceSheet", "totalLiabilitiesAndEquityFairValue", A001_47_4_5_14);
 
         int256 A046 = int256(EP001 + EP003);
-        report.addValue(reportID, "balanceSheet", "assets.details.cryptocurrency.breakdown.BTC.amount", A046);
+        report.addValue(reportName, "balanceSheet", "assets.details.cryptocurrency.breakdown.BTC.amount", A046);
 
         int256 A006_45_9 = int256(((EP001 - EP002) * latestSP004) /10**18);
-        report.addValue(reportID, "balanceSheet", "liabilities.details.userDeposit.totalAmountFairValue", A006_45_9);
-        report.addValue(reportID, "balanceSheet", "liabilities.details.userDeposit.breakdown.BTC.fairValue", A006_45_9);
-        report.addValue(reportID, "balanceSheet", "liabilities.totalAmountFairValue", A006_45_9);
+        report.addValue(reportName, "balanceSheet", "liabilities.details.userDeposit.totalAmountFairValue", A006_45_9);
+        report.addValue(reportName, "balanceSheet", "liabilities.details.userDeposit.breakdown.BTC.fairValue", A006_45_9);
+        report.addValue(reportName, "balanceSheet", "liabilities.totalAmountFairValue", A006_45_9);
 
         int256 A044 = int256(EP001 - EP002);
-        report.addValue(reportID, "balanceSheet", "liabilities.details.userDeposit.breakdown.BTC.amount", A044);
+        report.addValue(reportName, "balanceSheet", "liabilities.details.userDeposit.breakdown.BTC.amount", A044);
 
         int256 A010_49_13 = int256(((EP002 + EP003) * latestSP004) /10**18);
-        report.addValue(reportID, "balanceSheet", "equity.details.retainedEarnings.totalAmountFairValue", A010_49_13);
-        report.addValue(reportID, "balanceSheet", "equity.details.retainedEarnings.breakdown.BTC.fairValue", A010_49_13);
-        report.addValue(reportID, "balanceSheet", "equity.totalAmountFairValue", A010_49_13);
+        report.addValue(reportName, "balanceSheet", "equity.details.retainedEarnings.totalAmountFairValue", A010_49_13);
+        report.addValue(reportName, "balanceSheet", "equity.details.retainedEarnings.breakdown.BTC.fairValue", A010_49_13);
+        report.addValue(reportName, "balanceSheet", "equity.totalAmountFairValue", A010_49_13);
 
         int256 A048 = int256(EP002 + EP003);
-        report.addValue(reportID, "balanceSheet", "equity.details.retainedEarnings.breakdown.BTC.amount", A048);
+        report.addValue(reportName, "balanceSheet", "equity.details.retainedEarnings.breakdown.BTC.amount", A048);
     }
 
     function computeComprehesiveIncome() internal {
         int256 B001_37_4 = int256(((EP002 + EP003) * EP005) /10**18);
-        report.addValue(reportID, "comprehensiveIncome", "income.details.depositFee.weightedAverageCost", B001_37_4);
-        report.addValue(reportID, "comprehensiveIncome", "income.details.depositFee.breakdown.BTC.weightedAverageCost", B001_37_4);
-        report.addValue(reportID, "comprehensiveIncome", "netProfit", B001_37_4);
+        report.addValue(reportName, "comprehensiveIncome", "income.details.depositFee.weightedAverageCost", B001_37_4);
+        report.addValue(reportName, "comprehensiveIncome", "income.details.depositFee.breakdown.BTC.weightedAverageCost", B001_37_4);
+        report.addValue(reportName, "comprehensiveIncome", "netProfit", B001_37_4);
 
         int256 B036 = int256(EP002 + EP003);
-        report.addValue(reportID, "comprehensiveIncome", "income.details.depositFee.breakdown.BTC.amount", B036);
+        report.addValue(reportName, "comprehensiveIncome", "income.details.depositFee.breakdown.BTC.amount", B036);
     }
 
 
     function computeCashFlow() internal {
         int256 C001_55 = int256(((EP001 - EP002) * EP005) /10**18);
-        report.addValue(reportID, "cashFlow", "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesDepositedByCustomers.weightedAverageCost", C001_55);
-        report.addValue(reportID, "cashFlow", "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesDepositedByCustomers.breakdown.BTC.weightedAverageCost", C001_55);
+        report.addValue(reportName, "cashFlow", "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesDepositedByCustomers.weightedAverageCost", C001_55);
+        report.addValue(reportName, "cashFlow", "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesDepositedByCustomers.breakdown.BTC.weightedAverageCost", C001_55);
 
         int256 C054 = int256(EP001 - EP002);
-        report.addValue(reportID, "cashFlow", "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesDepositedByCustomers.breakdown.BTC.amount", C054);
+        report.addValue(reportName, "cashFlow", "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesDepositedByCustomers.breakdown.BTC.amount", C054);
 
         int256 C004_75 = int256(((EP002 + EP003) * EP005) /10**18);
-        report.addValue(reportID, "cashFlow", "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.weightedAverageCost", C004_75);
-        report.addValue(reportID, "cashFlow", "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.breakdown.BTCweightedAverageCost", C004_75);
+        report.addValue(reportName, "cashFlow", "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.weightedAverageCost", C004_75);
+        report.addValue(reportName, "cashFlow", "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.breakdown.BTCweightedAverageCost", C004_75);
 
         int256 C072 = int256(EP002 + EP003);
-        report.addValue(reportID, "cashFlow", "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.breakdown.ETH.amount", C072);
+        report.addValue(reportName, "cashFlow", "supplementalScheduleOfNonCashOperatingActivities.details.cryptocurrenciesReceivedFromCustomersAsTransactionFees.breakdown.ETH.amount", C072);
 
         int256 C007_8 = int256(((EP001 + EP003) * EP005) /10**18);
-        report.addValue(reportID, "cashFlow","supplementalScheduleOfNonCashOperatingActivities.weightedAverageCost", C007_8);
-        report.addValue(reportID, "cashFlow",  "otherSupplementaryItems.details.relatedToNonCash.cryptocurrenciesEndOfPeriod.weightedAverageCost", C007_8);
+        report.addValue(reportName, "cashFlow","supplementalScheduleOfNonCashOperatingActivities.weightedAverageCost", C007_8);
+        report.addValue(reportName, "cashFlow",  "otherSupplementaryItems.details.relatedToNonCash.cryptocurrenciesEndOfPeriod.weightedAverageCost", C007_8);
     }
 }

@@ -17,7 +17,7 @@ const rl = readline.createInterface({
 });
 
 // 執行交易
-async function generateReport(startTime, endTime, report_ID) {
+async function generateReport(startTime, endTime, report_Name) {
   const [signer] = await ethers.getSigners();
   const contractWithSigner = new ethers.Contract(
     routerContractAddress,
@@ -28,9 +28,13 @@ async function generateReport(startTime, endTime, report_ID) {
     const tx = await contractWithSigner.generateReport(
       startTime,
       endTime,
-      report_ID,
+      report_Name,
     );
-    console.log('Transaction hash:', tx.hash);
+    const transaction_hash = tx.hash;
+    console.log('Transaction hash:', transaction_hash);
+    const envPath = '.env';
+    const newEnvContent = `REPORT_ID=${transaction_hash}\n`;
+    fs.appendFileSync(envPath, newEnvContent);
 
     const receipt = await tx.wait();
 
@@ -49,7 +53,7 @@ async function generateReport(startTime, endTime, report_ID) {
 }
 
 // Prompt the user for input
-rl.question('Please enter reportID: ', async (input) => {
+rl.question('Please enter reportName: ', async (input) => {
   const [signer] = await ethers.getSigners();
   const contractWithSigner = new ethers.Contract(
     routerContractAddress,

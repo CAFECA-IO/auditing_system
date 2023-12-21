@@ -25,7 +25,7 @@ contract E00030003Handler is ITransactionHandler{
     int256 EP008;
     int256 EP009;
     string eventIdFromTimeSpan;
-    string reportID;
+    string reportName;
 
     constructor(address _transactionContractAddress, address _Parser ,address _reportAddress) {
         transactionContract = TransactionContract(_transactionContractAddress);
@@ -66,12 +66,12 @@ contract E00030003Handler is ITransactionHandler{
 
     /*Info: (20231115 - Yang){This function gets the rates and eventIDs, then calls transactionContract to get full data based on the eventIDs,
     finally, store them in variables in order to calculate}*/
-    function getEventIdAndRate(bytes32 _eventId,bytes32 _reportID ,bytes32 _SP002, bytes32 _SP003, bytes32 _SP004) external override{
+    function getEventIdAndRate(bytes32 _eventId,bytes32 _reportName ,bytes32 _SP002, bytes32 _SP003, bytes32 _SP004) external override{
         latestSP002 = int256(uint256(_SP002));
         latestSP003 = int256(uint256(_SP003));
         latestSP004 = int256(uint256(_SP004));
         eventIdFromTimeSpan = Iparser.bytes32ToString(_eventId);
-        reportID = Iparser.bytes32ToString(_reportID);
+        reportName = Iparser.bytes32ToString(_reportName);
         emit EventIdAndRateReceived(eventIdFromTimeSpan, latestSP002, latestSP003, latestSP004);
 
         EP001  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP001"));
@@ -92,77 +92,77 @@ contract E00030003Handler is ITransactionHandler{
     function computeBalanceSheet() internal  {
 
         int256 A001_003 = int256(EP004 * latestSP002 /(10**18));
-        report.addValue(reportID, "balanceSheet", "assets.details.cryptocurrency.totalAmountFairValue", A001_003);
-        report.addValue(reportID, "balanceSheet", "assets.details.cryptocurrency.breakdown.USDT.fairValue", A001_003);
+        report.addValue(reportName, "balanceSheet", "assets.details.cryptocurrency.totalAmountFairValue", A001_003);
+        report.addValue(reportName, "balanceSheet", "assets.details.cryptocurrency.breakdown.USDT.fairValue", A001_003);
 
         int256 A002 = int256(EP004);
-        report.addValue(reportID, "balanceSheet", "assets.details.cryptocurrency.breakdown.USDT.amount" , A002);
+        report.addValue(reportName, "balanceSheet", "assets.details.cryptocurrency.breakdown.USDT.amount" , A002);
 
         int256 A020 = int256((EP001 * latestSP002  + EP009 * latestSP002) /(10**18));
-        report.addValue(reportID, "balanceSheet", "assets.details.accountsReceivable.totalAmountFairValue", A020);
+        report.addValue(reportName, "balanceSheet", "assets.details.accountsReceivable.totalAmountFairValue", A020);
 
         int256 A026 = EP001 + EP009 ;
-        report.addValue(reportID, "balanceSheet", "assets.details.accountsReceivable.breakdown.USDT.amount", A026);
+        report.addValue(reportName, "balanceSheet", "assets.details.accountsReceivable.breakdown.USDT.amount", A026);
 
         int256 A027 = int256((EP001 * latestSP002) + (EP009 * latestSP002) / (10**18));
-        report.addValue(reportID, "balanceSheet", "assets.details.accountsReceivable.breakdown.USDT.fairValue", A027);
+        report.addValue(reportName, "balanceSheet", "assets.details.accountsReceivable.breakdown.USDT.fairValue", A027);
 
         int256 A004_005 = int256(((EP001 + EP004) * latestSP002 + EP009 * latestSP002) / (10**18));
-        report.addValue(reportID, "balanceSheet", "assets.totalAmountFairValue", A004_005);
-        report.addValue(reportID, "balanceSheet", "totalAssetsFairValue", A004_005);
+        report.addValue(reportName, "balanceSheet", "assets.totalAmountFairValue", A004_005);
+        report.addValue(reportName, "balanceSheet", "totalAssetsFairValue", A004_005);
 
         int256 A006_008 = int256((-EP003) * latestSP002);
-        report.addValue(reportID, "balanceSheet", "liabilities.details.userDeposit.totalAmountFairValue", A006_008);
-        report.addValue(reportID, "balanceSheet", "liabilities.details.userDeposit.breakdown.USDT.fairValue", A006_008);
+        report.addValue(reportName, "balanceSheet", "liabilities.details.userDeposit.totalAmountFairValue", A006_008);
+        report.addValue(reportName, "balanceSheet", "liabilities.details.userDeposit.breakdown.USDT.fairValue", A006_008);
 
         int256 A007 = int256(-EP003);
-        report.addValue(reportID, "balanceSheet", "liabilities.details.userDeposit.breakdown.USDT.amount", A007);
+        report.addValue(reportName, "balanceSheet", "liabilities.details.userDeposit.breakdown.USDT.amount", A007);
 
         int256 A031 = int256(((EP002 * latestSP003) + (EP003 * latestSP002) + ( -EP008 * latestSP002)) / (10**18));
-        report.addValue(reportID, "balanceSheet", "liabilities.details.accountsPayable.totalAmountFairValue", A031);
+        report.addValue(reportName, "balanceSheet", "liabilities.details.accountsPayable.totalAmountFairValue", A031);
 
         int256 A034 = int256(EP003);
-        report.addValue(reportID, "balanceSheet", "liabilities.details.accountsPayable.breakdown.USDT.amount", A034);
+        report.addValue(reportName, "balanceSheet", "liabilities.details.accountsPayable.breakdown.USDT.amount", A034);
 
         int256 A035 = int256(EP003 * latestSP002 / (10**18));
-        report.addValue(reportID, "balanceSheet", "liabilities.details.accountsPayable.breakdown.USDT.fairValue", A035);
+        report.addValue(reportName, "balanceSheet", "liabilities.details.accountsPayable.breakdown.USDT.fairValue", A035);
 
         int256 A009 = int256(((-EP003 * latestSP002) + (EP003 * latestSP002) + (EP002 * latestSP003) + (-EP008 * latestSP002)) / 10**18);
-        report.addValue(reportID, "balanceSheet", "liabilities.totalAmountFairValue ", A009);
+        report.addValue(reportName, "balanceSheet", "liabilities.totalAmountFairValue ", A009);
 
         int256 A014 = int256(((-EP003 * latestSP002) + (EP003 * latestSP002) + (EP002 * latestSP004) + (-EP008 * latestSP002)+ (EP004 * latestSP002) + (EP009 * latestSP002)) / 10**18);
-        report.addValue(reportID, "balanceSheet", "totalLiabilitiesAndEquityFairValue", A014);
+        report.addValue(reportName, "balanceSheet", "totalLiabilitiesAndEquityFairValue", A014);
 
         int256 A010_012 = int256(((EP004 * latestSP002) + (EP009 * latestSP002)) / (10**18));
-        report.addValue(reportID, "balanceSheet", "equity.details.retainedEarnings.totalAmountFairValue", A010_012);
-        report.addValue(reportID, "balanceSheet", "equity.details.retainedEarnings.breakdown.USDT.fairValue", A010_012);
+        report.addValue(reportName, "balanceSheet", "equity.details.retainedEarnings.totalAmountFairValue", A010_012);
+        report.addValue(reportName, "balanceSheet", "equity.details.retainedEarnings.breakdown.USDT.fairValue", A010_012);
 
         int256 A011 = int256( EP004 + EP009);
-        report.addValue(reportID, "balanceSheet", "equity.details.retainedEarnings.breakdown.USDT.amount", A011);
+        report.addValue(reportName, "balanceSheet", "equity.details.retainedEarnings.breakdown.USDT.amount", A011);
 
         int256 A052 = int256((EP001 * latestSP002 + EP002 * latestSP004) / 10**18);
-        report.addValue(reportID, "balanceSheet", "equity.details.otherCapitalReserve.fairValue", A052);
+        report.addValue(reportName, "balanceSheet", "equity.details.otherCapitalReserve.fairValue", A052);
 
         int256 A055 = int256(EP001);
-        report.addValue(reportID, "balanceSheet", "equity.details.otherCapitalReserve.breakdown.USDT.amount", A055);
+        report.addValue(reportName, "balanceSheet", "equity.details.otherCapitalReserve.breakdown.USDT.amount", A055);
 
         int256 A056 = int256(EP001 * latestSP002);
-        report.addValue(reportID, "balanceSheet", "equity.details.otherCapitalReserve.breakdown.USDT.fairValue", A056);
+        report.addValue(reportName, "balanceSheet", "equity.details.otherCapitalReserve.breakdown.USDT.fairValue", A056);
 
         int256 A057 = int256(-EP002);
-        report.addValue(reportID, "balanceSheet", "equity.details.otherCapitalReserve.breakdown.ETH.amount", A057);
+        report.addValue(reportName, "balanceSheet", "equity.details.otherCapitalReserve.breakdown.ETH.amount", A057);
 
         int256 A058 = int256(-EP002 * latestSP003);
-        report.addValue(reportID, "balanceSheet", "equity.details.otherCapitalReserve.breakdown.ETH.fairValue", A058);
+        report.addValue(reportName, "balanceSheet", "equity.details.otherCapitalReserve.breakdown.ETH.fairValue", A058);
 
         int256 A013 = int256(((EP004 * latestSP002) + (EP009 * latestSP002))/(10**18));
-        report.addValue(reportID, "balanceSheet", "equity.totalAmountFairValue", A013);
+        report.addValue(reportName, "balanceSheet", "equity.totalAmountFairValue", A013);
 
         int256 A038 = int256(EP002 + (-EP008));
-        report.addValue(reportID, "balanceSheet", "liabilities.details.accountsPayable.breakdown.ETH.amount", A038);
+        report.addValue(reportName, "balanceSheet", "liabilities.details.accountsPayable.breakdown.ETH.amount", A038);
 
         int256 A039 = int256((EP002 * latestSP003 + (-EP008 * latestSP002)) / 10**18);
-        report.addValue(reportID, "balanceSheet", "liabilities.details.accountsPayable.breakdown.ETH.fairValue", A039);
+        report.addValue(reportName, "balanceSheet", "liabilities.details.accountsPayable.breakdown.ETH.fairValue", A039);
 
     }
 
@@ -170,21 +170,21 @@ contract E00030003Handler is ITransactionHandler{
     function computeComprehesiveIncome() internal {
 
         int256 B029_004 = int256(((EP004 * EP006) + (EP008 * EP006) + (EP009 * EP006)) / (10**18));
-        report.addValue(reportID, "comprehensiveIncome",  "income.weightedAverageCost", B029_004);
-        report.addValue(reportID, "comprehensiveIncome", "netProfit", B029_004);
+        report.addValue(reportName, "comprehensiveIncome",  "income.weightedAverageCost", B029_004);
+        report.addValue(reportName, "comprehensiveIncome", "netProfit", B029_004);
 
         int256 B011_051 = int256(((EP008 * EP006) + (EP009 * EP006)) / (10**18));
-        report.addValue(reportID, "comprehensiveIncome",  "income.details.transactionFee.weightedAverageCost", B011_051);
-        report.addValue(reportID, "comprehensiveIncome", " income.details.transactionFee.breakdown.USDT.weightedAverageCost", B011_051);
+        report.addValue(reportName, "comprehensiveIncome",  "income.details.transactionFee.weightedAverageCost", B011_051);
+        report.addValue(reportName, "comprehensiveIncome", " income.details.transactionFee.breakdown.USDT.weightedAverageCost", B011_051);
 
         int256 B050 = int256(EP008 + EP009);
-        report.addValue(reportID, "comprehensiveIncome",  "income.details.transactionFee.breakdown.USDT.amount", B050);
+        report.addValue(reportName, "comprehensiveIncome",  "income.details.transactionFee.breakdown.USDT.amount", B050);
 
         int256 B014_075 =int256((EP004 * EP006) / 10**18);
-        report.addValue(reportID, "comprehensiveIncome",  "income.details.guaranteedStopFee.weightedAverageCost", B014_075);
-        report.addValue(reportID, "comprehensiveIncome",  "income.details.guaranteedStopFee.breakdown.USDT.weightedAverageCost", B014_075);
+        report.addValue(reportName, "comprehensiveIncome",  "income.details.guaranteedStopFee.weightedAverageCost", B014_075);
+        report.addValue(reportName, "comprehensiveIncome",  "income.details.guaranteedStopFee.breakdown.USDT.weightedAverageCost", B014_075);
 
         int256 B074 = EP004;
-        report.addValue(reportID, "comprehensiveIncome",  "income.details.guaranteedStopFee.breakdown.USDT.amount", B074);
+        report.addValue(reportName, "comprehensiveIncome",  "income.details.guaranteedStopFee.breakdown.USDT.amount", B074);
     }
 }

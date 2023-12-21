@@ -28,20 +28,20 @@ contract RouterContract {
         transactionContract.addRecord(data);
     }
     //Info:(20231115-Yang){If users never set rates, they should first set rates before providing time span}
-    function setRate(bytes32 _SP002, bytes32 _SP003, bytes32 _SP004, bytes32 _reportID) external {
-        timeSpanReport.setRate(_SP002, _SP003, _SP004, _reportID);
+    function setRate(bytes32 _SP002, bytes32 _SP003, bytes32 _SP004, bytes32 _reportName) external {
+        timeSpanReport.setRate(_SP002, _SP003, _SP004, _reportName);
     }
-    //Info:(20231115-Yang){Users can set a time span and reportID to get events within the time span}
-    function generateReport(int256 startTime, int256 endTime, bytes32 reportID) external {
-        timeSpanReport.filterTransactionsInRange(startTime, endTime, reportID);
+    //Info:(20231115-Yang){Users can set a time span and reportName to get events within the time span}
+    function generateReport(int256 startTime, int256 endTime, bytes32 reportName) external {
+        timeSpanReport.filterTransactionsInRange(startTime, endTime, reportName);
     }
     //Info:(20231115-Yang){Users can read the latest transaction time}
     function getLatestTransactionTime() external view returns (int256) {
         return transactionContract.getLatestTransactionTime();
     }
     //Info:(20231201-Yang){User can read reports columns}
-    function getValue(string memory reportID, string memory reportType, string memory reportColumn)external view returns(int256){
-        return reports.getValue(reportID, reportType, reportColumn);
+    function getValue(string memory reportName, string memory reportType, string memory reportColumn)external view returns(int256){
+        return reports.getValue(reportName, reportType, reportColumn);
     }
     function stringToBytes32(string memory source) internal pure returns (bytes32 result) {
         bytes memory tempEmptyStringTest = bytes(source);

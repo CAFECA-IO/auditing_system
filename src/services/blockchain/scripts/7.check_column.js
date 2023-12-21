@@ -17,7 +17,7 @@ const rl = readline.createInterface({
 });
 
 // 執行交易
-async function getValue(reportID, reportType, reportColumn) {
+async function getValue(reportName, reportType, reportColumn) {
   const [signer] = await ethers.getSigners();
   const contractWithSigner = new ethers.Contract(
     routerContractAddress,
@@ -26,7 +26,7 @@ async function getValue(reportID, reportType, reportColumn) {
   );
   try {
     const result = await contractWithSigner.getValue(
-      reportID,
+      reportName,
       reportType,
       reportColumn,
     );
@@ -38,7 +38,7 @@ async function getValue(reportID, reportType, reportColumn) {
 
 // Prompt the user for input
 rl.question(
-  'Please enter the reportID, reportType, and reportColumn: ',
+  'Please enter the reportName, reportType, and reportColumn: ',
   (input) => {
     const data = input.split(',');
     getValue(data[0], data[1], data[2]);
