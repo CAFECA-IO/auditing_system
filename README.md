@@ -145,7 +145,7 @@ npm i -g npx
 5. Run the following comand to install hardhat:
 
 ```
-npm i hardhat
+npm i
 ```
 
 6. Create a **.env** file in root directory of this project and set your PRIVATE_KEY and INFURA_API_KEY:
@@ -237,13 +237,16 @@ npx hardhat run src/services/blockchain/scripts/auto_check.js --network iSunCoin
 2. run the following command to install prisma client.
 
 ```
-npm install @prisma/client
+npm i
 ```
 
 3. Set a .env file in **"auditing_system_api"**, you can copy content in **".env"** from the root direction.
 
-4. Adding a **"REPORT_ID"** in **"auditing_system_api/.env"** and the value of **"REPORT_ID"** should be the report you want to write into database and request API. For example:
-   ![Alt text](image-7.png)
+4. Adding a **"REPORT_NAME"** in **"auditing_system_api/.env"** and the value of **"REPORT_NAME"** should be the report you want to write into database and request API. For example:
+
+```
+REPORT_NAME=first_report
+```
 
 5. Install dotenv:
 
