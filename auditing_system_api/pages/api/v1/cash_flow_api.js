@@ -18,7 +18,9 @@ export default async function handler(req, res) {
         return res.status(404).json({ message: 'Report not found' });
       }
       const data = {
-        id: reportID,
+        reportID: cashFlow.reportID,
+        reportName: cashFlow.reportName,
+        reportType: 'cash flow sheet',
         reportStartTime: cashFlow.startTime * 10 ** 18,
         reportEndTime: cashFlow.endTime * 10 ** 18,
         supplementalScheduleOfNonCashOperatingActivities: {

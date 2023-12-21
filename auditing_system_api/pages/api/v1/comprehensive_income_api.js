@@ -18,7 +18,9 @@ export default async function handler(req, res) {
         return res.status(404).json({ message: 'Report not found' });
       }
       const data = {
-        id: reportID,
+        reportID: comprehensiveIncome.reportID,
+        reportName: comprehensiveIncome.reportName,
+        reportType: 'comprehensive income',
         reportStartTime: comprehensiveIncome.startTime * 10 ** 18,
         reportEndTime: comprehensiveIncome.endTime * 10 ** 18,
         netProfit: comprehensiveIncome.netProfit, //B004

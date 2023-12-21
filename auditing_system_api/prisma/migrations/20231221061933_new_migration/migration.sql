@@ -1,6 +1,7 @@
 -- CreateTable
 CREATE TABLE "balanceSheet" (
     "reportID" TEXT NOT NULL PRIMARY KEY,
+    "reportName" TEXT NOT NULL,
     "assetsDetailsCryptocurrencyTotalAmountFairValue" TEXT NOT NULL,
     "assets_details_cryptocurrency_breakdown_USDT_amount" TEXT NOT NULL,
     "assets_details_cryptocurrency_breakdown_USDT_fairValue" TEXT NOT NULL,
@@ -66,6 +67,7 @@ CREATE TABLE "balanceSheet" (
 -- CreateTable
 CREATE TABLE "cashFlow" (
     "reportID" TEXT NOT NULL PRIMARY KEY,
+    "reportName" TEXT NOT NULL,
     "supplementalScheduleOfNonCashOperatingActivities_details_cryptocurrenciesDepositedByCustomers_weightedAverageCost" TEXT NOT NULL,
     "supplementalScheduleOfNonCashOperatingActivities_details_cryptocurrenciesDepositedByCustomers_breakdown_USDT_amount" TEXT NOT NULL,
     "supplementalScheduleOfNonCashOperatingActivities_details_cryptocurrenciesDepositedByCustomers_breakdown_USDT_weightedAverageCost" TEXT NOT NULL,
@@ -163,6 +165,7 @@ CREATE TABLE "cashFlow" (
 -- CreateTable
 CREATE TABLE "comprehensiveIncome" (
     "reportID" TEXT NOT NULL PRIMARY KEY,
+    "reportName" TEXT NOT NULL,
     "income_details_depositFee_weightedAverageCost" TEXT NOT NULL,
     "income_details_depositFee_breakdown_USDT_amount" TEXT NOT NULL,
     "income_details_depositFee_breakdown_USDT_weightedAverageCost" TEXT NOT NULL,

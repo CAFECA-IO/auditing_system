@@ -19,7 +19,9 @@ export default async function handler(req, res) {
         return res.status(404).json({ message: 'Report not found' });
       }
       const data = {
-        id: balanceSheet.reportID,
+        reportID: balanceSheet.reportID,
+        reportName: balanceSheet.reportName,
+        reportType: 'balance sheet',
         reportStartTime: balanceSheet.startTime * 10 ** 18,
         reportEndTime: balanceSheet.endTime * 10 ** 18,
         totalAssetsFairValue: balanceSheet.totalAssetsFairValue, //A005

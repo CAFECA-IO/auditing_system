@@ -24,12 +24,12 @@ const contractInstance = new ethers.Contract(
   provider,
 );
 const reports = contractInstance;
-const reportID = process.env.REPORT_ID;
-console.log('reportID:', reportID);
+const reportName = process.env.REPORT_NAME;
+console.log('reportName:', reportName);
 
-async function getContractValue(reportID, reportType, reportColumn) {
+async function getContractValue(reportName, reportType, reportColumn) {
   try {
-    const value = await reports.getValue(reportID, reportType, reportColumn);
+    const value = await reports.getValue(reportName, reportType, reportColumn);
     console.log('value', value);
 
     formattedValue = ethers.utils.formatUnits(value, 18);
@@ -52,118 +52,119 @@ async function insertDataToDB(data) {
 }
 
 async function main() {
+  /*REPORT_ID*/ const reportID = process.env.REPORT_ID;
   /*A001*/ const assets_details_cryptocurrency_totalAmountFairValue =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'assets.details.cryptocurrency.totalAmountFairValue',
     );
   /*A002*/ const assets_details_cryptocurrency_breakdown_USDT_amount =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'assets.details.cryptocurrency.breakdown.USDT.amount',
     );
   /*A003*/ const assets_details_cryptocurrency_breakdown_USDT_fairValue =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'assets.details.cryptocurrency.breakdown.USDT.fairValue',
     );
   /*A004*/ const assets_totalAmountFairValue = await getContractValue(
-    reportID,
+    reportName,
     'balanceSheet',
     'assets.totalAmountFairValue',
   );
   /*A005*/ const totalAssetsFairValue = await getContractValue(
-    reportID,
+    reportName,
     'balanceSheet',
     'totalAssetsFairValue',
   );
   /*A006*/ const liabilities_details_userDeposit_totalAmountFairValue =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'liabilities.details.userDeposit.totalAmountFairValue',
     );
   /*A007*/ const liabilities_details_userDeposit_breakdown_USDT_amount =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'liabilities.details.userDeposit.breakdown.USDT.amount',
     );
   /*A008*/ const liabilities_details_userDeposit_breakdown_USDT_fairValue =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'liabilities.details.userDeposit.breakdown.USDT.fairValue',
     );
   /*A009*/ const liabilities_totalAmountFairValue = await getContractValue(
-    reportID,
+    reportName,
     'balanceSheet',
     'liabilities.totalAmountFairValue',
   );
   /*A010*/ const equity_details_retainedEarnings_totalAmountFairValue =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'equity.details.retainedEarnings.totalAmountFairValue',
     );
   /*A011*/ const equity_details_retainedEarnings_breakdown_USDT_amount =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'equity.details.retainedEarnings.breakdown.USDT.amount',
     );
   /*A012*/ const equity_details_retainedEarnings_breakdown_USDT_fairValue =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'equity.details.retainedEarnings.breakdown.USDT.fairValue',
     );
   /*A013*/ const equity_totalAmountFairValue = await getContractValue(
-    reportID,
+    reportName,
     'balanceSheet',
     'equity.totalAmountFairValue',
   );
   /*A014*/ const totalLiabilitiesAndEquityFairValue = await getContractValue(
-    reportID,
+    reportName,
     'balanceSheet',
     'totalLiabilitiesAndEquityFairValue',
   );
   /*A015*/ const assets_details_cryptocurrency_breakdown_ETH_amount =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'assets.details.cryptocurrency.breakdown.ETH.amount',
     );
   /*A016*/ const assets_details_cryptocurrency_breakdown_ETH_fairValue =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'assets.details.cryptocurrency.breakdown.ETH.fairValue',
     );
   /*A017*/ const equity_details_retainedEarnings_breakdown_ETH_amount =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'equity.details.retainedEarnings.breakdown.ETH.amount',
     );
   /*A018*/ const equity_details_retainedEarnings_breakdown_ETH_fairValue =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'equity.details.retainedEarnings.breakdown.ETH.fairValue',
     );
   /*A019*/ const assets_details_cashAndCashEquivalent_totalAmountFairValue =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'assets.details.cashAndCashEquivalent.totalAmountFairValue',
     );
   /*A020*/ const assets_details_accountsReceivable_totalAmountFairValue =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'assets.details.accountsReceivable.totalAmountFairValue',
     );
@@ -172,245 +173,246 @@ async function main() {
 
   /*A025*/ const assets_details_accountsReceivable_breakdown_USDT_amount =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'assets.details.accountsReceivable.breakdown.USDT.amount',
     );
   /*A026*/ const assets_details_accountsReceivable_breakdown_USDT_fairValue =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'assets.details.accountsReceivable.breakdown.USDT.fairValue',
     );
   /*A027*/ const assets_details_accountsReceivable_breakdown_BTC_amount =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'assets.details.accountsReceivable.breakdown.BTC.amount',
     );
   /*A028*/ const assets_details_accountsReceivable_breakdown_BTC_fairValue =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'assets.details.accountsReceivable.breakdown.BTC.fairValue',
     );
   /*A029*/ const assets_details_accountsReceivable_breakdown_ETH_amount =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'assets.details.accountsReceivable.breakdown.ETH.amount',
     );
   /*A030*/ const assets_details_accountsReceivable_breakdown_ETH_fairValue =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'assets.details.accountsReceivable.breakdown.ETH.fairValue',
     );
   /*A031*/ const liabilities_details_accountsPayable_totalAmountFairValue =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'liabilities.details.accountsPayable.totalAmountFairValue',
     );
   /*A032*/ const liabilities_details_accountsPayable_breakdown_USD_amount =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       ' liabilities.details.accountsPayable.breakdown.USD.amount',
     );
   /*A033*/ const liabilities_details_accountsPayable_breakdown_USD_fairValue =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'liabilities.details.accountsPayable.breakdown.USD.fairValue',
     );
   /*A034*/ const liabilities_details_accountsPayable_breakdown_USDT_amount =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'liabilities.details.accountsPayable.breakdown.USDT.amount',
     );
   /*A035*/ const liabilities_details_accountsPayable_breakdown_USDT_fairValue =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'liabilities.details.accountsPayable.breakdown.USDT.fairValue',
     );
   /*A036*/ const liabilities_details_accountsPayable_breakdown_BTC_amount =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'liabilities.details.accountsPayable.breakdown.BTC.amount',
     );
   /*A037*/ const liabilities_details_accountsPayable_breakdown_BTC_fairValue =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'liabilities.details.accountsPayable.breakdown.BTC.fairValue',
     );
   /*A038*/ const liabilities_details_accountsPayable_breakdown_ETH_amount =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'liabilities.details.accountsPayable.breakdown.ETH.amount',
     );
   /*A039*/ const liabilities_details_accountsPayable_breakdown_ETH_fairValue =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'liabilities.details.accountsPayable.breakdown.ETH.fairValue',
     );
   /*A040*/ const liabilities_details_userDeposit_breakdown_USD_amount =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'liabilities.details.userDeposit.breakdown.USD.amount',
     );
   /*A041*/ const liabilities_details_userDeposit_breakdown_USD_fairValue =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'liabilities.details.userDeposit.breakdown.USD.fairValue',
     );
   /*A042*/ const liabilities_details_userDeposit_breakdown_ETH_amount =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'liabilities.details.userDeposit.breakdown.ETH.amount',
     );
   /*A043*/ const liabilities_details_userDeposit_breakdown_ETH_fairValue =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'liabilities.details.userDeposit.breakdown.ETH.fairValue',
     );
   /*A044*/ const liabilities_details_userDeposit_breakdown_BTC_amount =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'liabilities.details.userDeposit.breakdown.BTC.amount',
     );
   /*A045*/ const liabilities_details_userDeposit_breakdown_BTC_airValue =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'liabilities.details.userDeposit.breakdown.BTC.fairValue',
     );
   /*A046*/ const assets_details_cryptocurrency_breakdown_BTC_amount =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'assets.details.cryptocurrency.breakdown.BTC.amount',
     );
   /*A047*/ const assets_details_cryptocurrency_breakdown_BTC_fairValue =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'assets.details.cryptocurrency.breakdown.BTC.fairValue',
     );
   /*A048*/ const equity_details_retainedEarnings_breakdown_BTC_amount =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'equity.details.retainedEarnings.breakdown.BTC.amount',
     );
   /*A049*/ const equity_details_retainedEarnings_breakdown_BTC_fiarValue =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'equity.details.retainedEarnings.breakdown.BTC.fairValue',
     );
   /*A050*/ const equity_details_retainedEarnings_breakdown_USD_amount =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'equity.details.retainedEarnings.breakdown.USD.amount',
     );
   /*A051*/ const equity_details_retainedEarnings_breakdown_USD_fairValue =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'equity.details.retainedEarnings.breakdown.USD.fairValue',
     );
   /*A052*/ const equity_details_otherCapitalReserve_fairValue =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'equity.details.otherCapitalReserve.fairValue',
     );
   /*A053*/ const equity_details_otherCapitalReserve_breakdown_USD_amount =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'equity.details.otherCapitalReserve.breakdown.USD.amount',
     );
   /*A054*/ const equity_details_otherCapitalReserve_breakdown_USD_fairValue =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'equity.details.otherCapitalReserve.breakdown.USD.fairValue',
     );
   /*A055*/ const equity_details_otherCapitalReserve_breakdown_USDT_amount =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'equity.details.otherCapitalReserve.breakdown.USDT.amount',
     );
   /*A056*/ const equity_details_otherCapitalReserve_breakdown_USDT_fairValue =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'equity.details.otherCapitalReserve.breakdown.USDT.fairValue',
     );
   /*A057*/ const equity_details_otherCapitalReserve_breakdown_ETH_amount =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'equity.details.otherCapitalReserve.breakdown.ETH.amount',
     );
   /*A058*/ const equity_details_otherCapitalReserve_breakdown_ETH_fairValue =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'equity.details.otherCapitalReserve.breakdown.ETH.fairValue',
     );
   /*A059*/ const equity_details_otherCapitalReserve_breakdown_BTC_amount =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'equity.details.otherCapitalReserve.breakdown.BTC.amount',
     );
   /*A060*/ const equity_details_otherCapitalReserve_breakdown_BTC_fairValue =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'equity.details.otherCapitalReserve.breakdown.BTC.fairValue',
     );
   /*A061*/ const assets_details_cashAndCashEquivalent_breakdown_USD_amount =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'assets.details.cashAndCashEquivalent.breakdown.USD.amount',
     );
   /*A062*/ const assets_details_cashAndCashEquivalent_breakdown_USD_fairValue =
     await getContractValue(
-      reportID,
+      reportName,
       'balanceSheet',
       'assets.details.cashAndCashEquivalent.breakdown.USD.fairValue',
     );
   /*startTime*/ const startTime = await getContractValue(
-    reportID,
+    reportName,
     'time',
     'startTime',
   );
   /*endTime*/ const endTime = await getContractValue(
-    reportID,
+    reportName,
     'time',
     'endTime',
   );
 
   const data = {
     reportID: reportID,
+    reportName: reportName,
     assetsDetailsCryptocurrencyTotalAmountFairValue:
       assets_details_cryptocurrency_totalAmountFairValue,
     assets_details_cryptocurrency_breakdown_USDT_amount:

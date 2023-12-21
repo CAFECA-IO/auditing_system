@@ -11,7 +11,8 @@ datasource db {
 }
 
 model balanceSheet{
-  reportID String @id
+  reportID  String @id
+  reportName String
   assetsDetailsCryptocurrencyTotalAmountFairValue String
   assets_details_cryptocurrency_breakdown_USDT_amount String
     assets_details_cryptocurrency_breakdown_USDT_fairValue String
@@ -76,6 +77,7 @@ model balanceSheet{
 
 model cashFlow{
   reportID String @id
+  reportName String
   supplementalScheduleOfNonCashOperatingActivities_details_cryptocurrenciesDepositedByCustomers_weightedAverageCost String
     supplementalScheduleOfNonCashOperatingActivities_details_cryptocurrenciesDepositedByCustomers_breakdown_USDT_amount String
     supplementalScheduleOfNonCashOperatingActivities_details_cryptocurrenciesDepositedByCustomers_breakdown_USDT_weightedAverageCost String
@@ -172,6 +174,7 @@ model cashFlow{
 
 model comprehensiveIncome{
   reportID String @id
+  reportName String
    income_details_depositFee_weightedAverageCost String
     income_details_depositFee_breakdown_USDT_amount String
     income_details_depositFee_breakdown_USDT_weightedAverageCost String
