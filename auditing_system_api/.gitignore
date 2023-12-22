@@ -40,3 +40,6 @@ next-env.d.ts
 
 # 忽略 prisma 子目錄下的 dev.db 文件
 /prisma/dev.db
+
+./package-lock.json
+./prisma/migrations/
