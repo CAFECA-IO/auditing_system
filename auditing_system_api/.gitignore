@@ -8,6 +8,9 @@
 # testing
 /coverage
 
+package-lock.json
+prisma/migrations/
+
 # next.js
 /.next/
 /out/

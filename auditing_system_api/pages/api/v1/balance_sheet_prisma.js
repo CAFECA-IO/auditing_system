@@ -10,11 +10,11 @@ const prisma = new PrismaClient();
 const provider = new ethers.providers.JsonRpcProvider(
   `https://isuncoin.baifa.io`,
 );
+
 const contractABIPath = path.resolve(
   __dirname,
   '../../../../src/services/blockchain/artifacts/artifacts/src/services/blockchain/contracts/router.sol/RouterContract.json',
 );
-console.log('ABIpath:', contractABIPath);
 const contractABI = JSON.parse(fs.readFileSync(contractABIPath, 'utf8'));
 const routerContractAddress = process.env.ROUTER_ADDRESS;
 console.log('routerContractAddress', routerContractAddress);
@@ -23,9 +23,37 @@ const contractInstance = new ethers.Contract(
   contractABI.abi,
   provider,
 );
+
 const reports = contractInstance;
 const reportName = process.env.REPORT_NAME;
 console.log('reportName:', reportName);
+
+const nftABIPath = path.resolve(
+  __dirname,
+  '../../../../src/services/blockchain/artifacts/artifacts/src/services/blockchain/contracts/report_nft.sol/ReportNFT.json',
+);
+const nftContractABI = JSON.parse(fs.readFileSync(nftABIPath, 'utf8'));
+const nftContractAddress = process.env.NFT_ADDRESS;
+console.log('nftContract', nftContractAddress);
+const walletPrivateKey = process.env.PRIVATE_KEY;
+const wallet = new ethers.Wallet(walletPrivateKey, provider);
+const nftInstance = new ethers.Contract(
+  nftContractAddress,
+  nftContractABI.abi,
+  wallet,
+);
+
+const nft = nftInstance;
+
+async function mintNFT(recipientAddress, reportData) {
+  try {
+    const tx = await nft.mintReportNFT(recipientAddress, reportData);
+    await tx.wait();
+    console.log('NFT Minted, transaction hash:', tx.hash);
+  } catch (error) {
+    console.error('Error minting NFT:', error);
+  }
+}
 
 async function getContractValue(reportName, reportType, reportColumn) {
   try {
@@ -528,6 +556,9 @@ async function main() {
     endTime: endTime,
   };
   await insertDataToDB(data);
+  const reportData = JSON.stringify(data);
+  const recipientAddress = '0x2390B5b1DA7a78266111143D503D50c4636F5680';
+  await mintNFT(recipientAddress, reportData);
 }
 
 main().catch((e) => console.error(e));

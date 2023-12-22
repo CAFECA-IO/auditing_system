@@ -9,6 +9,10 @@ async function main() {
   console.log('Deploying contracts with the account:', deployer.address);
 
   // Deploy contracts
+
+  const nft = await ethers.deployContract('ReportNFT',["ReportNFT","RPT"]);
+  const NFT_ADDRESS = await nft.getAddress();
+
   const parser = await ethers.deployContract('Parser');
   const PARSER_ADDRESS = await parser.getAddress();
 
@@ -42,6 +46,7 @@ async function main() {
     TRANSACTION_ADDRESS: transaction_ADDress,
     TIMESPAN_ADDRESS: getTimespan_address,
     ROUTER_ADDRESS: ROUTER_ADDRESS,
+    NFT_ADDRESS: NFT_ADDRESS,
   };
 
   // Log addresses
@@ -51,6 +56,7 @@ async function main() {
   console.log('TRANSACTION_ADDRESS=', transaction_ADDress);
   console.log('TIMESPAN_ADDRESS=', getTimespan_address);
   console.log('ROUTER_ADDRESS=', ROUTER_ADDRESS);
+  console.log('NFT_ADDRESS=', NFT_ADDRESS);
 
   const envPath = '.env';
   let existingContent = '';
