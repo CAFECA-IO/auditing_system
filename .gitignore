@@ -42,3 +42,6 @@ lerna-debug.log*
 #nestJS environment
 /.prettierrc
 /.eslintrc.js
+
+./package-lock.json
+./package.json
