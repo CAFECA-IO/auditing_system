@@ -43,5 +43,5 @@ lerna-debug.log*
 /.prettierrc
 /.eslintrc.js
 
-./package-lock.json
-./package.json
+package-lock.json
+package.json
