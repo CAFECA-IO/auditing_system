@@ -23,12 +23,13 @@ const contractInstance = new ethers.Contract(
   contractABI.abi,
   provider,
 );
-
+const parser = process.env.PARSER_ADDRESS;
+console.log('parser address:', parser);
 const reports = contractInstance;
 const reportName = process.env.REPORT_NAME;
 console.log('reportName:', reportName);
 
-const nftABIPath = path.resolve(
+/*const nftABIPath = path.resolve(
   __dirname,
   '../../../../src/services/blockchain/artifacts/artifacts/src/services/blockchain/contracts/report_nft.sol/ReportNFT.json',
 );
@@ -43,9 +44,9 @@ const nftInstance = new ethers.Contract(
   wallet,
 );
 
-const nft = nftInstance;
+const nft = nftInstance;*/
 
-async function mintNFT(recipientAddress, reportData) {
+/*async function mintNFT(recipientAddress, reportData) {
   try {
     const tx = await nft.mintReportNFT(recipientAddress, reportData);
     await tx.wait();
@@ -53,7 +54,7 @@ async function mintNFT(recipientAddress, reportData) {
   } catch (error) {
     console.error('Error minting NFT:', error);
   }
-}
+}*/
 
 async function getContractValue(reportName, reportType, reportColumn) {
   try {
@@ -556,9 +557,9 @@ async function main() {
     endTime: endTime,
   };
   await insertDataToDB(data);
-  const reportData = JSON.stringify(data);
-  const recipientAddress = '0x2390B5b1DA7a78266111143D503D50c4636F5680';
-  await mintNFT(recipientAddress, reportData);
+  //const reportData = JSON.stringify(data);
+  //const recipientAddress = '0x2390B5b1DA7a78266111143D503D50c4636F5680';
+  //await mintNFT(recipientAddress, reportData);
 }
 
 main().catch((e) => console.error(e));

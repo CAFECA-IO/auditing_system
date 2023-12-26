@@ -4,6 +4,12 @@ const { ethers } = require('hardhat');
 const fs = require('fs');
 const path = require('path');
 const readline = require('readline');
+const { start } = require('repl');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
+//
 const contractABIPath = path.resolve(
   __dirname,
   '../../blockchain/artifacts/artifacts/src/services/blockchain/contracts/router.sol/RouterContract.json',
@@ -11,10 +17,14 @@ const contractABIPath = path.resolve(
 const contractJSON = JSON.parse(fs.readFileSync(contractABIPath, 'utf8'));
 const contractABI = contractJSON.abi;
 const routerContractAddress = process.env.ROUTER_ADDRESS;
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
+//
+const nftABIPath = path.resolve(
+  __dirname,
+  '../../../../src/services/blockchain/artifacts/artifacts/src/services/blockchain/contracts/report_nft.sol/ReportNFT.json',
+);
+const nftContractJSON = JSON.parse(fs.readFileSync(nftABIPath, 'utf8'));
+const nftcontractABI = nftContractJSON.abi;
+const nftContractAddress = process.env.NFT_ADDRESS;
 
 // 執行交易
 async function generateReport(startTime, endTime, report_Name) {
@@ -24,6 +34,12 @@ async function generateReport(startTime, endTime, report_Name) {
     contractABI,
     signer,
   );
+  const nftContractWithSigner = new ethers.Contract(
+    nftContractAddress,
+    nftcontractABI,
+    signer,
+  );
+
   try {
     const tx = await contractWithSigner.generateReport(
       startTime,
@@ -32,9 +48,6 @@ async function generateReport(startTime, endTime, report_Name) {
     );
     const transaction_hash = tx.hash;
     console.log('Transaction hash:', transaction_hash);
-    const envPath = '.env';
-    const newEnvContent = `REPORT_ID=${transaction_hash}\n`;
-    fs.appendFileSync(envPath, newEnvContent);
 
     const receipt = await tx.wait();
 
@@ -49,6 +62,32 @@ async function generateReport(startTime, endTime, report_Name) {
     console.log('Gas Used:', receipt.gasUsed.toString());
   } catch (error) {
     console.error('Error:', error);
+  }
+
+  const recipientAddress = '0x2390B5b1DA7a78266111143D503D50c4636F5680';
+  try {
+    console.log('start minting NFT');
+    const tx = await nftContractWithSigner.mintReportNFT(
+      recipientAddress,
+      startTime,
+      endTime,
+      report_Name,
+    );
+    const transaction_hash = tx.hash;
+    console.log('Minting NFT Transaction hash:', transaction_hash);
+    const receipt = await tx.wait();
+    console.log('Transaction confirmed, details:');
+    console.log('Block Number:', receipt.blockNumber);
+    console.log('Gas Used:', receipt.gasUsed.toString());
+
+    console.log('start getting latestTokenID');
+    const latestTokenId = await nftContractWithSigner.getLatestTokenID();
+    console.log('Latest Token ID:', latestTokenId.toString());
+
+    fs.appendFileSync('.env', `REPORT_ID=${latestTokenId.toString()}\n`);
+    console.log('.env file updated');
+  } catch (error) {
+    console.error('Error minting NFT:', error);
   }
 }
 
