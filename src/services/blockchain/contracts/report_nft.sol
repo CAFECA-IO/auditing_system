@@ -6,7 +6,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "../interfaces/IERC721Extended.sol";
 import "@openzeppelin/contracts/utils/introspection/ERC165.sol";
 
-contract ReportNFT is IERC721Extended, ERC165 {
+contract ReportNFT is IERC721Extended {
     uint256 private _tokenIdCounter;
     string private _name;
     string private _symbol;
@@ -44,7 +44,7 @@ contract ReportNFT is IERC721Extended, ERC165 {
         _tokenIdCounter = 0;
     }
 
-     function supportsInterface(bytes4 interfaceId) public view override(ERC165, IERC721Extended) returns (bool) {
+     function supportsInterface(bytes4 interfaceId) public view returns (bool) {
         return _supportedInterfaces[interfaceId];
     }
 
