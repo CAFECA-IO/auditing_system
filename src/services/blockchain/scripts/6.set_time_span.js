@@ -91,7 +91,6 @@ async function generateReport(startTime, endTime, report_Name) {
   }
 }
 
-// Prompt the user for input
 rl.question('Please enter reportName: ', async (input) => {
   const [signer] = await ethers.getSigners();
   const contractWithSigner = new ethers.Contract(
