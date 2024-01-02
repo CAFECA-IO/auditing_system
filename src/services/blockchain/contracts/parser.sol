@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
-import "../interfaces/iParser.sol";
+import "../interfaces/i_parser.sol";
 
 
 // Info: (20231115-Yang){This contracts realize the functions to decode or encode different variables types}

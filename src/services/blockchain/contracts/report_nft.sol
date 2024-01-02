@@ -2,7 +2,7 @@
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "../interfaces/ierc_isuncloud.sol";
+import "../interfaces/i_erc_isuncloud.sol";
 
 contract ReportNFT is IERC_ISUNCLOUD {
 

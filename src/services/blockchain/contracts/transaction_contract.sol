@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 
-import "../interfaces/iParser.sol";
-import "../interfaces/iTransaction_handler.sol";
+import "../interfaces/i_parser.sol";
+import "../interfaces/i_transaction_handler.sol";
 
 pragma solidity ^0.8.0;
 
