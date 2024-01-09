@@ -5,6 +5,7 @@ author: Pin-Yang Chen(@YangIsCoding)
 discussions-to: <URL>
 status: Draft
 type: Standards Track
+category: ERC
 created: 2023-12-29
 ---
 
