@@ -1,15 +1,41 @@
 const { timeStamp } = require('console');
 require('events').EventEmitter.defaultMaxListeners = 15;
+const { ethers } = require('ethers');
 const fs = require('fs');
 
 const path = require('path');
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 const reportID = process.env.REPORT_ID;
+const nftContractAddress = process.env.NFT_ADDRESS;
+const nftABIPath = path.resolve(
+  __dirname,
+  '../../../../../../src/services/blockchain/artifacts/artifacts/src/services/blockchain/contracts/report_nft.sol/ReportNFT.json',
+);
+const nftABI = JSON.parse(fs.readFileSync(nftABIPath, 'utf8'));
 
 export default async function handler(req, res) {
   if (req.method === 'GET') {
     try {
+      const userAddress = '0x2390B5b1DA7a78266111143D503D50c4636F5680';
+
+      const provider = new ethers.providers.JsonRpcProvider(
+        `https://isuncoin.baifa.io`,
+      );
+
+      const nftContract = new ethers.Contract(
+        nftContractAddress,
+        nftABI.abi,
+        provider,
+      );
+      const isOwner = (await nftContract.ownerOf(reportID)) === userAddress;
+      console.log('isOwner: ', isOwner);
+
+      if (!isOwner) {
+        return res.status(403).json({
+          message: 'Access denied, you are not the owner of this token',
+        });
+      }
       const balanceSheet = await prisma.balanceSheet.findUnique({
         where: {
           reportID: process.env.REPORT_ID,

@@ -7,7 +7,6 @@ pragma solidity ^0.8.0;
 
 contract TransactionContract {
 
-
     struct Transaction {
         bytes32 eventId;
         bytes32 transactionType;
