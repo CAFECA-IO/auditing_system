@@ -10,7 +10,7 @@ async function main() {
 
   // Deploy contracts
 
-  const nft = await ethers.deployContract('ReportNFT',["ReportNFT","RPT"]);
+  const nft = await ethers.deployContract('ReportNFT', ['ReportNFT', 'RPT']);
   const NFT_ADDRESS = await nft.getAddress();
 
   const parser = await ethers.deployContract('Parser');
