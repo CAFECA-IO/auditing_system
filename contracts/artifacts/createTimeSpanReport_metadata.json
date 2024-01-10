@@ -1,0 +1,287 @@
+{
+	"compiler": {
+		"version": "0.8.18+commit.87f61d96"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_transactionContractAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_E00010001",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_E00010002",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_E00010003",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [],
+				"name": "e00010001",
+				"outputs": [
+					{
+						"internalType": "contract E00010001",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "e00010002",
+				"outputs": [
+					{
+						"internalType": "contract E00010002",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "e00010003",
+				"outputs": [
+					{
+						"internalType": "contract E00010003",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "startTime",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "endTime",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "_reportID",
+						"type": "string"
+					}
+				],
+				"name": "filterTransactionsInRange",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string[]",
+								"name": "types",
+								"type": "string[]"
+							},
+							{
+								"internalType": "string[]",
+								"name": "eventIds",
+								"type": "string[]"
+							},
+							{
+								"internalType": "uint256[]",
+								"name": "transTimes",
+								"type": "uint256[]"
+							},
+							{
+								"internalType": "address",
+								"name": "reportCreater",
+								"type": "address"
+							},
+							{
+								"internalType": "string",
+								"name": "reportID",
+								"type": "string"
+							}
+						],
+						"internalType": "struct createTimeSpanReport.FilteredData",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "rateHistory",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "SP001",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "SP002",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "SP003",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "SP004",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "reportID",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_SP002",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_SP003",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_SP004",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "_reportID",
+						"type": "string"
+					}
+				],
+				"name": "setRate",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "transactionContract",
+				"outputs": [
+					{
+						"internalType": "contract TransactionContract",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/getTransactionTimeSpan.sol": "createTimeSpanReport"
+		},
+		"evmVersion": "paris",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/E00010001.sol": {
+			"keccak256": "0x2286174d21ef21c3a9ce3a81ff27f490972cfb7403256a36097c15d2accc5717",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://b5aea1f89b18c7c6e74e35edf251a640971f0398a8b7b3e719676786966d0b30",
+				"dweb:/ipfs/Qmdmh6TaieR52BoVpgC6LeMNSWpHkiq5wXpWFiA31m3RBj"
+			]
+		},
+		"contracts/E00010002.sol": {
+			"keccak256": "0xe5df346ae5a955c4584e2ce18b8d4ab7f69d4164d7b082bb98ef3398293a32a9",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://ba7d9e55758e31ab2fce745e493077a15b67d9cca0ca02c1054f7215ebc617fd",
+				"dweb:/ipfs/QmQpmL2veVpmVZXcSZzi4Z37S8FhwA7qVWgTbzJDiv8XLa"
+			]
+		},
+		"contracts/E00010003.sol": {
+			"keccak256": "0xd8356283f9fa13000b44874d3b21acd1022283ed109ca2f0d1a4410d1003636a",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://9fd4aceb5a5082ce689b371ce158befb193dc7442724ee36343ca4022cb508d4",
+				"dweb:/ipfs/QmWBB2HapjzM9Y4SGwjMLKaR2X4dfuVFiqmrNZacKEDCzP"
+			]
+		},
+		"contracts/eventTransactionRecord.sol": {
+			"keccak256": "0x96aff0c12eb8627ccb3c8ed7d087665eaefa417a2215f4ce5e9e89b09476293f",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://83e9eeaefcb581cd3ba258878a146e3e72ac13c481456377b982b67f6901d9b7",
+				"dweb:/ipfs/QmU3wZ7XZsaCrxe53vv48icpNvyqakbNE2CRyGrDKqcciN"
+			]
+		},
+		"contracts/getTransactionTimeSpan.sol": {
+			"keccak256": "0x78aa4f06fae05a8e9b4baefc3563a9d47605bdc1ac3fb76f01a9a3e40fc7a01a",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://faf839aa2d10d5a4c30a6f3ce2f020d11d83859573df133465720831eb6a5654",
+				"dweb:/ipfs/QmVUPFwBBh8Crify7Dtr5vuffDHNHgiJXhDvVpS5dVdeSg"
+			]
+		},
+		"contracts/reports.sol": {
+			"keccak256": "0x17a1f4dd327b8014d84495abae9f8ddfb4388fdd2ff11eb51225608d4f32e7c8",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://37fc3c605dfa12cb765be4a0cadaed0c86d1b195beed1598fb9ea4df3485f521",
+				"dweb:/ipfs/QmfERCGYzU3YA2ctmqw9mhwSiwyQo96wT2Ukae5XUhTxhn"
+			]
+		}
+	},
+	"version": 1
+}
