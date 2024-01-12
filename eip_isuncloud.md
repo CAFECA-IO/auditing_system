@@ -1,19 +1,19 @@
 ---
-eip: 8017
-title: nft synthetic evidence
+eip: 7593
+title: NFT synthetic evidence
 description: Based on the ERC-721 and combines multiple pieces of evidence generated on the blockchain to create a synthetic evidence.
 author: Pin Yang Chen (@YangIsCoding) <allanustw@gmail.com>
-discussions-to: https://ethereum-magicians.org/t/add-eip-eip-8017/17986
+discussions-to: https://ethereum-magicians.org/t/add-erc-erc-7593/17986
 status: Draft
 type: Standards Track
-category: Interface
+category: ERC
 created: 2023-12-29
 requires: 721
 ---
 
 ## Abstract
 
-We are looking to establish a proof on Ethereum based on [ERC-721](./eip-721.md), which demonstrates certain digital asset permissions. The holder of these permissions can use a new function, share(), to share this proof. After using share(), the original NFT owner does not lose their permissions. The shared party will receive a new NFT token with a TokenID incremented by 1, but all other parameters remain the same. Therefore, I would like to propose a new Ethereum proposal, [EIP-8017](./eip-8017.md), to develop such a function.
+We are looking to establish a proof on Ethereum based on [ERC-721](./eip-721.md), which demonstrates certain digital asset permissions. The holder of these permissions can use a new function, share(), to share this proof. After using share(), the original NFT owner does not lose their permissions. The shared party will receive a new NFT token with a TokenID incremented by 1, but all other parameters remain the same. Therefore, I would like to propose a new Ethereum proposal to develop such a function.
 
 ## Specification
 
@@ -24,22 +24,17 @@ To realize the following interface, you have to implement the ReportNFT smart co
 ```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
-
 interface IERC_8017 {
-
      struct Report {
         string name;
         uint256 startTime;
         uint256 endTime;
     }
-
     event ReportNFTMinted(address indexed recipient, uint256 indexed newItemId, string reportName, uint256 startTime, uint256 endTime);
     event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId);
     event ApprovalForAll(address indexed owner, address indexed operator, bool approved);
     event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);
     event ReportNFTShared(address indexed from, address indexed to, uint256 indexed tokenId);
-
-
     error ERC721InvalidOwner(address owner);
     error ERC721InvalidReceiver(address receiver);
     error ERC721InvalidSender(address sender);
@@ -48,11 +43,9 @@ interface IERC_8017 {
     error ERC721NonexistentToken(uint256 tokenId);
     error ERC721InvalidOperator(address operator);
     error ERC721InsufficientApproval(address spender, uint256 tokenId);
-
     //Info: (20231229 - Yang){ supportsInterface(bytes4 interfaceId) is a function that is based on ERC165.}
     //Info: (20231229 - Yang){ Checks if the contract supports a specific interface.}
     function supportsInterface(bytes4 interfaceId) external view returns (bool);
-
     //Info: (20231229 - Yang){ the following functions are based on by ERC721.}
     //Info: (20231229 - Yang){ Returns the name of the token.}
     function name() external view returns (string memory);
@@ -72,7 +65,6 @@ interface IERC_8017 {
     function owner() external view returns (address);
     //Info: (20231229 - Yang){ Approves a given address to manage a specific token ID.}
     function approve(address to, uint256 tokenId) external;
-
     //Info: (20231229 - Yang){ The following functions are created originally.}
     //Info: (20231229 - Yang){ Shares a report by minting a new token for a specified wallet address.}
     function share(uint256 tokenId, address targetWallet) external returns (uint256);
@@ -82,9 +74,7 @@ interface IERC_8017 {
     function getLatestTokenID() external view returns (uint256);
     //Info: (20231229 - Yang){ Mints a new report NFT and assigns it to the specified recipient.}
     function mintReportNFT(address recipient, uint256 startTime, uint256 endTime, string memory reportName) external returns (uint256);
-
 }
-
 ```
 
 ## Rationale
