@@ -17,14 +17,14 @@ We are looking to establish a proof on Ethereum based on [ERC-721](./eip-721.md)
 
 ## Specification
 
-The Standard defines a set of operations for minting, sharing, and managing NFTs that represent reports generated. Each report NFT MUST contain metadata detailing the report's name, the starting time point of the report, and the ending time point of the report, following the structure defined in the IERC_8017 interface. The minting function SHALL create a new NFT and assign it a unique token ID, ensuring each report is technically distinct. Although the content (metadata) of each report may be the same, when the share() function is used to share a report, the system will copy the report's metadata to the target address, and the newly minted NFT will have a new, incremented token ID, thus maintaining the uniqueness of each NFT. Sharing of report NFTs SHALL be facilitated through a dedicated function, allowing transfer to specified addresses while maintaining traceability. Implementations of this standard MUST be compliant with the [ERC-721](./eip-721.md) protocol to ensure interoperability across different platform. This specification RECOMMENDS implementing additional security measures to prevent unauthorized access and modifications to the report NFTs.
+The Standard defines a set of operations for minting, sharing, and managing NFTs that represent reports generated. Each report NFT MUST contain metadata detailing the report's name, the starting time point of the report, and the ending time point of the report, following the structure defined in the IERC_7593 interface. The minting function SHALL create a new NFT and assign it a unique token ID, ensuring each report is technically distinct. Although the content (metadata) of each report may be the same, when the share() function is used to share a report, the system will copy the report's metadata to the target address, and the newly minted NFT will have a new, incremented token ID, thus maintaining the uniqueness of each NFT. Sharing of report NFTs SHALL be facilitated through a dedicated function, allowing transfer to specified addresses while maintaining traceability. Implementations of this standard MUST be compliant with the [ERC-721](./eip-721.md) protocol to ensure interoperability across different platform. This specification RECOMMENDS implementing additional security measures to prevent unauthorized access and modifications to the report NFTs.
 
-To realize the following interface, you have to implement the ReportNFT smart contract.
+This interface is designed to unify Block Evidence Standard for Enhanced Data Integrity and Verifiability. We have designed a blockchain evidence format that is tamper-proof, privacy-preserving, selectively authorized, and shareable. This format is based on the ERC-721 standard and combines multiple pieces of evidence generated on the blockchain to create a synthetic evidence standard.
 
 ```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
-interface IERC_8017 {
+interface IERC_7593 {
      struct Report {
         string name;
         uint256 startTime;
@@ -80,6 +80,8 @@ interface IERC_8017 {
 ## Rationale
 
 The rationale Report NFT Standard is to leverage the unique capabilities of blockchain technology, specifically NFTs, to enhance the security, authenticity, and traceability of audit reports. By encoding these reports as NFTs, each document is given a distinct, immutable identity on the blockchain, ensuring its authenticity and preventing tampering. The ability to share these NFTs securely through a dedicated function addresses the need for controlled yet flexible distribution of sensitive audit information. Adhering to the [ERC-721](./eip-721.md) standard ensures interoperability across various platforms, making the system versatile and accessible. This approach represents a significant advancement in maintaining the integrity and trustworthiness of audit documents in the renewable energy sector.
+
+Taking the accounting system as an example (though it can also be applied to legal, medical data, and other fields), each transaction recorded on the blockchain can be considered as a piece of small evidence. The reports generated from these transactions after calculations represent larger evidence. When we want to consolidate these pieces of small evidence into a larger one for the purpose of controlling access, we need a mechanism to accomplish this. This larger evidence is minted in the form of an NFT, and only the person who owns this NFT can view the content of the entire report. Such a mechanism can be utilized in various fields, making this standard capable of facilitating such functionality.
 
 ## Security Considerations
 
