@@ -26,13 +26,13 @@ describe('checking E00020007 balanceSheet', async function () {
       signer,
     );
   });
-  it('liabilities.details.userDeposit.totalAmountFairValue should equal −2772000000000000000000', async function () {
+  it('liabilities.details.userDeposit.totalAmountFairValue should equal -2772000000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'fifteenth_report',
       'balanceSheet',
       'liabilities.details.userDeposit.totalAmountFairValue',
     );
-    expect(value).to.equal('−2772');
+    expect(value).to.equal('-2772000000000000000000');
   });
   it(' liabilities.details.userDeposit.breakdown.USDT.amount should equal  -2800000000000000000000 ', async function () {
     const value = await contractWithSigner.getValue(
@@ -42,13 +42,13 @@ describe('checking E00020007 balanceSheet', async function () {
     );
     expect(value).to.equal('-2800000000000000000000');
   });
-  it('liabilities.details.userDeposit.breakdown.USDT.fairValue should equal −2772000000000000000000', async function () {
+  it('liabilities.details.userDeposit.breakdown.USDT.fairValue should equal -2772000000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'fifteenth_report',
       'balanceSheet',
       'liabilities.details.userDeposit.breakdown.USDT.fairValue',
     );
-    expect(value).to.equal('−2772000000000000000000');
+    expect(value).to.equal('-2772000000000000000000');
   });
   it('liabilities.details.accountsPayable.totalAmountFairValue should equal 2772000000000000000000 ', async function () {
     const value = await contractWithSigner.getValue(

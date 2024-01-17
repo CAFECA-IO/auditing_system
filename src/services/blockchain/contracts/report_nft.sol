@@ -336,5 +336,4 @@ contract ReportNFT is IERC_ISUNCLOUD {
 
         return newTokenId;
     }
-
 }
