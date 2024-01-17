@@ -17,7 +17,7 @@ const routerContractAddress = process.env.ROUTER_ADDRESS;
 
 let contractWithSigner;
 
-describe('checking E00020011 balanceSheet', async function () {
+describe('checking E00020012 balanceSheet', async function () {
   before(async function () {
     const [signer] = await ethers.getSigners();
     contractWithSigner = new ethers.Contract(
