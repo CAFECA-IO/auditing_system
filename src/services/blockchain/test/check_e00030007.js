@@ -234,6 +234,41 @@ describe('checking E00030007 balanceSheet', function () {
     expect(value).to.equal('-1584000000000000000000');
   });
   //
+  it('equity.details.otherCapitalReserve.breakdown.ETH.amount should equal 1000000000000000000', async function () {
+    const value = await contractWithSigner.getValue(
+      'twentyseventh_report',
+      'balanceSheet',
+      'equity.details.otherCapitalReserve.breakdown.ETH.amount',
+    );
+    expect(value).to.equal('1000000000000000000');
+  });
+  //
+  it('equity.details.otherCapitalReserve.breakdown.ETH.fairValue should equal 1600000000000000000000', async function () {
+    const value = await contractWithSigner.getValue(
+      'twentyseventh_report',
+      'balanceSheet',
+      'equity.details.otherCapitalReserve.breakdown.ETH.fairValue',
+    );
+    expect(value).to.equal('1600000000000000000000');
+  });
+  //
+  it(' equity.totalAmountFairValue should equal 16000000000000000000', async function () {
+    const value = await contractWithSigner.getValue(
+      'twentyseventh_report',
+      'balanceSheet',
+      'equity.totalAmountFairValue',
+    );
+    expect(value).to.equal('16000000000000000000');
+  });
+  //
+  it('totalLiabilitiesAndEquityFairValue should equal -26083000000000000000000', async function () {
+    const value = await contractWithSigner.getValue(
+      'twentyseventh_report',
+      'balanceSheet',
+      'totalLiabilitiesAndEquityFairValue',
+    );
+    expect(value).to.equal('-26083000000000000000000');
+  });
 });
 
 describe('checking E00030007 comprehensive income', function () {
@@ -246,4 +281,102 @@ describe('checking E00030007 comprehensive income', function () {
     );
   });
   //
+  it('income.weightedAverageCost should equal 101000000000000000000', async function () {
+    const value = await contractWithSigner.getValue(
+      'twentyseventh_report',
+      'comprehensiveIncome',
+      'income.weightedAverageCost',
+    );
+    expect(value).to.equal('101000000000000000000');
+  });
+  //
+  it('income.details.tradingFee.weightedAverageCost should equal 0', async function () {
+    const value = await contractWithSigner.getValue(
+      'twentyseventh_report',
+      'comprehensiveIncome',
+      'income.details.tradingFee.weightedAverageCost',
+    );
+    expect(value).to.equal('0');
+  });
+  //
+  it('income.details.tradingFee.breakdown.USDT.amount should equal 0', async function () {
+    const value = await contractWithSigner.getValue(
+      'twentyseventh_report',
+      'comprehensiveIncome',
+      'income.details.tradingFee.breakdown.USDT.amount',
+    );
+    expect(value).to.equal('0');
+  });
+  //
+  it('income.details.tradingFee.breakdown.USDT.weightedAverageCost should equal 0', async function () {
+    const value = await contractWithSigner.getValue(
+      'twentyseventh_report',
+      'comprehensiveIncome',
+      'income.details.tradingFee.breakdown.USDT.weightedAverageCost',
+    );
+    expect(value).to.equal('0');
+  });
+  //
+  it('income.details.liquidationFee.weightedAverageCost should equal 0', async function () {
+    const value = await contractWithSigner.getValue(
+      'twentyseventh_report',
+      'comprehensiveIncome',
+      'income.details.liquidationFee.weightedAverageCost',
+    );
+    expect(value).to.equal('0');
+  });
+  //
+  it('income.details.liquidationFee.breakdown.USDT.amount should equal 0', async function () {
+    const value = await contractWithSigner.getValue(
+      'twentyseventh_report',
+      'comprehensiveIncome',
+      'income.details.liquidationFee.breakdown.USDT.amount',
+    );
+    expect(value).to.equal('0');
+  });
+  //
+  it('income.details.liquidationFee.breakdown.USDT.weightedAverageCost should equal 0', async function () {
+    const value = await contractWithSigner.getValue(
+      'twentyseventh_report',
+      'comprehensiveIncome',
+      'income.details.liquidationFee.breakdown.USDT.weightedAverageCost',
+    );
+    expect(value).to.equal('0');
+  });
+  //
+  it('otherGainsLosses.details.cryptocurrencyGains.weightedAverageCost should equal 101000000000000000000', async function () {
+    const value = await contractWithSigner.getValue(
+      'twentyseventh_report',
+      'comprehensiveIncome',
+      'otherGainsLosses.details.cryptocurrencyGains.weightedAverageCost',
+    );
+    expect(value).to.equal('101000000000000000000');
+  });
+  //
+  it('otherGainsLosses.details.cryptocurrencyGains.breakdown.USDT.amount should equal 100000000000000000000', async function () {
+    const value = await contractWithSigner.getValue(
+      'twentyseventh_report',
+      'comprehensiveIncome',
+      'otherGainsLosses.details.cryptocurrencyGains.breakdown.USDT.amount',
+    );
+    expect(value).to.equal('100000000000000000000');
+  });
+  //
+  it('otherGainsLosses.details.cryptocurrencyGains.breakdown.USDT.weightedAverageCost should equal 101000000000000000000', async function () {
+    const value = await contractWithSigner.getValue(
+      'twentyseventh_report',
+      'comprehensiveIncome',
+      'otherGainsLosses.details.cryptocurrencyGains.breakdown.USDT.weightedAverageCost',
+    );
+    expect(value).to.equal('101000000000000000000');
+  });
+  //
+  it('netProfit should equal 101000000000000000000', async function () {
+    const value = await contractWithSigner.getValue(
+      'twentyseventh_report',
+      'comprehensiveIncome',
+      'netProfit',
+    );
+    expect(value).to.equal('101000000000000000000');
+  });
 });
