@@ -54,13 +54,13 @@ describe('checking E00030001 balanceSheet', function () {
     expect(value).to.equal('5544000000000000000');
   });
 
-  it('assets.details.accountsReceivable.totalAmountFairValue  should equal 277200000000000000000', async function () {
+  it('assets.details.accountsReceivable.totalAmountFairValue  should equal 2772000000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'twentyfirst_report',
       'balanceSheet',
       'assets.details.accountsReceivable.totalAmountFairValue',
     );
-    expect(value).to.equal('277200000000000000000');
+    expect(value).to.equal('2772000000000000000000');
   });
 
   it('assets.details.accountsReceivable.breakdown.USDT.amount should equal 2800000000000000000000', async function () {
@@ -72,31 +72,31 @@ describe('checking E00030001 balanceSheet', function () {
     expect(value).to.equal('2800000000000000000000');
   });
 
-  it('assets.details.accountsReceivable.breakdown.USDT.fairValue should equal 277200000000000000000', async function () {
+  it('assets.details.accountsReceivable.breakdown.USDT.fairValue should equal 2772000000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'twentyfirst_report',
       'balanceSheet',
       'assets.details.accountsReceivable.breakdown.USDT.fairValue',
     );
-    expect(value).to.equal('277200000000000000000');
+    expect(value).to.equal('2772000000000000000000');
   });
 
-  it('assets.totalAmountFairValue should equal 277754400000000000000', async function () {
+  it('assets.totalAmountFairValue should equal 2777544000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'twentyfirst_report',
       'balanceSheet',
       'assets.totalAmountFairValue',
     );
-    expect(value).to.equal('277754400000000000000');
+    expect(value).to.equal('2777544000000000000000');
   });
 
-  it('totalAssetsFairValue  should equal 277754400000000000000', async function () {
+  it('totalAssetsFairValue  should equal 2777544000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'twentyfirst_report',
       'balanceSheet',
       'totalAssetsFairValue',
     );
-    expect(value).to.equal('277754400000000000000');
+    expect(value).to.equal('2777544000000000000000');
   });
 
   it('liabilities.details.userDeposit.totalAmountFairValue  should equal -554400000000000000000', async function () {
@@ -171,22 +171,22 @@ describe('checking E00030001 balanceSheet', function () {
     expect(value).to.equal('554400000000000000000');
   });
 
-  it('liabilities.totalAmountFairValue  should equal -2600000000000000000000', async function () {
+  it('liabilities.totalAmountFairValue  should equal 2600000000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'twentyfirst_report',
       'balanceSheet',
       'liabilities.totalAmountFairValue',
     );
-    expect(value).to.equal('-2600000000000000000000');
+    expect(value).to.equal('2600000000000000000000');
   });
 
-  it('equity.details.retainedEarnings.totalAmountFairValue  should equal 554400000000000000000', async function () {
+  it('equity.details.retainedEarnings.totalAmountFairValue  should equal 5544000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'twentyfirst_report',
       'balanceSheet',
       'equity.details.retainedEarnings.totalAmountFairValue',
     );
-    expect(value).to.equal('554400000000000000000');
+    expect(value).to.equal('5544000000000000000');
   });
 
   it('equity.details.retainedEarnings.breakdown.USDT.amount  should equal 5600000000000000000', async function () {
@@ -204,14 +204,14 @@ describe('checking E00030001 balanceSheet', function () {
       'balanceSheet',
       'equity.details.retainedEarnings.breakdown.USDT.fairValue',
     );
-    expect(value).to.equal('554400000000000000000');
+    expect(value).to.equal('5544000000000000000');
   });
 
-  it('equity.details.otherCapitalReserve.totalAmountFairValue  should equal 172000000000000000000', async function () {
+  it('equity.details.otherCapitalReserve.fairValue  should equal 172000000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'twentyfirst_report',
       'balanceSheet',
-      'equity.details.otherCapitalReserve.totalAmountFairValue',
+      'equity.details.otherCapitalReserve.fairValue',
     );
     expect(value).to.equal('172000000000000000000');
   });

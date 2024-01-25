@@ -45,11 +45,11 @@ describe('checking E00030004 balanceSheet', function () {
     expect(value).to.equal('3400000000000000000');
   });
   //
-  it('assets.details.cryptocurrency.breakdown.USDT.amount  should equal 3366000000000000000', async function () {
+  it('assets.details.cryptocurrency.breakdown.USDT.fairValue  should equal 3366000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'twentyforth_report',
       'balanceSheet',
-      'assets.details.cryptocurrency.breakdown.USDT.amount',
+      'assets.details.cryptocurrency.breakdown.USDT.fairValue',
     );
     expect(value).to.equal('3366000000000000000');
   });
@@ -81,31 +81,31 @@ describe('checking E00030004 balanceSheet', function () {
     expect(value).to.equal('26000000000000000000000');
   });
   //
-  it('assets.totalAmountFairValue should equal 2600336600000000000000', async function () {
+  it('assets.totalAmountFairValue should equal 26003366000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'twentyforth_report',
       'balanceSheet',
       'assets.totalAmountFairValue',
     );
-    expect(value).to.equal('2600336600000000000000');
+    expect(value).to.equal('26003366000000000000000');
   });
   //
-  it('totalAssetsFairValue should equal 2600336600000000000000', async function () {
+  it('totalAssetsFairValue should equal 26003366000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'twentyforth_report',
       'balanceSheet',
       'totalAssetsFairValue',
     );
-    expect(value).to.equal('2600336600000000000000');
+    expect(value).to.equal('26003366000000000000000');
   });
   //
-  it('liabilities.details.userDeposit.totalAmountFairValue should equal -3366000000000000000000', async function () {
+  it('liabilities.details.userDeposit.totalAmountFairValue should equal -336600000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'twentyforth_report',
       'balanceSheet',
       'liabilities.details.userDeposit.totalAmountFairValue',
     );
-    expect(value).to.equal('-3366000000000000000000');
+    expect(value).to.equal('-336600000000000000000');
   });
   //
   it('liabilities.details.userDeposit.breakdown.USDT.amount should equal -340000000000000000000', async function () {
@@ -162,13 +162,13 @@ describe('checking E00030004 balanceSheet', function () {
     expect(value).to.equal('1683000000000000000000');
   });
   //
-  it('equity.details.retainedEarnings.totalAmountFairValue should equal 3366000000000000000', async function () {
+  it('equity.details.retainedEarnings.totalAmountFairValue should equal 33660000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'twentyforth_report',
       'balanceSheet',
       'equity.details.retainedEarnings.totalAmountFairValue',
     );
-    expect(value).to.equal('3366000000000000000');
+    expect(value).to.equal('33660000000000000');
   });
   //
   it('equity.details.retainedEarnings.breakdown.USDT.amount should equal 3400000000000000000', async function () {
@@ -317,11 +317,11 @@ describe('checking E00030004 comprehensive income', function () {
     expect(value).to.equal('3400000000000000000');
   });
   //
-  it('income.details.guaranteedStopLossFee.breakdown.USDT.amount should equal 3434000000000000000', async function () {
+  it('income.details.guaranteedStopLossFee.breakdown.USDT.weightedAverageCost should equal 3434000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'twentyforth_report',
       'comprehensiveIncome',
-      'income.details.guaranteedStopLossFee.breakdown.USDT.amount',
+      'income.details.guaranteedStopLossFee.breakdown.USDT.weightedAverageCost',
     );
     expect(value).to.equal('3434000000000000000');
   });
