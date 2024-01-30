@@ -5,7 +5,7 @@ import "./reports.sol";
 import "./parser.sol";
 import "../interfaces/i_transaction_handler.sol";
 //Info: (20231115 - Yang){This contract is to calculate the variables based on the excel reports, and to record transaction data from transactionContract.sol, the logic is the same in other handlers contracts}
-contract E00030005Handler is ITransactionHandler{
+contract E00030007Handler is ITransactionHandler{
 
     Reports public report;
     IParser public Iparser;
@@ -135,7 +135,7 @@ contract E00030005Handler is ITransactionHandler{
         int256 A038 = (-EP001);
         report.addValue(reportName, "balanceSheet", "liabilities.details.accountsPayable.breakdown.ETH.amount" , A038);
 
-        int256 A039 =  (-EP001 * latestSP003);
+        int256 A039 =  ((-EP001 * latestSP003)/10**18);
         report.addValue(reportName, "balanceSheet", "liabilities.details.accountsPayable.breakdown.ETH.fairValue" , A039);
 
         int256 A034 = int256((-EP006) + EP002 + (-EP011) + (-EP003));
@@ -143,6 +143,7 @@ contract E00030005Handler is ITransactionHandler{
 
         int256 A035 = int256(((-EP006 * latestSP002) + (EP002 * latestSP002) + (-EP011 * latestSP002) + (-EP003 * latestSP002))/10**18);
         report.addValue(reportName, "balanceSheet", "liabilities.details.accountsPayable.breakdown.USDT.fairValue" , A035);
+
 
     }
 
@@ -158,7 +159,7 @@ contract E00030005Handler is ITransactionHandler{
         int256 A011 = int256(EP007 + EP012);
         report.addValue(reportName, "balanceSheet", "equity.details.retainedEarnings.breakdown.USDT.amount" , A011);
 
-        int256 A052 = int256(((-EP002 * latestSP002) + (EP001 * latestSP003)) / 10**18);
+        int256 A052 = int256(((-EP002 * latestSP002) + (EP001 * latestSP004)) / 10**18);
         report.addValue(reportName, "balanceSheet", "equity.details.otherCapitalReserve.fairValue" , A052);
 
         int256 A055 = int256((-EP002));
@@ -172,6 +173,15 @@ contract E00030005Handler is ITransactionHandler{
 
         int256 A058 = int256((EP001 * latestSP003)/10**18);
         report.addValue(reportName, "balanceSheet", "equity.details.otherCapitalReserve.breakdown.ETH.fairValue" , A058);
+
+        int256 A013 = int256(((EP007 * latestSP002) + (EP012 * latestSP002)  + (EP011 * latestSP002) + (-EP002 * latestSP002)
+               + (EP001 * latestSP003))/10**18);
+        report.addValue(reportName, "balanceSheet", "equity.totalAmountFairValue" , A013);
+
+        int256 A014 = int256((EP006 * latestSP002 +  (-EP006 * latestSP002) + (EP002 * latestSP002) + (-EP011 * latestSP002)
+               + (-EP003 * latestSP002) + (-EP001 * latestSP004) +EP007 * latestSP002 + (EP012 * latestSP002)
+               +  (EP011 * latestSP002)  + (-EP002 * latestSP002) + (EP001 * latestSP003))/10**18);
+        report.addValue(reportName, "balanceSheet", "totalLiabilitiesAndEquityFairValue" , A014);
     }
 
     //Info: (20231115 - Yang){This contract calculates comprehensiveIncome's column, then add them to existing column in report.sol contract}
@@ -199,7 +209,7 @@ contract E00030005Handler is ITransactionHandler{
         report.addValue(reportName, "comprehensiveIncome", "otherGainsLosses.details.cryptocurrencyGains.breakdown.USDT.amount" , B100);
 
         int256 B028_101 = int256((-EP013 * EP009)/10**18);
-        report.addValue(reportName, "comprehensiveIncome", "otherGainsLosses.details.cryptocurrencyGains" , B028_101);
+        report.addValue(reportName, "comprehensiveIncome", "otherGainsLosses.details.cryptocurrencyGains.weightedAverageCost" , B028_101);
         report.addValue(reportName, "comprehensiveIncome", "otherGainsLosses.details.cryptocurrencyGains.breakdown.USDT.weightedAverageCost" , B028_101);
 
 

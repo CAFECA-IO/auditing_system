@@ -29,7 +29,7 @@ describe('checking E00040002 balanceSheet', function () {
 
   it('assets.details.cryptocurrency.totalAmountFairValue should equal 400000000000000000000', async function () {
     const value = await contractWithSigner.getValue(
-      'twentyninth_report',
+      'thirty_report',
       'balanceSheet',
       'assets.details.cryptocurrency.totalAmountFairValue',
     );
@@ -38,7 +38,7 @@ describe('checking E00040002 balanceSheet', function () {
   //
   it('assets.details.cryptocurrency.breakdown.BTC.amount should equal -1000000000000000000', async function () {
     const value = await contractWithSigner.getValue(
-      'twentyninth_report',
+      'thirty_report',
       'balanceSheet',
       'assets.details.cryptocurrency.breakdown.BTC.amount',
     );
@@ -47,7 +47,7 @@ describe('checking E00040002 balanceSheet', function () {
   //
   it('assets.details.cryptocurrency.breakdown.BTC.fairValue should equal -26000000000000000000000', async function () {
     const value = await contractWithSigner.getValue(
-      'twentyninth_report',
+      'thirty_report',
       'balanceSheet',
       'assets.details.cryptocurrency.breakdown.BTC.fairValue',
     );
@@ -56,7 +56,7 @@ describe('checking E00040002 balanceSheet', function () {
   //
   it('assets.details.cryptocurrency.breakdown.ETH.amount should equal 16500000000000000000', async function () {
     const value = await contractWithSigner.getValue(
-      'twentyninth_report',
+      'thirty_report',
       'balanceSheet',
       'assets.details.cryptocurrency.breakdown.ETH.amount',
     );
@@ -65,7 +65,7 @@ describe('checking E00040002 balanceSheet', function () {
   //
   it('assets.details.cryptocurrency.breakdown.ETH.fairValue should equal 26400000000000000000000', async function () {
     const value = await contractWithSigner.getValue(
-      'twentyninth_report',
+      'thirty_report',
       'balanceSheet',
       'assets.details.cryptocurrency.breakdown.ETH.fairValue',
     );
@@ -74,7 +74,7 @@ describe('checking E00040002 balanceSheet', function () {
   //
   it('assets.totalAmountFairValue should equal 400000000000000000000', async function () {
     const value = await contractWithSigner.getValue(
-      'twentyninth_report',
+      'thirty_report',
       'balanceSheet',
       'assets.totalAmountFairValue',
     );
@@ -83,7 +83,7 @@ describe('checking E00040002 balanceSheet', function () {
   //
   it('totalAssetsFairValue should equal 400000000000000000000', async function () {
     const value = await contractWithSigner.getValue(
-      'twentyninth_report',
+      'thirty_report',
       'balanceSheet',
       'totalAssetsFairValue',
     );
@@ -92,7 +92,7 @@ describe('checking E00040002 balanceSheet', function () {
   //
   it('liabilities.details.userDeposit.totalAmountFairValue should equal 400000000000000000000', async function () {
     const value = await contractWithSigner.getValue(
-      'twentyninth_report',
+      'thirty_report',
       'balanceSheet',
       'liabilities.details.userDeposit.totalAmountFairValue',
     );
@@ -101,7 +101,7 @@ describe('checking E00040002 balanceSheet', function () {
   //
   it('liabilities.details.userDeposit.breakdown.BTC.amount should equal -1000000000000000000', async function () {
     const value = await contractWithSigner.getValue(
-      'twentyninth_report',
+      'thirty_report',
       'balanceSheet',
       'liabilities.details.userDeposit.breakdown.BTC.amount',
     );
@@ -110,7 +110,7 @@ describe('checking E00040002 balanceSheet', function () {
   //
   it('liabilities.details.userDeposit.breakdown.BTC.fairValue should equal -26000000000000000000000', async function () {
     const value = await contractWithSigner.getValue(
-      'twentyninth_report',
+      'thirty_report',
       'balanceSheet',
       'liabilities.details.userDeposit.breakdown.BTC.fairValue',
     );
@@ -119,7 +119,7 @@ describe('checking E00040002 balanceSheet', function () {
   //
   it('liabilities.details.userDeposit.breakdown.USDT.amount should equal 16500000000000000000', async function () {
     const value = await contractWithSigner.getValue(
-      'twentyninth_report',
+      'thirty_report',
       'balanceSheet',
       'liabilities.details.userDeposit.breakdown.USDT.amount',
     );
@@ -128,7 +128,7 @@ describe('checking E00040002 balanceSheet', function () {
   //
   it('liabilities.details.userDeposit.breakdown.USDT.fairValue should equal 26400000000000000000000', async function () {
     const value = await contractWithSigner.getValue(
-      'twentyninth_report',
+      'thirty_report',
       'balanceSheet',
       'liabilities.details.userDeposit.breakdown.USDT.fairValue',
     );
@@ -137,7 +137,7 @@ describe('checking E00040002 balanceSheet', function () {
   //
   it('liabilities.totalAmountFairValue should equal 400000000000000000000', async function () {
     const value = await contractWithSigner.getValue(
-      'twentyninth_report',
+      'thirty_report',
       'balanceSheet',
       'liabilities.totalAmountFairValue',
     );
@@ -146,7 +146,7 @@ describe('checking E00040002 balanceSheet', function () {
   //
   it('equity.details.retainedEarnings.totalAmountFairValue should equal 0', async function () {
     const value = await contractWithSigner.getValue(
-      'twentyninth_report',
+      'thirty_report',
       'balanceSheet',
       'equity.details.retainedEarnings.totalAmountFairValue',
     );
@@ -155,7 +155,7 @@ describe('checking E00040002 balanceSheet', function () {
   //
   it('equity.details.retainedEarnings.breakdown.USDT.amount should equal 0', async function () {
     const value = await contractWithSigner.getValue(
-      'twentyninth_report',
+      'thirty_report',
       'balanceSheet',
       'equity.details.retainedEarnings.breakdown.USDT.amount',
     );
@@ -164,7 +164,7 @@ describe('checking E00040002 balanceSheet', function () {
   //
   it('equity.details.retainedEarnings.breakdown.USDT.fairValue should equal 0', async function () {
     const value = await contractWithSigner.getValue(
-      'twentyninth_report',
+      'thirty_report',
       'balanceSheet',
       'equity.details.retainedEarnings.breakdown.USDT.fairValue',
     );
@@ -173,7 +173,7 @@ describe('checking E00040002 balanceSheet', function () {
   //
   it('equity.totalAmountFairValue should equal 0', async function () {
     const value = await contractWithSigner.getValue(
-      'twentyninth_report',
+      'thirty_report',
       'balanceSheet',
       'equity.totalAmountFairValue',
     );
@@ -182,7 +182,7 @@ describe('checking E00040002 balanceSheet', function () {
   //
   it('totalLiabilitiesAndEquityFairValue should equal 400000000000000000000', async function () {
     const value = await contractWithSigner.getValue(
-      'twentyninth_report',
+      'thirty_report',
       'balanceSheet',
       'totalLiabilitiesAndEquityFairValue',
     );
@@ -202,7 +202,7 @@ describe('checking E00040001 comprehensive income', function () {
   //
   it('income.weightedAverageCost should equal 0', async function () {
     const value = await contractWithSigner.getValue(
-      'twentyninth_report',
+      'thirty_report',
       'comprehensiveIncome',
       'income.weightedAverageCost',
     );
@@ -211,7 +211,7 @@ describe('checking E00040001 comprehensive income', function () {
   //
   it('income.details.tradingFee.weightedAverageCost should equal 0', async function () {
     const value = await contractWithSigner.getValue(
-      'twentyninth_report',
+      'thirty_report',
       'comprehensiveIncome',
       'income.details.tradingFee.weightedAverageCost',
     );
@@ -220,7 +220,7 @@ describe('checking E00040001 comprehensive income', function () {
   //
   it('income.details.tradingFee.breakdown.USDT.amount should equal 0', async function () {
     const value = await contractWithSigner.getValue(
-      'twentyninth_report',
+      'thirty_report',
       'comprehensiveIncome',
       'income.details.tradingFee.breakdown.USDT.amount',
     );
@@ -229,7 +229,7 @@ describe('checking E00040001 comprehensive income', function () {
   //
   it('income.details.tradingFee.breakdown.USDT.weightedAverageCost should equal 0', async function () {
     const value = await contractWithSigner.getValue(
-      'twentyninth_report',
+      'thirty_report',
       'comprehensiveIncome',
       'income.details.tradingFee.breakdown.USDT.weightedAverageCost',
     );
@@ -238,7 +238,7 @@ describe('checking E00040001 comprehensive income', function () {
   //
   it('netProfit should equal 0', async function () {
     const value = await contractWithSigner.getValue(
-      'twentyninth_report',
+      'thirty_report',
       'comprehensiveIncome',
       'netProfit',
     );

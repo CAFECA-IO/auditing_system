@@ -87,7 +87,7 @@ contract E00040002Handler is ITransactionHandler{
         report.addValue(reportName, "balanceSheet", "assets.totalAmountFairValue", A001_004_005_006_009);
         report.addValue(reportName, "balanceSheet", "totalAssetsFairValue", A001_004_005_006_009);
         report.addValue(reportName, "balanceSheet", "liabilities.details.userDeposit.totalAmountFairValue", A001_004_005_006_009);
-        report.addValue(reportName, "balanceSheet", "liabilities.totalAmountFairValue ", A001_004_005_006_009);
+        report.addValue(reportName, "balanceSheet", "liabilities.totalAmountFairValue", A001_004_005_006_009);
 
         int256 A046_044 = int256(-EP001);
         report.addValue(reportName, "balanceSheet", "assets.details.cryptocurrency.breakdown.BTC.amount" , A046_044);
@@ -100,8 +100,8 @@ contract E00040002Handler is ITransactionHandler{
         report.addValue(reportName, "balanceSheet", "assets.details.cryptocurrency.breakdown.ETH.fairValue", A016_008);
         report.addValue(reportName, "balanceSheet", "liabilities.details.userDeposit.breakdown.USDT.fairValue", A016_008);
 
-        int256 A044 = int256(-EP001);
-        report.addValue(reportName, "balanceSheet", "liabilities.details.userDeposit.breakdown.BTC.amount", A044);
+        int256 A047 = int256((-EP001 * latestSP004) /10**18);
+        report.addValue(reportName, "balanceSheet", "assets.details.cryptocurrency.breakdown.BTC.fairValue", A047);
 
         int256 A045 = int256((-EP001 * latestSP004)/10**18);
         report.addValue(reportName, "balanceSheet", "liabilities.details.userDeposit.breakdown.BTC.fairValue", A045);

@@ -190,7 +190,7 @@ describe('checking E00040001 balanceSheet', function () {
   });
 });
 
-describe('checking E00030008 comprehensive income', function () {
+describe('checking E00040001 comprehensive income', function () {
   before(async function () {
     const [signer] = await ethers.getSigners();
     contractWithSigner = new ethers.Contract(

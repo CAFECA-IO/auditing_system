@@ -5,7 +5,7 @@ import "./reports.sol";
 import "./parser.sol";
 import "../interfaces/i_transaction_handler.sol";
 //Info: (20231115 - Yang){This contract is to calculate the variables based on the excel reports, and to record transaction data from transactionContract.sol, the logic is the same in other handlers contracts}
-contract E00040005Handler is ITransactionHandler{
+contract E00040006Handler is ITransactionHandler{
 
     Reports public report;
     IParser public Iparser;

@@ -126,13 +126,13 @@ describe('checking E00030005 balanceSheet', function () {
     expect(value).to.equal('554400000000000000000');
   });
   //
-  it('liabilities.details.accountsPayable.totalAmountFairValue should equal -554400000000000000000', async function () {
+  it('liabilities.details.accountsPayable.totalAmountFairValue should equal -3144500000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'twentyfifth_report',
       'balanceSheet',
       'liabilities.details.accountsPayable.totalAmountFairValue',
     );
-    expect(value).to.equal('-554400000000000000000');
+    expect(value).to.equal('-3144500000000000000000');
   });
   //
   it('liabilities.details.accountsPayable.breakdown.USDT.amount should equal -550000000000000000000', async function () {
@@ -207,11 +207,11 @@ describe('checking E00030005 balanceSheet', function () {
     expect(value).to.equal('0');
   });
   //
-  it('equity.details.otherCapitalReserve.totalAmountFairValue should equal -181900000000000000000 ', async function () {
+  it('equity.details.otherCapitalReserve.fairValue should equal -181900000000000000000 ', async function () {
     const value = await contractWithSigner.getValue(
       'twentyfifth_report',
       'balanceSheet',
-      'equity.details.otherCapitalReserve.totalAmountFairValue',
+      'equity.details.otherCapitalReserve.fairValue',
     );
     expect(value).to.equal('-181900000000000000000');
   });
@@ -252,11 +252,11 @@ describe('checking E00030005 balanceSheet', function () {
     expect(value).to.equal('2600000000000000000000');
   });
   //
-  it('equity.totalAmountFairValue should equal -181900000000000000000 ', async function () {
+  it('equity.details.otherCapitalReserve.fairValue should equal -181900000000000000000 ', async function () {
     const value = await contractWithSigner.getValue(
       'twentyfifth_report',
       'balanceSheet',
-      'equity.totalAmountFairValue',
+      'equity.details.otherCapitalReserve.fairValue',
     );
     expect(value).to.equal('-181900000000000000000');
   });

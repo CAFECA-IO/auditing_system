@@ -162,13 +162,13 @@ describe('checking E00030004 balanceSheet', function () {
     expect(value).to.equal('1683000000000000000000');
   });
   //
-  it('equity.details.retainedEarnings.totalAmountFairValue should equal 33660000000000000', async function () {
+  it('equity.details.retainedEarnings.totalAmountFairValue should equal 3366000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'twentyforth_report',
       'balanceSheet',
       'equity.details.retainedEarnings.totalAmountFairValue',
     );
-    expect(value).to.equal('33660000000000000');
+    expect(value).to.equal('3366000000000000000');
   });
   //
   it('equity.details.retainedEarnings.breakdown.USDT.amount should equal 3400000000000000000', async function () {

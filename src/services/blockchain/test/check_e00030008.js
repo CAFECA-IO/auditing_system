@@ -54,13 +54,13 @@ describe('checking E00030008 balanceSheet', function () {
     expect(value).to.equal('0');
   });
   //
-  it('assets.details.accountsReceivable.totalAmountFairValue should equal -1600', async function () {
+  it('assets.details.accountsReceivable.totalAmountFairValue should equal -1600000000000000000000', async function () {
     const value = await contractWithSigner.getValue(
       'twentyeighth_report',
       'balanceSheet',
       'assets.details.accountsReceivable.totalAmountFairValue',
     );
-    expect(value).to.equal('-1600');
+    expect(value).to.equal('-1600000000000000000000');
   });
   //
   it('assets.details.accountsReceivable.breakdown.USDT.amount should equal 0', async function () {

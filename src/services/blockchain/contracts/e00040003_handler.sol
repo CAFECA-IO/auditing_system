@@ -5,7 +5,7 @@ import "./reports.sol";
 import "./parser.sol";
 import "../interfaces/i_transaction_handler.sol";
 //Info: (20231115 - Yang){This contract is to calculate the variables based on the excel reports, and to record transaction data from transactionContract.sol, the logic is the same in other handlers contracts}
-contract E00040002Handler is ITransactionHandler{
+contract E00040003Handler is ITransactionHandler{
 
     Reports public report;
     IParser public Iparser;
@@ -87,7 +87,7 @@ contract E00040002Handler is ITransactionHandler{
         report.addValue(reportName, "balanceSheet", "assets.totalAmountFairValue", A001_004_005_006_009);
         report.addValue(reportName, "balanceSheet", "totalAssetsFairValue", A001_004_005_006_009);
         report.addValue(reportName, "balanceSheet", "liabilities.details.userDeposit.totalAmountFairValue", A001_004_005_006_009);
-        report.addValue(reportName, "balanceSheet", "liabilities.totalAmountFairValue ", A001_004_005_006_009);
+        report.addValue(reportName, "balanceSheet", "liabilities.totalAmountFairValue", A001_004_005_006_009);
 
         int256 A002 = int256(EP002+(-EP004));
         report.addValue(reportName, "balanceSheet", "assets.details.cryptocurrency.breakdown.USDT.amount" , A002);
