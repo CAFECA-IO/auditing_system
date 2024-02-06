@@ -12,7 +12,7 @@ contract E00010004Handler is ITransactionHandler {
     TransactionContract private transactionContract;
 
     event EventIdAndRateReceived(string eventId, int256 SP002, int256 SP003, int256 SP004);
-    event EventEP001(string eventId, int256 EP001,int256 EP002,int256 EP003,int256 EP004,int256 EP006, int256 EP007);
+    event EventEP001(string eventId, int256 EP001,int256 EP002,int256 EP003,int256 EP004,int256 EP005,int256 EP006, int256 EP007);
     int256 latestSP002;
     int256 latestSP003;
     int256 latestSP004;
@@ -20,9 +20,10 @@ contract E00010004Handler is ITransactionHandler {
     int256 EP002;
     int256 EP003;
     int256 EP004;
+    int256 EP005;
     int256 EP006;
     int256 EP007;
-    string  eventIdFromTimeSpan;
+    string eventIdFromTimeSpan;
     string reportName;
 
     constructor(address _transactionContractAddress, address _Parser ,address _reportAddress) {
@@ -33,7 +34,7 @@ contract E00010004Handler is ITransactionHandler {
 
     function processTransaction(bytes32[] memory data, address recorder) external override {
 
-        require(data.length == 8, "Data length for E00010004 must be 8");
+        require(data.length == 9, "Data length for E00010004 must be 9");
 
         bytes32[] memory paramKeys = new bytes32[](7);
         int256[] memory paramValues = new int256[](7);
@@ -46,12 +47,12 @@ contract E00010004Handler is ITransactionHandler {
         paramValues[2] = int256(uint256(data[4])  );
         paramKeys[3] = Iparser.stringToBytes32("EP004");
         paramValues[3] = int256(uint256(data[5])  );
-        paramKeys[4] = Iparser.stringToBytes32("trans_time");
-        paramValues[4] = int256(block.timestamp);
+        paramKeys[4] = Iparser.stringToBytes32("EP005");
+        paramValues[4] = int256(uint256(data[6]));
         paramKeys[5] = Iparser.stringToBytes32("EP006");
-        paramValues[5] = int256(uint256(data[6])  );
+        paramValues[5] = int256(uint256(data[7])  );
         paramKeys[6] = Iparser.stringToBytes32("EP007");
-        paramValues[6] = int256(uint256(data[7])  );
+        paramValues[6] = int256(uint256(data[8])  );
 
         transactionContract.addProcessedTransaction(data[0], data[1], recorder, paramKeys, paramValues);
     }
@@ -68,9 +69,10 @@ contract E00010004Handler is ITransactionHandler {
         EP002  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP002"));
         EP003  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP003"));
         EP004  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP004"));
+        EP005  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP005"));
         EP006  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP006"));
         EP007  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP007"));
-        emit EventEP001(Iparser.bytes32ToString(_eventId), EP001,EP002,EP003,EP004,EP006,EP007);
+        emit EventEP001(Iparser.bytes32ToString(_eventId), EP001,EP002,EP003,EP004,EP005,EP006,EP007);
 
         computeBalanceSheet();
         computeComprehesiveIncome();
