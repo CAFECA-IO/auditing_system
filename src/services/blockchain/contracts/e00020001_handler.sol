@@ -57,6 +57,7 @@ contract E00020001Handler is ITransactionHandler{
 
         EP001  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP001"));
         EP002  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP002"));
+        EP003  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP003"));
 
         emit EventEP001(Iparser.bytes32ToString(_eventId), EP001,EP002,EP003);
 

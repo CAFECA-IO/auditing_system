@@ -90,11 +90,13 @@ contract E00030005Handler is ITransactionHandler{
         EP002  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP002"));
         EP003  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP003"));
         EP004  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP004"));
+        EP005 = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP005"));
         getEventIdAndRate2(_eventId);
     }
     function getEventIdAndRate2(bytes32 _eventId)internal{
         EP006  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP006"));
         EP007  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP007"));
+        EP008  =    transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP008"));
         EP009  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP009"));
         EP010  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP010"));
         EP011  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP011"));

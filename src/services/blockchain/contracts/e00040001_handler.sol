@@ -35,7 +35,7 @@ contract E00040001Handler is ITransactionHandler{
     //Info: (20231115 - Yang){This is function is to record event data in arrays}
     function processTransaction(bytes32[] memory data, address recorder) external override {
 
-        require(data.length == 9, "Data length for E00030001 must be 9");
+        require(data.length == 9, "Data length for E00040001 must be 9");
 
         bytes32[] memory paramKeys = new bytes32[](7);
         int256[] memory paramValues = new int256[](7);
@@ -72,6 +72,7 @@ contract E00040001Handler is ITransactionHandler{
         EP002  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP002"));
         EP003  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP003"));
         EP004  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP004"));
+        EP005  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP005"));
         EP006  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP006"));
         EP007  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP007"));
         emit EventEP001(Iparser.bytes32ToString(_eventId), EP001,EP002,EP003,EP004,EP006,EP007);

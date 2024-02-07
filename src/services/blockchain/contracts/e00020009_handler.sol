@@ -18,6 +18,7 @@ contract E00020009Handler is ITransactionHandler{
     int256 latestSP004;
     int256 EP001;
     int256 EP002;
+    int256 EP003;
     string eventIdFromTimeSpan;
     string reportName;
 

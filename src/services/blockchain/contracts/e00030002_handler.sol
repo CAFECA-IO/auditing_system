@@ -20,6 +20,7 @@ contract E00030002Handler is ITransactionHandler{
     int256 EP002;
     int256 EP003;
     int256 EP004;
+    int256 EP005;
     int256 EP006;
     int256 EP007;
     int256 EP008;
@@ -36,7 +37,7 @@ contract E00030002Handler is ITransactionHandler{
     //Info: (20231115 - Yang){This is function is to record event data in arrays}
     function processTransaction(bytes32[] memory data, address recorder) external override {
 
-        require(data.length == 10, "Data length for E00030002 must be 10");
+        require(data.length == 11, "Data length for E00030002 must be 11");
 
         bytes32[] memory paramKeys = new bytes32[](9);
         int256[] memory paramValues = new int256[](9);
@@ -49,16 +50,16 @@ contract E00030002Handler is ITransactionHandler{
         paramValues[2] = int256(uint256(data[4]));
         paramKeys[3] = Iparser.stringToBytes32("EP004");
         paramValues[3] = int256(uint256(data[5]));
-        paramKeys[4] = Iparser.stringToBytes32("trans_time");
-        paramValues[4] = int256(block.timestamp);
+        paramKeys[4] = Iparser.stringToBytes32("EP005");
+        paramValues[4] = int256(uint256(data[6]));
         paramKeys[5] = Iparser.stringToBytes32("EP006");
-        paramValues[5] = int256(uint256(data[6]));
+        paramValues[5] = int256(uint256(data[7]));
         paramKeys[6] = Iparser.stringToBytes32("EP007");
-        paramValues[6] = int256(uint256(data[7]));
+        paramValues[6] = int256(uint256(data[8]));
         paramKeys[7] = Iparser.stringToBytes32("EP008");
-        paramValues[7] = int256(uint256(data[8]));
+        paramValues[7] = int256(uint256(data[9]));
         paramKeys[8] = Iparser.stringToBytes32("EP009");
-        paramValues[8] = int256(uint256(data[9]));
+        paramValues[8] = int256(uint256(data[10]));
 
 
         transactionContract.addProcessedTransaction(data[0], data[1], recorder, paramKeys, paramValues);
@@ -78,6 +79,7 @@ contract E00030002Handler is ITransactionHandler{
         EP002  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP002"));
         EP003  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP003"));
         EP004  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP004"));
+        EP005  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP005"));
         EP006  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP006"));
         EP007  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP007"));
         EP008  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP008"));

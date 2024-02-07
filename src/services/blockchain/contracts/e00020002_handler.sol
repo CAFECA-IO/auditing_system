@@ -18,6 +18,7 @@ contract E00020002Handler is ITransactionHandler{
     int256 latestSP004;
     int256 EP001;
     int256 EP002;
+    int256 EP003;
     string eventIdFromTimeSpan;
     string reportName;
 
@@ -39,8 +40,8 @@ contract E00020002Handler is ITransactionHandler{
         paramValues[0] = int256(uint256(data[2]));
         paramKeys[1] = Iparser.stringToBytes32("EP002");
         paramValues[1] = int256(uint256(data[3]));
-        paramKeys[2] = Iparser.stringToBytes32("trans_time");
-        paramValues[2] = int256(uint256(block.timestamp));
+        paramKeys[2] = Iparser.stringToBytes32("EP003");
+        paramValues[2] = int256(uint256(data[4]));
         transactionContract.addProcessedTransaction(data[0], data[1], recorder, paramKeys, paramValues);
     }
 
