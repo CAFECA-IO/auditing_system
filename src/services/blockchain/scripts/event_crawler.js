@@ -1,6 +1,7 @@
 const fs = require('fs');
 const { exec } = require('child_process');
 const { int } = require('hardhat/internal/core/params/argumentTypes');
+const { time } = require('console');
 
 const rawData = fs.readFileSync(
   'src/services/blockchain/scripts/dummy_data.json',

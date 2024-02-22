@@ -59,7 +59,7 @@ contract E00030006Handler is ITransactionHandler{
         paramValues[5] = int256(uint256(data[7]));
         paramKeys[6] = Iparser.stringToBytes32("EP007");
         paramValues[6] = int256(uint256(data[8]));
-        paramKeys[7] = Iparser.stringToBytes32("EP008");
+        paramKeys[7] = Iparser.stringToBytes32("trans_time");
         paramValues[7] = int256(uint256(data[9]));
         paramKeys[8] = Iparser.stringToBytes32("EP009");
         paramValues[8] = int256(uint256(data[10]));

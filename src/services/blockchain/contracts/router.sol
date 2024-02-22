@@ -32,8 +32,8 @@ contract RouterContract {
         timeSpanReport.setRate(_SP002, _SP003, _SP004, _reportName);
     }
     //Info:(20231115-Yang){Users can set a time span and reportName to get events within the time span}
-    function generateReport(int256 startTime, int256 endTime, bytes32 reportName) external {
-        timeSpanReport.filterTransactionsInRange(startTime, endTime, reportName);
+    function generateReport(int256 startTime, int256 endTime, bytes32 reportName, int256 _ispublic) external {
+        timeSpanReport.filterTransactionsInRange(startTime, endTime, reportName,_ispublic);
     }
     //Info:(20231115-Yang){Users can read the latest transaction time}
     function getLatestTransactionTime() external view returns (int256) {

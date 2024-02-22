@@ -23,6 +23,7 @@ const contractInstance = new ethers.Contract(
   contractABI.abi,
   provider,
 );
+
 const parser = process.env.PARSER_ADDRESS;
 console.log('parser address:', parser);
 const reports = contractInstance;

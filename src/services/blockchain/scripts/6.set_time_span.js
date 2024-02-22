@@ -27,7 +27,7 @@ const nftcontractABI = nftContractJSON.abi;
 const nftContractAddress = process.env.NFT_ADDRESS;
 
 // 執行交易
-async function generateReport(startTime, endTime, report_Name) {
+async function generateReport(startTime, endTime, report_Name, _ispublic) {
   const [signer] = await ethers.getSigners();
   const contractWithSigner = new ethers.Contract(
     routerContractAddress,
@@ -45,6 +45,7 @@ async function generateReport(startTime, endTime, report_Name) {
       startTime,
       endTime,
       report_Name,
+      _ispublic,
     );
     const transaction_hash = tx.hash;
     console.log('Transaction hash:', transaction_hash);
@@ -91,28 +92,37 @@ async function generateReport(startTime, endTime, report_Name) {
   }
 }
 
-rl.question('Please enter reportName: ', async (input) => {
-  const [signer] = await ethers.getSigners();
-  const contractWithSigner = new ethers.Contract(
-    routerContractAddress,
-    contractABI,
-    signer,
-  );
-  const router = contractWithSigner;
-  const latestTransactionTime = await router.getLatestTransactionTime();
-  let transactionTime = Number(latestTransactionTime);
-  if (transactionTime > Number.MAX_SAFE_INTEGER) {
-    transactionTime = BigInt(latestTransactionTime);
-    console.log('latestTransactionTime:', transactionTime.toString());
-    console.log('latestTransactionTime - 1', (transactionTime - 1n).toString());
-    console.log('latestTransactionTime + 1', (transactionTime + 1n).toString());
-    generateReport(transactionTime - 1n, transactionTime + 1n, input);
-  } else {
-    console.log('latestTransactionTime:', transactionTime);
-    console.log('latestTransactionTime - 1', transactionTime - 1);
-    console.log('latestTransactionTime + 1', transactionTime + 1);
-    generateReport(transactionTime - 1, transactionTime + 1, input);
-  }
+rl.question(
+  'Please enter reportName(bytes32)(startTime, EndTime, ispublic have already set default value to do auto test): ',
+  async (input) => {
+    const [signer] = await ethers.getSigners();
+    const contractWithSigner = new ethers.Contract(
+      routerContractAddress,
+      contractABI,
+      signer,
+    );
+    const router = contractWithSigner;
+    const latestTransactionTime = await router.getLatestTransactionTime();
+    let transactionTime = Number(latestTransactionTime);
+    if (transactionTime > Number.MAX_SAFE_INTEGER) {
+      transactionTime = BigInt(latestTransactionTime);
+      console.log('latestTransactionTime:', transactionTime.toString());
+      console.log(
+        'latestTransactionTime - 1',
+        (transactionTime - 1n).toString(),
+      );
+      console.log(
+        'latestTransactionTime + 1',
+        (transactionTime + 1n).toString(),
+      );
+      generateReport(transactionTime - 1n, transactionTime + 1n, input, 0);
+    } else {
+      console.log('latestTransactionTime:', transactionTime);
+      console.log('latestTransactionTime - 1', transactionTime - 1);
+      console.log('latestTransactionTime + 1', transactionTime + 1);
+      generateReport(transactionTime - 1, transactionTime + 1, input, 0);
+    }
 
-  rl.close();
-});
+    rl.close();
+  },
+);
