@@ -40,7 +40,7 @@ contract E00030007Handler is ITransactionHandler{
     //Info: (20231115 - Yang){This is function is to record event data in arrays}
     function processTransaction(bytes32[] memory data, address recorder) external override {
 
-        require(data.length == 15, "Data length for E00030005 must be 15");
+        require(data.length == 15, "Data length for E00030007 must be 15");
 
         bytes32[] memory paramKeys = new bytes32[](13);
         int256[] memory paramValues = new int256[](13);
