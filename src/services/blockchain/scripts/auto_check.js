@@ -32,7 +32,7 @@ async function main() {
       'npx hardhat run src/services/blockchain/scripts/1.deploy.js --network iSunCoin',
     );
 
-    /*console.log(
+    console.log(
       '\x1b[34m%s\x1b[0m',
       '------Auto deploying E00010001handler command...------',
     );
@@ -109,7 +109,7 @@ async function main() {
     );
     await runCommand(
       'npx hardhat run src/services/blockchain/scripts/4.transaction_record.js --network iSunCoin',
-      `0x7365636f6e640000000000000000000000000000000000000000000000000000,0x4530303031303030320000000000000000000000000000000000000000000000,0x0000000000000000000000000000000000000000000000056bc75e2d63100000,0x0000000000000000000000000000000000000000000000000000000000000000,0x0000000000000000000000000000000000000000000000000000000000000000,0x00000000000000000000000000000000000000000000005150ae84a8cdf00000`,
+      `0x7365636f6e640000000000000000000000000000000000000000000000000000,0x4530303031303030320000000000000000000000000000000000000000000000,0x0000000000000000000000000000000000000000000000056bc75e2d63100000,0x0000000000000000000000000000000000000000000000000000000000000000,0x0000000000000000000000000000000000000000000000000000000000000000,0x0000000000000000000000000000000000000000000000000000000065d80526,0x00000000000000000000000000000000000000000000005150ae84a8cdf00000`,
     );
 
     console.log(
@@ -139,7 +139,7 @@ async function main() {
     );
     //
 
-    console.log(
+    /*console.log(
       '\x1b[34m%s\x1b[0m',
       '------Auto deploying E00010003handler ...------',
     );
@@ -1320,9 +1320,9 @@ async function main() {
     );
     await runCommand(
       'npx hardhat test  src/services/blockchain/test/check_e00030004.js --network iSunCoin',
-    );*/
+    );
     //E00030005
-    console.log(
+    /*console.log(
       '\x1b[34m%s\x1b[0m',
       '------Auto deploying E00030005handler ...------',
     );
@@ -1797,7 +1797,7 @@ async function main() {
     );
     await runCommand(
       'npx hardhat test  src/services/blockchain/test/check_e00040005.js --network iSunCoin',
-    );
+    );*/
   } catch (error) {}
 }
 

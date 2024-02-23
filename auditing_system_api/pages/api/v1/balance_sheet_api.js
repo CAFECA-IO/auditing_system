@@ -249,6 +249,25 @@ export default async function handler(req, res) {
           },
         },
       };
+
+      try {
+        // Convert the data object to a JSON string
+        const dataString = JSON.stringify(data, null, 2); // null and 2 are used for formatting
+
+        // Define the path and filename where you want to save the file
+        const filePath = path.resolve(
+          'reports',
+          `report(token)_ID:${reportID}.json`,
+        );
+
+        // Write the stringified data to a file named after the reportID
+        fs.writeFileSync(filePath, dataString);
+
+        console.log(`Report saved to ${filePath}`);
+      } catch (error) {
+        console.error('Error saving report to file:', error);
+      }
+
       res.status(200).json(data);
     } catch (error) {
       console.error('Error fetching data: ', error);

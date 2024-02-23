@@ -27,7 +27,7 @@ const nftcontractABI = nftContractJSON.abi;
 const nftContractAddress = process.env.NFT_ADDRESS;
 
 // 執行交易
-async function generateReport(startTime, endTime, report_Name, _ispublic) {
+async function generateReport(startTime, endTime, report_Name) {
   const [signer] = await ethers.getSigners();
   const contractWithSigner = new ethers.Contract(
     routerContractAddress,
@@ -45,7 +45,6 @@ async function generateReport(startTime, endTime, report_Name, _ispublic) {
       startTime,
       endTime,
       report_Name,
-      _ispublic,
     );
     const transaction_hash = tx.hash;
     console.log('Transaction hash:', transaction_hash);
@@ -66,6 +65,7 @@ async function generateReport(startTime, endTime, report_Name, _ispublic) {
   }
 
   const recipientAddress = '0x2390B5b1DA7a78266111143D503D50c4636F5680';
+  const _ispublic = 0;
   try {
     console.log('start minting NFT');
     const tx = await nftContractWithSigner.mintReportNFT(
@@ -73,6 +73,7 @@ async function generateReport(startTime, endTime, report_Name, _ispublic) {
       startTime,
       endTime,
       report_Name,
+      _ispublic,
     );
     const transaction_hash = tx.hash;
     console.log('Minting NFT Transaction hash:', transaction_hash);
@@ -115,12 +116,12 @@ rl.question(
         'latestTransactionTime + 1',
         (transactionTime + 1n).toString(),
       );
-      generateReport(transactionTime - 1n, transactionTime + 1n, input, 0);
+      generateReport(transactionTime - 1n, transactionTime + 1n, input);
     } else {
       console.log('latestTransactionTime:', transactionTime);
       console.log('latestTransactionTime - 1', transactionTime - 1);
       console.log('latestTransactionTime + 1', transactionTime + 1);
-      generateReport(transactionTime - 1, transactionTime + 1, input, 0);
+      generateReport(transactionTime - 1, transactionTime + 1, input);
     }
 
     rl.close();

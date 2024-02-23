@@ -1,0 +1,149 @@
+{
+  "reportID": "1",
+  "reportName": "first_report",
+  "reportType": "balance sheet",
+  "reportStartTime": 1708581426,
+  "reportEndTime": 1708581428,
+  "totalAssetsFairValue": "9900.99",
+  "totalLiabilitiesAndEquityFairValue": "9900.99",
+  "assets": {
+    "totalAmountFairValue": "9900.99",
+    "details": {
+      "cryptocurrency": {
+        "breakdown": {
+          "USDT": {
+            "amount": "10001.0",
+            "fairValue": "9900.99"
+          },
+          "ETH": {
+            "amount": "0.0",
+            "fairValue": "0.0"
+          },
+          "BTC": {
+            "amount": "0.0",
+            "fairValue": "0.0"
+          }
+        }
+      },
+      "cashAndCashEquivalent": {
+        "totalAmountFairValue": "0.0",
+        "breakdown": {
+          "USD": {
+            "amount": "0.0",
+            "fairValue": "0.0"
+          }
+        }
+      },
+      "accountsReceivable": {
+        "totalAmountFairValue": "0.0",
+        "breakdown": {
+          "USDT": {
+            "amount": "0.0",
+            "fairValue": "0.0"
+          },
+          "BTC": {
+            "amount": "0.0"
+          },
+          "ETH": {
+            "amount": "0.0",
+            "fairValue": "0.0"
+          }
+        }
+      }
+    }
+  },
+  "liabilities": {
+    "totalAmountFairValue": "9890.1",
+    "details": {
+      "userDeposit": {
+        "totalAmountFairValue": "9890.1",
+        "breakdown": {
+          "USDT": {
+            "amount": "9990.0",
+            "fairValue": "9890.1"
+          },
+          "USD": {
+            "amount": "0.0",
+            "fairValue": "0.0"
+          },
+          "ETH": {
+            "amount": "0.0",
+            "fairValue": "0.0"
+          },
+          "BTC": {
+            "amount": "0.0",
+            "fairValue": "0.0"
+          }
+        }
+      },
+      "accountsPayable": {
+        "totalAmountFairValue": "0.0",
+        "breakdown": {
+          "USDT": {
+            "amount": "0.0",
+            "fairValue": "0.0"
+          },
+          "USD": {
+            "amount": "0.0",
+            "fairValue": "0.0"
+          },
+          "BTC": {
+            "amount": "0.0",
+            "fairValue": "0.0"
+          },
+          "ETH": {
+            "amount": "0.0",
+            "fairValue": "0.0"
+          }
+        }
+      }
+    }
+  },
+  "equity": {
+    "totalAmountFairValue": "10.89",
+    "details": {
+      "retainedEarning": {
+        "totalAmountFairValue": "10.89",
+        "breakdown": {
+          "USDT": {
+            "amount": "11.0",
+            "fairValue": "10.89"
+          },
+          "ETH": {
+            "amount": "0.0",
+            "fairValue": "0.0"
+          },
+          "BTC": {
+            "amount": "0.0",
+            "fairValue": "0.0"
+          },
+          "USD": {
+            "amount": "0.0",
+            "fairValue": "0.0"
+          }
+        }
+      },
+      "otherCapitalReserve": {
+        "fairValue": "0.0",
+        "breakdown": {
+          "USD": {
+            "amount": "0.0",
+            "fairValue": "0.0"
+          },
+          "USDT": {
+            "amount": "0.0",
+            "fairValue": "0.0"
+          },
+          "ETH": {
+            "amount": "0.0",
+            "fairValue": "0.0"
+          },
+          "BTC": {
+            "amount": "0.0",
+            "fairValue": "0.0"
+          }
+        }
+      }
+    }
+  }
+}

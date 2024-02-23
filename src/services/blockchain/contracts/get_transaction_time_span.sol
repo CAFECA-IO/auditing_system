@@ -8,7 +8,6 @@ import "./reports.sol";
 contract GetTransactionTimeSpan {
 
     event TransactionProcessed(bytes32 indexed reportName, bytes32 eventType);
-    event IsPublic(int indexed _ispublic);
     struct Settlement {
         int256 SP001;
         bytes32 SP002;
@@ -52,7 +51,7 @@ contract GetTransactionTimeSpan {
     }
 
     //Info: (20231115 - Yang){This function is to set a timeSpan and then filtered every event to get the eventIDs which are in the timeSpan}
-    function filterTransactionsInRange(int256 startTime, int256 endTime, bytes32 _reportName, int _ispublic)
+    function filterTransactionsInRange(int256 startTime, int256 endTime, bytes32 _reportName)
         external
         returns (FilteredData memory)
     {
@@ -66,7 +65,7 @@ contract GetTransactionTimeSpan {
         bytes32[] memory eventIds = new bytes32[](count);
         int256[] memory transTimes = new int256[](count);
         address reportCreater = msg.sender;
-        emit IsPublic(_ispublic);
+
 
         uint256 resultCount = 0;
         for (uint256 i = 0; i < count; i++) {

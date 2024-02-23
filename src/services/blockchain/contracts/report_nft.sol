@@ -97,7 +97,7 @@ contract ReportNFT is IERC_ISUNCLOUD {
     }
 
 
-    function mintReportNFT(address recipient, uint256 startTime, uint256 endTime, string memory reportName) external override onlyOwner returns (uint256) {
+    function mintReportNFT(address recipient, uint256 startTime, uint256 endTime, string memory reportName, int256 _ispublic) external override onlyOwner returns (uint256) {
         require(recipient != address(0), "Recipient address cannot be zero");
         require(endTime > startTime, "EndTime must be greater than StartTime");
 
@@ -107,7 +107,7 @@ contract ReportNFT is IERC_ISUNCLOUD {
         _reports[newItemId] = Report(reportName, startTime, endTime);
         _mint(recipient, newItemId);
 
-        emit ReportNFTMinted(recipient, newItemId, reportName, startTime, endTime);
+        emit ReportNFTMinted(recipient, newItemId, _ispublic, reportName, startTime, endTime, msg.sender);
 
         return newItemId;
     }

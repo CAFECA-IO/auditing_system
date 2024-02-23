@@ -260,6 +260,7 @@ npm install dotenv
 
 ```
 npx prisma migrate deploy
+npx prisma migrate dev --name init
 ```
 
 8. Run the following command to write data into database(take balanceSheet for example):
