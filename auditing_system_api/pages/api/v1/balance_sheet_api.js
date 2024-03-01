@@ -253,11 +253,11 @@ export default async function handler(req, res) {
       try {
         // Convert the data object to a JSON string
         const dataString = JSON.stringify(data, null, 2); // null and 2 are used for formatting
-
+        const contract_address = process.env.NFT_ADDRESS.toLowerCase();
         // Define the path and filename where you want to save the file
         const filePath = path.resolve(
           'reports',
-          `report(token)_ID:${reportID}.json`,
+          `report(token)_ID:${reportID}_contract:${contract_address}.json`,
         );
 
         // Write the stringified data to a file named after the reportID
