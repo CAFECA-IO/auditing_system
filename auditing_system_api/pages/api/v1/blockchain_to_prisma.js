@@ -10,7 +10,10 @@ const prisma = new PrismaClient();
 const provider = new ethers.providers.JsonRpcProvider(
   `https://isuncoin.baifa.io`,
 );
-
+const readline = require('readline').createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
 const contractABIPath = path.resolve(
   __dirname,
   '../../../../src/services/blockchain/artifacts/artifacts/src/services/blockchain/contracts/router.sol/RouterContract.json',
@@ -28,9 +31,13 @@ const contractInstance = new ethers.Contract(
 const parser = process.env.PARSER_ADDRESS;
 console.log('parser address:', parser);
 const reports = contractInstance;
-const reportName = process.env.REPORT_NAME;
-console.log('reportName:', reportName);
-
+function question(query) {
+  return new Promise((resolve) => {
+    readline.question(query, (input) => {
+      resolve(input);
+    });
+  });
+}
 async function getContractValue(reportName, reportType, reportColumn) {
   try {
     const value = await reports.getValue(reportName, reportType, reportColumn);
@@ -77,8 +84,57 @@ async function insertDataToDBCashFlow(data) {
   }
 }
 
+function updateEnvFile(key, value) {
+  const envPath = path.join(__dirname, '../../../.env');
+  // 返回一個Promise
+  return new Promise((resolve, reject) => {
+    fs.readFile(envPath, 'utf8', (err, data) => {
+      if (err) {
+        console.error('Error reading .env file:', err);
+        return reject(err);
+      }
+      let updated = false;
+      const lines = data.split(/\r?\n/);
+      const newData = lines.map((line) => {
+        if (line.startsWith(`${key}=`)) {
+          updated = true;
+          return `${key}=${value}`; // 更新變量
+        }
+        return line;
+      });
+
+      if (!updated) {
+        newData.push(`${key}=${value}`); // 添加新變量
+      }
+
+      fs.writeFile(envPath, newData.join('\n'), (err) => {
+        if (err) {
+          console.error('Error writing to .env file:', err);
+          return reject(err);
+        } else {
+          console.log(`.env file has been updated with ${key}.`);
+          resolve();
+        }
+      });
+    });
+  });
+}
+
 async function main() {
-  /*REPORT_ID*/ const reportID = process.env.REPORT_ID;
+  const reportName = await question('Please enter the report name: ');
+  console.log(`The report name you entered is: ${reportName}`);
+
+  const reportId = await question(
+    'Please enter the report id (it is the token id of the NFT): ',
+  );
+  console.log(`The report id you entered is: ${reportId}`);
+
+  readline.close();
+
+  await updateEnvFile('REPORT_NAME', reportName);
+  await updateEnvFile('REPORT_ID', reportId);
+
+  /*REPORT_ID*/ const reportID = reportId;
   /*A001*/ const assets_details_cryptocurrency_totalAmountFairValue =
     await getContractValue(
       reportName,
