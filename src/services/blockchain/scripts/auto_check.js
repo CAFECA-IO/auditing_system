@@ -193,7 +193,7 @@ async function main() {
     );
     //
 
-    console.log(
+    /*console.log(
       '\x1b[34m%s\x1b[0m',
       '------Auto deploying E00010004handler ...------',
     );
@@ -843,7 +843,7 @@ async function main() {
       'npx hardhat test  src/services/blockchain/test/check_e00020007.js --network iSunCoin',
     );
     //
-    /*console.log(
+    console.log(
       '\x1b[34m%s\x1b[0m',
       '------Auto deploying E00020008handler ...------',
     );

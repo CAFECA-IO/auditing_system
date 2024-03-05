@@ -40,7 +40,7 @@ async function getContractValue(reportName, reportType, reportColumn) {
   }
 }
 
-async function insertDataToDB(data) {
+async function insertDataToDBComprehensive(data) {
   try {
     const comprehensiveIncome = await prisma.comprehensiveIncome.create({
       data: data,
@@ -910,7 +910,7 @@ async function main() {
     startTime: startTime,
     endTime: endTime,
   };
-  await insertDataToDB(data);
+  await insertDataToDBComprehensive(data);
 }
 
 main().catch((e) => console.error(e));

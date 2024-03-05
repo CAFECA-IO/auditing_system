@@ -40,7 +40,7 @@ async function getContractValue(reportName, reportType, reportColumn) {
   }
 }
 
-async function insertDataToDB(data) {
+async function insertDataToDBCashFlow(data) {
   try {
     const cashFlow = await prisma.cashFlow.create({
       data: data,
@@ -792,7 +792,7 @@ async function main() {
     startTime: startTime,
     endTime: endTime,
   };
-  await insertDataToDB(data);
+  await insertDataToDBCashFlow(data);
 }
 
 main().catch((e) => console.error(e));
