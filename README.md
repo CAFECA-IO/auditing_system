@@ -246,6 +246,55 @@ node baifa_database/scripts/test.js {your nft address}
 
 ### Run the auto test:
 
+After downloading this app run this line at root:
+
+```
+npm i
+```
+
+then
+
+```
+vim .env, and set PRIVATE_KEY={your private key}, DATABASE_URL, HTTP_PORT
+```
+
+for now you should change some addresses
+
+```
+at reports_api.js and set_time_span.js you should change addresses to your address
+```
+
+```
+cd auditing_system_api, npm i
+```
+
+```
+npx prisma migrate deploy
+npx prisma migrate dev --name init
+```
+
+```
+vim .env, and set REPORT_NAME=,REPORT_ID= they can be empty but you need to set these variables
+```
+
+```
+node src/services/blockchain/scripts/auto_check.js
+```
+
+after that we can put api into baifa database
+
+```
+cd baifa_database
+```
+
+```
+npx prisma generate
+```
+
+```
+node baifa_database/scripts/test.js {your nft contract address}
+```
+
 Enter the following command, this script will automatically deploy, register, enter fixed testing data and check if the answers meet as expected.
 
 ```

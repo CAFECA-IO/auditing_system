@@ -35,7 +35,7 @@ async function main() {
     for (const record of reports_without_content) {
       const tokenid_without_0 = parseInt(record.token_id).toString();
       let content = '';
-      //這邊用絕對路徑要改
+
       const file_path = `reports/report(token)_ID:${tokenid_without_0}_contract:${contract_address}.json`;
       content = await loadFileContent(file_path);
       console.log('content', content);
