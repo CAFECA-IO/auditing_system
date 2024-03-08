@@ -22,9 +22,11 @@ _Deploy the smart contracts in the following sequence: ( you can deploy the smar
 
 4.getTransactionTimeSpan.sol(TransactionContract address, Parser address)
 
-5.router.sol contract(TransactionContract address, GetTransactionTimeSpan address)
+5.report_nft.sol
 
-6.transactionHandlers.sol(TransactionContract address, Parser address, Report address), e.g. e00010001Handler.sol
+6.router.sol contract(TransactionContract address, GetTransactionTimeSpan address)
+
+7.transactionHandlers.sol(TransactionContract address, Parser address, Report address), e.g. e00010001Handler.sol
 
 **If user wants to add new transaction types, for example e00010099, user only needs to write an e00010099.sol smart contract, deploy it, and register them in router**
 
@@ -34,7 +36,7 @@ _Deploy the smart contracts in the following sequence: ( you can deploy the smar
 
 <img src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/393f8045-4208-46f7-8278-65c2bc529b88" width="ˊ500" height="250" />
 
-2.  Record data using a `bytes32 array` in the addRecord function of the `router.sol` contract, where each element has been multiplied by 10^18. The first element must be the eventID, and the second should specify the event type. Users must omit the timestamp column to prevent fraudulent events; the system will automatically record the current time.
+2.  Record data using a `bytes32 array` in the addRecord function of the `router.sol` contract, where each element has been multiplied by 10^18(but timestamp don't have to). The first element must be the eventID, and the second should specify the event type. Users must omit the timestamp column to prevent fraudulent events;
 
 For example, for the following transaction, the format of the array should be:
 
@@ -49,6 +51,8 @@ For example, for the following transaction, the format of the array should be:
 0x0000000000000000000000000000000000000000000000008ac7230489e80000,
 
 0x0000000000000000000000000000000000000000000000000de0b6b3a7640000,
+
+0x0000000000000000000000000000000000000000000000000000000065eaa6b3,
 
 0x0000000000000000000000000000000000000000000000000e043da617250000
 
@@ -71,6 +75,8 @@ Which in decimal:
 10000000000000000000, (EP002)
 
 1000000000000000000, (EP003)
+
+1709876915,(EP004)
 
 1010000000000000000 (EP005)
 
@@ -148,7 +154,7 @@ npm i -g npx
 npm i
 ```
 
-6. Create a **.env** file in root directory of this project and set your PRIVATE_KEY and INFURA_API_KEY:
+6. Create a **.env** file in root directory of this project and set your PRIVATE_KEY:
 
 ```
 vim .env
@@ -186,7 +192,7 @@ in the console you shall fill in the transaction type(as bytes32) and the handle
 
 you will transaction hash if the handler was successfully registered
 
-4. Record transaction data:
+4. Record transaction data(you can also run event_crawler.js to record data with API):
 
 ```
 npx hardhat run src/services/blockchain/scripts/4.transaction_record.js  --network iSunCoin
@@ -219,6 +225,24 @@ npx hardhat run src/services/blockchain/scripts/7.check_column.js --network iSun
 ```
 
 ![Alt text](image-5.png)
+
+8. save blockchain data to local prisma:
+
+```
+node ./auditing_system_api/pages/api/v1/blockchain_to_prisma.js {your report name} {your report ID} ${routerContractAddress}
+```
+
+9. Download data from local database and output API:
+
+```
+node ./auditing_system_api/pages/api/v1/save_api_to_local.js {your report ID} ${nftContractAddress}
+```
+
+10. wait until baifa database has already crawl your evidences, put data into baifa database:
+
+```
+node baifa_database/scripts/test.js {your nft address}
+```
 
 ### Run the auto test:
 

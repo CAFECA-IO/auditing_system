@@ -81,7 +81,7 @@ export default async function handler(req, res) {
             details: {
               cryptocurrency: {
                 totalAmountFairValue:
-                  balanceSheet.assets_details_cryptocurrency_totalAmountFairValue, //A001
+                  balanceSheet.assetsDetailsCryptocurrencyTotalAmountFairValue, //A001
                 breakdown: {
                   USDT: {
                     amount:
@@ -129,7 +129,7 @@ export default async function handler(req, res) {
                     amount:
                       balanceSheet.assets_details_accountsReceivable_breakdown_BTC_amount, //A027
                     fairValue:
-                      balanceSheet.ssets_details_accountsReceivable_breakdown_BTC_fairValue, //A028
+                      balanceSheet.assets_details_accountsReceivable_breakdown_BTC_fairValue, //A028
                   },
                   ETH: {
                     amount:

@@ -10,17 +10,13 @@ const prisma = new PrismaClient();
 const provider = new ethers.providers.JsonRpcProvider(
   `https://isuncoin.baifa.io`,
 );
-const readline = require('readline').createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
 const contractABIPath = path.resolve(
   __dirname,
   '../../../../src/services/blockchain/artifacts/artifacts/src/services/blockchain/contracts/router.sol/RouterContract.json',
 );
 
 const contractABI = JSON.parse(fs.readFileSync(contractABIPath, 'utf8'));
-const routerContractAddress = process.env.ROUTER_ADDRESS;
+const routerContractAddress = process.argv[4];
 console.log('routerContractAddress', routerContractAddress);
 const contractInstance = new ethers.Contract(
   routerContractAddress,
@@ -28,16 +24,8 @@ const contractInstance = new ethers.Contract(
   provider,
 );
 
-const parser = process.env.PARSER_ADDRESS;
-console.log('parser address:', parser);
 const reports = contractInstance;
-function question(query) {
-  return new Promise((resolve) => {
-    readline.question(query, (input) => {
-      resolve(input);
-    });
-  });
-}
+
 async function getContractValue(reportName, reportType, reportColumn) {
   try {
     const value = await reports.getValue(reportName, reportType, reportColumn);
@@ -121,15 +109,11 @@ function updateEnvFile(key, value) {
 }
 
 async function main() {
-  const reportName = await question('Please enter the report name: ');
+  const reportName = process.argv[2];
   console.log(`The report name you entered is: ${reportName}`);
 
-  const reportId = await question(
-    'Please enter the report id (it is the token id of the NFT): ',
-  );
+  const reportId = process.argv[3];
   console.log(`The report id you entered is: ${reportId}`);
-
-  readline.close();
 
   await updateEnvFile('REPORT_NAME', reportName);
   await updateEnvFile('REPORT_ID', reportId);

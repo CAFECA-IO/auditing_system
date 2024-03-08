@@ -5,25 +5,25 @@ const fs = require('fs');
 const path = require('path');
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
-const reportID = process.env.REPORT_ID;
+const reportID = process.argv[2];
 
 async function generateReport() {
   try {
     const balanceSheet = await prisma.balanceSheet.findUnique({
       where: {
-        reportID: process.env.REPORT_ID,
+        reportID: process.argv[2],
       },
     });
 
     const cashFlow = await prisma.cashFlow.findUnique({
       where: {
-        reportID: process.env.REPORT_ID,
+        reportID: process.argv[2],
       },
     });
 
     const comprehensiveIncome = await prisma.comprehensiveIncome.findUnique({
       where: {
-        reportID: process.env.REPORT_ID,
+        reportID: process.argv[2],
       },
     });
 
@@ -333,94 +333,95 @@ async function generateReport() {
                 },
               },
             },
-          },
-          spreadFee: {
-            weightedAverageCost:
-              comprehensiveIncome.income_details_spreadFee_weightedAverageCost, //B012
-            breakdown: {
-              ETH: {
-                amount:
-                  comprehensiveIncome.income_details_spreadFee_breakdown_ETH_amount, //B054
-                weightedAverageCost:
-                  comprehensiveIncome.income_details_spreadFee_breakdown_ETH_weightedAverageCost, //B055
-              },
-              BTC: {
-                amount:
-                  comprehensiveIncome.income_details_spreadFee_breakdown_BTC_amount, //B056
-                weightedAverageCost:
-                  comprehensiveIncome.income_details_spreadFee_breakdown_BTC_weightedAverageCost, //B057
-              },
-              USDT: {
-                amount:
-                  comprehensiveIncome.income_details_spreadFee_breakdown_USDT_amount, //B058
-                weightedAverageCost:
-                  comprehensiveIncome.income_details_spreadFee_breakdown_USDT_weightedAverageCost, //B059
-              },
-              USD: {
-                amount:
-                  comprehensiveIncome.income_details_spreadFee_breakdown_USD_amount, //B060
-                weightedAverageCost:
-                  comprehensiveIncome.income_details_spreadFee_breakdown_USD_weightedAverageCost, //B061
-              },
-            },
-          },
-          liquidationFee: {
-            weightedAverageCost:
-              comprehensiveIncome.income_details_liquidationFee_weightedAverageCost, //B013
-            breakdown: {
-              ETH: {
-                amount:
-                  comprehensiveIncome.income_details_liquidationFee_breakdown_ETH_amount, //B062
-                weightedAverageCost:
-                  comprehensiveIncome.income_details_liquidationFee_breakdown_ETH_weightedAverageCost, //B063
-              },
-              BTC: {
-                amount:
-                  comprehensiveIncome.income_details_liquidationFee_breakdown_BTC_amount, //B064
-                weightedAverageCost:
-                  comprehensiveIncome.income_details_liquidationFee_breakdown_BTC_weightedAverageCost, //B065
-              },
-              USDT: {
-                amount:
-                  comprehensiveIncome.income_details_liquidationFee_breakdown_USDT_amount, //B066
-                weightedAverageCost:
-                  comprehensiveIncome.income_details_liquidationFee_breakdown_USDT_weightedAverageCost, //B067
-              },
-              USD: {
-                amount:
-                  comprehensiveIncome.income_details_liquidationFee_breakdown_USD_amount, //B068
-                weightedAverageCost:
-                  comprehensiveIncome.income_details_liquidationFee_breakdown_USD_weightedAverageCost, //B069
+
+            spreadFee: {
+              weightedAverageCost:
+                comprehensiveIncome.income_details_spreadFee_weightedAverageCost, //B012
+              breakdown: {
+                ETH: {
+                  amount:
+                    comprehensiveIncome.income_details_spreadFee_breakdown_ETH_amount, //B054
+                  weightedAverageCost:
+                    comprehensiveIncome.income_details_spreadFee_breakdown_ETH_weightedAverageCost, //B055
+                },
+                BTC: {
+                  amount:
+                    comprehensiveIncome.income_details_spreadFee_breakdown_BTC_amount, //B056
+                  weightedAverageCost:
+                    comprehensiveIncome.income_details_spreadFee_breakdown_BTC_weightedAverageCost, //B057
+                },
+                USDT: {
+                  amount:
+                    comprehensiveIncome.income_details_spreadFee_breakdown_USDT_amount, //B058
+                  weightedAverageCost:
+                    comprehensiveIncome.income_details_spreadFee_breakdown_USDT_weightedAverageCost, //B059
+                },
+                USD: {
+                  amount:
+                    comprehensiveIncome.income_details_spreadFee_breakdown_USD_amount, //B060
+                  weightedAverageCost:
+                    comprehensiveIncome.income_details_spreadFee_breakdown_USD_weightedAverageCost, //B061
+                },
               },
             },
-          },
-          guaranteedStopLossFee: {
-            weightedAverageCost:
-              comprehensiveIncome.income_details_guaranteedStopFee_weightedAverageCost, //B014
-            breakdown: {
-              ETH: {
-                amount:
-                  comprehensiveIncome.income_details_guaranteedStopFee_breakdown_ETH_amount, //B070
-                weightedAverageCost:
-                  comprehensiveIncome.income_details_guaranteedStopFee_breakdown_ETH_weightedAverageCost, //B071
+            liquidationFee: {
+              weightedAverageCost:
+                comprehensiveIncome.income_details_liquidationFee_weightedAverageCost, //B013
+              breakdown: {
+                ETH: {
+                  amount:
+                    comprehensiveIncome.income_details_liquidationFee_breakdown_ETH_amount, //B062
+                  weightedAverageCost:
+                    comprehensiveIncome.income_details_liquidationFee_breakdown_ETH_weightedAverageCost, //B063
+                },
+                BTC: {
+                  amount:
+                    comprehensiveIncome.income_details_liquidationFee_breakdown_BTC_amount, //B064
+                  weightedAverageCost:
+                    comprehensiveIncome.income_details_liquidationFee_breakdown_BTC_weightedAverageCost, //B065
+                },
+                USDT: {
+                  amount:
+                    comprehensiveIncome.income_details_liquidationFee_breakdown_USDT_amount, //B066
+                  weightedAverageCost:
+                    comprehensiveIncome.income_details_liquidationFee_breakdown_USDT_weightedAverageCost, //B067
+                },
+                USD: {
+                  amount:
+                    comprehensiveIncome.income_details_liquidationFee_breakdown_USD_amount, //B068
+                  weightedAverageCost:
+                    comprehensiveIncome.income_details_liquidationFee_breakdown_USD_weightedAverageCost, //B069
+                },
               },
-              BTC: {
-                amount:
-                  comprehensiveIncome.income_details_guaranteedStopFee_breakdown_BTC_amount, //B072
-                weightedAverageCost:
-                  comprehensiveIncome.income_details_guaranteedStopFee_breakdown_BTC_weightedAverageCost, //B073
-              },
-              USDT: {
-                amount:
-                  comprehensiveIncome.income_details_guaranteedStopFee_breakdown_USDT_amount, //B074
-                weightedAverageCost:
-                  comprehensiveIncome.income_details_guaranteedStopFee_breakdown_USDT_weightedAverageCost, //B075
-              },
-              USD: {
-                amount:
-                  comprehensiveIncome.income_details_guaranteedStopFee_breakdown_USD_amount, //B076
-                weightedAverageCost:
-                  comprehensiveIncome.income_details_guaranteedStopFee_breakdown_USD_weightedAverageCost, //B077
+            },
+            guaranteedStopLossFee: {
+              weightedAverageCost:
+                comprehensiveIncome.income_details_guaranteedStopFee_weightedAverageCost, //B014
+              breakdown: {
+                ETH: {
+                  amount:
+                    comprehensiveIncome.income_details_guaranteedStopFee_breakdown_ETH_amount, //B070
+                  weightedAverageCost:
+                    comprehensiveIncome.income_details_guaranteedStopFee_breakdown_ETH_weightedAverageCost, //B071
+                },
+                BTC: {
+                  amount:
+                    comprehensiveIncome.income_details_guaranteedStopFee_breakdown_BTC_amount, //B072
+                  weightedAverageCost:
+                    comprehensiveIncome.income_details_guaranteedStopFee_breakdown_BTC_weightedAverageCost, //B073
+                },
+                USDT: {
+                  amount:
+                    comprehensiveIncome.income_details_guaranteedStopFee_breakdown_USDT_amount, //B074
+                  weightedAverageCost:
+                    comprehensiveIncome.income_details_guaranteedStopFee_breakdown_USDT_weightedAverageCost, //B075
+                },
+                USD: {
+                  amount:
+                    comprehensiveIncome.income_details_guaranteedStopFee_breakdown_USD_amount, //B076
+                  weightedAverageCost:
+                    comprehensiveIncome.income_details_guaranteedStopFee_breakdown_USD_weightedAverageCost, //B077
+                },
               },
             },
           },
@@ -929,7 +930,7 @@ async function generateReport() {
 
     // Convert the data object to a JSON string
     const dataString = JSON.stringify(data, null, 2); // null and 2 are used for formatting
-    const contract_address = process.env.NFT_ADDRESS.toLowerCase();
+    const contract_address = process.argv[3].toLowerCase();
     // Define the path and filename where you want to save the file
     const filePath = path.resolve(
       'reports',
@@ -940,7 +941,9 @@ async function generateReport() {
     fs.writeFileSync(filePath, dataString);
 
     console.log(`Report saved to ${filePath}`);
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 generateReport();
