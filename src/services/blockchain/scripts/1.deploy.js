@@ -37,6 +37,7 @@ async function main() {
     getTimespan_address,
     REPORT_ADDRESS,
   ]);
+
   const ROUTER_ADDRESS = await router.getAddress();
 
   // Get addresses
