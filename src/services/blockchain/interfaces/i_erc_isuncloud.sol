@@ -9,7 +9,7 @@ interface IERC_ISUNCLOUD {
         uint256 endTime;
     }
 
-    event ReportNFTMinted(address indexed recipient,uint256 indexed newItemId, int256 indexed _ispublic,string reportName, uint256 startTime, uint256 endTime , address creator);
+    event ReportNFTMinted(address indexed recipient,uint256 indexed newItemId, int256 indexed _ispublic,string reportName, uint256 startTime, uint256 endTime , address creator, address report_address);
     event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId);
     event ApprovalForAll(address indexed owner, address indexed operator, bool approved);
     event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);

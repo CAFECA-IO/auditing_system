@@ -51,7 +51,6 @@ async function generateReport(startTime, endTime, report_Name) {
 
     const receipt = await tx.wait();
 
-    // 檢查交易是否成功
     if (receipt.status === 0) {
       console.error('Transaction failed');
       throw new Error('Transaction failed'); // 拋出錯誤，中斷函數執行

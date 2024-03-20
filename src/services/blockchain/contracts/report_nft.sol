@@ -20,16 +20,19 @@ contract ReportNFT is IERC_ISUNCLOUD {
     string private _collectionName;
     string private _collectionSymbol;
     address private _owner;
+    address public _report_address;
 
 
-    constructor(string memory collectionName, string memory collectionSymbol) {
+    constructor(string memory collectionName, string memory collectionSymbol, address report_address) {
         _registerInterface(_ERC721_INTERFACE_ID);
         _registerInterface(_INTERFACE_ID_ERC721_METADATA);
         _collectionName = collectionName;
         _collectionSymbol = collectionSymbol;
+        _report_address = report_address;
         _owner = msg.sender;
         _tokenIdCounter = 0;
     }
+
 
     modifier onlyOwner() {
         require(msg.sender == _owner, "Caller is not the owner");
@@ -107,7 +110,7 @@ contract ReportNFT is IERC_ISUNCLOUD {
         _reports[newItemId] = Report(reportName, startTime, endTime);
         _mint(recipient, newItemId);
 
-        emit ReportNFTMinted(recipient, newItemId, _ispublic, reportName, startTime, endTime, msg.sender);
+        emit ReportNFTMinted(recipient, newItemId, _ispublic, reportName, startTime, endTime, msg.sender, _report_address);
 
         return newItemId;
     }
