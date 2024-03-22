@@ -16,7 +16,6 @@ function isTimestamp(value) {
   return timestampPattern.test(value);
 }
 
-// This function is revised to handle string inputs specifically
 function stringToBytes32(text) {
   let buffer = Buffer.from(text);
   if (buffer.length < 32) {
@@ -53,9 +52,8 @@ async function processData() {
   }
 
   for (const event of fetchedData.data) {
-    // Assume event.id is numeric and event.eventCode is a string
-    const index = stringToBytes32(event.id.toString()); // Convert numeric ID to string first
-    const code = stringToBytes32(event.eventCode); // Directly use string event codes
+    const index = stringToBytes32(event.id.toString());
+    const code = stringToBytes32(event.eventCode);
     let valuesArray = [index, code];
     let valuesArrayOriginal = [event.id, event.eventCode];
 
@@ -63,12 +61,11 @@ async function processData() {
       let value = event.details[key];
 
       if (typeof value === 'number') {
-        value = BigInt(Math.floor(value * 10 ** 18)).toString(); // Convert number to BigInt string
+        value = BigInt(Math.floor(value * 10 ** 18)).toString();
       } else if (isTimestamp(value)) {
-        value = new Date(value).getTime().toString(); // Convert date to timestamp string
+        value = new Date(value).getTime().toString();
       }
 
-      // Use stringToBytes32 for all, assuming all details can be represented as strings
       valuesArrayOriginal.push(value);
       value = stringToBytes32(value);
       valuesArray.push(value);
