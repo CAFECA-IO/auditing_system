@@ -5,7 +5,7 @@ Auditing system tracing codes
 
 P.s. 在重新操作時，請都先將根目錄底下的.env裡除了private key之外的合約地址以及REPORT_ID刪除。另外，reportID就是tokenID
 
-npx hardhat run src/services/blockchain/scripts/1.deploy.js --network iSunCoin
+1. npx hardhat run src/services/blockchain/scripts/1.deploy.js --network iSunCoin
 
 這一行我們將會部署這個系統的必要合約，並且將部署好的合約自動存放在根目錄底下的.env檔案中，包含：PARSER_ADDRESS, REPORT_ADDRESS, TRANSACTION_ADDRESS, TIMESPAN_ADDRESS, ROUTER_ADDRESS, NFT_ADDRESS
 
