@@ -64,7 +64,7 @@ startTime,
 endTime,
 report_Name,
 \_ispublic,
-);
+);}
 
 7. 現在，區塊鏈上面有以陣列形式存在的報表欄位，我們要將它放置在本地端資料庫。
    來到audting_system_api這個專案下，運行node ./auditing_system_api/pages/api/v1/blockchain_to_prisma.js {report_name} {tokenID} ${routerContractAddress}。其中，report_name是剛剛在setRate所設定的report_name以字串輸入指令即可，tokenID是剛剛殼mint出來的tokenID。
