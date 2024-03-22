@@ -380,7 +380,7 @@ to see if API has output as expected.
 
 10. When reentrancy attack in transaction contract, revert it using reentrancy guard locker.
 
-## System Class Diagram:
+## smart contract System Class Diagram:
 
 <img width="2000" alt="image" src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/c35e050f-cd78-49e5-93c1-e1f2fd718500">
 
@@ -393,3 +393,57 @@ record transaction data:
 give time span and read reports:
 
 <img width="1200" alt="image" src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/f202a112-01bb-45a8-a8e6-b70f68a8ba33">
+
+## System class Diagram:
+
+![Alt text](image-8.png)
+
+註：
+橙色：伺服器/
+米色：本地端/
+藍色：區塊鏈/
+灰色：使用者
+
+1. API event crawler 定期向TideBit server 請求API
+
+2. 請求後的API經過字串處理後，利用transaction.sol將event data 存在event_handler.sol中
+
+3. 設定一個時間區間，將時段內的資料做會計計算
+
+4. (4-1)
+   計算完後，同時呼救report_nft.sol透過ISC8017標準，生產一個nft evidence
+
+(4-2)
+計算完後，將各個資料連為存在report.sol中
+
+5.  (5-1)
+    將report.sol中的資料定期存在local data base中（以確保使用者一呼叫，就可以直接取得報表資料，所以需要提前下載report.sol中的資料）
+
+(5-2)
+transaction crawler 會爬取在鏈上的NFT token，並將emit 出來的event 解析，製作成evidence
+
+6.  (6-1)
+    API maker 會先local data base 中的報表欄位製作成符合excel檔案規範的report API
+
+(6-2)
+transaction crawler製作的evidence將會先於報表欄位資料存在baifa database 中（這樣系統才能透過evidence ID去判斷哪一份報表屬於哪一份evidence）
+
+7. API maker 會將整理好的API存在本地端的reports文件夾中（API檔案的名稱包含nft contract address與report ID, 以利直接透過檔名就能尋找evidence並將相應的API放入）
+
+8. (8-1)
+   NFT token 的擁有者可以透過訪問API伺服器在前端瀏覽API
+
+(8-2)
+執行content filler可以閱讀存在本地端reports檔案名稱來判斷資料節內的資料需要放入哪一個evidence(會先判斷baifa data base中的content欄位是否為空，以免使用太多資源尋找已經放在content的evidence)
+
+9.
+
+(9-1) 前端顯示報表給token 擁有者
+
+(9-2) 判斷完成後將content塞入相應的evidence
+
+10.
+
+(10-1) 解析mintNFT時提供的report address, 我們可以自行訪問這麼report address的欄位
+
+(10-2) baifa 網站可以透過尋找evidence欄位中的content得到相應的報表
