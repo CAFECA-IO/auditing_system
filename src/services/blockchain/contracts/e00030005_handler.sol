@@ -23,6 +23,7 @@ contract E00030005Handler is ITransactionHandler{
     int256 EP005;
     int256 EP006;
     int256 EP007;
+    int256 EP008;
     int256 EP009;
     int256 EP010;
     int256 EP011;
@@ -39,7 +40,7 @@ contract E00030005Handler is ITransactionHandler{
     //Info: (20231115 - Yang){This is function is to record event data in arrays}
     function processTransaction(bytes32[] memory data, address recorder) external override {
 
-        require(data.length == 14, "Data length for E00030005 must be 14");
+        require(data.length == 15, "Data length for E00030005 must be 15");
 
         bytes32[] memory paramKeys = new bytes32[](13);
         int256[] memory paramValues = new int256[](13);
@@ -51,25 +52,25 @@ contract E00030005Handler is ITransactionHandler{
         paramKeys[2] = Iparser.stringToBytes32("EP003");
         paramValues[2] = int256(uint256(data[4]));
         paramKeys[3] = Iparser.stringToBytes32("EP004");
-        paramValues[3] = int256(block.timestamp);
+        paramValues[3] = int256(uint256(data[5]));
         paramKeys[4] = Iparser.stringToBytes32("EP005");
-        paramValues[4] = int256(uint256(data[5]));
+        paramValues[4] = int256(uint256(data[6]));
         paramKeys[5] = Iparser.stringToBytes32("EP006");
-        paramValues[5] = int256(uint256(data[6]));
+        paramValues[5] = int256(uint256(data[7]));
         paramKeys[6] = Iparser.stringToBytes32("EP007");
-        paramValues[6] = int256(uint256(data[7]));
+        paramValues[6] = int256(uint256(data[8]));
         paramKeys[7] = Iparser.stringToBytes32("trans_time");
-        paramValues[7] = int256(uint256(data[8]));
+        paramValues[7] = int256(uint256(data[9]));
         paramKeys[8] = Iparser.stringToBytes32("EP009");
-        paramValues[8] = int256(uint256(data[9]));
+        paramValues[8] = int256(uint256(data[10]));
         paramKeys[9] = Iparser.stringToBytes32("EP010");
-        paramValues[9] = int256(uint256(data[10]));
+        paramValues[9] = int256(uint256(data[11]));
         paramKeys[10] = Iparser.stringToBytes32("EP011");
-        paramValues[10] = int256(uint256(data[11]));
+        paramValues[10] = int256(uint256(data[12]));
         paramKeys[11] = Iparser.stringToBytes32("EP012");
-        paramValues[11] = int256(uint256(data[12]));
+        paramValues[11] = int256(uint256(data[13]));
         paramKeys[12] = Iparser.stringToBytes32("EP013");
-        paramValues[12] = int256(uint256(data[13]));
+        paramValues[12] = int256(uint256(data[14]));
 
 
         transactionContract.addProcessedTransaction(data[0], data[1], recorder, paramKeys, paramValues);
@@ -89,11 +90,13 @@ contract E00030005Handler is ITransactionHandler{
         EP002  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP002"));
         EP003  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP003"));
         EP004  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP004"));
+        EP005 = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP005"));
         getEventIdAndRate2(_eventId);
     }
     function getEventIdAndRate2(bytes32 _eventId)internal{
         EP006  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP006"));
         EP007  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP007"));
+        EP008  =    transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP008"));
         EP009  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP009"));
         EP010  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP010"));
         EP011  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP011"));
@@ -122,6 +125,11 @@ contract E00030005Handler is ITransactionHandler{
         int256 A025 = int256((-EP003) + (-EP012));
         report.addValue(reportName, "balanceSheet", "assets.details.accountsReceivable.breakdown.USDT.amount" , A025);
 
+        int256 A014 = int256((EP006 * latestSP002 +  (-EP006 * latestSP002) + (EP002 * latestSP002) + (-EP011 * latestSP002)
+               + (-EP003 * latestSP002) + (-EP001 * latestSP004) +EP007 * latestSP002 + (EP012 * latestSP002)
+               +  (EP011 * latestSP002)  + (-EP002 * latestSP002) + (EP001 * latestSP004))/10**18);
+        report.addValue(reportName, "balanceSheet", "totalLiabilitiesAndEquityFairValue" , A014);
+
         int256 A006_008 = int256(EP006 * latestSP002/10**18);
         report.addValue(reportName, "balanceSheet", "liabilities.details.userDeposit.totalAmountFairValue" , A006_008);
         report.addValue(reportName, "balanceSheet", "liabilities.details.userDeposit.breakdown.USDT.fairValue" , A006_008);
@@ -129,7 +137,8 @@ contract E00030005Handler is ITransactionHandler{
         int256 A007 = int256(EP006);
         report.addValue(reportName, "balanceSheet", "liabilities.details.userDeposit.breakdown.USDT.amount" , A007);
 
-        int256 A031 = int256(((-EP006 * latestSP002) + (EP002 * latestSP002) + (-EP011 * latestSP002) + (-EP003 * latestSP002) + (-EP001 * latestSP004)) / 10**18);
+        int256 A031 = int256(((-EP006 * latestSP002) + (EP002 * latestSP002) + (-EP011 * latestSP002) + (-EP003 * latestSP002)
+               + (-EP001 * latestSP004)) / 10**18);
         report.addValue(reportName, "balanceSheet", "liabilities.details.accountsPayable.totalAmountFairValue" , A031);
 
         int256 A034 = int256((-EP006) + EP002 + (-EP011) + (-EP003));
@@ -145,7 +154,7 @@ contract E00030005Handler is ITransactionHandler{
     }
 
     function computeBalanceSheet2() internal{
-        int256 A037 = -EP001 * latestSP004;
+        int256 A037 = (-EP001 * latestSP004)/10**18;
         report.addValue(reportName, "balanceSheet", "liabilities.details.accountsPayable.breakdown.BTC.fairValue" , A037);
 
         int256 A009 = int256((EP006 * latestSP002 +  (-EP006 * latestSP002) + (EP002 * latestSP002) + (-EP011 * latestSP002)+ (-EP003 * latestSP002) + (-EP001 * latestSP004))/10**18);
@@ -199,7 +208,7 @@ contract E00030005Handler is ITransactionHandler{
         report.addValue(reportName, "comprehensiveIncome", "otherGainsLosses.details.cryptocurrencyGains.breakdown.USDT.amount" , B100);
 
         int256 B028_101 = int256((-EP013 * EP009)/10**18);
-        report.addValue(reportName, "comprehensiveIncome", "otherGainsLosses.details.cryptocurrencyGains" , B028_101);
+        report.addValue(reportName, "comprehensiveIncome", "otherGainsLosses.details.cryptocurrencyGains.weightedAverageCost" , B028_101);
         report.addValue(reportName, "comprehensiveIncome", "otherGainsLosses.details.cryptocurrencyGains.breakdown.USDT.weightedAverageCost" , B028_101);
 
 

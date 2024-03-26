@@ -20,6 +20,7 @@ contract E00010008Handler is ITransactionHandler {
     int256 EP002;
     int256 EP003;
     int256 EP004;
+    int256 EP005;
     int256 EP006;
     int256 EP007;
     string eventIdFromTimeSpan;
@@ -33,7 +34,7 @@ contract E00010008Handler is ITransactionHandler {
 
     function processTransaction(bytes32[] memory data, address recorder) external override {
 
-        require(data.length == 8, "Data length for E00010008 must be 8");
+        require(data.length == 9, "Data length for E00010008 must be 9");
 
         bytes32[] memory paramKeys = new bytes32[](7);
         int256[] memory paramValues = new int256[](7);
@@ -47,11 +48,11 @@ contract E00010008Handler is ITransactionHandler {
         paramKeys[3] = Iparser.stringToBytes32("EP004");
         paramValues[3] = int256(uint256(data[5])  );
         paramKeys[4] = Iparser.stringToBytes32("trans_time");
-        paramValues[4] = int256(block.timestamp);
+        paramValues[4] = int256(uint256(data[6]));
         paramKeys[5] = Iparser.stringToBytes32("EP006");
-        paramValues[5] = int256(uint256(data[6])  );
+        paramValues[5] = int256(uint256(data[7]) );
         paramKeys[6] = Iparser.stringToBytes32("EP007");
-        paramValues[6] = int256(uint256(data[7])  );
+        paramValues[6] = int256(uint256(data[8]) );
 
 
         transactionContract.addProcessedTransaction(data[0], data[1], recorder, paramKeys, paramValues);
@@ -69,6 +70,7 @@ contract E00010008Handler is ITransactionHandler {
         EP002  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP002"));
         EP003  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP003"));
         EP004  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP004"));
+        EP005  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP005"));
         EP006  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP006"));
         EP007  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP007"));
         emit EventEP001(Iparser.bytes32ToString(_eventId), EP001,EP002,EP003,EP004,EP006,EP007);

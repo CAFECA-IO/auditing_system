@@ -20,6 +20,7 @@ contract E00040004Handler is ITransactionHandler{
     int256 EP002;
     int256 EP003;
     int256 EP004;
+    int256 EP005;
     int256 EP006;
     int256 EP007;
     string eventIdFromTimeSpan;
@@ -46,13 +47,13 @@ contract E00040004Handler is ITransactionHandler{
         paramKeys[2] = Iparser.stringToBytes32("EP003");
         paramValues[2] = int256(uint256(data[4]));
         paramKeys[3] = Iparser.stringToBytes32("EP004");
-        paramValues[3] = int256(block.timestamp);
+        paramValues[3] =  int256(uint256(data[5]));
         paramKeys[4] = Iparser.stringToBytes32("trans_time");
-        paramValues[4] = int256(uint256(data[5]));
+        paramValues[4] =int256(uint256(data[6]));
         paramKeys[5] = Iparser.stringToBytes32("EP006");
-        paramValues[5] = int256(uint256(data[6]));
+        paramValues[5] = int256(uint256(data[7]));
         paramKeys[6] = Iparser.stringToBytes32("EP007");
-        paramValues[6] = int256(uint256(data[7]));
+        paramValues[6] = int256(uint256(data[8]));
 
         transactionContract.addProcessedTransaction(data[0], data[1], recorder, paramKeys, paramValues);
     }
@@ -87,7 +88,7 @@ contract E00040004Handler is ITransactionHandler{
         report.addValue(reportName, "balanceSheet", "assets.totalAmountFairValue", A001_004_005_006_009);
         report.addValue(reportName, "balanceSheet", "totalAssetsFairValue", A001_004_005_006_009);
         report.addValue(reportName, "balanceSheet", "liabilities.details.userDeposit.totalAmountFairValue", A001_004_005_006_009);
-        report.addValue(reportName, "balanceSheet", "liabilities.totalAmountFairValue ", A001_004_005_006_009);
+        report.addValue(reportName, "balanceSheet", "liabilities.totalAmountFairValue", A001_004_005_006_009);
 
         int256 A046 = EP002;
         report.addValue(reportName, "balanceSheet", "assets.details.cryptocurrency.breakdown.BTC.amount" , A046);
@@ -95,7 +96,7 @@ contract E00040004Handler is ITransactionHandler{
         int256 A042 = -EP001;
         report.addValue(reportName, "balanceSheet", "liabilities.details.userDeposit.breakdown.ETH.amount" , A042);
 
-        int256 A047 = EP002 * latestSP004;
+        int256 A047 = (EP002 * latestSP004)/10**18;
         report.addValue(reportName, "balanceSheet", "assets.details.cryptocurrency.breakdown.BTC.fairValue" , A047);
 
         int256 A015 = int256(-EP001);

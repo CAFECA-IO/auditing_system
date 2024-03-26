@@ -1,0 +1,284 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource dbPostgresql {
+  provider = "postgresql"
+  url = env("DATABASE_URL")
+}
+
+
+model transaction_raw {
+  id                  Int    @id @default(autoincrement())
+  block_hash           String
+  block_number         Int
+  from                String
+  gas                 String
+  gas_price            String
+  max_fee_per_gas        String
+  max_priority_fee_per_gas String
+  hash                String @unique
+  input               String
+  nonce               String
+  to                  String
+  transaction_index    String
+  value               String
+  type                String
+  access_list          Json
+  chain_id             String
+  v                   String
+  r                   String
+  s                   String
+  parse_finished  Boolean  @default(false)
+}
+
+model block_raw {
+  id               Int    @id @default(autoincrement())
+  base_fee_per_gas    String
+  difficulty       String
+  extra_data        String
+  gas_limit         String
+  gas_used          String
+  hash             String @unique
+  logs_bloom        String
+  miner            String
+  mix_hash          String
+  nonce            String
+  number           Int @unique
+  parent_hash       String
+  receipts_root     String
+  sha3_uncles       String
+  size             String
+  state_root        String
+  timestamp        String
+  total_difficulty  String
+  transactions_root String
+  uncles           Json
+  burnt_fees Int
+  transaction_count Int
+  transaction_finished        Boolean  @default(false)
+  transaction_receipt_finished Boolean  @default(false)
+  parse_finished  Boolean  @default(false)
+}
+
+model transaction_receipt_raw {
+  id                  Int      @id @default(autoincrement())
+  block_hash           String
+  block_number         Int
+  contract_address     String
+  cumulative_gas_used   String
+  effective_gas_price   String
+  from                String
+  gas_used             String
+  logs                Json
+  logs_bloom           String
+  status              String
+  to                  String
+  transaction_hash     String @unique
+  transaction_index    String
+  type                String
+  parse_finished  Boolean  @default(false)
+}
+
+model contracts {
+  id                  Int      @id @default(autoincrement())
+  chain_id            Int?
+  contract_address    String?
+  source_code         String?
+  creator_address     String?
+  created_timestamp   Int?
+  chains              chains? @relation(fields: [chain_id], references: [id])
+}
+
+model public_tags {
+  id                  Int      @id @default(autoincrement())
+  name                String?
+  target              String?
+  target_type         String?
+  tag_type            String?
+  created_timestamp   Int?
+}
+
+model evidences {
+  id                 Int      @default(autoincrement())
+  evidence_id         String   @id
+  chain_id            Int?
+  created_timestamp   Int?
+  contract_address    String?
+  state               String @default("1")
+  content             String?
+  creator_address     String?
+  token_id            String?
+  chains              chains? @relation(fields: [chain_id], references: [id])
+}
+
+model chains {
+  id                  Int      @id
+  chain_name          String?
+  symbol              String?
+  decimals            Int?
+  rpc                 String?
+  currencies          currencies[]
+  blocks              blocks[]
+  addresses           addresses[]
+  evidences           evidences[]
+  contracts           contracts[]
+  transactions        transactions[]
+  red_flags           red_flags[]
+  token_balances      token_balances[]
+  token_transfers     token_transfers[]
+}
+
+model transactions {
+  id                  Int      @id @default(autoincrement())
+  chain_id            Int?
+  created_timestamp   Int?
+  hash                String? @unique
+  type                String?
+  status              String?
+  block_hash          String?
+  from_address        String?
+  to_address          String?
+  evidence_id         String?
+  value               String?
+  fee                 String?
+  related_addresses   String[]
+  chains              chains? @relation(fields: [chain_id], references: [id])
+  blocks              blocks? @relation(fields: [block_hash], references: [hash])
+}
+
+model review_datas {
+  id                  Int      @id @default(autoincrement())
+  target              String?
+  target_type         String?
+  created_timestamp   Int?
+  content             String?
+  stars               Int?
+  author_address      String?
+}
+
+model red_flags {
+  id                  Int      @id @default(autoincrement())
+  chain_id            Int?
+  created_timestamp   Int?
+  red_flag_type       String?
+  total_amount        String?
+  symbol              String?
+  related_addresses   String[]
+  related_transactions String[]
+  currency_id         String?
+  currencies          currencies? @relation(fields: [currency_id], references: [id])
+  chains               chains? @relation(fields: [chain_id], references: [id])
+}
+
+model blocks {
+  id                  Int      @id @default(autoincrement())
+  chain_id            Int?
+  created_timestamp   Int?
+  miner               String?
+  reward              String?
+  size                Int?
+  symbol              String?
+  transaction_count   Int?
+  parent_hash         String?
+  burnt_fees          String?
+  hash                String? @unique
+  number              Int? @unique
+  extra_data          String?
+  transactions        transactions[]
+  chains              chains? @relation(fields: [chain_id], references: [id])
+}
+
+model token_balances {
+  id                  Int      @id @default(autoincrement())
+  address             String?
+  value               String?
+  chain_id            Int?
+  currency_id         String?
+  chains              chains? @relation(fields: [chain_id], references: [id])
+  currencies          currencies? @relation(fields: [currency_id], references: [id])
+  @@unique([address, currency_id], name: "address_currency_id")
+}
+
+model token_transfers {
+  id                  Int      @id @default(autoincrement())
+  from_address        String?
+  to_address          String?
+  value               String?
+  chain_id            Int?
+  currency_id         String?
+  transaction_hash    String?
+  index               Int?
+  created_timestamp   Int?
+  chains              chains? @relation(fields: [chain_id], references: [id])
+  currencies          currencies? @relation(fields: [currency_id], references: [id])
+}
+
+model currencies {
+  id                  String      @id
+  risk_level          String?
+  price               Int?
+  volume_in_24h       String?
+  symbol              String?
+  total_amount        String?
+  holder_count        Int?
+  total_transfers     Int?
+  chain_id            Int?
+  name                String?
+  token_transfers     token_transfers[]
+  red_flags           red_flags[]
+  token_balances      token_balances[]
+  chains              chains? @relation(fields: [chain_id], references: [id])
+}
+
+model addresses {
+  id                  Int      @id @default(autoincrement())
+  chain_id            Int?
+  created_timestamp   Int?
+  address             String? @unique
+  score               Int?
+  latest_active_time  Int?
+  risk_records        risk_records[]
+  chains              chains? @relation(fields: [chain_id], references: [id])
+}
+
+model risk_records {
+  id                  Int      @id @default(autoincrement())
+  name                String?
+  address_id          Int?
+  created_timestamp   Int?
+  addresses           addresses? @relation(fields: [address_id], references: [id])
+}
+
+model codes {
+  id                  Int      @id @default(autoincrement())
+  table_name          String?
+  table_column        String?
+  value               Int?
+  meaning             String?
+}
+
+model balance_versions {
+  id                  Int      @id @default(autoincrement())
+  chain_id            Int?
+  address             String?
+  currency            String?
+  modify              String?
+  snapshot            String?
+  created_timestamp   Int?
+  transaction_hash    String?
+}
+
+model evidences_test {
+  evidence_id         String @id
+  chain_id            Int?
+  created_timestamp   Int?
+  contract_address    String?
+  state               String?
+  content             String?
+  creator_address     String?
+  token_id            String?
+}

@@ -22,9 +22,11 @@ _Deploy the smart contracts in the following sequence: ( you can deploy the smar
 
 4.getTransactionTimeSpan.sol(TransactionContract address, Parser address)
 
-5.router.sol contract(TransactionContract address, GetTransactionTimeSpan address)
+5.report_nft.sol
 
-6.transactionHandlers.sol(TransactionContract address, Parser address, Report address), e.g. e00010001Handler.sol
+6.router.sol contract(TransactionContract address, GetTransactionTimeSpan address)
+
+7.transactionHandlers.sol(TransactionContract address, Parser address, Report address), e.g. e00010001Handler.sol
 
 **If user wants to add new transaction types, for example e00010099, user only needs to write an e00010099.sol smart contract, deploy it, and register them in router**
 
@@ -34,7 +36,7 @@ _Deploy the smart contracts in the following sequence: ( you can deploy the smar
 
 <img src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/393f8045-4208-46f7-8278-65c2bc529b88" width="ˊ500" height="250" />
 
-2.  Record data using a `bytes32 array` in the addRecord function of the `router.sol` contract, where each element has been multiplied by 10^18. The first element must be the eventID, and the second should specify the event type. Users must omit the timestamp column to prevent fraudulent events; the system will automatically record the current time.
+2.  Record data using a `bytes32 array` in the addRecord function of the `router.sol` contract, where each element has been multiplied by 10^18(but timestamp don't have to). The first element must be the eventID, and the second should specify the event type. Users must omit the timestamp column to prevent fraudulent events;
 
 For example, for the following transaction, the format of the array should be:
 
@@ -49,6 +51,8 @@ For example, for the following transaction, the format of the array should be:
 0x0000000000000000000000000000000000000000000000008ac7230489e80000,
 
 0x0000000000000000000000000000000000000000000000000de0b6b3a7640000,
+
+0x0000000000000000000000000000000000000000000000000000000065eaa6b3,
 
 0x0000000000000000000000000000000000000000000000000e043da617250000
 
@@ -71,6 +75,8 @@ Which in decimal:
 10000000000000000000, (EP002)
 
 1000000000000000000, (EP003)
+
+1709876915,(EP004)
 
 1010000000000000000 (EP005)
 
@@ -148,7 +154,7 @@ npm i -g npx
 npm i
 ```
 
-6. Create a **.env** file in root directory of this project and set your PRIVATE_KEY and INFURA_API_KEY:
+6. Create a **.env** file in root directory of this project and set your PRIVATE_KEY:
 
 ```
 vim .env
@@ -186,7 +192,7 @@ in the console you shall fill in the transaction type(as bytes32) and the handle
 
 you will transaction hash if the handler was successfully registered
 
-4. Record transaction data:
+4. Record transaction data(you can also run event_crawler.js to record data with API):
 
 ```
 npx hardhat run src/services/blockchain/scripts/4.transaction_record.js  --network iSunCoin
@@ -220,7 +226,74 @@ npx hardhat run src/services/blockchain/scripts/7.check_column.js --network iSun
 
 ![Alt text](image-5.png)
 
+8. save blockchain data to local prisma:
+
+```
+node ./auditing_system_api/pages/api/v1/blockchain_to_prisma.js {your report name} {your report ID} ${routerContractAddress}
+```
+
+9. Download data from local database and output API:
+
+```
+node ./auditing_system_api/pages/api/v1/save_api_to_local.js {your report ID} ${nftContractAddress}
+```
+
+10. wait until baifa database has already crawl your evidences, put data into baifa database:
+
+```
+node baifa_database/scripts/test.js {your nft address}
+```
+
 ### Run the auto test:
+
+After downloading this app run this line at root:
+
+```
+npm i
+```
+
+then
+
+```
+vim .env, and set PRIVATE_KEY={your private key}, DATABASE_URL, HTTP_PORT
+```
+
+for now you should change some addresses
+
+```
+at reports_api.js and set_time_span.js you should change addresses to your address
+```
+
+```
+cd auditing_system_api, npm i
+```
+
+```
+npx prisma migrate deploy
+npx prisma migrate dev --name init
+```
+
+```
+vim .env, and set REPORT_NAME=,REPORT_ID= they can be empty but you need to set these variables
+```
+
+```
+node src/services/blockchain/scripts/auto_check.js
+```
+
+after that we can put api into baifa database
+
+```
+cd baifa_database
+```
+
+```
+npx prisma generate
+```
+
+```
+node baifa_database/scripts/test.js {your nft contract address}
+```
 
 Enter the following command, this script will automatically deploy, register, enter fixed testing data and check if the answers meet as expected.
 
@@ -260,6 +333,7 @@ npm install dotenv
 
 ```
 npx prisma migrate deploy
+npx prisma migrate dev --name init
 ```
 
 8. Run the following command to write data into database(take balanceSheet for example):
@@ -306,7 +380,7 @@ to see if API has output as expected.
 
 10. When reentrancy attack in transaction contract, revert it using reentrancy guard locker.
 
-## System Class Diagram:
+## smart contract System Class Diagram:
 
 <img width="2000" alt="image" src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/c35e050f-cd78-49e5-93c1-e1f2fd718500">
 
@@ -319,3 +393,57 @@ record transaction data:
 give time span and read reports:
 
 <img width="1200" alt="image" src="https://github.com/CAFECA-IO/auditing_system/assets/59311328/f202a112-01bb-45a8-a8e6-b70f68a8ba33">
+
+## System class Diagram:
+
+![Alt text](image-8.png)
+
+註：
+橙色：伺服器/
+米色：本地端/
+藍色：區塊鏈/
+灰色：使用者
+
+1. API event crawler 定期向TideBit server 請求API
+
+2. 請求後的API經過字串處理後，利用transaction.sol將event data 存在event_handler.sol中
+
+3. 設定一個時間區間，將時段內的資料做會計計算
+
+4. (4-1)
+   計算完後，同時呼救report_nft.sol透過ISC8017標準，生產一個nft evidence
+
+(4-2)
+計算完後，將各個資料連為存在report.sol中
+
+5.  (5-1)
+    將report.sol中的資料定期存在local data base中（以確保使用者一呼叫，就可以直接取得報表資料，所以需要提前下載report.sol中的資料）
+
+(5-2)
+transaction crawler 會爬取在鏈上的NFT token，並將emit 出來的event 解析，製作成evidence
+
+6.  (6-1)
+    API maker 會先local data base 中的報表欄位製作成符合excel檔案規範的report API
+
+(6-2)
+transaction crawler製作的evidence將會先於報表欄位資料存在baifa database 中（這樣系統才能透過evidence ID去判斷哪一份報表屬於哪一份evidence）
+
+7. API maker 會將整理好的API存在本地端的reports文件夾中（API檔案的名稱包含nft contract address與report ID, 以利直接透過檔名就能尋找evidence並將相應的API放入）
+
+8. (8-1)
+   NFT token 的擁有者可以透過訪問API伺服器在前端瀏覽API
+
+(8-2)
+執行content filler可以閱讀存在本地端reports檔案名稱來判斷資料節內的資料需要放入哪一個evidence(會先判斷baifa data base中的content欄位是否為空，以免使用太多資源尋找已經放在content的evidence)
+
+9.
+
+(9-1) 前端顯示報表給token 擁有者
+
+(9-2) 判斷完成後將content塞入相應的evidence
+
+10.
+
+(10-1) 解析mintNFT時提供的report address, 我們可以自行訪問這麼report address的欄位
+
+(10-2) baifa 網站可以透過尋找evidence欄位中的content得到相應的報表

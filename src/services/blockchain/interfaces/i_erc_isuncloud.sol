@@ -9,7 +9,7 @@ interface IERC_ISUNCLOUD {
         uint256 endTime;
     }
 
-    event ReportNFTMinted(address indexed recipient, uint256 indexed newItemId, string reportName, uint256 startTime, uint256 endTime);
+    event ReportNFTMinted(address indexed recipient,uint256 indexed newItemId, int256 indexed _ispublic,string reportName, uint256 startTime, uint256 endTime , address creator, address report_address);
     event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId);
     event ApprovalForAll(address indexed owner, address indexed operator, bool approved);
     event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);
@@ -57,7 +57,7 @@ interface IERC_ISUNCLOUD {
     //Info: (20231229 - Yang){ Returns the latest token ID.}
     function getLatestTokenID() external view returns (uint256);
     //Info: (20231229 - Yang){ Mints a new report NFT and assigns it to the specified recipient.}
-    function mintReportNFT(address recipient, uint256 startTime, uint256 endTime, string memory reportName) external returns (uint256);
+    function mintReportNFT(address recipient, uint256 startTime, uint256 endTime, string memory reportName,int256 _ispublic) external returns (uint256);
 
 
 }

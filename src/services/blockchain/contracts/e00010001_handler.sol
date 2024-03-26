@@ -12,13 +12,14 @@ contract E00010001Handler is ITransactionHandler{
     TransactionContract private transactionContract;
 
     event EventIdAndRateReceived(string eventId, int256 SP002, int256 SP003, int256 SP004);
-    event EventEP001(string eventId, int256 EP001,int256 EP002,int256 EP003,int256 EP005);
+    event EventEP001(string eventId, int256 EP001,int256 EP002,int256 EP003,int EP004,int256 EP005);
     int256 latestSP002;
     int256 latestSP003;
     int256 latestSP004;
     int256 EP001;
     int256 EP002;
     int256 EP003;
+    int256 EP004;
     int256 EP005;
     string eventIdFromTimeSpan;
     string reportName;
@@ -32,7 +33,7 @@ contract E00010001Handler is ITransactionHandler{
     //Info: (20231115 - Yang){This is function is to record event data in arrays}
     function processTransaction(bytes32[] memory data, address recorder) external override {
 
-        require(data.length == 6, "Data length for E00010001 must be 6");
+        require(data.length == 7, "Data length for E00010001 must be 7");
 
         bytes32[] memory paramKeys = new bytes32[](5);
         int256[] memory paramValues = new int256[](5);
@@ -44,9 +45,9 @@ contract E00010001Handler is ITransactionHandler{
         paramKeys[2] = Iparser.stringToBytes32("EP003");
         paramValues[2] = int256(uint256(data[4]));
         paramKeys[3] = Iparser.stringToBytes32("trans_time");
-        paramValues[3] = int256(block.timestamp);
+        paramValues[3] = int256(uint256(data[5]));
         paramKeys[4] = Iparser.stringToBytes32("EP005");
-        paramValues[4] = int256(uint256(data[5]));
+        paramValues[4] = int256(uint256(data[6]));
 
 
         transactionContract.addProcessedTransaction(data[0], data[1], recorder, paramKeys, paramValues);
@@ -65,8 +66,9 @@ contract E00010001Handler is ITransactionHandler{
         EP001  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP001"));
         EP002  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP002"));
         EP003  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP003"));
+        EP004  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("trans_time"));
         EP005  = transactionContract.getTransactionParamByEventId(_eventId,Iparser.stringToBytes32("EP005"));
-        emit EventEP001(Iparser.bytes32ToString(_eventId), EP001,EP002,EP003,EP005);
+        emit EventEP001(Iparser.bytes32ToString(_eventId), EP001,EP002,EP003,EP004,EP005);
 
         computeBalanceSheet();
         computeComprehesiveIncome();
