@@ -1,0 +1,653 @@
+{
+  "balanceSheet": {
+    "reportID": "3",
+    "reportName": "third_report",
+    "reportStartTime": 1709023326,
+    "reportEndTime": 1709023328,
+    "reportType": "balance sheet",
+    "totalAssetsFairValue": "260000.0",
+    "totalLiabilitiesAndEquityFairValue": "260000.0",
+    "assets": {
+      "totalAmountFairValue": "260000.0",
+      "details": {
+        "cryptocurrency": {
+          "breakdown": {
+            "USDT": {
+              "amount": "0.0",
+              "fairValue": "0.0"
+            },
+            "ETH": {
+              "amount": "0.0",
+              "fairValue": "0.0"
+            },
+            "BTC": {
+              "amount": "10.0",
+              "fairValue": "260000.0"
+            }
+          }
+        },
+        "cashAndCashEquivalent": {
+          "totalAmountFairValue": "0.0",
+          "breakdown": {
+            "USD": {
+              "amount": "0.0",
+              "fairValue": "0.0"
+            }
+          }
+        },
+        "accountsReceivable": {
+          "totalAmountFairValue": "0.0",
+          "breakdown": {
+            "USDT": {
+              "amount": "0.0",
+              "fairValue": "0.0"
+            },
+            "BTC": {
+              "amount": "0.0"
+            },
+            "ETH": {
+              "amount": "0.0",
+              "fairValue": "0.0"
+            }
+          }
+        }
+      }
+    },
+    "liabilities": {
+      "totalAmountFairValue": "260000.0",
+      "details": {
+        "userDeposit": {
+          "totalAmountFairValue": "260000.0",
+          "breakdown": {
+            "USDT": {
+              "amount": "0.0",
+              "fairValue": "0.0"
+            },
+            "USD": {
+              "amount": "0.0",
+              "fairValue": "0.0"
+            },
+            "ETH": {
+              "amount": "0.0",
+              "fairValue": "0.0"
+            },
+            "BTC": {
+              "amount": "10.0",
+              "fairValue": "260000.0"
+            }
+          }
+        },
+        "accountsPayable": {
+          "totalAmountFairValue": "0.0",
+          "breakdown": {
+            "USDT": {
+              "amount": "0.0",
+              "fairValue": "0.0"
+            },
+            "USD": {
+              "amount": "0.0",
+              "fairValue": "0.0"
+            },
+            "BTC": {
+              "amount": "0.0",
+              "fairValue": "0.0"
+            },
+            "ETH": {
+              "amount": "0.0",
+              "fairValue": "0.0"
+            }
+          }
+        }
+      }
+    },
+    "equity": {
+      "totalAmountFairValue": "0.0",
+      "details": {
+        "retainedEarning": {
+          "totalAmountFairValue": "0.0",
+          "breakdown": {
+            "USDT": {
+              "amount": "0.0",
+              "fairValue": "0.0"
+            },
+            "ETH": {
+              "amount": "0.0",
+              "fairValue": "0.0"
+            },
+            "BTC": {
+              "amount": "0.0",
+              "fairValue": "0.0"
+            },
+            "USD": {
+              "amount": "0.0",
+              "fairValue": "0.0"
+            }
+          }
+        },
+        "otherCapitalReserve": {
+          "fairValue": "0.0",
+          "breakdown": {
+            "USD": {
+              "amount": "0.0",
+              "fairValue": "0.0"
+            },
+            "USDT": {
+              "amount": "0.0",
+              "fairValue": "0.0"
+            },
+            "ETH": {
+              "amount": "0.0",
+              "fairValue": "0.0"
+            },
+            "BTC": {
+              "amount": "0.0",
+              "fairValue": "0.0"
+            }
+          }
+        }
+      }
+    }
+  },
+  "comprehensiveIncome": {
+    "reportType": "comprehensive income",
+    "reportID": "3",
+    "reportName": "third_report",
+    "reportStartTime": 1709023326,
+    "reportEndTime": 1709023328,
+    "netProfit": "0.0",
+    "income": {
+      "weightedAverageCost": "0.0",
+      "details": {
+        "depositFee": {
+          "weightedAverageCost": "0.0",
+          "breakdown": {
+            "USDT": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            },
+            "ETH": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            },
+            "BTC": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            },
+            "USD": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            }
+          }
+        },
+        "withdrawalFee": {
+          "weightedAverageCost": "0.0",
+          "breakdown": {
+            "USDT": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            },
+            "ETH": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            },
+            "BTC": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            },
+            "USD": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            }
+          }
+        },
+        "tradingFee": {
+          "weightedAverageCost": "0.0",
+          "breakdown": {
+            "ETH": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            },
+            "BTC": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            },
+            "USDT": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            },
+            "USD": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            }
+          }
+        }
+      },
+      "spreadFee": {
+        "weightedAverageCost": "0.0",
+        "breakdown": {
+          "ETH": {
+            "amount": "0.0",
+            "weightedAverageCost": "0.0"
+          },
+          "BTC": {
+            "amount": "0.0",
+            "weightedAverageCost": "0.0"
+          },
+          "USDT": {
+            "amount": "0.0",
+            "weightedAverageCost": "0.0"
+          },
+          "USD": {
+            "amount": "0.0",
+            "weightedAverageCost": "0.0"
+          }
+        }
+      },
+      "liquidationFee": {
+        "weightedAverageCost": "0.0",
+        "breakdown": {
+          "ETH": {
+            "amount": "0.0",
+            "weightedAverageCost": "0.0"
+          },
+          "BTC": {
+            "amount": "0.0",
+            "weightedAverageCost": "0.0"
+          },
+          "USDT": {
+            "amount": "0.0",
+            "weightedAverageCost": "0.0"
+          },
+          "USD": {
+            "amount": "0.0",
+            "weightedAverageCost": "0.0"
+          }
+        }
+      },
+      "guaranteedStopLossFee": {
+        "weightedAverageCost": "0.0",
+        "breakdown": {
+          "ETH": {
+            "amount": "0.0",
+            "weightedAverageCost": "0.0"
+          },
+          "BTC": {
+            "amount": "0.0",
+            "weightedAverageCost": "0.0"
+          },
+          "USDT": {
+            "amount": "0.0",
+            "weightedAverageCost": "0.0"
+          },
+          "USD": {
+            "amount": "0.0",
+            "weightedAverageCost": "0.0"
+          }
+        }
+      }
+    },
+    "costs": {
+      "weightedAverageCost": "0.0",
+      "details": {
+        "technicalProviderFee": {
+          "weightedAverageCost": "0.0",
+          "breakdown": {
+            "ETH": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            },
+            "BTC": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            },
+            "USDT": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            },
+            "USD": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            }
+          }
+        },
+        "marketDataProviderFee": {
+          "weightedAverageCost": "0.0"
+        },
+        "newCoinListingCost": {
+          "weightedAverageCost": "0.0"
+        }
+      }
+    },
+    "operatingExpenses": {
+      "weightedAverageCost": "0.0",
+      "details": {
+        "salaries": "0.0",
+        "rent": "0.0",
+        "marketing": "0.0",
+        "rebateExpenses": {
+          "weightedAverageCost": "0.0",
+          "breakdown": {
+            "ETH": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            },
+            "BTC": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            },
+            "USDT": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            },
+            "USD": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            }
+          }
+        }
+      }
+    },
+    "financialCosts": {
+      "weightedAverageCost": "0.0",
+      "details": {
+        "interestExpense": "0.0",
+        "cryptocurrencyForexLosses": {
+          "weightedAverageCost": "0.0",
+          "breakdown": {
+            "ETH": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            },
+            "BTC": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            },
+            "USDT": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            },
+            "USD": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            }
+          }
+        },
+        "fiatToCryptocurrencyConversionLosses": "0.0",
+        "cryptocurrencyToFiatConversionLosses": "0.0",
+        "fiatToFiatConversionLosses": "0.0"
+      }
+    },
+    "otherGainLosses": {
+      "weightedAverageCost": "0.0",
+      "details": {
+        "investmentGains": "0.0",
+        "forexGains": "0.0",
+        "cryptocurrencyGains": {
+          "weightedAverageCost": "0.0",
+          "breakdown": {
+            "USDT": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            },
+            "ETH": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            },
+            "BTC": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            },
+            "USD": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            }
+          }
+        }
+      }
+    }
+  },
+  "cashFlow": {
+    "reportType": "cash flow sheet",
+    "reportID": "3",
+    "reportName": "third_report",
+    "reportStartTime": 1709023326,
+    "reportEndTime": 1709023328,
+    "supplementalScheduleOfNonCashOperatingActivities": {
+      "weightedAverageCost": "250000.0",
+      "details": {
+        "cryptocurrenciesPaidToCustomersForPerpetualContractProfits": {
+          "weightedAverageCost": "0.0"
+        },
+        "cryptocurrenciesDepositedByCustomers": {
+          "weightedAverageCost": "250000.0",
+          "breakdown": {
+            "USDT": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            },
+            "ETH": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            },
+            "BTC": {
+              "amount": "10.0",
+              "weightedAverageCost": "250000.0"
+            }
+          }
+        },
+        "cryptocurrenciesWithdrawnByCustomers": {
+          "weightedAverageCost": "0.0",
+          "breakdown": {
+            "USDT": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            },
+            "ETH": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            },
+            "BTC": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            }
+          }
+        },
+        "cryptocurrenciesPaidToSuppliersForExpenses": {
+          "weightedAverageCost": "0.0",
+          "breakdown": {
+            "ETH": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            },
+            "USDT": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            },
+            "BTC": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            }
+          }
+        },
+        "cryptocurrencyInflows": {
+          "weightedAverageCost": "0.0",
+          "breakdown": {
+            "ETH": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            },
+            "BTC": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            },
+            "USDT": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            }
+          }
+        },
+        "cryptocurrencyOutflows": {
+          "weightedAverageCost": "0.0",
+          "breakdown": {
+            "ETH": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            },
+            "BTC": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            },
+            "USDT": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            }
+          }
+        },
+        "purchaseOfCryptocurrenciesWithNonCashConsideration": {
+          "weightedAverageCost": "0.0",
+          "breakdown": {
+            "ETH": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            },
+            "BTC": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            },
+            "USDT": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            }
+          }
+        },
+        "disposalOfCryptocurrenciesForNonCashConsideration": {
+          "weightedAverageCost": "0.0",
+          "breakdown": {
+            "ETH": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            },
+            "BTC": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            },
+            "USDT": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            }
+          }
+        },
+        "cryptocurrenciesReceivedFromCustomersAsTransactionFees": {
+          "weightedAverageCost": "0.0",
+          "breakdown": {
+            "USDT": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            },
+            "ETH": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            },
+            "BTC": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            }
+          }
+        }
+      }
+    },
+    "otherSupplementaryItems": {
+      "details": {
+        "relatedToNonCash": {
+          "cryptocurrenciesEndOfPeriod": {
+            "weightedAverageCost": "250000.0"
+          },
+          "cryptocurrenciesBeginningOfPeriod": {
+            "weightedAverageCost": "0.0"
+          }
+        },
+        "relatedToCash": {
+          "netIncreaseDecreaseInCashCashEquivalentsAndRestrictedCash": {
+            "weightedAverageCost": "0.0"
+          },
+          "cryptocurrenciesBeginningOfPeriod": {
+            "weightedAverageCost": "0.0"
+          },
+          "cryptocurrenciesEndOfPeriod": {
+            "weightedAverageCost": "0.0"
+          }
+        }
+      }
+    },
+    "operatingActivities": {
+      "weightedAverageCost": "0.0",
+      "details": {
+        "cashDepositedByCustomers": {
+          "weightedAverageCost": "0.0",
+          "breakdown": {
+            "USD": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            }
+          }
+        },
+        "cashWithdrawnByCustomers": {
+          "weightedAverageCost": "0.0",
+          "breakdown": {
+            "USD": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            }
+          }
+        },
+        "purchaseOfCryptocurrencies": {
+          "weightedAverageCost": "0.0"
+        },
+        "disposalOfCryptocurrencies": {
+          "weightedAverageCost": "0.0"
+        },
+        "cashReceivedFromCustomersAsTransactionFee": {
+          "weightedAverageCost": "0.0",
+          "breakdown": {
+            "USD": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            }
+          }
+        },
+        "cashPaidToSuppliersForExpenses": {
+          "weightedAverageCost": "0.0",
+          "breakdown": {
+            "USD": {
+              "amount": "0.0",
+              "weightedAverageCost": "0.0"
+            }
+          }
+        }
+      }
+    },
+    "investingActivities": {
+      "weightedAverageCost": "0.0"
+    },
+    "financingActivities": {
+      "weightedAverageCost": "0.0",
+      "details": {
+        "proceedsFromIssuanceOfCommonStock": {
+          "weightedAverageCost": "0.0"
+        },
+        "longTermDebt": {
+          "weightedAverageCost": "0.0"
+        },
+        "shortTermBorrowings": {
+          "weightedAverageCost": "0.0"
+        },
+        "paymentsOfDividends": {
+          "weightedAverageCost": "0.0"
+        },
+        "treasuryStock": {
+          "weightedAverageCost": "0.0"
+        }
+      }
+    }
+  }
+}

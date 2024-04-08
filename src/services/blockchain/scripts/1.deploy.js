@@ -10,14 +10,18 @@ async function main() {
 
   // Deploy contracts
 
-  const nft = await ethers.deployContract('ReportNFT', ['ReportNFT', 'RPT']);
-  const NFT_ADDRESS = await nft.getAddress();
-
   const parser = await ethers.deployContract('Parser');
   const PARSER_ADDRESS = await parser.getAddress();
 
   const reports = await ethers.deployContract('Reports');
   const REPORT_ADDRESS = await reports.getAddress();
+
+  const nft = await ethers.deployContract('ReportNFT', [
+    'ReportNFT',
+    'RPT',
+    REPORT_ADDRESS,
+  ]);
+  const NFT_ADDRESS = await nft.getAddress();
 
   const transactionContract = await ethers.deployContract(
     'TransactionContract',
@@ -37,6 +41,7 @@ async function main() {
     getTimespan_address,
     REPORT_ADDRESS,
   ]);
+
   const ROUTER_ADDRESS = await router.getAddress();
 
   // Get addresses

@@ -51,7 +51,6 @@ async function generateReport(startTime, endTime, report_Name) {
 
     const receipt = await tx.wait();
 
-    // 檢查交易是否成功
     if (receipt.status === 0) {
       console.error('Transaction failed');
       throw new Error('Transaction failed'); // 拋出錯誤，中斷函數執行
@@ -65,6 +64,7 @@ async function generateReport(startTime, endTime, report_Name) {
   }
 
   const recipientAddress = '0x2390B5b1DA7a78266111143D503D50c4636F5680';
+  const _ispublic = 0;
   try {
     console.log('start minting NFT');
     const tx = await nftContractWithSigner.mintReportNFT(
@@ -72,6 +72,7 @@ async function generateReport(startTime, endTime, report_Name) {
       startTime,
       endTime,
       report_Name,
+      _ispublic,
     );
     const transaction_hash = tx.hash;
     console.log('Minting NFT Transaction hash:', transaction_hash);
@@ -91,28 +92,37 @@ async function generateReport(startTime, endTime, report_Name) {
   }
 }
 
-rl.question('Please enter reportName: ', async (input) => {
-  const [signer] = await ethers.getSigners();
-  const contractWithSigner = new ethers.Contract(
-    routerContractAddress,
-    contractABI,
-    signer,
-  );
-  const router = contractWithSigner;
-  const latestTransactionTime = await router.getLatestTransactionTime();
-  let transactionTime = Number(latestTransactionTime);
-  if (transactionTime > Number.MAX_SAFE_INTEGER) {
-    transactionTime = BigInt(latestTransactionTime);
-    console.log('latestTransactionTime:', transactionTime.toString());
-    console.log('latestTransactionTime - 1', (transactionTime - 1n).toString());
-    console.log('latestTransactionTime + 1', (transactionTime + 1n).toString());
-    generateReport(transactionTime - 1n, transactionTime + 1n, input);
-  } else {
-    console.log('latestTransactionTime:', transactionTime);
-    console.log('latestTransactionTime - 1', transactionTime - 1);
-    console.log('latestTransactionTime + 1', transactionTime + 1);
-    generateReport(transactionTime - 1, transactionTime + 1, input);
-  }
+rl.question(
+  'Please enter reportName(bytes32)(startTime, EndTime, ispublic have already set default value to do auto test): ',
+  async (input) => {
+    const [signer] = await ethers.getSigners();
+    const contractWithSigner = new ethers.Contract(
+      routerContractAddress,
+      contractABI,
+      signer,
+    );
+    const router = contractWithSigner;
+    const latestTransactionTime = await router.getLatestTransactionTime();
+    let transactionTime = Number(latestTransactionTime);
+    if (transactionTime > Number.MAX_SAFE_INTEGER) {
+      transactionTime = BigInt(latestTransactionTime);
+      console.log('latestTransactionTime:', transactionTime.toString());
+      console.log(
+        'latestTransactionTime - 1',
+        (transactionTime - 1n).toString(),
+      );
+      console.log(
+        'latestTransactionTime + 1',
+        (transactionTime + 1n).toString(),
+      );
+      generateReport(transactionTime - 1n, transactionTime + 1n, input);
+    } else {
+      console.log('latestTransactionTime:', transactionTime);
+      console.log('latestTransactionTime - 1', transactionTime - 1);
+      console.log('latestTransactionTime + 1', transactionTime + 1);
+      generateReport(transactionTime - 1, transactionTime + 1, input);
+    }
 
-  rl.close();
-});
+    rl.close();
+  },
+);

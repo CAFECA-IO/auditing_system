@@ -37,7 +37,6 @@ contract GetTransactionTimeSpan {
         reports = Reports(_reports);
     }
 
-    //Info: (20231115 - Yang){This function is for testing, users should use setRate function to input a bytes32 array}
     function setRate(bytes32 _SP002, bytes32 _SP003, bytes32 _SP004, bytes32 _reportName)external {
         require(!usedReportIDs[_reportName], "Report ID already used");
         Settlement memory newRate = Settlement({
@@ -66,6 +65,7 @@ contract GetTransactionTimeSpan {
         bytes32[] memory eventIds = new bytes32[](count);
         int256[] memory transTimes = new int256[](count);
         address reportCreater = msg.sender;
+
 
         uint256 resultCount = 0;
         for (uint256 i = 0; i < count; i++) {
