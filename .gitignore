@@ -14,7 +14,6 @@ pnpm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
-.env
 
 # OS
 .DS_Store
@@ -39,6 +38,12 @@ lerna-debug.log*
 !.vscode/launch.json
 !.vscode/extensions.json
 
-#nestJS environment
+# nestJS environment
 /.prettierrc
 /.eslintrc.js
+
+# lock files
+package-lock.json
+
+# Private Data
+.env

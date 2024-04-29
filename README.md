@@ -2,6 +2,48 @@
 
 _This system allows users to input multiple transactions of various types. Users can specify a time range, and the system will then carry out accounting calculations on the transactions that occurred within this period, generating balance sheets, income statements, and cash flow statements. These reports can then be stored in the SQLite Prisma model. When users request a specific URL, the system will instantly generate and provide the corresponding API._
 
+## Quick Start
+- Prepare Environment
+- Download Source Code and Install
+- Setup PrivateKey and Get some iSunCoin
+- Deploy Contracts
+- Upload Accounting Event
+- Generate Daily Reports
+
+### Prepare Environment
+- Node.js v18.17.0 or above
+- NPM v9.6.7 or above
+
+### Download Source Code and Install
+```shell
+git clone https://github.com/CAFECA-IO/auditing_system
+cd auditing_system
+npm install
+```
+
+### Setup PrivateKey and Get some iSunCoin
+```shell
+cp .env.sample .env
+```
+```
+PRIVATEKEY=YOUR_PRIVATE_KEY_WITH_HEX_STRING
+```
+
+### Deploy Contracts
+```shell
+npx hardhat run src/services/blockchain/scripts/1.auto_deploy.js --network iSunCoin
+```
+
+### Upload Accounting Event
+```shell
+npx hardhat run src/services/blockchain/scripts/2.auto_event.js --network iSunCoin
+```
+
+### Generate Daily Reports
+```shell
+npx hardhat run src/services/blockchain/scripts/3.auto_report.js --network iSunCoin
+```
+
 ## Engage the system manually:
 
 _First, download this github zip file, unzip it and find the smart contracts in_
