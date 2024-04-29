@@ -6,6 +6,7 @@ _This system allows users to input multiple transactions of various types. Users
 - Prepare Environment
 - Download Source Code and Install
 - Setup PrivateKey and Get some iSunCoin
+- Setup initial reportId and beginId
 - Deploy Contracts
 - Upload Accounting Event
 - Generate Daily Reports
@@ -29,6 +30,16 @@ cp .env.sample .env
 PRIVATEKEY=YOUR_PRIVATE_KEY_WITH_HEX_STRING
 ```
 
+### Setup initial reportId and beginId
+- reportId.txt
+```
+0
+```
+- beginId.txt
+```
+1
+```
+
 ### Deploy Contracts
 ```shell
 npx hardhat run src/services/blockchain/scripts/1.auto_deploy.js --network iSunCoin
@@ -41,7 +52,7 @@ npx hardhat run src/services/blockchain/scripts/2.auto_event.js --network iSunCo
 
 ### Generate Daily Reports
 ```shell
-npx hardhat run src/services/blockchain/scripts/2.auto_report.js --network iSunCoin
+npx hardhat run src/services/blockchain/scripts/3.auto_report.js --network iSunCoin
 ```
 
 ## Engage the system manually:
